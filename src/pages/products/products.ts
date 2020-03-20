@@ -50,7 +50,10 @@ export class ProductsPage {
         this.quantity = "1";
         this.subCategories = params.data.categories;
         this.service.load(this.filter)
-            .then((results) => this.products = results);
+            .then((results) => {this.products = results
+                console.log(results);
+            }
+            );
     }
     getCategory(id, slug, name) {
         this.items.id = id;

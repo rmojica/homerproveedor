@@ -68,7 +68,6 @@ export class ProductPage {
     }
     addToCart() {
         if (this.setVariations()) {
-        console.log(this.options);
             this.service.addToCart(this.options).then((results) => this.updateCart(results));
         }
     }
@@ -80,6 +79,7 @@ export class ProductPage {
             }
         })
         for(var i = 0; i < this.product.product.attributes.length; i++){
+            console.log(this.product.product.attributes[i].name);
             if(this.product.product.attributes[i].variation && this.product.product.attributes[i].selected == undefined){
                 this.functions.showAlert('Options', 'Please Select Product ' + this.product.product.attributes[i].name  + ' Option');
                 return false;
@@ -154,6 +154,7 @@ export class ProductPage {
         }
     }
     chooseVariation(att, value){
+        console.log(att, value);
         this.product.product.attributes.forEach(item => {
             if(item.name == att.name){
                 item.selected = value;
