@@ -69,6 +69,7 @@
     "zone.js": "0.8.20"
   },
   "devDependencies": {
+    "@babel/register": "^7.9.0",
     "@ionic/app-scripts": "^3.2.4",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
