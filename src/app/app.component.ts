@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Home } from '../pages/home/home';
 import { Service } from '../providers/service/service';
 import { Values } from '../providers/service/values';
 import { Config } from '../providers/service/config';
@@ -39,13 +38,13 @@ export class MyApp {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
             this.service.load().then((results) => this.handleService(results));
-            this.nativeStorage.getItem('blocks').then(data => { if (data) { 
+            this.nativeStorage.getItem('blocks').then(data => { if (data) {
                 this.splashScreen.hide();
                 this.service.blocks = data.blocks;
                 this.values.settings = data.settings;
                 this.values.calc(platform.width());
                 } }, error => console.error(error));
-                
+
             this.nativeStorage.getItem('categories').then(data => {
                 if (data) {
                     this.service.categories = data;

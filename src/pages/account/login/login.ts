@@ -3,7 +3,6 @@ import { NavController, Platform } from 'ionic-angular';
 import { Service } from '../../../providers/service/service';
 import { Functions } from '../../../providers/service/functions';
 import { Values } from '../../../providers/service/values';
-import { Home } from '../../home/home';
 import { AccountForgotten } from '../forgotten/forgotten';
 import { OneSignal } from '@ionic-native/onesignal';
 

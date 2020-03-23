@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Home } from "../home/home";
-import { IonicPageModule, Select } from 'ionic-angular';
 import { ProductsListPage } from "../products-list/products-list";
 import { WishlistPage } from '../../pages/account/wishlist/wishlist';
 import { CartPage } from "../cart/cart";
