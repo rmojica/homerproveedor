@@ -10,7 +10,7 @@ page-products-list {
     }
     .heading{
         position: absolute;
-       
+
         //   font-size: 1.5rem;
         //   padding: 5px 10px;
         //   background: #1e88e5e6;
@@ -51,15 +51,45 @@ page-products-list {
     .item-md p {
       margin: 0 0 2px;
       overflow: inherit;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       line-height: normal;
       text-overflow: inherit;
       color: #000;
       font-weight: bold;
+      width: 100%;
   }
   .swiper-slide img {
     filter: brightness(0.5);
 }
-      
-   
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  padding: 0!important;
 }
+
+.text-center{
+  text-align: center!important;
+}
+
+.list-ios{
+  width:inherit!important;
+  & .item-block *{
+    text-align: center!important;
+    justify-content: center;
+  }
+
+
+}
+
+.heading{
+    text-align: center!important;
+    width: 100%;
+  }
+
+
+}
+
+
+
+
