@@ -78,8 +78,6 @@ export class ProductsPage {
           })
         }
       }
-
-      console.log('entró a cargar los productos:', this.products)
     })
   }
   getCategory(id, slug, name) {
@@ -118,11 +116,19 @@ export class ProductsPage {
       .then(results => this.handleMore(results, infiniteScroll))
   }
   handleMore(results, infiniteScroll) {
+    if (results.products == undefined) {
+      console.log('No hay mas productos que mostrar...', results.products)
+      this.has_more_items = false
+      infiniteScroll.complete()
+      return
+    }
     if (results.products != undefined) {
       for (var i = 0; i < results.products.length; i++) {
-        this.products.products.push(results.products[i])
+        this.products.push(results.products[i])
       }
     }
+    console.log('resultados', results.products)
+
     if (results.products.length == 0) {
       this.has_more_items = false
     }
