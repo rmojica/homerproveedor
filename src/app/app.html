@@ -36,7 +36,7 @@
 
     </ion-list>
     <ion-list class="menu-items">
-      <ion-item-divider>
+      <ion-item-divider tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">
         <ion-icon style="background-color: #32db64;" name="contact" item-left>
         </ion-icon>
         <strong>{{"Account" | translate}}

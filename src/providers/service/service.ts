@@ -33,6 +33,7 @@ export class Service {
     filter: any = {};
     has_more_items: boolean = true;
     blocks: any = [];
+    customer: any;
     constructor(private reqhttp: HTTP, private http: Http, private config: Config, private values: Values, public loadingCtrl: LoadingController, private nativeStorage: NativeStorage) {
         this.mainCategories = [];
         this.filter.page = 1;
@@ -216,6 +217,27 @@ export class Service {
             });
         });
     }
+    getCustomer() {
+        return new Promise(resolve => {
+            this.http.get(this.config.setUrl('GET', '/wc-api/v3/customers/' + this.values.customerId + '?', false), this.config.options).map(res => res.json()).subscribe(data => {
+                this.customer = data;
+                resolve(this.customer);
+            });
+        });
+    }
+    checkAvatar() {
+        let result = "";
+        if (this.values.customerId != null) {
+          if (this.customer.customer.avatar_url.indexOf('8ab2424adb5aafd0f6fc73775cd77668') != -1) {
+            result = "avatar";
+          }
+          else if (this.customer.customer.avatar_url.indexOf('8ab2424adb5aafd0f6fc73775cd77668') == -1) {
+            result = "image"
+          }
+        }
+        else result = "false"
+        return result;
+      }
     saveAddress(address) {
         var params = {
             customer: address
