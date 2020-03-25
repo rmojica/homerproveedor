@@ -21,6 +21,7 @@ import { AppRate } from '@ionic-native/app-rate';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { AccountPage } from '../pages/account/account/account';
 
 import {TabsPage} from '../pages/tabs/tabs';
 
@@ -102,6 +103,9 @@ export class MyApp {
         this.service.logout();
         this.values.wishlistId = [];
         this.nav.setRoot(TabsPage);
+    }
+    account() {
+        this.nav.setRoot(AccountPage);
     }
     login() {
         this.nav.setRoot(AccountLogin);

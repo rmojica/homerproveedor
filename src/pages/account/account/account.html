@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+    </button>
+    <ion-title text-wrap text-center>{{"Account" | translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="setting-page">
+<ion-spinner *ngIf="!customers" name="crescent" style="display:block; margin-left: auto; margin-right:auto; margin-top: 5px; margin-bottom:5px" ></ion-spinner>
+   <div *ngIf="customers" class="address">
+      <div *ngIf="customers.customer.billing_address">
+
+        <ion-grid class="ion-padding">
+          <ion-row size="12">
+            <ion-col *ngIf="checkAvatar()=='false'" class="ion-no-padding">
+              <ion-avatar>
+                <ion-icon class="avatar-icon" name="contact"></ion-icon>
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="ion-no-padding" *ngIf="checkAvatar()!='false'">
+              <ion-avatar>
+                  <img src="{{customers.customer.avatar_url}}"/>
+              </ion-avatar>
+              <div id="nametxt">{{customers.customer.first_name}}</div>
+            </ion-col> 
+            
+          </ion-row> 
+          <ion-row *ngIf="customers.customer.id==null" (click)="openLoginPage()">
+            <ion-col size="12" class="ion-no-padding">
+              <h2>{{ 'Login & Register' | translate }}</h2>
+              <p>{{ 'Please login or create an account for free' | translate }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      <ion-card>
+        <ion-card-header style="background-color: #ebebeb"> 
+          {{"BillingAddress" | translate}}
+        </ion-card-header>
+        <ion-card-content style="margin-top: 10px">
+          {{customers.customer.billing_address.first_name}} {{customers.customer.billing_address.last_name}}<br *ngIf="customers.customer.billing_address.first_name">
+          {{customers.customer.billing_address.address_1}}<br *ngIf="customers.customer.billing_address.address_1">
+          {{customers.customer.billing_address.address_2}}<br *ngIf="customers.customer.billing_address.address_2">
+          {{customers.customer.billing_address.city}} {{customers.customer.billing_address.state}}<br *ngIf="customers.customer.billing_address.city">
+          {{customers.customer.billing_address.phone}}<br *ngIf="customers.customer.billing_address.phone">
+          {{customers.customer.billing_address.email}}<br *ngIf="customers.customer.billing_address.email">
+          {{customers.customer.billing_address.country}} {{customers.customer.billing_address.postcode}}<br *ngIf="customers.customer.billing_address.postcode">
+        </ion-card-content>
+      </ion-card>
+      </div>
+      <div *ngIf="customers.customer.shipping_address">
+      <ion-card>
+        <ion-card-header style="background-color: #ebebeb">
+          {{"ShippingAddress" | translate}}
+        </ion-card-header>
+        <ion-card-content style="margin-top: 10px">
+          {{customers.customer.shipping_address.first_name}} {{customers.customer.shipping_address.last_name}}<br *ngIf="customers.customer.shipping_address.first_name">
+          {{customers.customer.shipping_address.address_1}}<br *ngIf="customers.customer.shipping_address.address_1">
+          {{customers.customer.shipping_address.address_2}}<br *ngIf="customers.customer.shipping_address.address_2">
+          {{customers.customer.shipping_address.city}} {{customers.customer.shipping_address.state}}<br *ngIf="customers.customer.shipping_address.city">
+          {{customers.customer.shipping_address.phone}}<br *ngIf="customers.customer.shipping_address.phone">
+          {{customers.customer.shipping_address.email}}<br *ngIf="customers.customer.shipping_address.email">
+          {{customers.customer.shipping_address.country}} {{customers.customer.shipping_address.postcode}}<br>
+        </ion-card-content>
+      </ion-card>
+      </div>
+      <div class="margin">
+         <button ion-button block color="button-color" type="submit" class="button button-block button-default" text-uppercase >{{"EditAddress" | translate}}</button>
+      </div>
+   </div>
+</ion-content>

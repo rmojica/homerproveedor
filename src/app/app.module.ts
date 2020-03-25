@@ -11,6 +11,7 @@ import { OrderDetails } from '../pages/account/order-details/order-details';
 import { Orders } from '../pages/account/orders/orders';
 import { AccountRegister } from '../pages/account/register/register';
 import { WishlistPage } from '../pages/account/wishlist/wishlist';
+import { AccountPage } from '../pages/account/account/account';
 
 import { CartPage } from '../pages/cart/cart';
 import { BillingAddressForm } from '../pages/checkout/billing-address-form/billing-address-form';
@@ -73,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
     Post,
     AccountRegister,
     WishlistPage,
+    AccountPage,
     CartPage,
     BillingAddressForm,
     OrderSummary,
@@ -111,6 +113,7 @@ export function createTranslateLoader(http: HttpClient) {
     Post,
     AccountRegister,
     WishlistPage,
+    AccountPage,
     CartPage,
     BillingAddressForm,
     OrderSummary,
