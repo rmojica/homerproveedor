@@ -256,8 +256,9 @@
       </ion-row>
     </div>
   </div-->
-    <div *ngIf="service?.products?.products" class="products-listing">
-      <div *ngIf="service?.products.products.length">
+    <div  class="products-listing">
+      entro
+      <div *ngIf="service?.products">
           <!--ion-item no-lines class="item-name">
             <ion-label text-uppercase><b>{{"Products" | translate}}</b>
             </ion-label>
@@ -265,12 +266,12 @@
           <ion-list>
                       <div class="card-background-page grid">
             <ion-row class="row unlimited-items">
-              <ion-col class="col" *ngFor="let item of service.products.products">
+              <ion-col class="col" *ngFor="let item of service.products">
                 <ion-card>
                   <ion-card-content class="stock">
 
                       <img [style.height.px]="values.dimensions.imageGridViewHeight" tappable src="{{item.images[0].src}}" (load)="hideLoading()" (click)="getProduct(item)">
-                      <button ion-button color="danger" *ngIf="!item.in_stock">{{"OUTOFSTOCK" | translate}}
+                      <button ion-button color="danger" *ngIf="item.stock_status !== 'instock'">{{"OUTOFSTOCK" | translate}}
                       </button>
 
      
@@ -315,7 +316,7 @@
           </ion-list>
         </div>
       </div>
-          <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
+          <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
             <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{'Loading more items...' | translate}}"> </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+        </ion-infinite-scroll> -->
 </ion-content>
