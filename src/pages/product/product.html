@@ -187,15 +187,36 @@
       [format]="'MM-DD-YYYY'"
     ></ion-calendar>
 
-    <ul class="block-picker" [innerHTML]="schedule"></ul>
+    <div *ngIf="schedule;else no_schedule">
+      <h4 class="container flex text-center full-width">
+        What time?
+      </h4>
 
+      <ul class="block-picker flex row">
+        <li *ngFor="let item of schedule" class="block">
+          <a
+            href="#"
+            ng-model="item"
+            (click)="selectTime(item)"
+            [ngClass]="{'selected' : selectedTime == item}"
+          >
+            {{getTime(item)}}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <ng-template #no_schedule>
+      <div class="container flex text-center full-width">
+        No blocks available for selected day
+      </div>
+    </ng-template>
     <div class="add-to-cart-button">
       <button
         ion-button
         full
         color="button-color"
         text-uppercase
-        [disabled]="disableSubmit"
+        [disabled]="!selectedService && !selectedTime  ? true : null"
         (click)="addToCart(product.product.id)"
       >
         BOOK NOW

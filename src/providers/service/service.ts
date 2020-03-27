@@ -601,6 +601,21 @@ export class Service {
       .map(res => res.json())
       .subscribe(data => {
         this.products = data
+
+        for (let index = 0; index < this.products.length; index++) {
+          const element = this.products[index]
+          let resources = element.resource_block_costs
+          let prices = new Array()
+          for (var key in resources) {
+            prices = [...prices, resources[key]]
+          }
+          if (Object.keys(resources).length) {
+            let minPrice = Math.min(...prices)
+            this.products.map(function(element) {
+              return (element.minPrice = minPrice)
+            })
+          }
+        }
       })
   }
   loadMore() {
@@ -608,7 +623,11 @@ export class Service {
     return new Promise(resolve => {
       this.http
         .get(
-          this.config.setUrl('GET', '/wp-json/wc-bookings/v1/products?', this.filter),
+          this.config.setUrl(
+            'GET',
+            '/wp-json/wc-bookings/v1/products?',
+            this.filter,
+          ),
           this.config.options,
         )
         .map(res => res.json())

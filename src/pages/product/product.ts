@@ -7,7 +7,6 @@ import { md5 } from './md5'
 import { CartPage } from '../cart/cart'
 import { CalendarComponentOptions, DayConfig } from 'ion2-calendar'
 import moment from 'moment'
-import { MyApp } from '../../app/app.component'
 
 @Component({
   templateUrl: 'product.html',
@@ -28,10 +27,11 @@ export class ProductPage {
   nickname: any
   details: any
   AddToCart: any
-  disableSubmit: boolean = false
+  disableSubmit: boolean = true
   wishlistIcon: boolean = false
   usedVariationAttributes: any = []
   selectedService: any
+  selectedTime: any
   mon: any = []
   day: any
   month: any = 1
@@ -168,24 +168,48 @@ export class ProductPage {
     this.month = date.getUTCMonth() + 1 //months from 1-12
     this.day = date.getUTCDate()
     this.year = date.getUTCFullYear()
+    //si cambiamos la fecha reseteamos los horarios
+    this.schedule = null
+    this.selectedTime = null
 
-    if (this.product.product.resources_full && !this.selectedService) {
+    if (
+      this.product.product.resources_full &&
+      this.product.product.resources_full.length > 0 &&
+      !this.selectedService
+    ) {
       this.functions.showAlert('error', 'Please select a service')
       return
     }
 
+    var resource_id = !this.selectedService
+      ? null
+      : this.selectedService.resource_id
+      ? this.selectedService.resource_id
+      : null
     // if (this.values.isLoggedIn) {
     this.service
-      .getBlocks(
-        this.day,
-        this.month,
-        this.year,
-        id,
-        this.selectedService.resource_id,
-      )
+      .getBlocks(this.day, this.month, this.year, id, resource_id)
       .then(results => {
         //this.update_blocks(results)
-        this.schedule = results
+        let res = results as string
+        let find = '<li class="block"'
+        let regex = new RegExp(find, 'g')
+        res = res.replace(
+          regex,
+          '<li class="block" ng-click="selectSchedule()" ',
+        )
+        console.log('schedule', res)
+        var match = res.match(/data-value="(.*?)"/gi)
+        if (!match) {
+          this.schedule = null
+          return
+        }
+        match.forEach((el, i, arr) => {
+          arr[i] = el.replace('data-value=', '').replace(/"/g, '')
+        })
+        console.log({ match })
+        this.schedule = match
+        // this.schedule = this.sanitizer.bypassSecurityTrustHtml(res)
       })
     // } else {
     // this.functions.showAlert('Warning', 'You must login to add to cart')
@@ -294,5 +318,15 @@ export class ProductPage {
     //     }
     //   })
     // })
+  }
+
+  selectTime(time) {
+    this.selectedTime = time
+  }
+
+  getTime(item) {
+    console.log(moment(item).format('hh:mm a'))
+
+    return moment(item).format('hh:mm a')
   }
 }

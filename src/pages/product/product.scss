@@ -256,11 +256,13 @@
 
   ul.block-picker {
     background-color: #ffffff;
-    margin: 0 0 1em 0;
+    margin: auto;
     overflow: hidden;
     zoom: 1;
     text-align: center;
-    padding: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
   }
 
   ul.block-picker li.block.block {
@@ -299,13 +301,6 @@
     background: #fff;
   }
 
-  ul.block-picker li.block a.selected {
-    border: 0;
-    background-color: #1e88e5;
-    color: #f7fbfe;
-    text-decoration: none;
-  }
-
   .block-picker li a.selected {
     background: #239e57 !important;
     color: #fff !important;
@@ -315,16 +310,22 @@
     margin: 0;
     border: 0;
     padding: 0.5em;
-    vertical-align: middle;
     text-align: center;
     display: block;
     text-decoration: none;
     box-shadow: none;
+    width: 95px;
+    height: 23px;
   }
-}
-ion-calendar .calendar-row .today {
-  background: #1e88e5c7;
-}
-ion-calendar .calendar-row .select {
-  background: #1e88e5e6;
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  ion-calendar .calendar-row .today {
+    background: #1e88e5c7;
+  }
+  ion-calendar .calendar-row .select {
+    background: #1e88e5e6;
+  }
 }

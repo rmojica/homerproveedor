@@ -69,8 +69,6 @@ export class ProductService {
         searchParams.set(param, params[param])
       }
       console.log(searchParams)
-      // searchParams.append("start_date", '');
-      // searchParams.append("end_date", '');
 
       this.http
         .post(
