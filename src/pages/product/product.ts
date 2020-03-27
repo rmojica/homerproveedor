@@ -5,6 +5,9 @@ import { Values } from '../../providers/service/values'
 import { Functions } from '../../providers/service/functions'
 import { md5 } from './md5'
 import { CartPage } from '../cart/cart'
+import { CalendarComponentOptions, DayConfig } from 'ion2-calendar'
+import moment from 'moment'
+import { MyApp } from '../../app/app.component'
 
 @Component({
   templateUrl: 'product.html',
@@ -28,11 +31,19 @@ export class ProductPage {
   disableSubmit: boolean = false
   wishlistIcon: boolean = false
   usedVariationAttributes: any = []
-  selectedProduct: any
-
+  selectedService: any
+  mon: any = []
   day: any
   month: any = 1
   year: any
+  disableWeekDays = []
+  daysConfig: DayConfig[] = []
+  optionsMulti: CalendarComponentOptions = {
+    pickMode: 'single',
+    daysConfig: this.daysConfig,
+    disableWeeks: this.disableWeekDays,
+  }
+  schedule: any
 
   constructor(
     public nav: NavController,
@@ -45,10 +56,12 @@ export class ProductPage {
     this.quantity = '1'
     this.AddToCart = 'AddToCart'
     if (params.data.id) {
-      this.selectedProduct = null
+      this.selectedService = null
       console.log(params)
       this.product.product = params.data
       this.id = params.data.id
+
+      console.log('producto', this.product.product)
 
       this.options.product_id = this.id
       console.log('Product: ', this.product.product.resources_full)
@@ -64,6 +77,44 @@ export class ProductPage {
         .then(results => this.handleProductResults(results))
     }
     this.getReviews()
+
+    //según el horario, deshabilitamos los dias de la semana que no están definidos en el Available
+    this.disableWeekDays = [0, 1, 2, 3, 4, 5, 6]
+    this.product.product.availability.forEach(element => {
+      let day = Number((element.type as string).split(':')[1])
+      console.log({ day })
+      const index = this.disableWeekDays.indexOf(day)
+      if (index > -1) {
+        this.disableWeekDays.splice(index, 1)
+      }
+    })
+
+    console.log('this.daysConfig', this.daysConfig)
+    console.log('this.disableWeekDays', this.disableWeekDays)
+
+    //Ponemos los dias as marked (para que aparezcan de un color azul) 6 meses hacia adelante
+    for (let index = 0; index < 180; index++) {
+      let cur_day = moment()
+        .add(index, 'days')
+        .toDate()
+        .getDay()
+      const index_cur_day = this.disableWeekDays.indexOf(cur_day)
+      if (index_cur_day > -1) {
+        this.daysConfig.push({
+          date: moment()
+            .add(index, 'days')
+            .toDate(),
+          disable: true,
+        })
+      }
+
+      this.daysConfig.push({
+        date: moment()
+          .add(index, 'days')
+          .toDate(),
+        marked: true,
+      })
+    }
   }
 
   handleProductResults(results) {
@@ -110,18 +161,35 @@ export class ProductPage {
     }
     return true
   }
-  onDaySelect($event, id) {
-    this.day = $event.date
-    this.month = $event.month + 1
-    this.year = $event.year
 
-    if (this.values.isLoggedIn) {
-      this.service
-        .getBlocks(this.day, this.month, this.year, id)
-        .then(results => this.update_blocks(results))
-    } else {
-      this.functions.showAlert('Warning', 'You must login to add to cart')
+  onSelect($event, id) {
+    let date = new Date($event.time)
+    console.log({ date })
+    this.month = date.getUTCMonth() + 1 //months from 1-12
+    this.day = date.getUTCDate()
+    this.year = date.getUTCFullYear()
+
+    if (this.product.product.resources_full && !this.selectedService) {
+      this.functions.showAlert('error', 'Please select a service')
+      return
     }
+
+    // if (this.values.isLoggedIn) {
+    this.service
+      .getBlocks(
+        this.day,
+        this.month,
+        this.year,
+        id,
+        this.selectedService.resource_id,
+      )
+      .then(results => {
+        //this.update_blocks(results)
+        this.schedule = results
+      })
+    // } else {
+    // this.functions.showAlert('Warning', 'You must login to add to cart')
+    // }
   }
   update_blocks(a) {
     if (a.success == 'Success') {
@@ -184,14 +252,14 @@ export class ProductPage {
     }
   }
   chooseVariation(option) {
-    if (this.selectedProduct) {
-      this.selectedProduct = null
+    if (this.selectedService) {
+      this.selectedService = null
       this.product.product.price = this.product.product.minPrice
     }
     this.product.product.resources_full.forEach(item => {
       if (item.resource_id == option.resource_id) {
-        this.selectedProduct = option
-        this.product.product.price = this.selectedProduct.price
+        this.selectedService = option
+        this.product.product.price = this.selectedService.price
       }
     })
 

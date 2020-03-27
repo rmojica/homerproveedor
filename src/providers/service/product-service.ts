@@ -5,6 +5,7 @@ import { Values } from './values'
 import { URLSearchParams } from '@angular/http'
 import 'rxjs/add/operator/map'
 import { LoadingController } from 'ionic-angular'
+import { HttpParams } from '@angular/common/http'
 
 @Injectable()
 export class ProductService {
@@ -18,6 +19,7 @@ export class ProductService {
   cart: any
   code: any
   loader: any
+  schedule: any
   constructor(
     private http: Http,
     private config: Config,
@@ -114,27 +116,35 @@ export class ProductService {
         })
     })
   }
-  getBlocks(day, month, year, id) {
+
+  pad(number, length) {
+    var str = '' + number
+    while (str.length < length) {
+      str = '0' + str
+    }
+
+    return str
+  }
+  getBlocks(day, month, year, product_id, resource_id) {
     return new Promise(resolve => {
+      let form_params = `wc_bookings_field_resource=${resource_id}&wc_bookings_field_start_date_month=${this.pad(
+        month,
+        2,
+      )}&wc_bookings_field_start_date_day=${day}&wc_bookings_field_start_date_year=${year}&wc_bookings_field_start_date_time=&wc_bookings_field_start_date_local_timezone=&add-to-cart=${product_id}`
       var params = new URLSearchParams()
-      params.append('wc_bookings_field_start_date_month', month)
-      params.append('wc_bookings_field_start_date_day', day)
-      params.append('wc_bookings_field_start_date_year', year)
-      params.append('wc_bookings_field_start_date_time', '')
-      params.append('wc_bookings_field_start_date_local_timezone', '')
-      params.append('add-to-cart', id)
+      params.append('action', 'wc_bookings_get_blocks')
+      params.append('form', form_params)
+
       this.http
         .post(
-          this.config.url +
-            '/wp-admin/admin-ajax.php?action=wc_bookings_get_blocks',
+          this.config.url + '/wp-admin/admin-ajax.php',
           params,
           this.config.options,
         )
-        .map(res => res.json())
+        .map(res => res)
         .subscribe(data => {
-          console.log(data)
-          this.status = data
-          resolve(this.status)
+          this.schedule = (<any>data)._body
+          resolve(this.schedule)
         })
     })
   }

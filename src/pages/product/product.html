@@ -181,37 +181,13 @@
     </div>  -->
 
     <ion-calendar
-      #calendar
-      (onDaySelect)="onDaySelect($event,product.product.id)"
+      [options]="optionsMulti"
+      (onSelect)="onSelect($event,product.product.id)"
+      [type]="type"
+      [format]="'MM-DD-YYYY'"
     ></ion-calendar>
 
-    <li class="block" data-block="0800">
-      <a href="#" data-value="2020-03-13T08:00:00+0000">8:00 am</a>
-    </li>
-    <li class="block" data-block="0900">
-      <a href="#" data-value="2020-03-13T09:00:00+0000">9:00 am</a>
-    </li>
-    <li class="block" data-block="1000">
-      <a href="#" data-value="2020-03-13T10:00:00+0000">10:00 am</a>
-    </li>
-    <li class="block" data-block="1100">
-      <a href="#" data-value="2020-03-13T11:00:00+0000">11:00 am</a>
-    </li>
-    <li class="block" data-block="1200">
-      <a href="#" data-value="2020-03-13T12:00:00+0000">12:00 pm</a>
-    </li>
-    <li class="block" data-block="1300">
-      <a href="#" data-value="2020-03-13T13:00:00+0000">1:00 pm</a>
-    </li>
-    <li class="block" data-block="1400">
-      <a href="#" data-value="2020-03-13T14:00:00+0000">2:00 pm</a>
-    </li>
-    <li class="block" data-block="1500">
-      <a href="#" data-value="2020-03-13T15:00:00+0000">3:00 pm</a>
-    </li>
-    <li class="block" data-block="1600">
-      <a href="#" data-value="2020-03-13T16:00:00+0000">4:00 pm</a>
-    </li>
+    <ul class="block-picker" [innerHTML]="schedule"></ul>
 
     <div class="add-to-cart-button">
       <button
