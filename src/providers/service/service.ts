@@ -595,7 +595,7 @@ export class Service {
   getProducts() {
     this.http
       .get(
-        this.config.setUrl('GET', '/wc-api/v3/products?', false),
+        this.config.setUrl('GET', '/wp-json/wc-bookings/v1/products?', false),
         this.config.options,
       )
       .map(res => res.json())
@@ -608,7 +608,7 @@ export class Service {
     return new Promise(resolve => {
       this.http
         .get(
-          this.config.setUrl('GET', '/wc-api/v3/products?', this.filter),
+          this.config.setUrl('GET', '/wp-json/wc-bookings/v1/products?', this.filter),
           this.config.options,
         )
         .map(res => res.json())
