@@ -135,7 +135,7 @@
             color="light"
             *ngFor="let option of usedVariationAttributes"
             (click)="chooseVariation(option)"
-            [ngClass]="{'selected-option': selectedProduct && option && option.resource_id == selectedProduct.resource_id }"
+            [ngClass]="{'selected-option': selectedService && option && option.resource_id == selectedService.resource_id }"
           >
             {{option.name}}
           </button>
@@ -216,7 +216,7 @@
         full
         color="button-color"
         text-uppercase
-        [disabled]="!selectedService && !selectedTime  ? true : null"
+        [disabled]="(product.product.resources_full.length>0 && !selectedService) || !selectedTime  ? true : null"
         (click)="addToCart(product.product.id)"
       >
         BOOK NOW

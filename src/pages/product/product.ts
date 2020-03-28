@@ -5,6 +5,7 @@ import { Values } from '../../providers/service/values'
 import { Functions } from '../../providers/service/functions'
 import { md5 } from './md5'
 import { CartPage } from '../cart/cart'
+import { AccountLogin } from '../account/login/login'
 import { CalendarComponentOptions, DayConfig } from 'ion2-calendar'
 import moment from 'moment'
 
@@ -130,11 +131,51 @@ export class ProductPage {
     console.log(id)
   }
   addToCart() {
-    if (this.setVariations()) {
-      this.service
-        .addToCart(this.options)
-        .then(results => this.updateCart(results))
+    if (!this.values.isLoggedIn) {
+      this.functions.showAlert(
+        'Options',
+        'Please login or create an account to continue',
+      )
+      this.nav.push(AccountLogin)
     }
+
+    // if (this.setVariations()) {
+
+    //Validamos se el producto contiene resources
+    if (
+      this.product.product.resources_full.length > 0 &&
+      !this.selectedService
+    ) {
+      this.functions.showAlert(
+        'Options',
+        'Select a service and booking information',
+      )
+      return
+    }
+    var resource_id = !this.selectedService
+      ? null
+      : this.selectedService.resource_id
+      ? this.selectedService.resource_id
+      : null
+
+    var date = moment(this.selectedTime)
+    var year = date.year()
+    var month = date.month()
+    var day = date.day()
+
+    this.service
+      .addToCart(
+        resource_id,
+        month,
+        day,
+        year,
+        this.selectedTime,
+        this.product.product,
+      )
+      .then(results => {
+        this.updateCart(results)
+      })
+    // }
   }
 
   setVariations() {
@@ -190,7 +231,6 @@ export class ProductPage {
     this.service
       .getBlocks(this.day, this.month, this.year, id, resource_id)
       .then(results => {
-        //this.update_blocks(results)
         let res = results as string
         let find = '<li class="block"'
         let regex = new RegExp(find, 'g')
@@ -207,13 +247,8 @@ export class ProductPage {
         match.forEach((el, i, arr) => {
           arr[i] = el.replace('data-value=', '').replace(/"/g, '')
         })
-        console.log({ match })
         this.schedule = match
-        // this.schedule = this.sanitizer.bypassSecurityTrustHtml(res)
       })
-    // } else {
-    // this.functions.showAlert('Warning', 'You must login to add to cart')
-    // }
   }
   update_blocks(a) {
     if (a.success == 'Success') {
@@ -224,7 +259,8 @@ export class ProductPage {
     }
   }
   updateCart(a) {
-    this.disableSubmit = false
+    console.log('a:', a)
+    //  this.disableSubmit = false
     this.values.count += parseInt(this.quantity)
     this.AddToCart = 'AddToCart'
   }
@@ -325,8 +361,6 @@ export class ProductPage {
   }
 
   getTime(item) {
-    console.log(moment(item).format('hh:mm a'))
-
     return moment(item).format('hh:mm a')
   }
 }
