@@ -5,7 +5,6 @@ import { Values } from './values'
 import { URLSearchParams } from '@angular/http'
 import 'rxjs/add/operator/map'
 import { LoadingController } from 'ionic-angular'
-import { HttpParams } from '@angular/common/http'
 
 @Injectable()
 export class ProductService {
