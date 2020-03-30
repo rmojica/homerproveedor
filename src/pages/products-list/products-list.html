@@ -5,7 +5,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      <img style="max-width: 150px;" src="{{values.avatar}}">
+      <img style="max-width: 150px;" src="{{values.avatar}}" />
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
   <ion-list>
     <ion-item text-wrap *ngFor="let category of categories" (click)="openCategoryPage(category)">
       <ion-thumbnail item-start >
-         <img-loader *ngIf="category.image.length != 0" useImg src="{{category.image.src}}" useImg></img-loader> 
+         <img-loader *ngIf="category.image.length != 0" useImg src="{{category.image.src}}" useImg></img-loader>
       </ion-thumbnail>
 
       <h2> {{ category.name }} </h2>
@@ -27,60 +27,64 @@
 <ion-content>
   <!-- <ion-slides autoplay='3000' loop='true' autoHeight='true' pager='true'>
     <ion-slide *ngFor="let number of [1,2,3]">
-       <img-loader src="./assets/images/1.jpg" useImg></img-loader> 
+       <img-loader src="./assets/images/1.jpg" useImg></img-loader>
     </ion-slide>
   </ion-slides> -->
 
-  <ion-slides initialSlide=0 speed="3000" loop="true" pager="true" dir="rtl">
+  <ion-slides initialSlide="0" speed="3000" loop="true" pager="true" dir="rtl">
     <ion-slide>
       <div class="overlay">
         <!-- <img src="../../assets/image/1.jpg" class="slider-img"> -->
-        <img src="{{values.slider}}">
+        <img src="{{values.slider}}" />
       </div>
       <!--overlay-->
-      <div class="card-title">{{'Find and book a doctor appointment right now' | translate}}</div>
+      <div class="card-title">
+        {{'Find and book a doctor appointment right now' | translate}}
+      </div>
       <div class="card-search">
-        <ion-searchbar placeholder="{{'Search' | translate}}">
-        </ion-searchbar>
+        <ion-searchbar placeholder="{{'Search' | translate}}"></ion-searchbar>
       </div>
     </ion-slide>
   </ion-slides>
 
   <ion-grid>
-
     <!-- <div *ngIf="service.categories" class="category-name">
       <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">
         <ion-icon item-right class="ion-ios-arrow-forward item-icon">
         </ion-icon>
-        <span [innerHTML]="item.name"></span>     
+        <span [innerHTML]="item.name"></span>
       </ion-item>
     </div>  -->
 
-    <ion-row *ngIf="service.categories" class="category-name">
-      <ion-col col-6 *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">
-        <ion-list>
-          <ion-item >
+    <h2 class="full-width text-center blue-stripe">Practices</h2>
 
+    <ion-row *ngIf="service.categories" class="category-name">
+      <ion-col
+        col-6
+        class="flex-center"
+        *ngFor="let item of service.mainCategories"
+        (click)="getCategory(item.id, item.slug, item.name)"
+      >
+        <ion-list>
+          <ion-item>
             <ion-grid>
               <ion-row>
                 <ion-thumbnail>
-                  <img src="{{item.image.src}}">
+                  <img src="{{item.image.src}}" />
                 </ion-thumbnail>
               </ion-row>
             </ion-grid>
 
             <ion-grid>
               <ion-row item-left lbl-category>
-                <p class="heading">{{item.name}}</p>
-                <p>{{item.description}}</p>
+                <p class="heading text-center">{{item.name}}</p>
+                <!-- <p>{{item.description}}</p> -->
               </ion-row>
             </ion-grid>
-
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
-
   </ion-grid>
 
   <ion-card>
@@ -91,22 +95,35 @@
     </ion-list>
   </ion-card>
 
-  <a button href="https://wa.me/50588167640?text=hello i need a medical consultation." clear item-left style="text-decoration: none;">
+  <a
+    button
+    href="https://wa.me/50588167640?text=hello i need a medical consultation."
+    clear
+    item-left
+    style="text-decoration: none;"
+  >
     <ion-card>
       <ion-list>
         <ion-item>
-          <ion-icon class="icon-whatsapp" name="logo-whatsapp"></ion-icon> 
+          <ion-icon class="icon-whatsapp" name="logo-whatsapp"></ion-icon>
           Chat on whatsapp
         </ion-item>
       </ion-list>
     </ion-card>
   </a>
 
-  <a button href="tel:50588167640" clear item-left style="text-decoration: none;">
+  <a
+    button
+    href="tel:50588167640"
+    clear
+    item-left
+    style="text-decoration: none;"
+  >
     <ion-card>
       <ion-list>
         <ion-item>
-          <ion-icon name="call"></ion-icon> Call us
+          <ion-icon name="call"></ion-icon>
+          Call us
         </ion-item>
       </ion-list>
     </ion-card>
@@ -123,5 +140,4 @@
       </ion-item>
     </ion-list>
   </ion-card> -->
-
 </ion-content>

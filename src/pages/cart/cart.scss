@@ -147,7 +147,7 @@
     .list .item-block .item-inner {
         border-bottom: none;
     }
-    .list .item-block:last-child, {
+    .list .item-block:last-child {
         border-bottom: none;
     }
     .list>.item-block:first-child {
@@ -182,4 +182,8 @@
     height: 2.8em;
     border-radius: 0;
     font-size: 14px;
+}
+
+.footer-cart{
+        bottom: 60px;
 }

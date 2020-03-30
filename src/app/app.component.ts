@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Home } from '../pages/home/home';
 import { Service } from '../providers/service/service';
 import { Values } from '../providers/service/values';
 import { Config } from '../providers/service/config';
@@ -22,6 +21,7 @@ import { AppRate } from '@ionic-native/app-rate';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { AccountPage } from '../pages/account/account/account';
 
 import {TabsPage} from '../pages/tabs/tabs';
 
@@ -39,13 +39,13 @@ export class MyApp {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
             this.service.load().then((results) => this.handleService(results));
-            this.nativeStorage.getItem('blocks').then(data => { if (data) { 
+            this.nativeStorage.getItem('blocks').then(data => { if (data) {
                 this.splashScreen.hide();
                 this.service.blocks = data.blocks;
                 this.values.settings = data.settings;
                 this.values.calc(platform.width());
                 } }, error => console.error(error));
-                
+
             this.nativeStorage.getItem('categories').then(data => {
                 if (data) {
                     this.service.categories = data;
@@ -103,6 +103,9 @@ export class MyApp {
         this.service.logout();
         this.values.wishlistId = [];
         this.nav.setRoot(TabsPage);
+    }
+    account() {
+        this.nav.setRoot(AccountPage);
     }
     login() {
         this.nav.setRoot(AccountLogin);

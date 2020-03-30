@@ -3,7 +3,6 @@ import { NavController, Platform } from 'ionic-angular';
 import { Service } from '../../../providers/service/service';
 import { Functions } from '../../../providers/service/functions';
 import { Values } from '../../../providers/service/values';
-import { Home } from '../../home/home';
 import { OneSignal } from '@ionic-native/onesignal';
 import { TabsPage } from '../../tabs/tabs';
 

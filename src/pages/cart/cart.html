@@ -170,7 +170,7 @@
   </div>
 </ion-content>
 <div *ngIf="cart">
-  <ion-footer *ngIf="cart.cart_contents.length != 0">
+  <ion-footer *ngIf="cart.cart_contents.length != 0" class="footer-cart">
     <button ion-button full color="button-color" no-padding no-margin text-uppercase [disabled]='disableSubmit' (click)="checkout()">{{Checkout | translate}}
     </button>
   </ion-footer>
