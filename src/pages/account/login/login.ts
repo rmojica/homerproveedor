@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, Platform } from 'ionic-angular'
+import { NavController, Platform, AlertController } from 'ionic-angular'
 import { Service } from '../../../providers/service/service'
 import { Functions } from '../../../providers/service/functions'
 import { Values } from '../../../providers/service/values'
@@ -26,6 +26,7 @@ export class AccountLogin {
     public values: Values,
     public platform: Platform,
     private oneSignal: OneSignal,
+    public alert: AlertController,
   ) {
     this.loginData = {}
     this.buttonText = 'Login'
@@ -59,11 +60,52 @@ export class AccountLogin {
           this.service.subscribeNotification(data)
         })
       this.nav.setRoot(TabsPage)
-    } else if (results.errors) {
-      this.functions.showAlert('error', 'invalid username/password')
+    } 
+    else if (results.errors) {
+      if(results.errors.invalid_email)
+        this.functions.showAlert('Email', results.errors.invalid_email)
+      else if(results.errors.invalid_username)
+        this.functions.showAlert('Username', results.errors.invalid_username)
+      else if(results.errors.incorrect_password)
+        this.showAlertForgotPass('Password', '<strong>ERROR</strong>: The password you entered for the email address <strong>'+this.loginData.username+'</strong> is incorrect.')
+      else if(results.errors.az_confirmation_error)
+        this.functions.showAlert('Confirmation', results.errors.az_confirmation_error)
+      // else if(results.errors.az_confirmation_error)
+      // this.showAlertResendKey('Confirmation', '<strong>ERROR:</strong> Please verify your account before login.')
+      else
+        this.functions.showAlert('error', 'invalid username/password')
     }
   }
-  forgotten(loginData) {
+  forgotten() {
     this.nav.push(AccountForgotten)
   }
+  showAlertForgotPass(title, text) {
+    let alert = this.alert.create({
+        title: title,
+        subTitle: text,
+        buttons: [
+            {
+              text: 'Lost your password?',
+              handler: data => {
+                 this.forgotten();
+              }
+            }]
+    });
+    alert.present();
+  }
+  // showAlertResendKey(title, text) {
+  //   let alert = this.alert.create({
+  //       title: title,
+  //       subTitle: text,
+  //       buttons: [
+  //           {
+  //             text: 'Resend Verification Link?',
+  //             handler: data => {
+                
+  //               this.service.resendKey(this.loginData.username, this.service.login_nonce);
+  //             }
+  //           }]
+  //   });
+  //   alert.present();
+  // }
 }

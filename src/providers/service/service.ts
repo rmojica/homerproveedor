@@ -348,6 +348,20 @@ export class Service {
         })
     })
   }
+  resendKey(usernameKey, nonceKey) {
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.url +
+            '/my-account/?action=resend_key&user_login='+usernameKey+'&nonce='+nonceKey+'',
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data)
+          console.log(data);
+        })
+    })
+  }
   getAddress() {
     return new Promise(resolve => {
       this.http
