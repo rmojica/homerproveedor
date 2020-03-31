@@ -92,6 +92,7 @@ export class AccountRegister {
                 });
                 this.oneSignal.sendTags({email: this.registerData.email, pincode: this.registerData.billing_address.postcode, city: this.registerData.billing_address.city });
             }
+            this.functions.showAlert('Verification', 'Your account has been created! please check your email')
             this.nav.setRoot(TabsPage);
         }
         else if (results.errors) {
