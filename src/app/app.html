@@ -46,10 +46,10 @@
         <ion-icon style="background-color: #f25362" name="log-in" item-left>
         </ion-icon>{{"LogIn" | translate}}
       </ion-item>
-      <!-- <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">
+      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">
         <ion-icon style="background-color: #3aa756" item-left ios="ios-create" md="md-create">
         </ion-icon>{{"Register" | translate}}
-      </ion-item> -->
+      </ion-item> 
       <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">
         <ion-icon style="background-color: #3aa756" item-left name="locate">
         </ion-icon>{{"Address" | translate}}

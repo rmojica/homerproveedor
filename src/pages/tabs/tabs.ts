@@ -5,6 +5,7 @@ import { WishlistPage } from '../../pages/account/wishlist/wishlist';
 import { CartPage } from "../cart/cart";
 import { Values } from '../../providers/service/values';
 import { AccountPage } from '../../pages/account/account/account';
+import { NavController, NavParams, PopoverController, ModalController } from 'ionic-angular'
 
 @Component({
   selector: 'page-tabs',
@@ -20,8 +21,17 @@ export class TabsPage{
   Values= Values;
   AccountPage= AccountPage;
   constructor(
+    public nav: NavController,
     public values: Values,
+    public modalCtrl: ModalController,
   ) {
     
   }
+
+  getCart() {
+    // let modal = this.modalCtrl.create(CartPage);
+    // modal.present();
+    this.nav.push(CartPage)
+  }
+
 }
