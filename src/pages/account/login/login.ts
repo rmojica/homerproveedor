@@ -85,11 +85,16 @@ export class AccountLogin {
         subTitle: text,
         buttons: [
             {
+              text: 'Cancel',
+              role: 'cancel',
+            },
+            {
               text: 'Lost your password?',
               handler: data => {
                  this.forgotten();
               }
-            }]
+            }
+          ],
     });
     alert.present();
   }
