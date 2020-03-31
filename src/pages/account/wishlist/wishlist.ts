@@ -13,7 +13,7 @@ export class WishlistPage {
 
     wishlist: any;
     error: any;
-    
+
     constructor(public nav: NavController, public values: Values, public params: NavParams, public functions: Functions, public service: WishlistService) {
 
       this.service.loadWishlist()
@@ -33,7 +33,8 @@ export class WishlistPage {
   getCart() {
         this.nav.push(CartPage);
   }
-  addToCart(id, type){
+  addToCart(item,id, type){
+    console.log({item})
     if (type == 'variable') {
          this.nav.push(ProductPage, id);
         }
@@ -48,7 +49,7 @@ export class WishlistPage {
     }
     else{
        this.service.deleteItem(id)
-        .then((results) => this.updateWishlist(results));     
+        .then((results) => this.updateWishlist(results));
     }
   }
   updateWishlist(results){

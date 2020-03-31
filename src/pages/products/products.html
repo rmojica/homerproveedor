@@ -179,10 +179,16 @@
                 </div>
 
                 <div class="price-bottom-list">
-                  <h3 class="price-regular" *ngIf="!item.sale_price">
-                    {{1*item.price | currency:values.currency:true:'1.2-2'}}
+                  <h3 class="price-regular" *ngIf="!item.minPrice">
+                    Starting from {{1*item.price |
+                    currency:values.currency:true:'1.2-2'}}
                   </h3>
-                  <h3 class="price-special" *ngIf="item.sale_price">
+
+                  <h3 class="price-regular" *ngIf="item.minPrice">
+                    Starting from {{1*item.minPrice |
+                    currency:values.currency:true:'1.2-2'}}
+                  </h3>
+                  <!-- <h3 class="price-special" *ngIf="item.sale_price">
                     {{1*item.sale_price |
                     currency:values.currency:true:'1.2-2'}}
                   </h3>
@@ -191,7 +197,7 @@
                       {{1*item.regular_price |
                       currency:values.currency:true:'1.2-2'}}
                     </del>
-                  </h3>
+                  </h3> -->
                 </div>
                 <!--/div-->
 
