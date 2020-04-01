@@ -17,8 +17,10 @@ export class AccountLogin {
   status: any
   error: any
   nonce: any
+  nonceResendKey: any
   public disableSubmit: boolean = false
   buttonText: any
+  countries: any
   constructor(
     public nav: NavController,
     public service: Service,
@@ -31,6 +33,8 @@ export class AccountLogin {
     this.loginData = {}
     this.buttonText = 'Login'
     this.service.getNonce().then(results => (this.nonce = results))
+    this.countries = {}
+   
   }
   login() {
     if (this.validateForm()) {
@@ -69,9 +73,7 @@ export class AccountLogin {
       else if(results.errors.incorrect_password)
         this.showAlertForgotPass('Password', '<strong>ERROR</strong>: The password you entered for the email address <strong>'+this.loginData.username+'</strong> is incorrect.')
       else if(results.errors.az_confirmation_error)
-        this.functions.showAlert('Confirmation', results.errors.az_confirmation_error)
-      // else if(results.errors.az_confirmation_error)
-      // this.showAlertResendKey('Confirmation', '<strong>ERROR:</strong> Please verify your account before login.')
+      this.showAlertResendKey('Confirmation mail', '<strong>ERROR:</strong> Please verify your account before login.')
       else
         this.functions.showAlert('error', 'invalid username/password')
     }
@@ -98,19 +100,27 @@ export class AccountLogin {
     });
     alert.present();
   }
-  // showAlertResendKey(title, text) {
-  //   let alert = this.alert.create({
-  //       title: title,
-  //       subTitle: text,
-  //       buttons: [
-  //           {
-  //             text: 'Resend Verification Link?',
-  //             handler: data => {
-                
-  //               this.service.resendKey(this.loginData.username, this.service.login_nonce);
-  //             }
-  //           }]
-  //   });
-  //   alert.present();
-  // }
+  showAlertResendKey(title, text) {
+    let alert = this.alert.create({
+        title: title,
+        subTitle: text,
+        buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+            },
+            {
+              text: 'Resend Verification Link?',
+              handler: data => {
+                this.service.getNonceResendKey(this.loginData.username).then((results) => this.handleResultsNonce(results));
+
+              }
+            }]
+    });
+    alert.present();
+  }
+  handleResultsNonce(results) {
+    this.countries = results;
+    this.service.resendKey(this.loginData.username, this.countries.resend_key_nonce);
+  }
 }

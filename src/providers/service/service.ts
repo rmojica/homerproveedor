@@ -8,6 +8,8 @@ import { NativeStorage } from '@ionic-native/native-storage'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/observable/forkJoin'
 import { HTTP } from '@ionic-native/http'
+import { Functions } from '../../providers/service/functions'
+
 
 @Injectable()
 export class Service {
@@ -41,6 +43,7 @@ export class Service {
     private values: Values,
     public loadingCtrl: LoadingController,
     private nativeStorage: NativeStorage,
+    public functions: Functions,
   ) {
     this.mainCategories = []
     this.filter.page = 1
@@ -217,6 +220,22 @@ export class Service {
         })
     })
   }
+   getNonceResendKey(username) {
+     var params = new URLSearchParams()
+     params.append('username', username)
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-nonce&'+params,
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data)
+        })
+    })
+  }
+  
   login(loginData) {
     var params = new URLSearchParams()
     params.append('username', loginData.username)
@@ -349,16 +368,20 @@ export class Service {
     })
   }
   resendKey(usernameKey, nonceKey) {
+    console.log(nonceKey);
     return new Promise(resolve => {
       this.http
         .get(
           this.config.url +
             '/my-account/?action=resend_key&user_login='+usernameKey+'&nonce='+nonceKey+'',
         )
-        .map(res => res.json())
+        .map(res => res)
         .subscribe(data => {
           resolve(data)
-          console.log(data);
+          if(data.statusText == "OK")
+            this.functions.showAlert("SUCCESS", "Check email for new verification link. ");
+          else
+            this.functions.showAlert("ERROR", "an error has occurred please check. ");
         })
     })
   }
