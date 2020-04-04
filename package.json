@@ -1,8 +1,8 @@
 {
-  "name": "WooCommerce",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "numu.digital.hexchange",
+  "version": "0.0.2",
+  "author": "Numu Digital",
+  "homepage": "https://hexchange.digitalfactory.tech/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
