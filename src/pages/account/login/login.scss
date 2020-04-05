@@ -61,6 +61,11 @@
             box-shadow: none;
         }
     }
+    .item-md ion-icon[item-right]{
+        position: absolute;
+        top: 8px;
+        right: 12px;
+    }
 }
 
 .alert-md .alert-wrapper {

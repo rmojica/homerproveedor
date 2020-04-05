@@ -21,6 +21,7 @@ export class AccountLogin {
   public disableSubmit: boolean = false
   buttonText: any
   countries: any
+  isActiveToggleTextPassword: Boolean = true
   constructor(
     public nav: NavController,
     public service: Service,
@@ -123,4 +124,11 @@ export class AccountLogin {
     this.countries = results;
     this.service.resendKey(this.loginData.username, this.countries.resend_key_nonce);
   }
+
+  public toggleTextPassword(): void{
+    this.isActiveToggleTextPassword = (this.isActiveToggleTextPassword==true)?false:true;
+}
+public getType() {
+    return this.isActiveToggleTextPassword ? 'password' : 'text';
+}
 }
