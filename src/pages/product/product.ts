@@ -27,7 +27,7 @@ export class ProductPage {
   reviewForm: any
   nickname: any
   details: any
-  AddToCart: any
+  BookNow: any
   disableSubmit: boolean = true
   wishlistIcon: boolean = false
   usedVariationAttributes: any = []
@@ -45,6 +45,8 @@ export class ProductPage {
     disableWeeks: this.disableWeekDays,
   }
   schedule: any
+  NoBlockAvailable = "NoBlockAvailable"
+  WhatTime = "WhatTime"
 
   constructor(
     public nav: NavController,
@@ -55,7 +57,7 @@ export class ProductPage {
   ) {
     this.options = []
     this.quantity = '1'
-    this.AddToCart = 'AddToCart'
+    this.BookNow = 'BookNow'
     if (params.data.id) {
       this.selectedService = null
       console.log(params)
@@ -116,6 +118,9 @@ export class ProductPage {
         marked: true,
       })
     }
+
+    //Por defecto iniciamos con el booking deshabilitado
+    this.disableSubmit =true
   }
 
   handleProductResults(results) {
@@ -138,9 +143,6 @@ export class ProductPage {
       )
       this.nav.push(AccountLogin)
     }
-
-    // if (this.setVariations()) {
-
     //Validamos se el producto contiene resources
     if (
       this.product.product.resources_full.length > 0 &&
@@ -162,7 +164,8 @@ export class ProductPage {
     var year = date.year()
     var month = date.month()
     var day = date.day()
-
+    this.disableSubmit =true
+    this.BookNow= "PleaseWait";
     this.service
       .addToCart(
         resource_id,
@@ -212,6 +215,7 @@ export class ProductPage {
     //si cambiamos la fecha reseteamos los horarios
     this.schedule = null
     this.selectedTime = null
+    this.disableSubmit =true
 
     if (
       this.product.product.resources_full &&
@@ -260,9 +264,10 @@ export class ProductPage {
   }
   updateCart(a) {
     console.log('a:', a)
-    //  this.disableSubmit = false
+    this.disableSubmit = false
     this.values.count += parseInt(this.quantity)
-    this.AddToCart = 'AddToCart'
+    this.BookNow = 'BookNow'
+    this.getCart()
   }
   getCart() {
     this.nav.push(CartPage)
@@ -320,6 +325,7 @@ export class ProductPage {
       if (item.resource_id == option.resource_id) {
         this.selectedService = option
         this.product.product.price = this.selectedService.price
+        this.disableSubmit = (this.product.product.resources_full.length>0 && !this.selectedService) || !this.selectedTime
       }
     })
 
@@ -358,6 +364,7 @@ export class ProductPage {
 
   selectTime(time) {
     this.selectedTime = time
+     this.disableSubmit = (this.product.product.resources_full.length>0 && !this.selectedService) || !this.selectedTime
   }
 
   getTime(item) {

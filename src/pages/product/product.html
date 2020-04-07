@@ -189,7 +189,7 @@
 
     <div *ngIf="schedule;else no_schedule">
       <h4 class="container flex text-center full-width">
-        What time?
+        {{WhatTime | translate}}
       </h4>
 
       <ul class="block-picker flex row">
@@ -207,7 +207,7 @@
     </div>
     <ng-template #no_schedule>
       <div class="container flex text-center full-width">
-        No blocks available for selected day
+        {{NoBlockAvailable | translate}}
       </div>
     </ng-template>
     <div class="add-to-cart-button">
@@ -216,10 +216,10 @@
         full
         color="button-color"
         text-uppercase
-        [disabled]="(product.product.resources_full.length>0 && !selectedService) || !selectedTime  ? true : null"
+        [disabled]="disableSubmit"
         (click)="addToCart(product.product.id)"
       >
-        BOOK NOW
+        {{BookNow | translate}}
       </button>
     </div>
     <div *ngIf="product.product.short_description">

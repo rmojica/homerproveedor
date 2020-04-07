@@ -1,8 +1,9 @@
 {
-  "name": "WooCommerce",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+   "name": "hexchange",
+  "version": "0.0.2",
+  "author": "Numu Digital",
+  "homepage": "https://dev.digitalfactory.tech/demos/hexchange/",
+  "productName": "Hexchange",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
