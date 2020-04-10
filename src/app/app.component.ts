@@ -73,7 +73,7 @@ export class MyApp {
             });
             this.oneSignal.handleNotificationOpened().subscribe(result => {
                 if (result.notification.payload.additionalData.category) {
-                    this.nav.push(ProductsPage, {id: result.notification.payload.additionalData.category});
+                    this.nav.push(ProductsPage, {id: result.notification.payload.additionalData.category, slug: result.notification.payload.additionalData.slug, name: result.notification.payload.additionalData.name});
                 } else if (result.notification.payload.additionalData.product) {
                     this.nav.push(ProductPage, {id: result.notification.payload.additionalData.product});
                 } else if (result.notification.payload.additionalData.post) {
