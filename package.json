@@ -1,8 +1,8 @@
 {
-   "name": "hexchange",
+  "name": "hexchange",
   "version": "0.0.2",
   "author": "Numu Digital",
-  "homepage": "https://dev.digitalfactory.tech/demos/hexchange/",
+  "homepage": "https://numu.digital",
   "productName": "Hexchange",
   "private": true,
   "scripts": {
