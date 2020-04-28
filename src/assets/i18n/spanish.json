@@ -96,6 +96,7 @@
 	"StripeCardDetails": "Detalles de la raya de la tarjeta",
 	"ExpiryMonth": "Meses de vencimiento",
 	"ExpiryYear": "Año de caducidad",
+	"Expiry": "Caducidad",
 	"CardCode": "Código de la tarjeta",
 	"SelectPaymentMethod": "Seleccione el método de pago",
 	"OrderSummary": "Resumen del pedido",

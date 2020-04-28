@@ -98,6 +98,7 @@
   "StripeCardDetails": "Stripe Card Details",
   "ExpiryMonth": "Expiry Month",
   "ExpiryYear": "Expiry Year",
+  "Expiry": "Expiry",
   "CardCode": "Card Code",
   "SelectPaymentMethod": "Select Payment Method",
   "OrderSummary": "Order Summary",

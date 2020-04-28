@@ -375,8 +375,39 @@
         </ion-item>
       </ion-list>
       <div *ngIf="form.payment_method != 'stripe'" class="side-heading-background">
-        <ion-label class="payment-instructions">{{form.payment_instructions}}
-        </ion-label> 
+        <!-- <ion-label class="payment-instructions">{{form.payment_instructions}}
+        </ion-label>  -->
+        <div class="payment-instructions">
+          <span [innerHTML]="form.payment_instructions"></span>
+        </div>
+        <div *ngIf="form.payment_method == 'authnet'">
+          
+          <ion-list no-margin>
+            <ion-item class="side-heading-background">
+              <ion-label color="side-heading-color">Credit Card Details
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>{{"CardNumber" | translate}} *
+              </ion-label>
+              <ion-input required type="text" [(ngModel)]="form.authnet_card_number" name="authnet_card_number">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>{{"Expiry" | translate}} (MM/YY) *
+              </ion-label>
+              <ion-input required type="text" [(ngModel)]="form.authnet_card_expiry" name="authnet_card_expiry">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>{{"CardCode" | translate}} *
+              </ion-label>
+              <ion-input required type="text" [(ngModel)]="form.authnet_card_cvc" name="authnet_card_cvc">
+              </ion-input>
+            </ion-item>
+          </ion-list>
+
+        </div>
       <ion-item *ngIf="form.terms_content" no-lines class="side-heading-background">
       <ion-label>{{"IAgree" | translate}} <a (click)="terms()">{{"TermsConditions" | translate}}</a>
       </ion-label>

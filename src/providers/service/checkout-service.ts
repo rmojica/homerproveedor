@@ -74,6 +74,13 @@ export class CheckoutService {
         params.append("billing_state", form.billing_state);
         params.append("shipping_country", form.shipping_country);
         params.append("shipping_state", form.shipping_state);
+        if(form.payment_method == 'authnet')
+        {
+            params.append("authnet-card-number", form.authnet_card_number);
+            params.append("authnet-card-expiry", form.authnet_card_expiry);
+            params.append("authnet-card-cvc", form.authnet_card_cvc);
+            console.log(form);
+        }
         if(form.terms){
             params.append("terms", 'on');
             params.append("terms-field", '1');
