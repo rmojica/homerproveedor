@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="numu.digital.hexchange" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="numu.digital.hexchange" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>HEXchange</name>
     <description>Search Doctors and Book appointments online, instantly</description>
     <author email="czambrana@numu.digital" href="https://hexchange.digitalfactory.tech/">Numu Digital</author>
