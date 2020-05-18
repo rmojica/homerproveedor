@@ -147,7 +147,7 @@ export class MyApp {
             var options = {
                 message: '',
                 subject: '',
-                files: ['', ''],
+                // files: ['', ''],
                 url: url,
                 chooserTitle: ''
             }

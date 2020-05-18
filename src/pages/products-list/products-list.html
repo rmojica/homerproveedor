@@ -25,6 +25,28 @@
 </ion-content> -->
 
 <ion-content>
+
+
+  <ion-fab bottom right slot="fixed">
+    <button ion-fab>
+      <ion-icon name="chatboxes"></ion-icon>
+    </button>
+
+    <!-- <ion-fab-button color="light">
+      <ion-icon name="chatboxes"></ion-icon>
+    </ion-fab-button> -->
+
+    <ion-fab-list side="left">
+
+      <a button ion-fab style="background-color: #ffffff;" href="https://www.messenger.com/t/numudigitalfactory">
+        <ion-icon style="background: #2196f3;" name="custom-facebook"></ion-icon>
+      </a>
+      <a button ion-fab style="background-color: #ffffff;" href="https://www.instagram.com/numucoworking/">
+        <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>
+      </a>
+
+    </ion-fab-list>
+  </ion-fab>
   <!-- <ion-slides autoplay='3000' loop='true' autoHeight='true' pager='true'>
     <ion-slide *ngFor="let number of [1,2,3]">
        <img-loader src="./assets/images/1.jpg" useImg></img-loader>

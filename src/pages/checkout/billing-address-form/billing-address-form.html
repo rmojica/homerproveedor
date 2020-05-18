@@ -252,7 +252,7 @@
     <div *ngIf="OrderReview?.shipping" class="shipping">
       <div no-margin text-wrap radio-group [(ngModel)]="chosen_shipping" (ngModelChange)="updateOrderReview()">
           <ion-item class="side-heading-background payment-method-header" no-lines>
-            <ion-label color="side-heading-color">{{"Select a shipping method" | translate}}
+            <ion-label color="side-heading-color">{{"Select a payment method" | translate}}
             </ion-label>
           </ion-item>
           <ion-item *ngFor="let method of OrderReview.shipping | keys" style="padding-left:20px">

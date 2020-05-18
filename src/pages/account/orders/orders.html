@@ -23,17 +23,17 @@
     <div *ngIf="orders.orders.length">
       <ion-item *ngFor="let item of orders.orders">
         <h2>
-          <b>{{"OrderNumber" | translate}} :
+          <b>{{"Booking #" | translate}} :
           </b> {{item.order_number}}
         </h2>
         <h2>
           <b>{{"Orderdate" | translate}} :
           </b> {{item.created_at | date:'medium'}}
         </h2>
-        <h2>
+        <!-- <h2>
           <b>{{"Shipto" | translate}} :
           </b> {{item.shipping_address.first_name}} {{item.shipping_address.last_name}}, {{item.shipping_address.address_1}}, {{item.shipping_address.address_2}}, {{item.shipping_address.city}}, {{item.shipping_address.state}}, {{item.shipping_address.country}}, {{item.shipping_address.postcode}}
-        </h2>
+        </h2> -->
         <h2>
           <b>{{"Status" | translate}} :
           </b> {{item.status}}
@@ -44,11 +44,11 @@
         </h2>
         <h2>
           <b>{{"SubTotal" | translate}} :
-          </b> {{1*item.subtotal  }}
+          </b> {{1*item.subtotal | currency:values.currency:true:'1.2-2' }}
         </h2>
         <h2>
           <b>{{"Totals" | translate}} :
-          </b> {{1*item.total  }}
+          </b> {{1*item.total | currency:values.currency:true:'1.2-2' }}
         </h2>
         <ion-row class="row-buttons">
           <ion-col no-padding width-50>

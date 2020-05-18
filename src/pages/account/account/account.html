@@ -35,7 +35,7 @@
 
       <ion-card>
         <ion-card-header style="background-color: #ebebeb"> 
-          {{"BillingAddress" | translate}}
+          {{"Home Address" | translate}}
         </ion-card-header>
         <ion-card-content style="margin-top: 10px">
           {{customers.customer.billing_address.first_name}} {{customers.customer.billing_address.last_name}}<br *ngIf="customers.customer.billing_address.first_name">
@@ -49,9 +49,9 @@
       </ion-card>
 
       <div *ngIf="customers.customer.shipping_address">
-        <ion-card>
+        <ion-card style="margin-bottom: 20px;">
           <ion-card-header style="background-color: #ebebeb">
-            {{"ShippingAddress" | translate}}
+            {{"Billing Address" | translate}}
           </ion-card-header>
           <ion-card-content style="margin-top: 10px">
             {{customers.customer.shipping_address.first_name}} {{customers.customer.shipping_address.last_name}}<br

@@ -56,9 +56,9 @@
                 </div>
               </a>
               <div class="bottom-right-button">
-                <button ion-button text-uppercase color="button-color" item-right outline *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
+                <!-- <button ion-button text-uppercase color="button-color" item-right outline *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
                   {{"Add" | translate}}
-                </button>
+                </button> -->
                 <button ion-button icon-only  item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="deleteFromCart(item.id)">
                   <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">
                   </ion-icon>
@@ -111,9 +111,9 @@
                   <button ion-button text-uppercase color="button-color" item-right [disabled]='disableSubmit' clear *ngIf="!item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
                     {{button}}
                   </button>
-                  <button ion-button text-uppercase color="button-color" item-right clear *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
+                  <!-- <button ion-button text-uppercase color="button-color" item-right clear *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
                     {{"Add" | translate}}
-                  </button>
+                  </button> -->
                   <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="deleteFromCart(item.id)">
                     <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">
                     </ion-icon>

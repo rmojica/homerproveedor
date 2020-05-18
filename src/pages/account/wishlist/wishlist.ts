@@ -16,9 +16,14 @@ export class WishlistPage {
 
     constructor(public nav: NavController, public values: Values, public params: NavParams, public functions: Functions, public service: WishlistService) {
 
+      
+    }
+
+    ionViewDidEnter() {
       this.service.loadWishlist()
             .then((results) => this.wishlist = results);
-    }
+    }  
+
     removeFromWishlist(id){
     	this.service.deleteItem(id)
         .then((results) => this.updateWish(results, id));

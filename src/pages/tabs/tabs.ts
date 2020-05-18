@@ -28,10 +28,8 @@ export class TabsPage{
     
   }
 
-  getCart() {
-    // let modal = this.modalCtrl.create(CartPage);
-    // modal.present();
-    this.nav.push(CartPage)
-  }
+  // getCart() {
+  //   this.nav.push(CartPage)
+  // }
 
 }

@@ -33,9 +33,14 @@ export class CartPage {
         this.quantity = 1;
         this.options = [];
         this.obj = params.data;
+        
+    }
+
+    ionViewDidEnter() {
         this.service.loadCart()
             .then((results) => this.handleCartInit(results));
-    }
+      }  
+
     handleCartInit(results) {
         this.cart = results;
         this.shipping = results.zone_shipping;
