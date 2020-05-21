@@ -125,7 +125,7 @@
     </ion-item>
 
     <!--variation product starts-->
-    <div class="variation-block">
+     <!-- <div class="variation-block">
       <div *ngIf="usedVariationAttributes" class="variation-product">
         <div class="option-box">
           <button
@@ -141,9 +141,34 @@
           </button>
         </div>
       </div>
-    </div>
+    </div>  -->
 
-    <!--variation product starts-->
+
+    <!--Select Service product-->
+      <div *ngIf="usedVariationAttributes" class="variation-product">
+      <ion-item class="variation-title">
+        <strong>{{"Select Service"| translate}}
+        </strong>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          {{"Services" | translate}}
+        </ion-label>
+        <ion-select style="max-width: 80%;"
+        [(ngModel)]="optionss" (ngModelChange)="chooseVariationOne()" >
+          <div *ngFor="let optionss of usedVariationAttributes">
+            
+               <ion-option  
+               [ngClass]="{'selected-option': selectedService && optionss && optionss.resource_id == selectedService.resource_id }" 
+              [value]="optionss">
+                {{optionss.name}}
+              </ion-option> 
+          </div>
+        </ion-select>
+      </ion-item>
+    </div>  
+
+  <!--variation product starts-->
     <!--div *ngIf="product?.product?.variations.length" class="variation-product">
       <ion-item class="variation-title">
         <strong>{{"Options"| translate}}

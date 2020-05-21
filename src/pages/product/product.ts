@@ -19,6 +19,7 @@ export class ProductPage {
   type: any
   status: any
   options: any
+  optionss: any
   opt: any
   message: any
   wishlist: any
@@ -56,6 +57,7 @@ export class ProductPage {
     public values: Values,
   ) {
     this.options = []
+    this.optionss = []
     this.quantity = '1'
     this.BookNow = 'BookNow'
     if (params.data.id) {
@@ -316,7 +318,13 @@ export class ProductPage {
       this.values.wishlistId[id] = false
     }
   }
+  chooseVariationOne(){
+    this.chooseVariation(this.optionss);
+  }
   chooseVariation(option) {
+    console.log(option);
+
+    console.log(this.selectedService);
     if (this.selectedService) {
       this.selectedService = null
       this.product.product.price = this.product.product.minPrice
