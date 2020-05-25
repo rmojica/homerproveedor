@@ -64,7 +64,7 @@
         {{'Find and book a doctor appointment right now' | translate}}
       </div>
       <div class="card-search">
-        <ion-searchbar placeholder="{{'Search' | translate}}"></ion-searchbar>
+        <ion-searchbar (click)="getSearch()" placeholder="{{'Search' | translate}}"></ion-searchbar>
       </div>
     </ion-slide>
   </ion-slides>

@@ -16,8 +16,8 @@
 <ion-content class="search">
 
   <div *ngIf="products" class="products-search">     
-      <h2 *ngIf="!products?.products?.length" style="font-size: 15px;text-align: center;margin-top: 30px">No products found!.</h2>
-    <div *ngIf="products?.products?.length">
+      <h2 *ngIf="!products.length" style="font-size: 15px;text-align: center;margin-top: 30px">No products found!.</h2>
+    <div *ngIf="products.length">
       <div *ngIf="values.listview">
         <ion-item no-lines class="item-name">
           <ion-label text-uppercase>{{"Products" | translate}}
@@ -27,13 +27,13 @@
             </ion-icon>
           </button>
         </ion-item>
-        <ion-list *ngIf="products.products">
-          <div class="item-list" *ngFor="let item of products.products">
+        <ion-list *ngIf="products">
+          <div class="item-list" *ngFor="let item of products">
             <ion-item no-lines class="price-list" >
               <ion-thumbnail item-left class="stock-list">
                 <a (click)="getProduct(item)">
                   <img [style.height.rem]="values.dimensions.imageListViewHeight" src="{{item.images[0].src}}">
-                  <button ion-button color="danger" *ngIf="!item.in_stock">{{"OUTOFSTOCK" | translate}}
+                  <button ion-button color="danger" *ngIf="item.stock_status !== 'instock'">{{"OUTOFSTOCK" | translate}}
                   </button>
                 </a>
               </ion-thumbnail> 
@@ -41,6 +41,7 @@
                 <div class="product-name-top">
                   <h2>{{item.title}}
                   </h2>
+                  <h2 *ngIf="item.name">{{item.name}}</h2>
                   <p class="max-lines" [innerHTML]="item.description">
                   </p>
                 </div>
@@ -69,7 +70,7 @@
                   <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">
                   </ion-icon>
                 </button>
-                <button ion-button text-uppercase color="button-color" item-right [disabled]='disableSubmit' clear *ngIf="!item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
+                <button ion-button text-uppercase color="button-color" item-right [disabled]='disableSubmit' clear *ngIf="item.stock_status !== 'instock' && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
                   {{button}}
                 </button>
               </div>
@@ -86,19 +87,20 @@
             </ion-icon>
           </button>
         </ion-item>
-        <div class="card-background-page grid" *ngIf="products.products">
+        <div class="card-background-page grid" *ngIf="products">
           <ion-row class="row unlimited-items">
-            <ion-col class="col" *ngFor="let item of products.products">
+            <ion-col class="col" *ngFor="let item of products">
               <ion-card>
                 <ion-card-content class="stock">
                   <a (click)="getProduct(item)">
                     <img [style.height.px]="values.dimensions.imageGridViewHeight" src="{{item.images[0].src}}">
-                    <button ion-button color="danger" *ngIf="!item.in_stock">{{"OUTOFSTOCK" | translate}}
+                    <button ion-button color="danger" *ngIf="item.stock_status !== 'instock'">{{"OUTOFSTOCK" | translate}}
                     </button>
                   </a>
                 </ion-card-content>
                 <ion-label class="product-label">{{item.title}}
                 </ion-label>
+                <h2 *ngIf="item.name">{{item.name}}</h2>
                 <ion-item no-padding class="price-list">
                   <h3 class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:'1.2-2'}}
                   </h3>
@@ -108,7 +110,7 @@
                     <del>{{1*item.regular_price | currency:values.currency:true:'1.2-2'}}
                     </del>
                   </h3>
-                  <button ion-button text-uppercase color="button-color" item-right [disabled]='disableSubmit' clear *ngIf="!item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
+                  <button ion-button text-uppercase color="button-color" item-right [disabled]='disableSubmit' clear *ngIf="item.stock_status !== 'instock' && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
                     {{button}}
                   </button>
                   <!-- <button ion-button text-uppercase color="button-color" item-right clear *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">

@@ -146,13 +146,13 @@
 
     <!--Select Service product-->
       <div *ngIf="usedVariationAttributes" class="variation-product">
-      <ion-item class="variation-title">
+      <!-- <ion-item class="variation-title">
         <strong>{{"Select Service"| translate}}
         </strong>
-      </ion-item>
+      </ion-item> -->
       <ion-item>
         <ion-label>
-          {{"Services" | translate}}
+          {{"Please select a service" | translate}}
         </ion-label>
         <ion-select style="max-width: 80%;"
         [(ngModel)]="optionss" (ngModelChange)="chooseVariationOne()" >

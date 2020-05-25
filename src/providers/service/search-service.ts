@@ -19,7 +19,8 @@ export class SearchService {
     }
     getSearch(filter) {
         return new Promise(resolve => {
-            this.http.get(this.config.setUrl('GET', '/wc-api/v3/products?', filter), this.config.options).map(res => res.json())
+            // this.http.get(this.config.setUrl('GET', '/wc-api/v3/products?', filter), this.config.options).map(res => res.json())
+            this.http.get(this.config.setUrl('GET', '/wp-json/wc-bookings/v1/products?', filter), this.config.options).map(res => res.json())
                 .subscribe(data => {
                     this.products = data;
                     resolve(this.products);

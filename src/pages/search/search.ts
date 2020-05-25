@@ -61,9 +61,15 @@ export class SearchPage {
             .then((results) => this.handleMore(results, infiniteScroll));
     }
     handleMore(results, infiniteScroll) {
+        if (results.products == undefined) {
+            console.log('No hay mas productos que mostrar...', results.products)
+            this.has_more_items = false
+            infiniteScroll.complete()
+            return
+          }
         if (results.products != undefined) {
             for (var i = 0; i < results.products.length; i++) {
-                this.products.products.push(results.products[i]);
+                this.products.push(results.products[i]);
             };
         }
         if (results.products.length == 0) {
