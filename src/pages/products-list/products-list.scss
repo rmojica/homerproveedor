@@ -71,14 +71,32 @@ page-products-list {
   .text-center {
     text-align: center !important;
   }
-
-  .list-ios {
-    width: inherit !important;
-    & .item-block * {
-      text-align: center !important;
-      justify-content: center;
-    }
+  .list-ios > .item-block:last-child{
+    border-bottom: none;
   }
+  .list-ios > .item-block:first-child{
+    border-top: none;
+  }
+  .item-ios p:last-child {
+    font-size: 13px;
+  }
+  
+  .list-ios {
+    border-bottom: none;
+    
+    
+    // width: inherit !important;
+    // & .item-block * {
+    //   text-align: center !important;
+    //   -webkit-box-pack: center;
+      
+    // }
+  }
+
+  .item-ios ion-thumbnail img {
+    width: 80px;
+    height: 80px;
+}
 
   .heading {
     text-align: center !important;
