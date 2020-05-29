@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Searchbar } from 'ionic-angular';
 import { SearchService } from '../../providers/service/search-service';
 import { Values } from '../../providers/service/values';
 import { CartPage } from '../cart/cart';
@@ -8,7 +8,10 @@ import { ProductPage } from '../product/product';
 @Component({
     templateUrl: 'search.html'
 })
+
 export class SearchPage {
+    @ViewChild(Searchbar) searchbar:Searchbar;
+
     search: any;
     slug: any;
     id: any;
@@ -37,6 +40,11 @@ export class SearchPage {
         this.quantity = "1";
         this.myInput = "";
     }
+    ionViewDidEnter(){
+        setTimeout(() => {
+              this.searchbar.setFocus();
+            }, 0);
+          }
     ionViewWillLeave(){
         this.showSearch = false;
     }
