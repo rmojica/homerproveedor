@@ -48,6 +48,9 @@ export class WishlistPage {
         .then((results) => this.updateCart(results, id));
          }
    }
+   getProduct(id) {
+    this.nav.push(ProductPage, id)
+  }
   updateCart(results, id){
     if(results.error){
          this.functions.showAlert("ERROR", "Unable to add to Wishlist");
