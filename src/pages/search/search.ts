@@ -4,6 +4,7 @@ import { SearchService } from '../../providers/service/search-service';
 import { Values } from '../../providers/service/values';
 import { CartPage } from '../cart/cart';
 import { ProductPage } from '../product/product';
+import { CategoryService } from '../../providers/service/category-service';
 
 @Component({
     templateUrl: 'search.html'
@@ -31,7 +32,10 @@ export class SearchPage {
     shouldShowCancel: boolean = true;
     subCategories: any;
     showSearch: boolean = true;
-    constructor(public nav: NavController, public service: SearchService, public values: Values, params: NavParams) {
+    showFilters: boolean = false
+    constructor(public nav: NavController, 
+        public categoryService: CategoryService,
+        public service: SearchService, public values: Values, params: NavParams) {
         this.filter = {};
         this.count = 10;
         this.offset = 0;
@@ -46,7 +50,7 @@ export class SearchPage {
             }, 0);
           }
     ionViewWillLeave(){
-        this.showSearch = false;
+        // this.showSearch = false;
     }
     getCart() {
         this.nav.push(CartPage);
@@ -114,4 +118,59 @@ export class SearchPage {
         this.service.updateToCart(id)
             .then((results) => this.status = results);
     }
+
+    //Filter shit
+
+    getFilter() {
+        this.showFilters = true
+        this.has_more_items = false
+      }
+      cancel() {
+        this.showFilters = false
+        this.has_more_items = true
+      }
+      chnageFilter(sort) {
+        this.showFilters = false
+        this.has_more_items = true
+        this.filter.page = 1
+        // if (sort == 0) {
+        //   this.filter['filter[order]'] = 'ASC'
+        //   this.filter['filter[orderby]'] = 'date'
+        // }
+        // if (sort == 1) {
+        //   this.filter['filter[order]'] = 'ASC'
+        //   this.filter['filter[orderby]'] = 'name'
+        // } else if (sort == 2) {
+        //   this.filter['filter[order]'] = 'DESC'
+        //   this.filter['filter[orderby]'] = 'name'
+        // } else if (sort == 3) {
+        //   this.filter['filter[order]'] = 'ASC'
+        //   this.filter['filter[orderby]'] = 'meta_value_num'
+        //   this.filter['filter[orderby_meta_key]'] = '_price'
+        // } else if (sort == 4) {
+        //   this.filter['filter[order]'] = 'DESC'
+        //   this.filter['filter[orderby]'] = 'meta_value_num'
+        //   this.filter['filter[orderby_meta_key]'] = '_price'
+        // }
+        // FILTROS SHIT EN FUNCION
+        if (sort == 5) {
+          this.filter['orderby'] = 'menu_order'
+        } 
+        else if (sort == 6) {
+          this.filter['orderby'] = 'popularity'
+        } 
+        else if (sort == 7) {
+          this.filter['orderby'] = 'rating'
+        } 
+        else if (sort == 8) {
+          this.filter['orderby'] = 'date'
+        } 
+        
+    
+        /*this.filter['filter[meta_query][key]'] = "_price";
+            this.filter['filter[meta_query][value]'] = '[0,10]';
+            this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
+        this.categoryService.load(this.filter).then(results => (this.products = results))
+      }
+
 }
