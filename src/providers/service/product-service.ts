@@ -49,7 +49,7 @@ export class ProductService {
         .get(
           this.config.setUrl(
             'GET',
-            '/wp-json/wc-bookings/v1/products/' + id + '/reviews' + '?',
+            '/wc-api/v3/products/' + id + '/reviews' + '?',
             false,
           ),
           this.config.options,

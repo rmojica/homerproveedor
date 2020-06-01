@@ -74,15 +74,19 @@ export class ProductPage {
         .resources_full as Array<any>).map(item => item)
 
       console.log('usedVariationAttributes:', this.usedVariationAttributes)
+      this.loadDataProduct();
     } else {
-      console.log(params.data)
-      this.options.product_id = this.id
-      this.service
-        .getProduct(this.id)
+      // this.options.product_id = this.id
+       this.service
+        .getProduct(params.data)
         .then(results => this.handleProductResults(results))
     }
-    this.getReviews()
 
+    this.getReviews()
+    
+  }
+
+  loadDataProduct(){
     //según el horario, deshabilitamos los dias de la semana que no están definidos en el Available
     this.disableWeekDays = [0, 1, 2, 3, 4, 5, 6]
     this.product.product.availability.forEach(element => {
@@ -126,12 +130,25 @@ export class ProductPage {
   }
 
   handleProductResults(results) {
-    this.product = results
-    this.usedVariationAttributes = this.product.product.attributes.filter(
-      function(attribute) {
-        return attribute.variation == true
-      },
-    )
+
+    this.selectedService = null
+    this.product.product = results
+    this.id = results.id
+    console.log('producto', this.product.product)
+    this.options.product_id = this.id
+    console.log('Product: ', this.product.product.resources_full)
+    this.usedVariationAttributes = (this.product.product
+      .resources_full as Array<any>).map(item => item)
+    console.log('usedVariationAttributes:', this.usedVariationAttributes)
+
+    this.loadDataProduct();
+
+    // this.product = results
+    // this.usedVariationAttributes = this.product.product.attributes.filter(
+    //   function(attribute) {
+    //     return attribute.variation == true
+    //   },
+    // )
   }
   getProduct(id) {
     this.nav.push(ProductPage, id)

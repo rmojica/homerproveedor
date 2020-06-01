@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
 import { Service } from '../providers/service/service';
 import { Values } from '../providers/service/values';
 import { Config } from '../providers/service/config';
@@ -34,13 +35,18 @@ export class MyApp {
     status: any;
     items: any = {};
     buttonLanguagesSettings: boolean = false;
-    constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
+    constructor(statusBar: StatusBar, public lottieSplashScreen: LottieSplashScreen, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
         platform.ready().then(() => {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
             this.service.load().then((results) => this.handleService(results));
             this.nativeStorage.getItem('blocks').then(data => { if (data) {
-                this.splashScreen.hide();
+                // this.splashScreen.hide();
+                // setTimeout(() => {
+                //     this.lottieSplashScreen.hide()
+                // }, 4000);
+        // this.lottieSplashScreen.hide
+             this.lottieSplashScreen.hide
                 this.service.blocks = data.blocks;
                 this.values.settings = data.settings;
                 this.values.calc(platform.width());
@@ -63,7 +69,11 @@ export class MyApp {
     handleService(results) {
         if (this.values.settings.app_dir == 'rtl') this.platform.setDir('rtl', true);
             this.translateService.setDefaultLang(this.values.settings.language);
-        this.splashScreen.hide();
+        // this.splashScreen.hide();
+        // setTimeout(() => {
+        //     this.lottieSplashScreen.hide()
+        // }, 4000);
+        this.lottieSplashScreen.hide
         this.values.calc(this.platform.width());
         if (this.platform.is('cordova')) {
             this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);

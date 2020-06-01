@@ -23,6 +23,21 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="product-page">
+
+  <ion-fab bottom right slot="fixed">
+    <button ion-fab>
+      <ion-icon name="chatboxes"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <a button ion-fab style="background-color: #ffffff;" href="https://www.messenger.com/t/thehexchange">
+        <ion-icon style="background: #2196f3;" name="custom-facebook"></ion-icon>
+      </a>
+      <a button ion-fab style="background-color: #ffffff;" href="https://www.instagram.com/thehexchange/">
+        <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>
+      </a>
+    </ion-fab-list>
+  </ion-fab>
+  
   <ion-spinner *ngIf="!product?.product" name="crescent"></ion-spinner>
   <div *ngIf="product.product" class="product-details">
     <div *ngIf="product.product.images">
@@ -49,6 +64,9 @@
         {{product.product.title}}
       </ion-label>
       <span item-right *ngIf="product.product.average_rating" class="rating">
+        <span *ngIf="product.product.rating_count > 0">
+          ({{product.product.rating_count}})
+        </span>
         <span
           class="star-icon"
           [ngClass]="{full: product.product.average_rating >= 1, half: product.product.average_rating == 0.5}"

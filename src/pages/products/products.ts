@@ -183,25 +183,40 @@ export class ProductsPage {
     this.showFilters = false
     this.has_more_items = true
     this.filter.page = 1
-    if (sort == 0) {
-      this.filter['filter[order]'] = 'ASC'
-      this.filter['filter[orderby]'] = 'date'
-    }
-    if (sort == 1) {
-      this.filter['filter[order]'] = 'ASC'
-      this.filter['filter[orderby]'] = 'name'
-    } else if (sort == 2) {
-      this.filter['filter[order]'] = 'DESC'
-      this.filter['filter[orderby]'] = 'name'
-    } else if (sort == 3) {
-      this.filter['filter[order]'] = 'ASC'
-      this.filter['filter[orderby]'] = 'meta_value_num'
-      this.filter['filter[orderby_meta_key]'] = '_price'
-    } else if (sort == 4) {
-      this.filter['filter[order]'] = 'DESC'
-      this.filter['filter[orderby]'] = 'meta_value_num'
-      this.filter['filter[orderby_meta_key]'] = '_price'
-    }
+    // if (sort == 0) {
+    //   this.filter['filter[order]'] = 'ASC'
+    //   this.filter['filter[orderby]'] = 'date'
+    // }
+    // if (sort == 1) {
+    //   this.filter['filter[order]'] = 'ASC'
+    //   this.filter['filter[orderby]'] = 'name'
+    // } else if (sort == 2) {
+    //   this.filter['filter[order]'] = 'DESC'
+    //   this.filter['filter[orderby]'] = 'name'
+    // } else if (sort == 3) {
+    //   this.filter['filter[order]'] = 'ASC'
+    //   this.filter['filter[orderby]'] = 'meta_value_num'
+    //   this.filter['filter[orderby_meta_key]'] = '_price'
+    // } else if (sort == 4) {
+    //   this.filter['filter[order]'] = 'DESC'
+    //   this.filter['filter[orderby]'] = 'meta_value_num'
+    //   this.filter['filter[orderby_meta_key]'] = '_price'
+    // }
+    // FILTROS SHIT EN FUNCION
+    if (sort == 5) {
+      this.filter['orderby'] = 'menu_order'
+    } 
+    else if (sort == 6) {
+      this.filter['orderby'] = 'popularity'
+    } 
+    else if (sort == 7) {
+      this.filter['orderby'] = 'rating'
+    } 
+    else if (sort == 8) {
+      this.filter['orderby'] = 'date'
+    } 
+    
+
     /*this.filter['filter[meta_query][key]'] = "_price";
         this.filter['filter[meta_query][value]'] = '[0,10]';
         this.filter['filter[meta_query][compare]'] = "BETWEEN";*/

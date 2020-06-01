@@ -54,6 +54,8 @@ import { OneSignal } from '@ionic-native/onesignal'
 import { HTTP } from '@ionic-native/http'
 
 import { CalendarModule } from 'ion2-calendar'
+import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -142,6 +144,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRate,
     EmailComposer,
     CallNumber,
+    LottieSplashScreen,
     HTTP,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
