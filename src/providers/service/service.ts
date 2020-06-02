@@ -675,9 +675,15 @@ export class Service {
     })
   }
   handleMore(results) {
+    console.log(results.length)
+    // if (results.products == undefined) {
+    //   console.log('No hay mas productos que mostrar...', results.products)
+    //   this.has_more_items = false
+    //   return
+    // }
     if (results != undefined) {
-      for (var i = 0; i < results.products.length; i++) {
-        this.products.products.push(results.products[i])
+      for (var i = 0; i < results.length; i++) {
+        this.products.push(results[i])
       }
     }
     if (results.length == 0) {

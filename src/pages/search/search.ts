@@ -11,7 +11,7 @@ import { CategoryService } from '../../providers/service/category-service';
 })
 
 export class SearchPage {
-    @ViewChild(Searchbar) searchbar:Searchbar;
+    @ViewChild(Searchbar) searchbar: Searchbar;
 
     search: any;
     slug: any;
@@ -33,10 +33,11 @@ export class SearchPage {
     subCategories: any;
     showSearch: boolean = true;
     showFilters: boolean = false
-    constructor(public nav: NavController, 
+    constructor(public nav: NavController,
         public categoryService: CategoryService,
         public service: SearchService, public values: Values, params: NavParams) {
         this.filter = {};
+        this.filter.page = 1
         this.count = 10;
         this.offset = 0;
         this.values.filter = {};
@@ -44,12 +45,12 @@ export class SearchPage {
         this.quantity = "1";
         this.myInput = "";
     }
-    ionViewDidEnter(){
+    ionViewDidEnter() {
         setTimeout(() => {
-              this.searchbar.setFocus();
-            }, 0);
-          }
-    ionViewWillLeave(){
+            this.searchbar.setFocus();
+        }, 0);
+    }
+    ionViewWillLeave() {
         // this.showSearch = false;
     }
     getCart() {
@@ -68,23 +69,25 @@ export class SearchPage {
         this.nav.push(ProductPage, item);
     }
     doInfinite(infiniteScroll) {
-        this.page += 1;
+        this.filter.page += 1
+        // this.page += 1;
         this.service.getSearch(this.filter)
             .then((results) => this.handleMore(results, infiniteScroll));
     }
     handleMore(results, infiniteScroll) {
-        if (results.products == undefined) {
-            console.log('No hay mas productos que mostrar...', results.products)
-            this.has_more_items = false
-            infiniteScroll.complete()
-            return
-          }
-        if (results.products != undefined) {
-            for (var i = 0; i < results.products.length; i++) {
-                this.products.push(results.products[i]);
+        // if (results.products == undefined) {
+        //     console.log('No hay mas productos que mostrar...', results.products)
+        //     this.has_more_items = false
+        //     infiniteScroll.complete()
+        //     return
+        // }
+        console.log(results)
+        if (results != undefined) {
+            for (var i = 0; i < results.length; i++) {
+                this.products.push(results[i]);
             };
         }
-        if (results.products.length == 0) {
+        if (results.length == 0) {
             this.has_more_items = false;
         }
         infiniteScroll.complete();
@@ -114,7 +117,7 @@ export class SearchPage {
     setGridView() {
         this.values.listview = false;
     }
-    updateToCart(id){
+    updateToCart(id) {
         this.service.updateToCart(id)
             .then((results) => this.status = results);
     }
@@ -124,12 +127,12 @@ export class SearchPage {
     getFilter() {
         this.showFilters = true
         this.has_more_items = false
-      }
-      cancel() {
+    }
+    cancel() {
         this.showFilters = false
         this.has_more_items = true
-      }
-      chnageFilter(sort) {
+    }
+    chnageFilter(sort) {
         this.showFilters = false
         this.has_more_items = true
         this.filter.page = 1
@@ -154,23 +157,44 @@ export class SearchPage {
         // }
         // FILTROS SHIT EN FUNCION
         if (sort == 5) {
-          this.filter['orderby'] = 'menu_order'
-        } 
+            this.filter['orderby'] = 'menu_order'
+        }
         else if (sort == 6) {
-          this.filter['orderby'] = 'popularity'
-        } 
+            this.filter['orderby'] = 'popularity'
+        }
         else if (sort == 7) {
-          this.filter['orderby'] = 'rating'
-        } 
+            this.filter['orderby'] = 'rating'
+        }
         else if (sort == 8) {
-          this.filter['orderby'] = 'date'
-        } 
-        
-    
+            this.filter['orderby'] = 'date'
+            this.filter['order'] = 'asc'
+        }
+        else if (sort == 9) {
+            this.filter['orderby'] = 'date'
+            this.filter['order'] = 'desc'
+        }
+        else if (sort == 10) {
+            this.filter['orderby'] = 'price'
+            this.filter['order'] = 'asc'
+        }
+        else if (sort == 11) {
+            this.filter['orderby'] = 'price'
+            this.filter['order'] = 'desc'
+        }
+        else if (sort == 12) {
+            this.filter['orderby'] = 'title'
+            this.filter['order'] = 'asc'
+        }
+        else if (sort == 13) {
+            this.filter['orderby'] = 'title'
+            this.filter['order'] = 'desc'
+        }
+
+
         /*this.filter['filter[meta_query][key]'] = "_price";
             this.filter['filter[meta_query][value]'] = '[0,10]';
             this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
         this.categoryService.load(this.filter).then(results => (this.products = results))
-      }
+    }
 
 }
