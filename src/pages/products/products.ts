@@ -116,20 +116,14 @@ export class ProductsPage {
       .then(results => this.handleMore(results, infiniteScroll))
   }
   handleMore(results, infiniteScroll) {
-    if (results.products == undefined) {
-      console.log('No hay mas productos que mostrar...', results.products)
-      this.has_more_items = false
-      infiniteScroll.complete()
-      return
-    }
-    if (results.products != undefined) {
-      for (var i = 0; i < results.products.length; i++) {
-        this.products.push(results.products[i])
+    if (results != undefined) {
+      for (var i = 0; i < results.length; i++) {
+        this.products.push(results[i])
       }
     }
-    console.log('resultados', results.products)
+    console.log('resultados', results)
 
-    if (results.products.length == 0) {
+    if (results.length == 0) {
       this.has_more_items = false
     }
     infiniteScroll.complete()
@@ -214,8 +208,28 @@ export class ProductsPage {
     } 
     else if (sort == 8) {
       this.filter['orderby'] = 'date'
-    } 
-    
+      this.filter['order'] = 'asc'
+  }
+  else if (sort == 9) {
+      this.filter['orderby'] = 'date'
+      this.filter['order'] = 'desc'
+  }
+  else if (sort == 10) {
+      this.filter['orderby'] = 'price'
+      this.filter['order'] = 'asc'
+  }
+  else if (sort == 11) {
+      this.filter['orderby'] = 'price'
+      this.filter['order'] = 'desc'
+  }
+  else if (sort == 12) {
+      this.filter['orderby'] = 'title'
+      this.filter['order'] = 'asc'
+  }
+  else if (sort == 13) {
+      this.filter['orderby'] = 'title'
+      this.filter['order'] = 'desc'
+  }
 
     /*this.filter['filter[meta_query][key]'] = "_price";
         this.filter['filter[meta_query][value]'] = '[0,10]';
