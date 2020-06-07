@@ -174,12 +174,12 @@
         </ion-label>
         <ion-select style="max-width: 80%;"
         [(ngModel)]="optionss" (ngModelChange)="chooseVariationOne()" >
-          <div *ngFor="let optionss of usedVariationAttributes">
+          <div *ngFor="let optionss of usedVariationAttributes ; let i = index">
             
                <ion-option  
                [ngClass]="{'selected-option': selectedService && optionss && optionss.resource_id == selectedService.resource_id }" 
               [value]="optionss">
-                {{optionss.name}}
+              {{i+1}} - {{optionss.name}}
               </ion-option> 
           </div>
         </ion-select>

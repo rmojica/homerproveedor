@@ -7,7 +7,11 @@
       <!-- <img style="max-width: 200px;" src="{{values.avatar}}" /> -->
       {{"Providers" | translate}}
     </ion-title>
+    
     <ion-buttons end>
+      <button ion-button icon-only color="icon-color" (click)="getFilter()">
+        <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
+      </button>
       <button ion-button icon-only color="icon-color" (click)="getSearch()">
         <ion-icon color="icon-color" ios="ios-search" md="md-search"></ion-icon>
       </button>
@@ -31,6 +35,55 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="home">
+
+  <div *ngIf="showFilters" class="filter">
+    <ion-list radio-group [(ngModel)]="sort" (ngModelChange)="chnageFilter(sort)">
+      <ion-list-header>
+        <b>
+          {{"Sort" | translate}}
+        </b>
+      </ion-list-header>
+      <ion-item>
+        <ion-label text-wrap>{{"Default" | translate}}</ion-label>
+        <ion-radio value="5"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by popularity" | translate}}</ion-label>
+        <ion-radio value="6"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by average rating" | translate}}</ion-label>
+        <ion-radio value="7"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by date: ASC" | translate}}</ion-label>
+        <ion-radio value="8"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by date: DESC" | translate}}</ion-label>
+        <ion-radio value="9"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by price: low to high" | translate}}</ion-label>
+        <ion-radio value="10"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by price: high to low" | translate}}</ion-label>
+        <ion-radio value="11"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by name: ASC" | translate}}</ion-label>
+        <ion-radio value="12"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>{{"Sort by name: DESC" | translate}}</ion-label>
+        <ion-radio value="13"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <button ion-button block color="button-color" (click)="cancel()">
+      {{"CANCEL" | translate}}
+    </button>
+  </div>
 
   <ion-fab bottom right slot="fixed">
     <button ion-fab>
@@ -521,6 +574,7 @@
       </ion-row>
     </div>
   </div-->
+  <div *ngIf="!showFilters">
   <div class="products-listing">
     <div *ngIf="service?.products">
       <!--ion-item no-lines class="item-name">
@@ -592,6 +646,7 @@
         </div>
       </ion-list>
     </div>
+  </div>
   </div>
    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
             <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{'Loading more items...' | translate}}"> </ion-infinite-scroll-content>

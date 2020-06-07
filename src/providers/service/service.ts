@@ -674,6 +674,24 @@ export class Service {
         })
     })
   }
+  loadMoreProvider(filter) {
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.setUrl(
+            'GET',
+            '/wp-json/wc-bookings/v1/products?',
+            filter,
+          ),
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          this.handleMore(data)
+          resolve(true)
+        })
+    })
+  }
   handleMore(results) {
     console.log(results.length)
     // if (results.products == undefined) {

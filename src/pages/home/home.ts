@@ -7,6 +7,8 @@ import { ProductsPage } from '../products/products';
 import { SearchPage } from '../search/search';
 import { ProductPage } from '../product/product';
 import { Post } from '../post/post';
+import { CategoryService } from '../../providers/service/category-service';
+
 
 @Component({
     templateUrl: 'home.html'
@@ -21,10 +23,15 @@ export class Home {
     time: any;
     has_more_items: boolean = true;
     loading: boolean = true;
-    constructor(public toastCtrl: ToastController, public nav: NavController, public service: Service, public values: Values) {
+    showFilters: boolean = false
+    filter: any;
+
+    constructor(public categoryService: CategoryService, public toastCtrl: ToastController, public nav: NavController, public service: Service, public values: Values) {
         this.items = [];
         this.options = [];
         this.service.getProducts();
+        this.filter = {};
+        this.filter.page = 1
     }
     doRefresh(refresher){
         this.service.load().then((results) => {
@@ -118,7 +125,9 @@ export class Home {
         }
     }
     doInfinite(infiniteScroll) {
-        this.service.loadMore().then((results) => this.handleMore(results, infiniteScroll));
+        console.log(this.filter.page)
+    this.filter.page += 1
+        this.service.loadMoreProvider(this.filter).then((results) => this.handleMore(results, infiniteScroll));
     }
     handleMore(results, infiniteScroll) {
         if (!results) {
@@ -135,5 +144,64 @@ export class Home {
     getSubCategories(id){
         const results = this.service.categories.filter(item => item.parent === parseInt(id));
         return results;
+    }
+
+    //Filter shit
+
+    getFilter() {
+        this.showFilters = true
+        this.has_more_items = false
+    }
+    cancel() {
+        this.showFilters = false
+        this.has_more_items = true
+    }
+    chnageFilter(sort) {
+        this.showFilters = false
+        this.has_more_items = true
+        this.filter.page = 1
+  console.log(this.filter.page)
+
+
+        // FILTROS SHIT EN FUNCION
+        if (sort == 5) {
+            this.filter['orderby'] = 'menu_order'
+        }
+        else if (sort == 6) {
+            this.filter['orderby'] = 'popularity'
+        }
+        else if (sort == 7) {
+            this.filter['orderby'] = 'rating'
+        }
+        else if (sort == 8) {
+            this.filter['orderby'] = 'date'
+            this.filter['order'] = 'asc'
+        }
+        else if (sort == 9) {
+            this.filter['orderby'] = 'date'
+            this.filter['order'] = 'desc'
+        }
+        else if (sort == 10) {
+            this.filter['orderby'] = 'price'
+            this.filter['order'] = 'asc'
+        }
+        else if (sort == 11) {
+            this.filter['orderby'] = 'price'
+            this.filter['order'] = 'desc'
+        }
+        else if (sort == 12) {
+            this.filter['orderby'] = 'title'
+            this.filter['order'] = 'asc'
+        }
+        else if (sort == 13) {
+            this.filter['orderby'] = 'title'
+            this.filter['order'] = 'desc'
+        }
+
+
+        /*this.filter['filter[meta_query][key]'] = "_price";
+            this.filter['filter[meta_query][value]'] = '[0,10]';
+            this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
+        this.categoryService.load(this.filter).then(results => (this.service.products = results))
     }
 }
