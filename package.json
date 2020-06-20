@@ -47,8 +47,6 @@
     "cordova-browser": "6.0.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-advanced-http": "^1.11.0",
-    "cordova-plugin-androidx": "^2.0.0",
-    "cordova-plugin-androidx-adapter": "^1.1.1",
     "cordova-plugin-apprate": "^1.3.0",
     "cordova-plugin-calendar": "^5.1.5",
     "cordova-plugin-dialogs": "^2.0.2",
@@ -65,8 +63,10 @@
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "moment": "^2.24.0",
+    "mx.ferreyra.callnumber": "0.0.2",
     "natives": "^1.1.6",
     "onesignal-cordova-plugin": "^2.3.1",
+    "recursive-readdir": "^2.2.2",
     "rxjs": "5.5.7",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.20"
@@ -74,14 +74,12 @@
   "devDependencies": {
     "@babel/register": "^7.9.0",
     "@ionic/app-scripts": "^3.2.4",
-    "call-number": "0.0.2",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^1.2.1",
     "cordova-plugin-splashscreen": "^5.0.3",
     "cordova-plugin-whitelist": "^1.3.4",
     "cordova-res": "^0.14.0",
-    "mx.ferreyra.callnumber": "0.0.2",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
@@ -96,6 +94,7 @@
       "cordova-plugin-email-composer": {},
       "onesignal-cordova-plugin": {},
       "cordova-plugin-nativestorage": {},
+      "mx.ferreyra.callnumber": {},
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-screen-orientation": {},
@@ -108,10 +107,7 @@
         "CALENDAR_USAGE_DESCRIPTION": " ",
         "CONTACTS_USAGE_DESCRIPTION": " "
       },
-      "cordova-plugin-androidx": {},
-      "cordova-plugin-androidx-adapter": {},
-      "call-number": {},
-      "mx.ferreyra.callnumber": {}
+      "call-number": {}
     },
     "platforms": [
       "ios",
