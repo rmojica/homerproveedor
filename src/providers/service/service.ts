@@ -261,6 +261,7 @@ export class Service {
               this.values.customerName = data.data.display_name
               this.values.customerId = data.data.ID
               this.values.logoutUrl = this.encodeUrl(data.data.url)
+              this.values.vendor = data.allcaps.vendor
               params = new URLSearchParams()
               params.append('customer_id', this.values.customerId.toString())
               this.http
@@ -524,6 +525,20 @@ export class Service {
         })
     })
   }
+  getBooking(idOrder,idVendor) {
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.setUrl('GET', '/wp-json/custom-api/v1/get_vendor_order?id_vendor=' + idVendor + '&id=' +idOrder+'&', false),
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          this.order = data
+          resolve(this.order)
+        })
+    })
+  }
   getCountry() {
     return new Promise(resolve => {
       this.http
@@ -567,6 +582,34 @@ export class Service {
       this.http
         .get(
           this.config.setUrl('GET', '/wc-api/v3/orders?', filter),
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          this.orders = data
+          resolve(this.orders)
+        })
+    })
+  }
+  getOrdersVendor(filter) {
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.setUrl('GET', '/wp-json/custom-api/v1/get_vendor_orders?', filter),
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          this.orders = data
+          resolve(this.orders)
+        })
+    })
+  }
+  getBookingsVendor(filter) {
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.setUrl('GET', '/wp-json/custom-api/v1/get_vendor_orders?', filter),
           this.config.options,
         )
         .map(res => res.json())

@@ -13,7 +13,7 @@
   </ion-spinner>
   <div *ngIf="orderDetails">
     <ion-item-group>
-      <ion-item-divider>{{"Booking #" | translate }}
+      <ion-item-divider>{{"Order #" | translate }}
       </ion-item-divider>
       <ion-item no-lines>{{orderDetails.order.order_number}}
       </ion-item>
@@ -110,3 +110,8 @@
     </ion-item-group>
   </div>
 </ion-content>
+<!-- <ion-footer *ngIf="values.vendor">
+  <ion-toolbar color="brand">
+    <button ion-button round full color="primary" (click)="confirmOrder()">Confirm Order</button>
+  </ion-toolbar>
+</ion-footer> -->

@@ -9,6 +9,9 @@ import { AccountLogin } from '../pages/account/login/login'
 import { Post } from '../pages/post/post'
 import { OrderDetails } from '../pages/account/order-details/order-details'
 import { Orders } from '../pages/account/orders/orders'
+import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor'
+import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor'
+import { BookingDetails } from '../pages/account/booking-details/booking-details'
 import { AccountRegister } from '../pages/account/register/register'
 import { WishlistPage } from '../pages/account/wishlist/wishlist'
 import { AccountPage } from '../pages/account/account/account'
@@ -54,7 +57,6 @@ import { OneSignal } from '@ionic-native/onesignal'
 import { HTTP } from '@ionic-native/http'
 
 import { CalendarModule } from 'ion2-calendar'
-import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -71,6 +73,9 @@ export function createTranslateLoader(http: HttpClient) {
     AccountLogin,
     OrderDetails,
     Orders,
+    OrdersVendor,
+    BookingVendor,
+    BookingDetails,
     Post,
     AccountRegister,
     WishlistPage,
@@ -110,6 +115,9 @@ export function createTranslateLoader(http: HttpClient) {
     AccountLogin,
     OrderDetails,
     Orders,
+    OrdersVendor,
+    BookingVendor,
+    BookingDetails,
     Post,
     AccountRegister,
     WishlistPage,
@@ -144,7 +152,6 @@ export function createTranslateLoader(http: HttpClient) {
     AppRate,
     EmailComposer,
     CallNumber,
-    LottieSplashScreen,
     HTTP,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
