@@ -21,8 +21,7 @@
         <ion-item-divider tappable menuClose (click)="shop()">
           <ion-icon item-left ios="ios-home" md="md-home">
           </ion-icon>
-          <strong>{{"Shop" | translate}}
-          </strong>
+          {{"Booking" | translate}}
         </ion-item-divider>
       </div>
 
@@ -39,8 +38,7 @@
       <ion-item-divider tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">
         <ion-icon style="background-color: #32db64;" name="contact" item-left>
         </ion-icon>
-        <strong>{{"Account" | translate}}
-        </strong>
+        {{"Account" | translate}}
       </ion-item-divider>
       <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">
         <ion-icon style="background-color: #f25362" name="log-in" item-left>
@@ -89,6 +87,7 @@
         <ion-icon style="background-color: #43A047" name="thumbs-up" item-left></ion-icon>
         {{"Rate App" | translate}}
       </ion-item>
+
       <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">
         <ion-icon style="background-color: #FDD835" item-left name="md-log-out">
         </ion-icon>{{"Logout" | translate}}
@@ -108,6 +107,17 @@
           </ion-icon>{{"Bookings" | translate}}
         </ion-item>
       </ion-list>
+
+      <ion-item>
+        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>
+        <ion-label>
+          {{"SelectLanguage" | translate}}
+        </ion-label>
+        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">
+          <ion-option value="english">{{"Eglish" | translate}} </ion-option>
+          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>
+        </ion-select>
+      </ion-item>
 
     </ion-list>
     <br>

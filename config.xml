@@ -2,7 +2,7 @@
 <widget id="numu.digital.hexchange" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>HEXchange</name>
     <description>Search Doctors and Book appointments online, instantly</description>
-    <author email="czambrana@numu.digital" href="https://hexchange.digitalfactory.tech/">Numu Digital</author>
+    <author email="info@numu.digital" href="https://hexchange.digitalfactory.tech/">Numu Digital</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

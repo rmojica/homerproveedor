@@ -39,7 +39,7 @@ export class BillingAddressForm {
     order: any;
     chosen_shipping: any;
     constructor(public iab: InAppBrowser, public nav: NavController, private oneSignal: OneSignal, private platform: Platform, public service: CheckoutService, params: NavParams, public functions: Functions, public values: Values) {
-        this.buttonText = "Place order";
+        this.buttonText = "Place booking";
         this.buttonText1 = "Apply";
         this.buttonText2 = "Login";
         this.loginData = [];
@@ -137,7 +137,7 @@ export class BillingAddressForm {
     handleStripeToken(results) {
         if (results.error) {
             this.buttonSubmit = false;
-            this.buttonText = "Place Order";
+            this.buttonText = "Place booking";
             this.functions.showAlert("ERROR", results.error.message);
         }
         else {
@@ -160,7 +160,7 @@ export class BillingAddressForm {
             this.functions.showAlert("ERROR", results.messages);
         }
         this.buttonSubmit = false;
-        this.buttonText = "Place Order";
+        this.buttonText = "Place booking";
     }
     login() {
         if (this.validateForm()) {

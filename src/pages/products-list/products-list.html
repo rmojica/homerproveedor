@@ -61,7 +61,7 @@
       </div>
       <!--overlay-->
       <div class="card-title">
-        {{'Find and book a doctor appointment right now' | translate}}
+        {{'FindAndBookHome' | translate}}
       </div>
       <div class="card-search">
         <ion-searchbar (click)="getSearch()" placeholder="{{'Search' | translate}}"></ion-searchbar>
@@ -78,7 +78,7 @@
       </ion-item>
     </div>  -->
 
-    <h2 class="full-width text-center blue-stripe">Practices</h2>
+    <h2 class="full-width text-center blue-stripe">{{'Practices' | translate}}</h2>
 
     <ion-row *ngIf="service.categories" class="category-name">
       <ion-col
@@ -112,14 +112,14 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <p>Contact us</p>
+        <p>{{'Contact Us' | translate}}</p>
       </ion-item>
     </ion-list>
   </ion-card>
 
   <a
     button
-    href="https://wa.me/50588167640?text=hello i need a medical consultation."
+    href="https://wa.me/+305-913-2306?text=hello i need a medical consultation."
     clear
     item-left
     style="text-decoration: none;"
@@ -128,7 +128,7 @@
       <ion-list>
         <ion-item>
           <ion-icon class="icon-whatsapp" name="logo-whatsapp"></ion-icon>
-          Chat on whatsapp
+          {{'Chat on whatsapp' | translate}}
         </ion-item>
       </ion-list>
     </ion-card>
@@ -145,7 +145,7 @@
       <ion-list>
         <ion-item>
           <ion-icon name="call"></ion-icon>
-          Call us
+          {{'Call us' | translate}}
         </ion-item>
       </ion-list>
     </ion-card>

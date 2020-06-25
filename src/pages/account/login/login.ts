@@ -22,6 +22,10 @@ export class AccountLogin {
   buttonText: any
   countries: any
   isActiveToggleTextPassword: Boolean = true
+
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+
   constructor(
     public nav: NavController,
     public service: Service,
@@ -131,4 +135,10 @@ export class AccountLogin {
 public getType() {
     return this.isActiveToggleTextPassword ? 'password' : 'text';
 }
+
+hideShowPassword() {
+  this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+  this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+}
+
 }

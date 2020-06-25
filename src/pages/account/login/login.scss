@@ -66,6 +66,37 @@
         top: 8px;
         right: 12px;
     }
+     .passwordIcon.icon-md{
+        font-size: 2.5rem !important;
+        position: relative !important;
+        top: 6px !important;
+        margin: 0px 0px 0px -8px !important;
+        border: 2px solid #e0e0e0;
+        height: 40px;
+        border-radius: 7px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 0 8px;
+        border-left: none;
+     }
+     .passwordIcon.icon-ios{
+        font-size: 2.5rem !important;
+        position: relative !important;
+        top: 7px !important;
+        margin: 0px 0px 0px -8px !important;
+        border: 2px solid #e0e0e0;
+        height: 42px;
+        border-radius: 7px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 0 8px;
+        border-left: none;
+     }
+     .pass .text-input{
+         border-right: none !important;
+         border-top-right-radius: 0;
+         border-bottom-right-radius: 0;
+     }
 }
 
 .alert-md .alert-wrapper {

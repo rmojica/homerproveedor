@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { Config } from '../../../providers/service/config';
 import { URLSearchParams } from '@angular/http'
 import { BookingDetails } from '../booking-details/booking-details';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -26,8 +27,9 @@ export class BookingVendor {
     filter: any;
     status: any;
     dataVendor: any = {}
+    lan: any = {};
 
-    constructor(private config: Config, private http: Http, public nav: NavController, public service: Service, public values: Values, public functions: Functions) {
+    constructor(public translate: TranslateService, private config: Config, private http: Http, public nav: NavController, public service: Service, public values: Values, public functions: Functions) {
         
     }
     ionViewDidEnter() {
@@ -121,4 +123,11 @@ export class BookingVendor {
             })
         })
       }
+
+      ngOnInit() {
+        this.translate.get(['SUCCESS', 'Please Select']).subscribe(translations => {
+            this.lan.oops = translations['Oops!'];
+            this.lan.oops = translations['Oops!'];
+        });
+    }
 }

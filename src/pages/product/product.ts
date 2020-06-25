@@ -8,6 +8,7 @@ import { CartPage } from '../cart/cart'
 import { AccountLogin } from '../account/login/login'
 import { CalendarComponentOptions, DayConfig } from 'ion2-calendar'
 import moment from 'moment'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   templateUrl: 'product.html',
@@ -48,8 +49,10 @@ export class ProductPage {
   schedule: any
   NoBlockAvailable = 'NoBlockAvailable'
   WhatTime = 'WhatTime'
+  lan: any = {};
 
   constructor(
+    public translate: TranslateService,
     public nav: NavController,
     public service: ProductService,
     params: NavParams,
@@ -241,7 +244,7 @@ export class ProductPage {
       this.product.product.resources_full.length > 0 &&
       !this.selectedService
     ) {
-      this.functions.showAlert('error', 'Please select a service')
+      this.functions.showAlert('error', this.lan.pleaseSelect)
       return
     }
 
@@ -401,4 +404,12 @@ export class ProductPage {
   getTime(item) {
     return moment(item).format('hh:mm a')
   }
+
+  ngOnInit() {
+    this.translate.get(['Please select a service']).subscribe(translations => {
+        this.lan.pleaseSelect = translations['Please select a service'];
+    });
+}
+  
+  
 }

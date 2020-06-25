@@ -38,7 +38,10 @@ export class MyApp {
     status: any;
     items: any = {};
     buttonLanguagesSettings: boolean = false;
+    Languages: any;
+
     constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
+        this.Languages = []
         platform.ready().then(() => {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
@@ -63,6 +66,7 @@ export class MyApp {
             }, error => console.error(error));
 
         });
+    
     }
     handleService(results) {
         if (this.values.settings.app_dir == 'rtl') this.platform.setDir('rtl', true);
@@ -164,6 +168,10 @@ export class MyApp {
             }
             this.socialSharing.shareWithOptions(options);
         }
+    }
+    setLang(){
+        console.log(this.Languages)
+        this.translateService.setDefaultLang(this.Languages);
     }
     contact() {
         let email = {
