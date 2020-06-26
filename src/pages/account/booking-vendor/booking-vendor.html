@@ -24,23 +24,23 @@
       <ion-item *ngFor="let item of orders.orders">
         
         <h2>
-          <b>{{"DETAILS" | translate}} :
-          </b>{{"Booking" | translate }}# {{item.bookingId}}
+          <b>{{"Details" | translate}} :
+          </b>{{"Booking" | translate }} # {{item.bookingId}}
         </h2>
         <h2>
-          <b>{{"BOOKED PRODUCT" | translate}} :
+          <b>{{"Booked Product" | translate}} :
           </b> <label style="color:#1e88e5e6;"> {{item.booked_product}}</label>
         </h2>
         <h2>
-          <b>{{"BOOKED BY" | translate}} :
+          <b>{{"Booked By" | translate}} :
           </b> {{item.booked_by}}
         </h2>
         <h2>
-          <b>{{"START DATE" | translate}} :
+          <b>{{"Start Date" | translate}} :
           </b> {{item.start_date | date:'medium'}}
         </h2>
         <h2>
-          <b>{{"END DATE" | translate}} :
+          <b>{{"End Date" | translate}} :
           </b> {{item.end_date | date:'medium'}}
         </h2>
         <h2>
@@ -48,7 +48,7 @@
           </b> {{item.billing_address.first_name}} {{item.billing_address.last_name}}, {{item.billing_address.address_1}}, {{item.billing_address.address_2}}, {{item.billing_address.city}}, {{item.billing_address.state}}, {{item.billing_address.country}}, {{item.billing_address.postcode}}
         </h2>
         <h2>
-          <b>{{"STATUS" | translate}} :
+          <b>{{"Status" | translate}} :
           </b> {{item.statusbooking}}
         </h2>
 

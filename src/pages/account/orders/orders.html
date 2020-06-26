@@ -23,7 +23,7 @@
     <div *ngIf="orders.orders.length">
       <ion-item *ngFor="let item of orders.orders">
         <h2>
-          <b>{{"Order #" | translate}} :
+          <b>{{"Order" | translate}} #:
           </b> {{item.order_number}}
         </h2>
         <h2>

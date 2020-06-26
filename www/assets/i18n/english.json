@@ -167,9 +167,25 @@
 "Sort by name: DESC" : "Sort by name: DESC",
 "My Account" : "My Account",
 "Home Address" : "Home Address",
-"Please select a service" : "Please select a service"
-
-
+"Please select a service" : "Please select a service",
+"Customer Orders" : "Customer Orders",
+"View Booking" : "View Booking",
+"Bookings" : "Bookings",
+"Customer" : "Customer",
+"Order" : "Order",
+"Provider Details" : "Provider Details",
+"Details" : "Details",
+"Booked Product" : "Booked Product",
+"Booked By" : "Booked By",
+"Start Date" : "Start Date",
+"End Date" : "End Date",
+"View" : "View",
+"Confirm" : "Confirm",
+"Unconfirm" : "Unconfirm",
+"Booking Info" : "Booking Info",
+"Customer Details" : "Customer Details",
+"Booking Status" : "Booking Status",
+"Booking Date/Time" : "Booking Date/Time"
 
 
 }
