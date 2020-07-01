@@ -33,7 +33,7 @@ page-products-list {
   //banner image
   .card-title {
     position: absolute;
-    top: 20%;
+    top: 1%;
     font-size: 20px;
     width: 100%;
     font-weight: bold;
@@ -47,7 +47,69 @@ page-products-list {
   .searchbar-md .searchbar-input {
     padding: 6px 55px;
     text-align: left;
+    background-color: #ffffff47;
+    color: white;
   }
+  .searchbar-ios .searchbar-input {
+    background-color: #ffffff47;
+    color: white;
+  } 
+  //btn search
+  .btn-search-product{
+    top: 234px;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    padding-left: 10px;
+  }
+  //Radius
+  .range-radius {
+    top: 140px;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+  }
+  .range-md.range-has-pin {
+    padding-top: 0px;
+  }
+  .label-radius{
+    padding-left: 10px;
+    color: white;
+  }
+  //Category
+  .searchbar-category {
+    top: 40px;
+    position: absolute;
+    z-index: 999;
+  }
+  .list-category{
+    top: 95px;
+    position: absolute;
+    z-index: 999;
+  }
+  .searchbar-category .searchbar-search-icon{
+    background-image: url('../assets/icon/specialist.svg');
+  }
+
+    input::placeholder {
+      color:white!important;
+    }
+  
+  //Location
+  .searchbar-location {
+    top: 90px;
+    position: absolute;
+    z-index: 999;
+  }
+  .list-location{
+    top: 145px;
+    position: absolute;
+    z-index: 999;
+  }
+  .searchbar-location .searchbar-search-icon{
+    background-image: url('../assets/icon/location.svg');
+  }
+
   .item-md p {
     margin: 0 0 2px;
     overflow: inherit;
@@ -59,7 +121,8 @@ page-products-list {
     width: 100%;
   }
   .swiper-slide img {
-    filter: brightness(0.5);
+    filter: brightness(0.6);
+    // height: 285px;
   }
 
   .flex-center {

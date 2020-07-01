@@ -57,6 +57,8 @@ import { OneSignal } from '@ionic-native/onesignal'
 import { HTTP } from '@ionic-native/http'
 
 import { CalendarModule } from 'ion2-calendar'
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -153,6 +155,8 @@ export function createTranslateLoader(http: HttpClient) {
     EmailComposer,
     CallNumber,
     HTTP,
+    Geolocation,    
+    NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
 })

@@ -185,6 +185,10 @@
 	"Booking Info" : "Información de reserva",
 	"Customer Details" : "Detalles del cliente",
 	"Booking Status" : "Estado de la reservación",
-	"Booking Date/Time" : "Fecha / hora de reserva"
+	"Booking Date/Time" : "Fecha / hora de reserva",
+	"Category" : "Categoría",
+	"Location" : "Ubicación",
+	"RADIUS" : "RADIO"
+	
 
 }

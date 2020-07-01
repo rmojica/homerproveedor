@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/observable/forkJoin'
 import { HTTP } from '@ionic-native/http'
 import { Functions } from '../../providers/service/functions'
+import { ProductsPage } from '../../pages/products/products'
 
 
 @Injectable()
@@ -36,6 +37,8 @@ export class Service {
   has_more_items: boolean = true
   blocks: any = []
   customer: any
+  dataSearchProduct: any = []
+  includeProduct: any
   constructor(
     private reqhttp: HTTP,
     private http: Http,
@@ -805,4 +808,38 @@ export class Service {
         })
     })
   }
+
+  getLocationFromProduct(lat, long, radius){
+    var params = new URLSearchParams();
+        params.append('latitude', lat);
+        params.append('longitude', long);
+        params.append('use_radius', 'on');
+        params.append('radius', radius);
+
+        return new Promise(resolve => {
+          this.http
+            .post(
+              this.config.url +
+                '/wp-admin/admin-ajax.php?action=mstoreapp-geolocation_process',
+              params,
+              this.config.options,
+            )
+            .map(res => res.json())
+            .subscribe(data => {
+              this.status = data
+             
+              console.log('data:',this.status.data);
+              
+              this.dataSearchProduct = this.status.data;
+               this.includeProduct = ''; 
+              for (var key in this.dataSearchProduct) {
+                let prices = this.dataSearchProduct[key]
+                this.includeProduct += prices.ID+',';
+              }
+              this.includeProduct = this.includeProduct.slice(0, -1); 
+              resolve(this.includeProduct)
+            })
+        })
+  }
+  
 }

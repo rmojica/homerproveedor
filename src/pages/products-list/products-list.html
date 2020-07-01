@@ -42,7 +42,9 @@
         <ion-icon style="background: #2196f3;" name="custom-facebook"></ion-icon>
       </a>
       <a button ion-fab style="background-color: #ffffff;" href="https://www.instagram.com/thehexchange/">
-        <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>
+        <ion-icon
+          style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);"
+          name="custom-instagram"></ion-icon>
       </a>
 
     </ion-fab-list>
@@ -53,7 +55,7 @@
     </ion-slide>
   </ion-slides> -->
 
-  <ion-slides initialSlide="0" speed="3000" loop="true" pager="true" dir="rtl">
+  <ion-slides initialSlide="0" speed="3000" loop="false" pager="true" dir="rtl">
     <ion-slide>
       <div class="overlay">
         <!-- <img src="../../assets/image/1.jpg" class="slider-img"> -->
@@ -63,11 +65,45 @@
       <div class="card-title">
         {{'FindAndBookHome' | translate}}
       </div>
-      <div class="card-search">
+      <!-- <div class="card-search">
         <ion-searchbar (click)="getSearch()" placeholder="{{'Search' | translate}}"></ion-searchbar>
+      </div> -->
+
+      <div class="card-search">
+        
       </div>
+
     </ion-slide>
   </ion-slides>
+
+  <ion-searchbar class="searchbar-category" [(ngModel)]="autocompleteCat.input" (ionInput)="getItemsCat()" (ionClear)="ClearAutocompleteCat()" placeholder="{{'Category' | translate}}"></ion-searchbar>
+  <ion-list class="list-category" [hidden]="!HiddenListCat">
+      <ion-item *ngFor="let item of itemsCategory" (click)="SelectSearchResultCat(item)">
+        {{ item.name }}
+      </ion-item>
+    </ion-list>
+
+  <ion-searchbar [hidden]="HiddenSearchLocation" class="searchbar-location" [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="{{'Location' | translate}}"
+    (ionClear)="ClearAutocomplete()"></ion-searchbar>
+  <ion-list class="list-location" [hidden]="!HiddenList">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+
+  <div class="range-radius" [hidden]="HideRadius">
+    <ion-label class="label-radius">{{"RADIUS" | translate}}</ion-label>
+    <ion-range  pin="true" min="0" max="100" [(ngModel)]="radius " color="secondary">
+      <ion-label style="color: white;" range-left>0</ion-label>
+      <ion-label style="color: white;" range-right>100</ion-label>
+    </ion-range>
+  </div>
+    
+  <div class="btn-search-product" [hidden]="HideBtnSearch">
+  <button ion-button  item-center medium color="button-color" 
+    text-uppercase (click)="searchProduct()">{{"Search" | translate}}
+  </button> 
+  </div>
 
   <ion-grid>
     <!-- <div *ngIf="service.categories" class="category-name">
@@ -81,12 +117,8 @@
     <h2 class="full-width text-center blue-stripe">{{'Practices' | translate}}</h2>
 
     <ion-row *ngIf="service.categories" class="category-name">
-      <ion-col
-        col-6
-        class="flex-center"
-        *ngFor="let item of service.mainCategories"
-        (click)="getCategory(item.id, item.slug, item.name)"
-      >
+      <ion-col col-6 class="flex-center" *ngFor="let item of service.mainCategories"
+        (click)="getCategory(item.id, item.slug, item.name)">
         <ion-list>
           <ion-item>
             <ion-grid>
@@ -117,13 +149,8 @@
     </ion-list>
   </ion-card>
 
-  <a
-    button
-    href="https://wa.me/{{values.settings.whatsapp_number}}?text=hello i need a medical consultation."
-    clear
-    item-left
-    style="text-decoration: none;"
-  >
+  <a button href="https://wa.me/{{values.settings.whatsapp_number}}?text=hello i need a medical consultation." clear
+    item-left style="text-decoration: none;">
     <ion-card>
       <ion-list>
         <ion-item>
@@ -134,13 +161,7 @@
     </ion-card>
   </a>
 
-  <a
-    button
-    href="tel:+3059132306"
-    clear
-    item-left
-    style="text-decoration: none;"
-  >
+  <a button href="tel:+3059132306" clear item-left style="text-decoration: none;">
     <ion-card>
       <ion-list>
         <ion-item>

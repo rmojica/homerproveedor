@@ -44,8 +44,16 @@ export class ProductsPage {
     this.data = {}
     this.filter = {}
     this.q = ''
-    this.filter['filter[category]'] = params.data.slug
-    this.filter.id = params.data.id
+
+    if (params.data.slug != '') {
+      this.filter['filter[category]'] = params.data.slug
+      this.filter.id = params.data.id
+    }
+
+    if(params.data.productslocation != ''){
+        this.filter['include'] = params.data.productslocation
+    }
+
     this.categoryName = params.data.name
     this.filter.page = 1
     this.count = 10
@@ -73,7 +81,7 @@ export class ProductsPage {
         }
         if (Object.keys(resources).length) {
           let minPrice = Math.min(...prices)
-          this.products.map(function(element) {
+          this.products.map(function (element) {
             return (element.minPrice = minPrice)
           })
         }
@@ -156,7 +164,7 @@ export class ProductsPage {
       this.service.addToCart(obj).then(results => this.updateCart(results))
     }
   }
-  updateCart(a) {}
+  updateCart(a) { }
   onInput($event) {
     this.filter['filter[q]'] = $event.srcElement.value
     console.log(this.filter['filter[q]'])
@@ -199,37 +207,37 @@ export class ProductsPage {
     // FILTROS SHIT EN FUNCION
     if (sort == 5) {
       this.filter['orderby'] = 'menu_order'
-    } 
+    }
     else if (sort == 6) {
       this.filter['orderby'] = 'popularity'
-    } 
+    }
     else if (sort == 7) {
       this.filter['orderby'] = 'rating'
-    } 
+    }
     else if (sort == 8) {
       this.filter['orderby'] = 'date'
       this.filter['order'] = 'asc'
-  }
-  else if (sort == 9) {
+    }
+    else if (sort == 9) {
       this.filter['orderby'] = 'date'
       this.filter['order'] = 'desc'
-  }
-  else if (sort == 10) {
+    }
+    else if (sort == 10) {
       this.filter['orderby'] = 'price'
       this.filter['order'] = 'asc'
-  }
-  else if (sort == 11) {
+    }
+    else if (sort == 11) {
       this.filter['orderby'] = 'price'
       this.filter['order'] = 'desc'
-  }
-  else if (sort == 12) {
+    }
+    else if (sort == 12) {
       this.filter['orderby'] = 'title'
       this.filter['order'] = 'asc'
-  }
-  else if (sort == 13) {
+    }
+    else if (sort == 13) {
       this.filter['orderby'] = 'title'
       this.filter['order'] = 'desc'
-  }
+    }
 
     /*this.filter['filter[meta_query][key]'] = "_price";
         this.filter['filter[meta_query][value]'] = '[0,10]';

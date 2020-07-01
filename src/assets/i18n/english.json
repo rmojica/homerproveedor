@@ -185,7 +185,11 @@
 "Booking Info" : "Booking Info",
 "Customer Details" : "Customer Details",
 "Booking Status" : "Booking Status",
-"Booking Date/Time" : "Booking Date/Time"
+"Booking Date/Time" : "Booking Date/Time",
+"Category" : "Category",
+"Location" : "Location",
+"RADIUS" : "RADIUS"
+
 
 
 }

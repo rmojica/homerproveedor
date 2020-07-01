@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Service } from '../../providers/service/service';
 import { Values } from '../../providers/service/values';
@@ -7,12 +7,44 @@ import { ProductsPage } from '../products/products';
 import { SearchPage } from '../search/search';
 import { ProductPage } from '../product/product';
 import { Post } from '../post/post';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+// import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+
+
+declare var google;
 
 @Component({
   selector: "page-products-list",
     templateUrl: 'products-list.html'
 })
+
 export class ProductsListPage {
+    @ViewChild('map') mapContainer: ElementRef;
+
+//  @ViewChild('map',  {static: false}) mapElement: ElementRef;
+  map: any;
+  address:string;
+  lat: string;
+  long: string;  
+  autocomplete: { input: string; };
+  autocompleteItems: any[];
+  location: any;
+  placeid: any;
+  GoogleAutocomplete: any;
+
+  selectedCategory: string;
+  HiddenList: boolean = true;
+  HiddenListCat: boolean = true;
+  HiddenSearchLocation: boolean = false;
+  HideRadius: boolean = false;
+  HideBtnSearch: boolean = false;
+  autocompleteCat: { input: string; };
+
+  itemsCategory: any;
+  radius: any = 0;
+  
     status: any;
     items: any;
     product: any;
@@ -22,10 +54,21 @@ export class ProductsListPage {
     time: any;
     has_more_items: boolean = true;
     loading: boolean = true;
-    constructor(public toastCtrl: ToastController, public nav: NavController, public service: Service, public values: Values) {
+    constructor(
+        private geolocation: Geolocation,
+        private nativeGeocoder: NativeGeocoder,    
+        public zone: NgZone,
+        public toastCtrl: ToastController, public nav: NavController, public service: Service, public values: Values) {
         this.items = [];
         this.options = [];
         this.service.getProducts();
+
+        this.autocomplete = { input: '' };
+        this.autocompleteItems = [];
+
+        this.autocompleteCat = { input: '' };
+        this.itemsCategory = [];
+
     }
     doRefresh(refresher){
         this.service.load().then((results) => {
@@ -137,4 +180,180 @@ export class ProductsListPage {
         const results = this.service.categories.filter(item => item.parent === parseInt(id));
         return results;
     }
+  
+  getAddressFromCoords(lattitude, longitude) {
+    console.log("getAddressFromCoords "+lattitude+" "+longitude);
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5    
+    }; 
+    this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
+      .then((result: NativeGeocoderReverseResult[]) => {
+        this.address = "";
+        let responseAddress = [];
+        // for (let [key, value] of Object.entries(result[0])) {
+        //   if(value.length>0)
+        //   responseAddress.push(value); 
+        // }
+        responseAddress.reverse();
+        for (let value of responseAddress) {
+          this.address += value+", ";
+        }
+        this.address = this.address.slice(0, -2);
+      })
+      .catch((error: any) =>{ 
+        this.address = "Address Not Available!";
+      }); 
+  }
+
+  getCoordsFromAddress(Adrress) {
+    console.log("getCoordsFromAddress "+Adrress);
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5    
+    }; 
+
+    this.nativeGeocoder.forwardGeocode(Adrress, options)
+    .then((result: NativeGeocoderForwardResult[]) => {
+      // console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
+      this.lat = result[0].latitude;
+      this.long = result[0].longitude;
+    })
+    .catch((error: any) => console.log(error));
+
+
+  }
+
+  //FUNCTION SHOWING THE COORDINATES OF THE POINT AT THE CENTER OF THE MAP
+  ShowCords(){
+    alert('lat' +this.lat+', long'+this.long )
+  }
+  
+  //AUTOCOMPLETE, SIMPLY LOAD THE PLACE USING GOOGLE PREDICTIONS AND RETURNING THE ARRAY.
+  UpdateSearchResults(){
+    if (this.autocomplete.input == '') {
+      this.autocompleteItems = [];
+      this.HiddenList = false;
+      this.HideBtnSearch = false;
+      this.HideRadius = false;
+      return;
+    }
+
+    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+
+
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input },
+    (predictions, status) => {
+      this.autocompleteItems = [];
+      this.zone.run(() => {
+        predictions.forEach((prediction) => {
+          this.autocompleteItems.push(prediction);
+          this.HiddenList = true;
+          this.HideBtnSearch = true;
+          this.HideRadius = true;
+        });
+      });
+    });
+  }
+  
+  //wE CALL THIS FROM EACH ITEM.
+  SelectSearchResult(item) {
+    ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
+    // alert(JSON.stringify(item))      
+    this.placeid = item.place_id
+    this.autocomplete.input = item.description;
+
+    let description;
+    description = item.description;
+    this.getCoordsFromAddress(description);
+    this.HiddenList = false;
+    this.HideBtnSearch = false;
+    this.HideRadius = false;
+    
+  }
+  
+  
+  //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
+  ClearAutocomplete(){
+    this.autocompleteItems = [];
+    this.autocomplete.input = '';
+    this.HideBtnSearch = false;
+    this.HideRadius = false;
+  }
+ 
+  //sIMPLE EXAMPLE TO OPEN AN URL WITH THE PLACEID AS PARAMETER.
+  GoTo(){
+    return window.location.href = 'https://www.google.com/maps/search/?api=1&query=Google&query_place_id='+this.placeid;
+  }
+
+  ClearAutocompleteCat(){
+    this.itemsCategory = [];
+    this.items = [];
+    this.autocompleteCat.input = '';
+    this.HiddenSearchLocation = false;
+    this.HideBtnSearch = false;
+    this.HideRadius = false;
+  }
+
+  SelectSearchResultCat(item) {
+    ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
+    // alert(JSON.stringify(item))      
+    this.autocompleteCat.input = item.name;
+    this.selectedCategory = item.slug;
+
+    this.items.id = item.id;
+    this.items.slug = item.slug;
+    this.items.name = item.name;
+    this.items.categories =  this.service.categories.filter(item => item.parent === parseInt(item.id));
+
+    this.HiddenListCat = false;
+    this.HiddenSearchLocation = false;
+    this.HideBtnSearch = false;
+    this.HideRadius = false;
+  }
+
+  getItemsCat() {
+
+    // const target = ev.target as HTMLTextAreaElement;
+    // let val = target.value;
+    
+    if (this.autocompleteCat.input == '') {
+      this.itemsCategory = [];
+      this.HiddenListCat = false;
+      this.HiddenSearchLocation = false;
+      this.HideBtnSearch = false;
+      this.HideRadius = false;
+      this.items = [];
+      return;
+    }
+    this.itemsCategory = this.service.mainCategories;
+
+    // if the value is an empty string don't filter the items
+    if (this.autocompleteCat.input && this.autocompleteCat.input.trim() != '') {
+      this.HiddenListCat = true;
+      this.HiddenSearchLocation = true;
+      this.HideBtnSearch = true;
+      this.HideRadius = true;
+      this.itemsCategory = this.itemsCategory.filter((itemsCategory) => {
+        return (itemsCategory.name.toLowerCase().indexOf(this.autocompleteCat.input.toLowerCase()) > -1);
+      })
+    }
+  }
+  searchProduct(){
+    this.items.productslocation = ''
+      if(this.radius > 0 && this.lat != '' && this.long != ''){
+         let midata =  this.service.getLocationFromProduct(this.lat, this.long, this.radius)
+         .then((results) => this.handleLocationInit(results));
+      }else{
+        this.nav.push(ProductsPage, this.items);
+      }
+  }
+  handleLocationInit(results) {
+    let dataResult = results;
+    this.items.productslocation = dataResult;
+    console.log('service: ',this.items)
+    this.nav.push(ProductsPage, this.items);
+
+  }
+
 }
