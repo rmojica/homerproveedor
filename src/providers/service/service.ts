@@ -169,7 +169,7 @@ export class Service {
           this.http
             .get(
               this.config.url +
-                '/wp-admin/admin-ajax.php?action=mstoreapp-cart',
+              '/wp-admin/admin-ajax.php?action=mstoreapp-cart',
             )
             .map(res => res.json())
             .subscribe(data => {
@@ -223,13 +223,13 @@ export class Service {
         })
     })
   }
-   getNonceResendKey(username) {
-     var params = new URLSearchParams()
-     params.append('username', username)
+  getNonceResendKey(username) {
+    var params = new URLSearchParams()
+    params.append('username', username)
     return new Promise(resolve => {
       this.http
         .get(
-          this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-nonce&'+params,
+          this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-nonce&' + params,
           this.config.options,
         )
         .map(res => res.json())
@@ -238,7 +238,7 @@ export class Service {
         })
     })
   }
-  
+
   login(loginData) {
     var params = new URLSearchParams()
     params.append('username', loginData.username)
@@ -270,7 +270,7 @@ export class Service {
               this.http
                 .post(
                   this.config.url +
-                    '/wp-admin/admin-ajax.php?action=mstoreapp-get_wishlist',
+                  '/wp-admin/admin-ajax.php?action=mstoreapp-get_wishlist',
                   params,
                   this.config.options,
                 )
@@ -285,7 +285,7 @@ export class Service {
               this.http
                 .post(
                   this.config.url +
-                    '/wp-admin/admin-ajax.php?action=mstoreapp-get_wishlist',
+                  '/wp-admin/admin-ajax.php?action=mstoreapp-get_wishlist',
                   params,
                   this.config.options,
                 )
@@ -331,7 +331,7 @@ export class Service {
           this.http
             .get(
               this.config.url +
-                '/wp-admin/admin-ajax.php?action=mstoreapp-cart',
+              '/wp-admin/admin-ajax.php?action=mstoreapp-cart',
               this.config.options,
             )
             .map(res => res.json())
@@ -362,7 +362,7 @@ export class Service {
       this.http
         .get(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-passwordreset',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-passwordreset',
           this.config.options,
         )
         .map(res => res.json())
@@ -377,12 +377,12 @@ export class Service {
       this.http
         .get(
           this.config.url +
-            '/my-account/?action=resend_key&user_login='+usernameKey+'&nonce='+nonceKey+'',
+          '/my-account/?action=resend_key&user_login=' + usernameKey + '&nonce=' + nonceKey + '',
         )
         .map(res => res)
         .subscribe(data => {
           resolve(data)
-          if(data.statusText == "OK")
+          if (data.statusText == "OK")
             this.functions.showAlert("SUCCESS", "Check email for new verification link. ");
           else
             this.functions.showAlert("ERROR", "an error has occurred please check. ");
@@ -484,7 +484,7 @@ export class Service {
       this.http
         .post(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-user-subcribe-notify',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-user-subcribe-notify',
           params,
           this.config.options,
         )
@@ -503,7 +503,7 @@ export class Service {
       this.http
         .post(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-user-subcribe-notify',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-user-subcribe-notify',
           params,
           this.config.options,
         )
@@ -528,11 +528,11 @@ export class Service {
         })
     })
   }
-  getBooking(idOrder,idVendor) {
+  getBooking(idOrder, idVendor) {
     return new Promise(resolve => {
       this.http
         .get(
-          this.config.setUrl('GET', '/wp-json/custom-api/v1/get_vendor_order?id_vendor=' + idVendor + '&id=' +idOrder+'&', false),
+          this.config.setUrl('GET', '/wp-json/custom-api/v1/get_vendor_order?id_vendor=' + idVendor + '&id=' + idOrder + '&', false),
           this.config.options,
         )
         .map(res => res.json())
@@ -547,7 +547,7 @@ export class Service {
       this.http
         .get(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-get_country',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-get_country',
           this.config.options,
         )
         .map(res => res.json())
@@ -665,7 +665,7 @@ export class Service {
       this.http
         .post(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-page_content',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-page_content',
           params,
           this.config.options,
         )
@@ -694,7 +694,7 @@ export class Service {
           }
           if (Object.keys(resources).length) {
             let minPrice = Math.min(...prices)
-            this.products.map(function(element) {
+            this.products.map(function (element) {
               return (element.minPrice = minPrice)
             })
           }
@@ -762,7 +762,7 @@ export class Service {
       this.http
         .post(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-add_wishlist',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-add_wishlist',
           params,
           this.config.options,
         )
@@ -780,7 +780,7 @@ export class Service {
       this.http
         .post(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-remove_wishlist',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-remove_wishlist',
           params,
           this.config.options,
         )
@@ -798,7 +798,7 @@ export class Service {
       this.http
         .post(
           this.config.url +
-            '/wp-admin/admin-ajax.php?action=mstoreapp-update_user_notification',
+          '/wp-admin/admin-ajax.php?action=mstoreapp-update_user_notification',
           params,
           this.config.options,
         )
@@ -809,37 +809,43 @@ export class Service {
     })
   }
 
-  getLocationFromProduct(lat, long, radius){
+  getLocationFromProduct(lat, long, radius) {
     var params = new URLSearchParams();
-        params.append('latitude', lat);
-        params.append('longitude', long);
-        params.append('use_radius', 'on');
-        params.append('radius', radius);
+    params.append('latitude', lat);
+    params.append('longitude', long);
+    params.append('use_radius', 'on');
+    params.append('radius', radius);
 
-        return new Promise(resolve => {
-          this.http
-            .post(
-              this.config.url +
-                '/wp-admin/admin-ajax.php?action=mstoreapp-geolocation_process',
-              params,
-              this.config.options,
-            )
-            .map(res => res.json())
-            .subscribe(data => {
-              this.status = data
-             
-              console.log('data:',this.status.data);
-              
-              this.dataSearchProduct = this.status.data;
-               this.includeProduct = ''; 
-              for (var key in this.dataSearchProduct) {
-                let prices = this.dataSearchProduct[key]
-                this.includeProduct += prices.ID+',';
-              }
-              this.includeProduct = this.includeProduct.slice(0, -1); 
-              resolve(this.includeProduct)
-            })
+    return new Promise(resolve => {
+      this.http
+        .post(
+          this.config.url +
+          '/wp-admin/admin-ajax.php?action=mstoreapp-geolocation_process',
+          params,
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          this.status = data
+
+          console.log('data:', this.status.data);
+
+          this.dataSearchProduct = this.status.data;
+          this.includeProduct = '';
+
+          if (this.dataSearchProduct === undefined || this.dataSearchProduct.length == 0) {
+            this.includeProduct = '0';
+          }else{
+            for (var key in this.dataSearchProduct) {
+              let prices = this.dataSearchProduct[key]
+              this.includeProduct += prices.ID + ',';
+            }
+            this.includeProduct = this.includeProduct.slice(0, -1);
+          }
+          
+          resolve(this.includeProduct)
         })
+    })
   }
-  
+
 }

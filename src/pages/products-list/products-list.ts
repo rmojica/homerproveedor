@@ -1,5 +1,5 @@
 import { Component, NgZone, ViewChild, ElementRef } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, Platform } from 'ionic-angular';
 import { Service } from '../../providers/service/service';
 import { Values } from '../../providers/service/values';
 import { CartPage } from '../cart/cart';
@@ -44,6 +44,9 @@ export class ProductsListPage {
 
   itemsCategory: any;
   radius: any = 0;
+  originalCoords;
+  miLatitude = 0;
+  miLongitude = 0;
   
     status: any;
     items: any;
@@ -55,6 +58,7 @@ export class ProductsListPage {
     has_more_items: boolean = true;
     loading: boolean = true;
     constructor(
+        private platform: Platform,
         private geolocation: Geolocation,
         private nativeGeocoder: NativeGeocoder,    
         public zone: NgZone,
@@ -69,6 +73,18 @@ export class ProductsListPage {
         this.autocompleteCat = { input: '' };
         this.itemsCategory = [];
 
+        this.lat = '';
+        this.long = '';  
+
+        platform.ready().then(() => {
+          const subscription = this.geolocation.watchPosition()
+            .filter((p) => p.coords !== undefined) //Filter Out Errors
+            .subscribe(position => {
+              this.miLatitude = position.coords.latitude;
+              this.miLongitude = position.coords.longitude;
+              console.log("miLocation=" + position.coords.latitude + ' ' + position.coords.longitude);
+            });
+        });
     }
     doRefresh(refresher){
         this.service.load().then((results) => {
@@ -181,29 +197,45 @@ export class ProductsListPage {
         return results;
     }
   
-  getAddressFromCoords(lattitude, longitude) {
-    console.log("getAddressFromCoords "+lattitude+" "+longitude);
+  getAddressFromCoords() {
+
+    console.log("getAddressFromCoords "+this.miLatitude+" "+this.miLongitude);
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5    
     }; 
-    this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
-      .then((result: NativeGeocoderReverseResult[]) => {
-        this.address = "";
-        let responseAddress = [];
-        // for (let [key, value] of Object.entries(result[0])) {
-        //   if(value.length>0)
-        //   responseAddress.push(value); 
-        // }
-        responseAddress.reverse();
-        for (let value of responseAddress) {
-          this.address += value+", ";
-        }
-        this.address = this.address.slice(0, -2);
-      })
-      .catch((error: any) =>{ 
+
+    this.nativeGeocoder.reverseGeocode(this.miLatitude, this.miLongitude, options)
+    .then((result: NativeGeocoderReverseResult[]) => {
+      console.log(JSON.stringify(result[0]))
+      this.autocomplete.input = result[0].locality+', '+ result[0].administrativeArea+', '+ result[0].countryName;
+    }
+    )
+    .catch((error: any) =>{ 
         this.address = "Address Not Available!";
+        console.log(error)
       }); 
+      this.lat = this.miLatitude.toString();
+      this.long = this.miLongitude.toString();
+
+
+    // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
+    //   .then((result: NativeGeocoderReverseResult[]) => {
+    //     this.address = "";
+    //     let responseAddress = [];
+    //     // for (let [key, value] of Object.entries(result[0])) {
+    //     //   if(value.length>0)
+    //     //   responseAddress.push(value); 
+    //     // }
+    //     responseAddress.reverse();
+    //     for (let value of responseAddress) {
+    //       this.address += value+", ";
+    //     }
+    //     this.address = this.address.slice(0, -2);
+    //   })
+    //   .catch((error: any) =>{ 
+    //     this.address = "Address Not Available!";
+    //   }); 
   }
 
   getCoordsFromAddress(Adrress) {
@@ -215,13 +247,11 @@ export class ProductsListPage {
 
     this.nativeGeocoder.forwardGeocode(Adrress, options)
     .then((result: NativeGeocoderForwardResult[]) => {
-      // console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
+       console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
       this.lat = result[0].latitude;
       this.long = result[0].longitude;
     })
     .catch((error: any) => console.log(error));
-
-
   }
 
   //FUNCTION SHOWING THE COORDINATES OF THE POINT AT THE CENTER OF THE MAP
@@ -233,6 +263,8 @@ export class ProductsListPage {
   UpdateSearchResults(){
     if (this.autocomplete.input == '') {
       this.autocompleteItems = [];
+      this.lat = '';
+      this.long = '';
       this.HiddenList = false;
       this.HideBtnSearch = false;
       this.HideRadius = false;
@@ -279,6 +311,8 @@ export class ProductsListPage {
     this.autocomplete.input = '';
     this.HideBtnSearch = false;
     this.HideRadius = false;
+    this.lat = '';
+    this.long = '';
   }
  
   //sIMPLE EXAMPLE TO OPEN AN URL WITH THE PLACEID AS PARAMETER.
@@ -342,16 +376,17 @@ export class ProductsListPage {
   searchProduct(){
     this.items.productslocation = ''
       if(this.radius > 0 && this.lat != '' && this.long != ''){
-         let midata =  this.service.getLocationFromProduct(this.lat, this.long, this.radius)
-         .then((results) => this.handleLocationInit(results));
+        let midata =  this.service.getLocationFromProduct(this.lat, this.long, this.radius)
+        .then((results) => this.handleLocationInit(results));
       }else{
-        this.nav.push(ProductsPage, this.items);
+       this.nav.push(ProductsPage, this.items);
+       console.log(this.miLatitude);
+       //console.log("original=" + this.originalCoords + this.originalCoords.latitude + this.originalCoords.longitude);
       }
   }
   handleLocationInit(results) {
     let dataResult = results;
     this.items.productslocation = dataResult;
-    console.log('service: ',this.items)
     this.nav.push(ProductsPage, this.items);
 
   }
