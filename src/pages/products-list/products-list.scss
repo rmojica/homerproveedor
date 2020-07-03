@@ -33,7 +33,7 @@ page-products-list {
   //banner image
   .card-title {
     position: absolute;
-    top: 1%;
+    top: 3%;
     font-size: 20px;
     width: 100%;
     font-weight: bold;
@@ -63,7 +63,7 @@ page-products-list {
 
   .passwordIcon.icon-md{
     font-size: 2.5rem !important;
-    top: 98px;
+    top: 113px;
     position: absolute;
     z-index: 999;
     margin: 0px 0px 0px -8px !important;
@@ -101,7 +101,7 @@ page-products-list {
   }
   //Radius
   .range-radius {
-    top: 140px;
+    top: 155px;
     position: absolute;
     z-index: 999;
     width: 100%;
@@ -112,15 +112,16 @@ page-products-list {
   .label-radius{
     padding-left: 10px;
     color: white;
+    margin-bottom: 2px;
   }
   //Category
   .searchbar-category {
-    top: 40px;
+    top: 55px;
     position: absolute;
     z-index: 999;
   }
   .list-category{
-    top: 95px;
+    top: 105px;
     position: absolute;
     z-index: 999;
   }
@@ -134,12 +135,12 @@ page-products-list {
   
   //Location
   .searchbar-location {
-    top: 90px;
+    top: 105px;
     position: absolute;
     z-index: 999;
   }
   .list-location{
-    top: 145px;
+    top: 156px;
     position: absolute;
     z-index: 999;
   }
