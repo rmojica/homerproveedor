@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="header">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -25,10 +25,23 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="max-width: 150px;" src="{{values.avatar}}" />
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
+
+
 <ion-content class="products">
 
-  <ion-fab bottom right slot="fixed">
+  <!-- <ion-fab bottom right slot="fixed">
     <button ion-fab>
       <ion-icon name="chatboxes"></ion-icon>
     </button>
@@ -40,7 +53,30 @@
         <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>
       </a>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
+
+  <ion-slides initialSlide="0" speed="3000" loop="false" pager="true" dir="rtl">
+    <ion-slide>
+      <div class="overlay">
+        <img src="{{values.slider}}" />
+      </div>
+      <div class="title-home-banner">
+        {{'Proveedores de Servicios' | translate}}
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-row>
+    <ion-col col-9> 
+      <ion-searchbar class="searchbar-category" placeholder="Seleccionar Categoria"></ion-searchbar>
+    </ion-col>
+    <ion-col col-3 style="align-self: center;font-weight: bold;padding: 0;">
+      
+      <button class="btn-filter" (click)="getFilter()">
+        Filtrar<img src="../../assets/icon/filter.svg" alt="">
+      </button>
+    </ion-col>
+  </ion-row>
 
   <div *ngIf="showFilters" class="filter">
     <ion-list
@@ -53,26 +89,7 @@
           {{"Sort" | translate}}
         </b>
       </ion-list-header>
-      <!-- <ion-item>
-        <ion-label text-wrap>{{"Default" | translate}}</ion-label>
-        <ion-radio value="0"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label text-wrap>{{"Name" | translate}} (A - Z)</ion-label>
-        <ion-radio value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label text-wrap>{{"Name" | translate}} (Z - A)</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label text-wrap>{{"Price" | translate}} (Low - High)</ion-label>
-        <ion-radio value="3"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label text-wrap>{{"Price" | translate}} (High - Low)</ion-label>
-        <ion-radio value="4"></ion-radio>
-      </ion-item> -->
+      
       <ion-item>
         <ion-label text-wrap>{{"Default" | translate}}</ion-label>
         <ion-radio value="5"></ion-radio>
@@ -117,6 +134,7 @@
 
   <div *ngIf="!showFilters">
     <ion-searchbar
+      placeholder="Cuido, Niñera, Profesional"
       [(ngModel)]="q"
       [showCancelButton]="shouldShowCancel"
       (ionInput)="onInput($event)"
@@ -321,7 +339,7 @@
                 <ion-card>
                   <ion-card-content class="stock">
                     <img
-                      [style.height.px]="values.dimensions.imageGridViewHeight"
+                      [style.height.px]="values.dimensions.imageGridViewHeight * 2"
                       tappable
                       src="{{item.images[0].src}}"
                       (click)="getProduct(item)"

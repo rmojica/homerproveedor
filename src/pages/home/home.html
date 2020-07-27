@@ -63,14 +63,12 @@
 
     </ion-slide>
   </ion-slides>
-
-
   
   <ion-row>
-    <ion-col col-8> 
+    <ion-col col-9> 
       <ion-searchbar class="searchbar-category" placeholder="Seleccionar Categoria"></ion-searchbar>
     </ion-col>
-    <ion-col col-4 style="align-self: center;font-weight: bold;">
+    <ion-col col-3 style="align-self: center;font-weight: bold;padding: 0;">
       
       <button class="btn-filter" (click)="getFilter()">
         <!-- <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon> -->
@@ -128,7 +126,7 @@
     </button>
   </div>
 
-  <ion-fab bottom right slot="fixed">
+  <!-- <ion-fab bottom right slot="fixed">
     <button ion-fab>
       <ion-icon name="chatboxes"></ion-icon>
     </button>
@@ -140,7 +138,7 @@
         <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>
       </a>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
 
   <ion-refresher
     *ngIf="values.settings.pull_to_refresh == '1'"
@@ -664,27 +662,13 @@
                   <ion-label *ngIf="item.title">{{item.title}}</ion-label>
                   <ion-label *ngIf="item.name">{{item.name}}</ion-label>
                 </div>
-                <ion-item no-padding class="price-list">
-                  <!-- <span class="price-regular" *ngIf="!item.sale_price">
-                    {{1*item.price | currency:values.currency:true:'1.2-2'}}
-                  </span> -->
+                <!-- <ion-item no-padding class="price-list">
                   <h3 class="price-regular" *ngIf="item.minPrice">
                     Starting from {{1*item.minPrice |
                     currency:values.currency:true:'1.2-2'}}
                   </h3>
-                  
-                  <!-- <span class="price-special" *ngIf="item.sale_price">
-                    {{1*item.sale_price |
-                    currency:values.currency:true:'1.2-2'}}
-                  </span>
-                  <span class="price-delete" primary *ngIf="item.sale_price">
-                    <del>
-                      {{1*item.regular_price |
-                      currency:values.currency:true:'1.2-2'}}
-                    </del> -->
-                  <!-- </span> -->
-                </ion-item>
-                <ion-item>
+                </ion-item> -->
+                <ion-item no-padding class="price-list">
                   <span item-left *ngIf="item.average_rating" class="rating">
                     <!-- <span *ngIf="item.rating_count > 0">
                       ({{item.rating_count}})
@@ -721,6 +705,7 @@
                     </span>
                   </span>
                 </ion-item>
+                
               </ion-card>
             </ion-col>
           </ion-row>

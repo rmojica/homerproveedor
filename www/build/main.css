@@ -48212,8 +48212,9 @@ ion-chip {
 
 .home .rating .star-icon {
   color: #ddd;
-  font-size: 0.9em;
+  font-size: 1.5em;
   position: relative;
+  margin-left: -7px;
 }
 
 .home .rating .star-icon.full:before {
@@ -49187,10 +49188,9 @@ ion-chip {
 }
 
 .home .products-listing .card-background-page .card-name .label {
-  font-weight: 500;
-  margin: 8px 8px 0px;
-  font-size: 15px;
-  letter-spacing: 0.3px;
+  font-weight: 600;
+  margin: 8px 10px 0px;
+  float: left;
 }
 
 .home .flash_sale .floating-header {
@@ -49683,9 +49683,53 @@ page-products {
   font-family: arial;
 }
 
+page-products .title-home-banner {
+  position: absolute;
+  top: 45%;
+  font-size: 28px;
+  width: 100%;
+  color: #000;
+  text-align: center;
+}
+
+page-products button.swiper-pagination-bullet {
+  display: none;
+}
+
 page-products .searchbar-md {
   background: inherit;
   padding: 0px;
+}
+
+page-products .searchbar-search-icon {
+  background-image: url("../assets/icon/arrow.svg") !important;
+}
+
+page-products .searchbar-search-icon {
+  right: 2px !important;
+}
+
+page-products .searchbar-md .searchbar-input {
+  padding: 6px 45px 6px 10px;
+  text-align: left;
+  color: black;
+}
+
+page-products .searchbar-ios .searchbar-input {
+  color: black;
+}
+
+page-products .searchbar-md .searchbar-search-icon, page-products .searchbar-ios .searchbar-search-icon {
+  left: auto;
+  top: 4px;
+  width: 35px;
+  height: 35px;
+  background-position: center;
+  border-left: 2px solid gray;
+}
+
+page-products .searchbar-has-value .searchbar-search-icon {
+  display: none;
 }
 
 page-products .scroll-content {
@@ -49797,7 +49841,7 @@ page-products .products-listing .row.unlimited-items .col {
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
-  width: 50%;
+  width: 100%;
   padding: 5px 5px 0 0;
 }
 
