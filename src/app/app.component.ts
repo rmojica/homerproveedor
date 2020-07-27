@@ -70,7 +70,9 @@ export class MyApp {
     }
     handleService(results) {
         if (this.values.settings.app_dir == 'rtl') this.platform.setDir('rtl', true);
-            this.translateService.setDefaultLang(this.values.settings.language);
+        //cambiar luego en la configuracion del wordpress en el plugin
+        this.translateService.setDefaultLang('spanish'); 
+        // this.translateService.setDefaultLang(this.values.settings.language);
        
         this.values.calc(this.platform.width());
         if (this.platform.is('cordova')) {

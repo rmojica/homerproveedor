@@ -17,7 +17,8 @@ export class Values {
   cartItem: any;
   cartNonce: any;
   avatar: any = "assets/image/logo.png";
-  slider: any = "assets/image/1.jpg";
+  slider: any = "assets/image/1.png";
+  headerLogin: any = "assets/image/header-login.png";
   currency: any = "USD";
   data: any;
   dir: any = 'left';
@@ -26,7 +27,7 @@ export class Values {
   wishlistId: any = [];
   blockslistId: any = [];
   dimensions: any = {imageGridViewHeight: 100, imageProductViewHeight: 100, scrollProductHeight: 100, productSliderWidth : 42};
-  settings: any = {"show_featured":"1","show_onsale":"1","show_latest":"1","pull_to_refresh":"1","onesignal_app_id":"e90c0d44-b3ef-4f02-b11b-0656c2d3067b","google_project_id":"575406525034","google_web_client_id":"575406529046-r69ss57ceip6vv9mm858qh2hg3j0sl7u.apps.googleusercontent.com","rate_app_ios_id":"","rate_app_android_id":"https://play.google.com/store/apps/details?id=com.mstore.premiumtheme001&hl=en","rate_app_windows_id":"","share_app_android_link":"https://play.google.com/store/apps/details?id=com.mstore.premiumtheme001&hl=en","share_app_ios_link":"https://play.google.com/store/apps/details?id=com.mstore.premiumtheme001&hl=en","support_email":"support@example.com","image_height":"100","product_slider_width":"42","enable_product_chat":"","enable_home_chat":"","whatsapp_number":"+91XXXXXXXX","app_dir":"left","language":"spanish"};
+  settings: any = {"show_featured":"1","show_onsale":"1","show_latest":"1","pull_to_refresh":"1","onesignal_app_id":"e90c0d44-b3ef-4f02-b11b-0656c2d3067b","google_project_id":"575406525034","google_web_client_id":"575406529046-r69ss57ceip6vv9mm858qh2hg3j0sl7u.apps.googleusercontent.com","rate_app_ios_id":"","rate_app_android_id":"https://play.google.com/store/apps/details?id=numu.digital.hexchange","rate_app_windows_id":"","share_app_android_link":"https://play.google.com/store/apps/details?id=numu.digital.hexchange","share_app_ios_link":"https://play.google.com/store/apps/details?id=numu.digital.hexchange","support_email":"support@example.com","image_height":"100","product_slider_width":"42","enable_product_chat":"","enable_home_chat":"","whatsapp_number":"+91XXXXXXXX","app_dir":"left","language":"spanish"};
   constructor() {
   	this.filter = {};
     this.logoutUrl = "";

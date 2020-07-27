@@ -11,11 +11,15 @@
     .button {
         border-radius: 7px;
     }
-    img {
-        width: 150px;
-        height: auto;
-        margin: 40px auto;
+    .logo-login {
+        margin: auto;
         display: block;
+    }
+    .header-login{
+        width: 100%;
+    }
+    form {
+        margin: 40px;
     }
     .login {
         .list .item-block .item-inner {
@@ -35,8 +39,8 @@
             margin: 11px 8px 11px 8px;
         }
         .label {
-            margin: 0 20px -4px 20px;
-            font-size: 15px;
+            margin: 0 20px -4px 10px;
+            font-size: 20px;
         }
         .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
             border-bottom-color: transparent;
@@ -69,7 +73,7 @@
      .passwordIcon.icon-md{
         font-size: 2.5rem !important;
         position: relative !important;
-        top: 6px !important;
+        top: 9px !important;
         margin: 0px 0px 0px -8px !important;
         border: 2px solid #e0e0e0;
         height: 40px;
@@ -82,7 +86,7 @@
      .passwordIcon.icon-ios{
         font-size: 2.5rem !important;
         position: relative !important;
-        top: 7px !important;
+        top: 10px !important;
         margin: 0px 0px 0px -8px !important;
         border: 2px solid #e0e0e0;
         height: 42px;
@@ -99,6 +103,16 @@
          border-right: none !important;
          border-top-right-radius: 0;
          border-bottom-right-radius: 0;
+     }
+     .button-default{
+        width: 60%
+     }
+     .button{
+        text-transform: capitalize!important;
+        font-size: 15px;
+     }
+     .forgot-pass{
+         color: #999;
      }
 }
 

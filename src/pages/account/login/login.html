@@ -9,9 +9,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="account-login">
+    <img class="header-login" src="{{values.headerLogin}}">
+
   <div class="margin">
     <div>
-      <img src="{{values.avatar}}">
+      <img class="logo-login" src="{{values.avatar}}">
     </div>
     <form #f="ngForm" class="login">
       <ion-list>
@@ -39,7 +41,7 @@
           text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{"LogIn" | translate}}
         </button>
         <br>
-        <button ion-button clear color="button-color" type="submit" class="button button-block button-clear"
+        <button ion-button clear color="button-color" type="submit" class="forgot-pass button button-block button-clear"
           text-uppercase (click)="forgotten()">{{"Forgot Password" | translate}} ?
         </button>
       </div>

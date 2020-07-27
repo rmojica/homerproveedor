@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core'
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'
 import { MyApp } from './app.component'
 import { Home } from '../pages/home/home'
@@ -158,6 +158,9 @@ export function createTranslateLoader(http: HttpClient) {
     Geolocation,    
     NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
 })
 export class AppModule {}

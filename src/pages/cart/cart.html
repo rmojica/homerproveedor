@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="header">
     <button ion-button menuToggle>
       <ion-icon name="menu">
@@ -15,7 +15,19 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="max-width: 150px;" src="{{values.avatar}}" />
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
+
 <ion-content class="cart">
   <ion-spinner *ngIf="!cart" name="crescent">
   </ion-spinner>

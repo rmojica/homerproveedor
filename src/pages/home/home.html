@@ -1,10 +1,10 @@
-<ion-header class="home-header">
+<!-- <ion-header class="home-header">
   <ion-navbar color="header">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      <!-- <img style="max-width: 200px;" src="{{values.avatar}}" /> -->
+       <img style="max-width: 200px;" src="{{values.avatar}}" /> 
       {{"Providers" | translate}}
     </ion-title>
     
@@ -33,8 +33,51 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="max-width: 150px;" src="{{values.avatar}}" />
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
+
 <ion-content class="home">
+
+  <ion-slides initialSlide="0" speed="3000" loop="false" pager="true" dir="rtl">
+    <ion-slide>
+      <div class="overlay">
+        <img src="{{values.slider}}" />
+      </div>
+      <div class="title-home-banner">
+        {{'Proveedores de Servicios' | translate}}
+      </div>
+
+      <div class="card-search">
+        
+      </div>
+
+    </ion-slide>
+  </ion-slides>
+
+
+  
+  <ion-row>
+    <ion-col col-8> 
+      <ion-searchbar class="searchbar-category" placeholder="Seleccionar Categoria"></ion-searchbar>
+    </ion-col>
+    <ion-col col-4 style="align-self: center;font-weight: bold;">
+      
+      <button class="btn-filter" (click)="getFilter()">
+        <!-- <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon> -->
+        Filtrar<img src="../../assets/icon/filter.svg" alt="">
+      </button>
+    </ion-col>
+  </ion-row>
 
   <div *ngIf="showFilters" class="filter">
     <ion-list radio-group [(ngModel)]="sort" (ngModelChange)="chnageFilter(sort)">
@@ -629,6 +672,7 @@
                     Starting from {{1*item.minPrice |
                     currency:values.currency:true:'1.2-2'}}
                   </h3>
+                  
                   <!-- <span class="price-special" *ngIf="item.sale_price">
                     {{1*item.sale_price |
                     currency:values.currency:true:'1.2-2'}}
@@ -639,6 +683,43 @@
                       currency:values.currency:true:'1.2-2'}}
                     </del> -->
                   <!-- </span> -->
+                </ion-item>
+                <ion-item>
+                  <span item-left *ngIf="item.average_rating" class="rating">
+                    <!-- <span *ngIf="item.rating_count > 0">
+                      ({{item.rating_count}})
+                    </span> -->
+                    <span
+                      class="star-icon"
+                      [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}"
+                    >
+                      &#x2605;
+                    </span>
+                    <span
+                      class="star-icon"
+                      [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}"
+                    >
+                      &#x2605;
+                    </span>
+                    <span
+                      class="star-icon"
+                      [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}"
+                    >
+                      &#x2605;
+                    </span>
+                    <span
+                      class="star-icon"
+                      [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}"
+                    >
+                      &#x2605;
+                    </span>
+                    <span
+                      class="star-icon"
+                      [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}"
+                    >
+                      &#x2605;
+                    </span>
+                  </span>
                 </ion-item>
               </ion-card>
             </ion-col>
