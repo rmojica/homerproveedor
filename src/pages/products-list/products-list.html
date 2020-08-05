@@ -119,6 +119,50 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-grid>
+    <!-- <div *ngIf="service.categories" class="category-name">
+      <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">
+        <ion-icon item-right class="ion-ios-arrow-forward item-icon">
+        </ion-icon>
+        <span [innerHTML]="item.name"></span>
+      </ion-item>
+    </div>  -->
+
+    <h2 class="full-width text-center">{{'Encuentra y reserva la manera más segura de cuidar tu hogar.' | translate}}</h2>
+
+    <ion-row *ngIf="service.categories" class="category-name">
+      <ion-col col-12 class="flex-center" *ngFor="let item of service.mainCategories"
+        (click)="getCategory(item.id, item.slug, item.name)">
+        <ion-list>
+          <ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-thumbnail>
+                  <img src="{{item.image.src}}" />
+                </ion-thumbnail>
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row item-left lbl-category>
+                <p class="heading text-center">{{item.name}}</p>
+                <!-- <p>{{item.description}}</p> -->
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row item-left lbl-category>
+                <button ion-button item-center medium color="button-color" text-uppercase
+                  (click)="getCategory(item.id, item.slug, item.name)">{{"Reserva Ahora" | translate}}
+                </button>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
   <ion-slides class="testimonial" initialSlide="0" autoplay='3000' speed="2000" pager="true">
     <ion-slide>

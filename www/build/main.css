@@ -47880,6 +47880,7 @@ ion-chip {
 
 .footer-cart {
   bottom: 60px;
+  text-align: center;
 }
 
 .billing-address-form {
@@ -49683,6 +49684,45 @@ page-products {
   font-family: arial;
 }
 
+page-products .rating {
+  margin: 0px;
+}
+
+page-products .rating .star-icon {
+  color: #ddd;
+  font-size: 1.5em;
+  position: relative;
+  margin-left: -7px;
+}
+
+page-products .rating .star-icon.full:before {
+  color: #fde16d;
+  content: '\2605';
+  /* Full star in UTF-8 */
+  position: absolute;
+  left: 0;
+}
+
+page-products .rating .star-icon.half:before {
+  color: #fde16d;
+  content: '\2605';
+  /* Full star in UTF-8 */
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+@-moz-document url-prefix() {
+  page-products .rating {
+    /* Firefox Hack :( */
+  }
+  page-products .rating .star-icon {
+    font-size: 50px;
+    line-height: 34px;
+  }
+}
+
 page-products .title-home-banner {
   position: absolute;
   top: 45%;
@@ -49699,6 +49739,20 @@ page-products button.swiper-pagination-bullet {
 page-products .searchbar-md {
   background: inherit;
   padding: 0px;
+}
+
+page-products .btn-filter {
+  width: 40%;
+  background: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
 }
 
 page-products .searchbar-search-icon {
@@ -49751,7 +49805,7 @@ page-products .price-list button {
 }
 
 page-products .grid {
-  padding: 0px;
+  padding: 20px;
 }
 
 page-products .grid img {
@@ -49967,7 +50021,7 @@ page-products .products-listing .item-list .left-padding {
 page-products .products-listing .card-background-page ion-card {
   position: relative;
   text-align: center;
-  margin: 0;
+  margin-bottom: 20px;
   width: 100%;
 }
 
@@ -50003,9 +50057,10 @@ page-products .products-listing .card-background-page .stock button {
 
 page-products .products-listing .card-background-page .card-name .label {
   font-weight: 500;
-  margin: 8px 8px 0px;
   font-size: 15px;
   letter-spacing: 0.3px;
+  margin: 8px 10px 0px;
+  float: left;
 }
 
 page-products .item-md [item-left], page-products .item-md [item-right] {
@@ -50026,6 +50081,11 @@ page-products .hero-image::after {
 page-products ion-label {
   font-size: 14px;
   white-space: nowrap;
+  font-weight: 600;
+}
+
+page-products .item-product .description ion-label {
+  margin-top: 0;
 }
 
 page-products .item ion-thumbnail[item-left] {
@@ -50326,11 +50386,23 @@ page-products-list .btn-search-product {
   padding-bottom: 10px;
 }
 
-page-products-list .button {
+page-products-list .btn-search-product .button {
   text-transform: capitalize !important;
   font-size: 15px;
   width: 100px;
   height: 30px;
+}
+
+page-products-list .category-name .button {
+  text-transform: capitalize !important;
+  font-size: 15px;
+}
+
+page-products-list .category-name .grid {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 page-products-list .range-md .range-bar {

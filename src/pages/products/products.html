@@ -133,7 +133,7 @@
   </div>
 
   <div *ngIf="!showFilters">
-    <ion-searchbar
+    <!-- <ion-searchbar
       placeholder="Cuido, Niñera, Profesional"
       [(ngModel)]="q"
       [showCancelButton]="shouldShowCancel"
@@ -166,7 +166,7 @@
           </ion-item>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <ion-spinner *ngIf="!products" name="crescent"></ion-spinner>
     <div *ngIf="products">
@@ -180,17 +180,15 @@
     <div *ngIf="products !== undefined" class="products-listing">
       <div *ngIf="products.length">
         <div *ngIf="values.listview">
-          <ion-item no-lines class="item-name">
+          <!-- <ion-item no-lines class="item-name">
             <ion-label text-uppercase>{{"Providers" | translate}}</ion-label>
-            <!-- <ion-buttons slot="end" (click)="getFilter()"><ion-icon name="funnel" style="margin: 0 8px;font-size: 23px"></ion-icon></ion-buttons>
-            <ion-buttons slot="end" (click)="setGridView()"><ion-icon name="md-grid" style="margin: 0 8px;font-size: 23px"></ion-icon></ion-buttons> -->
           <button ion-button icon-only item-right clear color="button-color" (click)="getFilter()">
             <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
           </button>
           <button ion-button icon-only item-right clear color="button-color" (click)="setGridView()">
             <ion-icon ios="ios-grid" md="md-grid"></ion-icon>
           </button>
-          </ion-item>
+          </ion-item> -->
           <ion-list>
             <div class="item-list" *ngFor="let item of products">
               <ion-item class="left-padding" no-lines>
@@ -324,7 +322,7 @@
           </ion-list>
         </div>
         <div *ngIf="!values.listview">
-          <ion-item no-lines class="item-name">
+          <!-- <ion-item no-lines class="item-name">
             <ion-label text-uppercase>{{"Providers" | translate}}</ion-label>
             <button ion-button icon-only item-right clear color="button-color" (click)="getFilter()">
               <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
@@ -332,14 +330,14 @@
             <button ion-button icon-only item-right clear color="button-color" (click)="setListView()">
               <ion-icon ios="ios-list-box" md="ios-list-box"></ion-icon>
             </button>
-          </ion-item>
+          </ion-item> -->
           <div class="card-background-page grid">
             <ion-row class="row unlimited-items">
               <ion-col class="col" *ngFor="let item of products">
-                <ion-card>
+                <ion-card class="item-product">
                   <ion-card-content class="stock">
                     <img
-                      [style.height.px]="values.dimensions.imageGridViewHeight * 2"
+                      [style.height.px]="values.dimensions.imageGridViewHeight * 2 - 50"
                       tappable
                       src="{{item.images[0].src}}"
                       (click)="getProduct(item)"
@@ -370,67 +368,61 @@
                     <ion-label *ngIf="item.title">{{item.title}}</ion-label>
                     <ion-label *ngIf="item.name">{{item.name}}</ion-label>
                   </div>
-                  <ion-item no-padding class="price-list">
-                    <h3 class="price-regular" *ngIf="!item.minPrice">
-                      Starting from {{1*item.price |
-                      currency:values.currency:true:'1.2-2'}}
-                    </h3>
 
-                    <h3 class="price-regular" *ngIf="item.minPrice">
-                      Starting from {{1*item.minPrice |
-                      currency:values.currency:true:'1.2-2'}}
-                    </h3>
-                    <!-- <h3 class="price-special" *ngIf="item.sale_price">
-                      {{1*item.sale_price |
-                      currency:values.currency:true:'1.2-2'}}
-                    </h3> -->
-                    <!-- <h3 class="price-delete" primary *ngIf="item.sale_price">
-                      <del>
-                        {{1*item.regular_price |
-                        currency:values.currency:true:'1.2-2'}}
-                      </del>
-                    </h3> -->
-                    <!-- <button ion-button [disabled]="item.stock_status !== 'instock'" text-uppercase color="button-color" item-right clear *ngIf="values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">
-                      {{"Add"  | translate}}
-                    </button> -->
-                    <button
-                      ion-button
-                      icon-only
-                      item-right
-                      clear
-                      color="button-color"
-                      *ngIf="values.cart[item.id] >= 1"
-                      (click)="deleteFromCart(item.id)"
-                    >
-                      <ion-icon
-                        ios="ios-remove-circle-outline"
-                        md="ios-remove-circle-outline"
-                      ></ion-icon>
-                    </button>
-                    <button
-                      ion-button
-                      item-right
-                      color="button-color"
-                      clear
-                      *ngIf="values.cart[item.id] >= 1"
-                    >
-                      {{values.cart[item.id]}}
-                    </button>
-                    <button
-                      ion-button
-                      icon-only
-                      item-right
-                      clear
-                      color="button-color"
-                      *ngIf="values.cart[item.id] >= 1"
-                      (click)="updateToCart(item.id)"
-                    >
-                      <ion-icon
-                        ios="ios-add-circle-outline"
-                        md="ios-add-circle-outline"
-                      ></ion-icon>
-                    </button>
-                  </ion-item>
+                    <ion-item no-padding no-lines class="item-background">
+                      {{"Descripción" | translate}} :
+                    </ion-item>
+                    <ion-item class="description" text-wrap no-lines>
+                      <div [innerHTML]="item.description"></div>
+                    </ion-item>
+
+                    <ion-item no-padding no-lines class="item-background">
+                      {{"Categoria" | translate}} : {{item.categories[0].name}}
+                    </ion-item>
+
+                    <ion-item no-padding>
+                      <span item-left *ngIf="item.average_rating" class="rating">
+                        <!-- <span *ngIf="item.rating_count > 0">
+                          ({{item.rating_count}})
+                        </span> -->
+                        <span
+                          class="star-icon"
+                          [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}"
+                        >
+                          &#x2605;
+                        </span>
+                        <span
+                          class="star-icon"
+                          [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}"
+                        >
+                          &#x2605;
+                        </span>
+                        <span
+                          class="star-icon"
+                          [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}"
+                        >
+                          &#x2605;
+                        </span>
+                        <span
+                          class="star-icon"
+                          [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}"
+                        >
+                          &#x2605;
+                        </span>
+                        <span
+                          class="star-icon"
+                          [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}"
+                        >
+                          &#x2605;
+                        </span>
+                      </span>
+                    </ion-item>
+                    <ion-item no-padding no-lines class="item-background">
+                      <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase
+                      (click)="getProduct(item)">{{"CONTRATAR" | translate}}
+                      </button>
+                    </ion-item>
+                  
                 </ion-card>
               </ion-col>
             </ion-row>

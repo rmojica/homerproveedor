@@ -57,7 +57,7 @@
               <ion-icon name="trash">
               </ion-icon>
             </a>
-            <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="deleteFromCart(item.value.product_id, item.key)">
+            <!-- <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="deleteFromCart(item.value.product_id, item.key)">
               <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">
               </ion-icon>
             </button>
@@ -66,7 +66,7 @@
             <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="addToCart(item.value.product_id, item.key)">
               <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">
               </ion-icon>
-            </button>
+            </button> -->
           </ion-item>
         </div>
       </ion-list>
@@ -183,7 +183,7 @@
 </ion-content>
 <div *ngIf="cart">
   <ion-footer *ngIf="cart.cart_contents.length != 0" class="footer-cart">
-    <button ion-button full color="button-color" no-padding no-margin text-uppercase [disabled]='disableSubmit' (click)="checkout()">{{Checkout | translate}}
+    <button style="font-weight: 600;" ion-button color="button-color" text-uppercase [disabled]='disableSubmit' (click)="checkout()">{{Checkout | translate}}
     </button>
   </ion-footer>
 </div>

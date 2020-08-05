@@ -131,11 +131,18 @@ display: none;
   float: right;
   padding-bottom: 10px;
  }
- .button {
+ .btn-search-product .button {
   text-transform: capitalize !important;
     font-size: 15px;
     width: 100px;
     height: 30px;
+}
+.category-name .button {
+  text-transform: capitalize !important;
+    font-size: 15px;
+}
+.category-name .grid{
+  align-items: center;
 }
  .range-md .range-bar {
   top: 20px;
