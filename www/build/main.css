@@ -48279,9 +48279,9 @@ ion-chip {
 
 .home .searchbar-md .searchbar-search-icon, .home .searchbar-ios .searchbar-search-icon {
   left: auto;
-  top: 4px;
+  top: 0px;
   width: 35px;
-  height: 35px;
+  height: 30px;
   background-position: center;
   border-left: 2px solid gray;
 }
@@ -50978,8 +50978,6 @@ page-tabs .tabs-ios .tab-button[aria-selected=true]::before {
   border-radius: 0% 50% 50% 50%;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
-  left: 42px;
-  top: 8px;
 }
 
 page-tabs .tabs-islogged.tabs-ios .tab-button[aria-selected=true]::before {
@@ -50992,8 +50990,6 @@ page-tabs .tabs-islogged.tabs-ios .tab-button[aria-selected=true]::before {
   border-radius: 0% 50% 50% 50%;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
-  left: 16px;
-  top: 8px;
 }
 
 page-tabs .tabs-ios .tab-button.icon-only {
