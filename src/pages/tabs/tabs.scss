@@ -48,6 +48,7 @@ page-tabs {
     border-radius: 0% 50% 50% 50%;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+    margin-top: 4px;
 }
 .tabs-islogged.tabs-ios .tab-button[aria-selected=true]::before {
     position: absolute;
@@ -59,6 +60,7 @@ page-tabs {
     border-radius: 0% 50% 50% 50%;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+    margin-top: 4px;
 }
 .tabs-ios .tab-button.icon-only {
     min-height: 5.6rem;

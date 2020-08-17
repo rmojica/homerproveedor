@@ -1,4 +1,21 @@
 .product-page {
+
+  
+   .swiper-pagination-bullet {
+    width: 12px;
+      height: 12px;
+      background: #d1e0dc;
+      opacity: 1;
+  }
+  .swiper-pagination-bullet-active{
+    background: white;
+  }
+  button.swiper-pagination-bullet {
+    border-width: 3px;
+    border-style: solid;
+    border-color: white;
+  }
+  
   font-family: arial;
   .wishlist {
     ion-icon {

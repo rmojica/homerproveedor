@@ -41,12 +41,7 @@
   <ion-spinner *ngIf="!product?.product" name="crescent"></ion-spinner>
   <div *ngIf="product.product" class="product-details">
     <div *ngIf="product.product.images">
-      <ion-slides
-        pager="true"
-        loop="true"
-        autoplay="5800"
-        class="product-image-slider"
-      >
+      <ion-slides autoplay="500" loop="true" speed="6000" pager="true">
         <ion-slide *ngFor="let item of product.product.images">
           <img
             [style.height.px]="values.dimensions.imageProductViewHeight"
