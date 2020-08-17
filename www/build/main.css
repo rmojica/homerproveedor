@@ -49775,9 +49775,9 @@ page-products .searchbar-ios .searchbar-input {
 
 page-products .searchbar-md .searchbar-search-icon, page-products .searchbar-ios .searchbar-search-icon {
   left: auto;
-  top: 4px;
+  top: 0px;
   width: 35px;
-  height: 35px;
+  height: 30px;
   background-position: center;
   border-left: 2px solid gray;
 }
