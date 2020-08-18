@@ -1,5 +1,4 @@
 .product-page {
-
   
    .swiper-pagination-bullet {
     width: 12px;
@@ -347,4 +346,17 @@
   ion-calendar .calendar-row .select {
     background: #1e88e5e6;
   }
+
+
+}
+.alert-button .button-inner{
+  color: black;
+} 
+
+.alert-tappable {
+  border-bottom: 2px solid #d1e0dc;
+}
+
+.alert-ios .alert-radio-group, .alert-ios .alert-checkbox-group {
+  border-top: 4px solid #d1e0dc;
 }

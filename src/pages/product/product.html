@@ -44,7 +44,7 @@
       <ion-slides autoplay="500" loop="true" speed="6000" pager="true">
         <ion-slide *ngFor="let item of product.product.images">
           <img
-            [style.height.px]="values.dimensions.imageProductViewHeight"
+            [style.height.px]="values.dimensions.imageProductViewHeight - 50"
             src="{{item.src}}"
           />
           <!-- <h2 *ngIf="!product.product.in_stock" item-right class="stock" color="danger">{{"OUTOFSTOCK" | translate}}       </h2> -->
@@ -158,7 +158,7 @@
 
 
     <!--Select Service product-->
-      <div *ngIf="usedVariationAttributes" class="variation-product">
+      <div class="select-services" *ngIf="usedVariationAttributes" class="variation-product">
       <!-- <ion-item class="variation-title">
         <strong>{{"Select Service"| translate}}
         </strong>

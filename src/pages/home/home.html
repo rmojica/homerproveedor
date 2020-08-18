@@ -629,7 +629,7 @@
               <ion-card>
                 <ion-card-content class="stock">
                   <img
-                    [style.height.px]="values.dimensions.imageGridViewHeight"
+                    [style.height.px]="values.dimensions.imageGridViewHeight * 2 - 200"
                     tappable
                     src="{{item.images[0].src}}"
                     (load)="hideLoading()"
