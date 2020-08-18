@@ -360,3 +360,7 @@
 .alert-ios .alert-radio-group, .alert-ios .alert-checkbox-group {
   border-top: 4px solid #d1e0dc;
 }
+
+ion-calendar-month .primary button.days-btn small, ion-calendar-month .primary .days .marked p, ion-calendar-month .primary .days .today p {
+  color: #386559;
+}
