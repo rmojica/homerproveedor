@@ -53,22 +53,17 @@
                 (click)="removeFromWishlist(item.value.id)"
               >
                 <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
-                REMOVE
+                ELIMINAR
               </button>
             </ion-col>
             <ion-col royal width-50>
               <button
-                ion-button
-                full
-                no-padding
-                no-margin
-                clear
-                text-uppercase
+              style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase
                 item-right
                 (click)="getProduct(item.value.id)"
               >
                 <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
-                BOOK NOW
+                SOLICITAR
               </button>
             </ion-col>
           </ion-row>
