@@ -86,6 +86,13 @@ export class ProductsListPage {
             });
         });
     }
+
+    clickSearch(){
+      this.autocompleteCat.input = ' ';
+      this.getItemsCat()
+      console.log(this.autocompleteCat.input)
+    }
+    
     doRefresh(refresher){
         this.service.load().then((results) => {
             this.handleService(results);
@@ -363,7 +370,9 @@ export class ProductsListPage {
     this.itemsCategory = this.service.mainCategories;
 
     // if the value is an empty string don't filter the items
-    if (this.autocompleteCat.input && this.autocompleteCat.input.trim() != '') {
+    // if (this.autocompleteCat.input && this.autocompleteCat.input.trim() != '') {
+      console.log('entra')
+
       this.HiddenListCat = true;
       this.HiddenSearchLocation = true;
       this.HideBtnSearch = true;
@@ -371,7 +380,7 @@ export class ProductsListPage {
       this.itemsCategory = this.itemsCategory.filter((itemsCategory) => {
         return (itemsCategory.name.toLowerCase().indexOf(this.autocompleteCat.input.toLowerCase()) > -1);
       })
-    }
+    // }
   }
   searchProduct(){
     this.items.productslocation = ''

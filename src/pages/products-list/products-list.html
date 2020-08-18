@@ -79,7 +79,8 @@
     </ion-card-header>
   
     <ion-card-content>
-      <ion-searchbar class="searchbar-category" [(ngModel)]="autocompleteCat.input" (ionInput)="getItemsCat()"
+
+      <ion-searchbar (click)="clickSearch()" class="searchbar-category" [(ngModel)]="autocompleteCat.input" (ionInput)="getItemsCat()"
         (ionClear)="ClearAutocompleteCat()" placeholder="{{'Category' | translate}}"></ion-searchbar>
       <ion-list class="list-category" [hidden]="!HiddenListCat">
         <ion-item *ngFor="let item of itemsCategory" (click)="SelectSearchResultCat(item)">
