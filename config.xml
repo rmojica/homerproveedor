@@ -40,6 +40,7 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <platform name="ios">
         <preference name="WKWebViewOnly" value="true" />
         <feature name="CDVWKWebViewEngine">

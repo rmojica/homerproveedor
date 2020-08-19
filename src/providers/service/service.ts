@@ -264,6 +264,7 @@ export class Service {
               this.values.customerName = data.data.display_name
               this.values.customerId = data.data.ID
               this.values.logoutUrl = this.encodeUrl(data.data.url)
+              console.log(this.values.logoutUrl)
               this.values.vendor = data.allcaps.vendor
               params = new URLSearchParams()
               params.append('customer_id', this.values.customerId.toString())
@@ -319,9 +320,11 @@ export class Service {
       this.http
         .get(
           this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-logout',
+          // this.values.logoutUrl + '&redirect_to=http://localhost:8100',
           this.config.options,
         )
         .subscribe(data => {
+          console.log('prueba')
           this.values.isLoggedIn = false
           this.values.customerName = ''
           this.nativeStorage.setItem('loginData', {}).then(

@@ -80,6 +80,14 @@
   
     <ion-card-content>
 
+      <div style="margin: 0 10px 0 5px;">
+        <button style="width:100%;background-color:white;color:black;height: 2em;border-radius: 5px;" ion-button class="positionCalendar">
+          <ion-icon name="calendar" (click)='getAddressFromCoords()'></ion-icon>
+
+           <ion-datetime placeholder="Fecha" displayFormat="DD MMM YYYY"  pickerFormat="DD MMM YYYY"  [(ngModel)]="dateOfevent" cancelText ="Cancelar" doneText="Seleccionar"></ion-datetime>
+        </button>
+      </div>
+
       <ion-searchbar (click)="clickSearch()" class="searchbar-category" [(ngModel)]="autocompleteCat.input" (ionInput)="getItemsCat()"
         (ionClear)="ClearAutocompleteCat()" placeholder="{{'Category' | translate}}"></ion-searchbar>
       <ion-list class="list-category" [hidden]="!HiddenListCat">
@@ -88,10 +96,12 @@
         </ion-item>
       </ion-list>
 
-      <ion-searchbar class="searchbar-category" 
+      <!-- <ion-searchbar class="searchbar-category" 
         (ionClear)="ClearAutocompleteCat()" placeholder="Fecha y Hora"></ion-searchbar>
         <ion-searchbar class="searchbar-category" 
-        (ionClear)="ClearAutocompleteCat()" placeholder="Frecuencia"></ion-searchbar>
+        (ionClear)="ClearAutocompleteCat()" placeholder="Frecuencia"></ion-searchbar> -->
+
+        
   
       <ion-searchbar [hidden]="HiddenSearchLocation" class="searchbar-location" [(ngModel)]="autocomplete.input"
         (ionInput)="UpdateSearchResults()" placeholder="{{'Location' | translate}}" (ionClear)="ClearAutocomplete()">
