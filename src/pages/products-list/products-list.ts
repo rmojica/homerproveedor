@@ -30,6 +30,8 @@ export class ProductsListPage {
   long: string;  
   autocomplete: { input: string; };
   autocompleteItems: any[];
+  PredictionArray: any[];
+  
   location: any;
   placeid: any;
   GoogleAutocomplete: any;
@@ -280,8 +282,9 @@ export class ProductsListPage {
 
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
 
+    
 
-    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input },
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input, types: ['(cities)'], componentRestrictions: {country: 'es'}   },
     (predictions, status) => {
       this.autocompleteItems = [];
       this.zone.run(() => {
@@ -293,6 +296,7 @@ export class ProductsListPage {
         });
       });
     });
+
   }
   
   //wE CALL THIS FROM EACH ITEM.

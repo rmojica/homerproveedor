@@ -380,5 +380,16 @@ button.swiper-pagination-bullet {
   }
   .list-ios {
     margin: -1px 10px 0;
+  .positionCalendar .button-inner{
+    -webkit-justify-content: left;
+    -ms-flex-pack: left;
+    justify-content: left;
   }
+  .datetime-ios .datetime-placeholder {
+    text-transform: capitalize;
+  }
+  .datetime-ios {
+    padding: 11px 8px 11px 8px;
+  }
+}
 }
