@@ -84,7 +84,7 @@ display: none;
     background-color: #d1e0dc;
     color: black;
     height: 30px;
-    padding: 0 10px;
+    padding: 0;
     right: 2px;
     border-radius: 8px;
     top: -38px;
@@ -380,6 +380,7 @@ button.swiper-pagination-bullet {
   }
   .list-ios {
     margin: -1px 10px 0;
+  }
   .positionCalendar .button-inner{
     -webkit-justify-content: left;
     -ms-flex-pack: left;
@@ -391,5 +392,4 @@ button.swiper-pagination-bullet {
   .datetime-ios {
     padding: 11px 8px 11px 8px;
   }
-}
 }
