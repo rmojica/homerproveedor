@@ -106,7 +106,7 @@
       <ion-searchbar [hidden]="HiddenSearchLocation" class="searchbar-location" [(ngModel)]="autocomplete.input"
         (ionInput)="UpdateSearchResults()" placeholder="{{'Location' | translate}}" (ionClear)="ClearAutocomplete()">
       </ion-searchbar>
-      <ion-icon item-end name="locate" class="passwordIcon" (click)='getAddressFromCoords()'></ion-icon>
+      <ion-icon item-end name="locate" [hidden]="HiddenSearchLocation"  class="passwordIcon" (click)='getAddressFromCoords()'></ion-icon>
   
       <ion-list class="list-location" [hidden]="!HiddenList">
         <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
