@@ -7,7 +7,7 @@ import { ProductsPage } from '../products/products';
 import { SearchPage } from '../search/search';
 import { ProductPage } from '../product/product';
 import { Post } from '../post/post';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 // import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
@@ -79,13 +79,25 @@ export class ProductsListPage {
         this.long = '';  
 
         platform.ready().then(() => {
-          const subscription = this.geolocation.watchPosition()
-            .filter((p) => p.coords !== undefined) //Filter Out Errors
-            .subscribe(position => {
-              this.miLatitude = position.coords.latitude;
-              this.miLongitude = position.coords.longitude;
-              console.log("miLocation=" + position.coords.latitude + ' ' + position.coords.longitude);
-            });
+          // const subscription = this.geolocation.watchPosition()
+          //   .filter((p) => p.coords !== undefined) //Filter Out Errors
+          //   .subscribe(position => {
+          //     this.miLatitude = position.coords.latitude;
+          //     this.miLongitude = position.coords.longitude;
+          //     console.log("miLocation=" + position.coords.latitude + ' ' + position.coords.longitude);
+          //   });
+          const subscription = this.geolocation.watchPosition().subscribe(position => {
+            if ((position as Geoposition).coords != undefined) {
+              var geoposition = (position as Geoposition);
+              this.miLatitude = geoposition.coords.latitude;
+              this.miLongitude = geoposition.coords.longitude;
+              // console.log('Latitude: ' + geoposition.coords.latitude + ' - Longitude: ' + geoposition.coords.longitude);
+            } else { 
+              var positionError = (position as PositionError);
+              console.log('Error ' + positionError.code + ': ' + positionError.message);
+            }
+          });
+
         });
     }
 
