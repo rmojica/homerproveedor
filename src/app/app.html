@@ -106,6 +106,10 @@
           <ion-icon item-left ios="ios-calendar" md="md-calendar">
           </ion-icon>{{"Bookings" | translate}}
         </ion-item>
+        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">
+          <ion-icon item-left ios="ios-calendar" md="md-calendar">
+          </ion-icon>Membresia
+        </ion-item>
       </ion-list>
 
       <!-- <ion-item>

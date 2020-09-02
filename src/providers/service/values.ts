@@ -14,6 +14,7 @@ export class Values {
   filterUpdate: boolean = false;
   lan: any;
   logoutUrl: any;
+  user_login: any;
   cartItem: any;
   cartNonce: any;
   avatar: any = "assets/image/logo.png";

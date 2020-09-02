@@ -14,6 +14,7 @@ import { ProductsPage } from '../../pages/products/products'
 
 @Injectable()
 export class Service {
+  cartDataMembership: any;
   data: any
   categories: any
   banners: any
@@ -23,6 +24,7 @@ export class Service {
   status: any
   address: any
   products: any
+  products_membership: any
   product: any
   cart: any
   configuration: any
@@ -264,7 +266,8 @@ export class Service {
               this.values.customerName = data.data.display_name
               this.values.customerId = data.data.ID
               this.values.logoutUrl = this.encodeUrl(data.data.url)
-              console.log(this.values.logoutUrl)
+              this.values.user_login = data.data.user_login
+              console.log(data.data)
               this.values.vendor = data.allcaps.vendor
               params = new URLSearchParams()
               params.append('customer_id', this.values.customerId.toString())
@@ -703,6 +706,68 @@ export class Service {
           }
         }
       })
+  }
+  getProductsMembership() {
+    this.http
+      .get(
+        this.config.setUrl('GET', '/wc-api/v3/products?type=wcvm-membership&', false),
+        this.config.options,
+      )
+      .map(res => res.json())
+      .subscribe(data => {
+        this.products_membership = data.products
+
+        // for (let index = 0; index < this.products_membership.length; index++) {
+        //   const element = this.products_membership[index]
+        //   let resources = element.resource_block_costs
+        //   let prices = new Array()
+        //   for (var key in resources) {
+        //     prices = [...prices, resources[key]]
+        //   }
+        //   if (Object.keys(resources).length) {
+        //     let minPrice = Math.min(...prices)
+        //     this.products_membership.map(function (element) {
+        //       return (element.minPrice = minPrice)
+        //     })
+        //   }
+        // }
+      })
+  }
+  addToCartMembership(id){
+    var params = new URLSearchParams();
+      // params.append("quantity", "1");
+      params.append("add-to-cart", id);
+      params.append("is-membership", "yes");
+        return new Promise(resolve => {
+                  //  this.http.post(this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-add_to_cart', params, this.config.options).map(res => res.json())
+                  this.http.get(this.config.url + '/checkout/?'+params, this.config.options).map(res => res.json())
+                .subscribe(data => {
+                  console.log(data)
+                    this.cartDataMembership = data;
+                    this.values.cartNonce = data.cart_nonce;
+                    this.values.updateCartTwo(data.cart);
+                    resolve(this.cartDataMembership);
+            });
+        });
+  }
+  testApiLogin(){
+    var params = new URLSearchParams();
+      // params.append("quantity", "1");
+      
+      params.append("username", "bonod49459");
+      params.append("productid", "5138");
+        return new Promise(resolve => {
+                  //  this.http.post(this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-add_to_cart', params, this.config.options).map(res => res.json())
+                  this.http.post(this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-autoLogin', params, this.config.options).map(res => res.json())
+                  //this.http.get(this.config.url + '/checkout/?'+params, this.config.options).map(res => res.json())
+                .subscribe(data => {
+                  console.log(data)
+                    // this.cartDataMembership = data;
+                    // this.values.cartNonce = data.cart_nonce;
+                    // this.values.updateCartTwo(data.cart);
+                    // resolve(this.cartDataMembership);
+            });
+        });
   }
   loadMore() {
     this.filter.page += 1

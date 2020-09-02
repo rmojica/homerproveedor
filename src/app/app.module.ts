@@ -12,6 +12,7 @@ import { Orders } from '../pages/account/orders/orders'
 import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor'
 import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor'
 import { BookingDetails } from '../pages/account/booking-details/booking-details'
+import { test } from '../pages/account/test/test'
 import { AccountRegister } from '../pages/account/register/register'
 import { WishlistPage } from '../pages/account/wishlist/wishlist'
 import { AccountPage } from '../pages/account/account/account'
@@ -78,6 +79,7 @@ export function createTranslateLoader(http: HttpClient) {
     OrdersVendor,
     BookingVendor,
     BookingDetails,
+    test,
     Post,
     AccountRegister,
     WishlistPage,
@@ -120,6 +122,7 @@ export function createTranslateLoader(http: HttpClient) {
     OrdersVendor,
     BookingVendor,
     BookingDetails,
+    test,
     Post,
     AccountRegister,
     WishlistPage,

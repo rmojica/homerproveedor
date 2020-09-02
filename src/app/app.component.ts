@@ -24,6 +24,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { AccountPage } from '../pages/account/account/account';
 import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
 import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor';
+import { test } from '../pages/account/test/test';
 
 
 
@@ -135,7 +136,9 @@ export class MyApp {
     bookingVendor() {
         this.nav.setRoot(BookingVendor);
     }
-    
+    test() {
+        this.nav.setRoot(test);
+    }
     cart() {
         this.nav.setRoot(CartPage);
     }
