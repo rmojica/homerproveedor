@@ -33,6 +33,13 @@ export class Home {
         this.filter = {};
         this.filter.page = 1
     }
+    gohome(){
+        this.nav.parent.select(0);
+    }
+
+    getCart() {
+        this.nav.parent.select(2);
+      }
     doRefresh(refresher){
         this.service.load().then((results) => {
             this.handleService(results);
@@ -78,9 +85,6 @@ export class Home {
         if (results.status == "success") {
             this.values.wishlistId[id] = false;
         }
-    }
-    getCart() {
-        this.nav.push(CartPage);
     }
     getSearch() {
         this.nav.push(SearchPage);

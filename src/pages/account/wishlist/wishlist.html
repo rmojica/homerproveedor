@@ -1,9 +1,12 @@
+<!-- Header -->
 <ion-header>
-  <ion-navbar color="header">
+  <ion-toolbar color="header">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{"Wishlist"| translate}}</ion-title>
+    <ion-title>
+      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
+    </ion-title>
     <ion-buttons end>
       <button
         ion-button
@@ -18,8 +21,10 @@
         </ion-badge>
       </button>
     </ion-buttons>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
+
+
 <ion-content class="wishlistPage">
   <div *ngIf="wishlist?.error" class="margin">
     <h2>{{"Your wishlist is empty!" | translate}}</h2>

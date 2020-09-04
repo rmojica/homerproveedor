@@ -10,6 +10,8 @@ import 'rxjs/add/observable/forkJoin'
 import { HTTP } from '@ionic-native/http'
 import { Functions } from '../../providers/service/functions'
 import { ProductsPage } from '../../pages/products/products'
+import { AccountLogin } from '../../pages/account/login/login'
+import { AccountForgotten } from '../../pages/account/forgotten/forgotten'
 
 
 @Injectable()
@@ -245,22 +247,23 @@ export class Service {
     var params = new URLSearchParams()
     params.append('username', loginData.username)
     params.append('password', encodeURIComponent(loginData.password))
-    params.append('_wpnonce', this.login_nonce)
-    params.append('login', 'Login')
-    params.append(
-      'redirect',
-      this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata',
-    )
+    // params.append('_wpnonce', this.login_nonce)
+    // params.append('login', 'Login')
+     params.append(
+       'redirect',
+       this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata',
+     )
     return new Promise(resolve => {
       this.http
         .post(
-          this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-login',
+          this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-login-vendor',
           params,
           this.config.options,
         )
         .map(res => res.json())
         .subscribe(
           data => {
+            console.log(data)
             if (!data.errors) {
               this.values.isLoggedIn = data.data.status
               this.values.customerName = data.data.display_name
@@ -388,8 +391,9 @@ export class Service {
         .map(res => res)
         .subscribe(data => {
           resolve(data)
-          if (data.statusText == "OK")
-            this.functions.showAlert("SUCCESS", "Check email for new verification link. ");
+          if (data.statusText == "OK"){
+            this.functions.showAlert("ÉXITO", "Verifique el correo electrónico para ver si hay un nuevo enlace de verificación");  
+          }
           else
             this.functions.showAlert("ERROR", "an error has occurred please check. ");
         })
@@ -586,6 +590,35 @@ export class Service {
         )
     })
   }
+  registerVendor(vendor) {
+    var params = new URLSearchParams();
+      params.append("email", vendor.email);
+      params.append("password", vendor.password);
+      params.append("first_name", vendor.first_name);
+      params.append("last_name", vendor.last_name);
+      params.append("phone", vendor.phone);
+    return new Promise(resolve => {
+      this.http
+        .post(
+          // this.config.setUrl('POST', '/wp-admin/admin-ajax.php?action=mstoreapp-create-user-vendor', false),
+          // params,
+          this.config.url +
+                '/wp-admin/admin-ajax.php?action=mstoreapp-create-user-vendor',
+              params,
+        )
+        .map(res => res.json())
+        .subscribe(
+          data => {
+            this.user = data
+            resolve(this.user)
+          },
+          err => {
+            resolve(err.json())
+          },
+        )
+    })
+  }
+  
   getOrders(filter) {
     return new Promise(resolve => {
       this.http

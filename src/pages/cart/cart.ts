@@ -36,6 +36,10 @@ export class CartPage {
         
     }
 
+    gohomep(){
+        this.nav.parent.select(0);
+        }
+
     ionViewDidEnter() {
         this.service.loadCart()
             .then((results) => this.handleCartInit(results));
@@ -121,7 +125,7 @@ export class CartPage {
             .then((results) => this.handleShipping(results));
     }
     gohome(){
-    this.nav.setRoot(Home);
+        this.nav.parent.select(1);
     }
     handleShipping(results) {
         this.cart = results;

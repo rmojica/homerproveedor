@@ -41,6 +41,11 @@ export class AccountLogin {
     this.countries = {}
    
   }
+
+  gohome(){
+    this.nav.parent.select(0);
+  }
+  
   login() {
     if (this.validateForm()) {
       this.disableSubmit = true

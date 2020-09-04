@@ -1,5 +1,5 @@
 import { Component, NgZone, ViewChild, ElementRef } from '@angular/core';
-import { NavController, ToastController, Platform } from 'ionic-angular';
+import { NavController, ToastController, Platform, Content } from 'ionic-angular';
 import { Service } from '../../providers/service/service';
 import { Values } from '../../providers/service/values';
 import { CartPage } from '../cart/cart';
@@ -11,6 +11,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 // import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { TabsPage } from '../tabs/tabs';
 
 
 declare var google;
@@ -22,6 +23,7 @@ declare var google;
 
 export class ProductsListPage {
     @ViewChild('map') mapContainer: ElementRef;
+    @ViewChild('pageTop') pageTop: Content;
 
 //  @ViewChild('map',  {static: false}) mapElement: ElementRef;
   map: any;
@@ -101,6 +103,19 @@ export class ProductsListPage {
         });
     }
 
+    ionSelected() {
+      console.log("productlist Page has been selected");
+      // do your stuff here
+      this.nav.setRoot(TabsPage);
+      this.pageTop.scrollToTop();
+    }
+    gohome() {
+      this.nav.parent.select(0);
+    }
+    getCart() {
+      this.nav.parent.select(2);
+    }
+    
     clickSearch(){
       this.autocompleteCat.input = ' ';
       this.getItemsCat()
@@ -152,9 +167,6 @@ export class ProductsListPage {
         if (results.status == "success") {
             this.values.wishlistId[id] = false;
         }
-    }
-    getCart() {
-        this.nav.push(CartPage);
     }
     getSearch() {
         this.nav.push(SearchPage);

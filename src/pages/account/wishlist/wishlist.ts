@@ -19,6 +19,11 @@ export class WishlistPage {
       
     }
 
+
+    gohome(){
+      this.nav.parent.select(0);
+      }
+
     ionViewDidEnter() {
       this.service.loadWishlist()
             .then((results) => this.wishlist = results);

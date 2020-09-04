@@ -5,15 +5,18 @@ import { Functions } from '../../../providers/service/functions';
 import { Values } from '../../../providers/service/values';
 import { OneSignal } from '@ionic-native/onesignal';
 import { TabsPage } from '../../tabs/tabs';
+import { AccountLogin } from '../login/login';
 
 @Component({
     templateUrl: 'register.html'
 })
 export class AccountRegister {
     registerData: any;
+    registerVendorData: any;
     loadRegister: any;
     countries: any;
     status: any;
+    resultResendKey: any;
     public disableSubmit: boolean = false;
     errors: any;
     loginStatus: any;
@@ -24,6 +27,7 @@ export class AccountRegister {
     constructor(public nav: NavController, public service: Service, public functions: Functions, private oneSignal: OneSignal, public values: Values, public platform: Platform) {
         this.Register = "Register";
         this.registerData = {};
+        this.registerVendorData = {};
         this.countries = {};
         this.registerData.billing_address = {};
         this.registerData.shipping_address = {};
@@ -71,6 +75,30 @@ export class AccountRegister {
         this.registerData.shipping_address.country = this.registerData.billing_address.country;
         return true;
     }
+    validateFormVendor() {
+        if (this.registerVendorData.first_name == undefined || this.registerVendorData.firstname == "") {
+            this.functions.showAlert("ERROR", "Please Enter First Name");
+            return false
+        }
+        if (this.registerVendorData.last_name == undefined || this.registerVendorData.lastname == "") {
+            this.functions.showAlert("ERROR", "Please Enter Last Name ");
+            return false
+        }
+        if (this.registerVendorData.email == undefined || this.registerVendorData.email == "") {
+            this.functions.showAlert("ERROR", "Please Enter Email ID");
+            return false
+        }
+        if (this.registerVendorData.password == undefined || this.registerVendorData.password == "") {
+            this.functions.showAlert("ERROR", "Please Enter Password");
+            return false
+        }
+        if (this.registerVendorData.phone == undefined || this.registerVendorData.phone == "") {
+            this.functions.showAlert("ERROR", "Please Enter Phone");
+            return false
+        }
+
+        return true;
+    }
     registerCustomer() {
         this.errors = "";
         if (this.validateForm()) {
@@ -78,6 +106,42 @@ export class AccountRegister {
             this.service.registerCustomer(this.registerData)
                 .then((results) => this.handleRegister(results));
         }
+    }
+    registerVendor() {
+        this.errors = "";
+        if (this.validateFormVendor()) {
+            this.disableSubmit = true;
+            this.service.registerVendor(this.registerVendorData)
+                .then((results) => this.handleRegisterVendor(results));
+        }
+    }
+    handleRegisterVendor(results) {
+        console.log(results.errors);
+        if (!results.errors) {
+            this.countries.checkout_login;
+            this.service.login(this.registerVendorData)
+                .then((results) => this.loginStatus = results);
+            if(this.platform.is('cordova')){
+                this.oneSignal.getIds().then((data: any) => {
+                    this.service.subscribeNotification(data);
+                });
+                this.oneSignal.sendTags({email: this.registerVendorData.email, phone: this.registerVendorData.phone, namevendor: this.registerData.firstname });
+            }
+            this.functions.showAlert('Verificación', '¡Se ha creado su cuenta! Por favor revise su correo electrónico')
+            this.nav.setRoot(TabsPage);
+        }
+        else if (results.errors) {
+            this.errors = results.errors;
+            this.service.getNonceResendKey(this.registerVendorData.email).then((results) => this.handleResultsNonce(results));
+        }
+    }
+    handleResultsNonce(results) {
+        this.countries = results;
+        this.resultResendKey = this.service.resendKey(this.registerVendorData.email, this.countries.resend_key_nonce);
+        //this.service.resendKey(this.registerVendorData.email, this.countries.resend_key_nonce).then(results => (this.resultResendKey = results))
+        console.log(this.resultResendKey)
+        this.disableSubmit = false;
+        this.nav.setRoot(AccountLogin);
     }
     handleRegister(results) {
         console.log(results.errors);
@@ -92,7 +156,7 @@ export class AccountRegister {
                 });
                 this.oneSignal.sendTags({email: this.registerData.email, pincode: this.registerData.billing_address.postcode, city: this.registerData.billing_address.city });
             }
-            this.functions.showAlert('Verification', 'Your account has been created! please check your email')
+            this.functions.showAlert('Verificación', '¡Se ha creado su cuenta! Por favor revise su correo electrónico')
             this.nav.setRoot(TabsPage);
         }
         else if (results.errors) {

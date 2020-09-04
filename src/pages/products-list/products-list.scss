@@ -38,11 +38,10 @@ page-products-list {
   .title-home-banner {
     position: absolute;
     top: 16%;
-    font-size: 28px;
-    width: 82%;
+    font-size: 35px;
     color: #000;
-    left: 10%;
     text-align: center;
+    margin: 0 20px 0 20px;
 }
   .card-search {
     position: absolute;
@@ -111,7 +110,7 @@ display: none;
   margin-top: 15px;
 }
 .bar-button-menutoggle-ios {
-  padding: 25px;
+  padding: 0 25px 25px 25px;
 }
 .searchbar-md .searchbar-search-icon, .searchbar-ios .searchbar-search-icon {
   left: auto;
@@ -226,7 +225,7 @@ button.swiper-pagination-bullet {
   }
 
   .card-filter-home {
-    top: -35px;
+    top: -90px;
     position: relative;
     z-index: 999;
     border-radius: 2px;
@@ -394,3 +393,6 @@ button.swiper-pagination-bullet {
   }
 }
 
+.picker-ios .picker-button .button-inner, .picker-ios .picker-button.activated{
+  color: black;
+}

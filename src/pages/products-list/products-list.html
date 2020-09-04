@@ -4,9 +4,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      <img style="max-width: 150px;" src="{{values.avatar}}" />
+    <ion-title >
+      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
     </ion-title>
+    <ion-buttons end>
+      <button
+        ion-button
+        icon-only
+        light
+        class="has-icon icon-only has-badge"
+        (click)="getCart()"
+      >
+        <ion-icon class="ion-ios-cart item-icon"></ion-icon>
+        <ion-badge class="badge badge-light" *ngIf="values.count">
+          {{values.count}}
+        </ion-badge>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +38,7 @@
   </ion-list>
 </ion-content> -->
 
-<ion-content>
+<ion-content #pageTop>
 
 
   <!-- <ion-fab bottom right slot="fixed">
