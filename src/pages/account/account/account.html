@@ -7,14 +7,14 @@
     <ion-title>
       <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
     </ion-title>
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button ion-button icon-only light class="has-icon icon-only has-badge" (click)="getCart()">
         <ion-icon class="ion-ios-cart item-icon"></ion-icon>
         <ion-badge class="badge badge-light" *ngIf="values.count">
           {{values.count}}
         </ion-badge>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -36,7 +36,7 @@
         <div class="card-body">
           <div class="user-meta ion-text-center">
             <h3 class="playername"> {{customers.customer.billing_address.first_name}} {{customers.customer.billing_address.last_name}}<br *ngIf="customers.customer.billing_address.first_name"></h3>
-            <h5 class="country">{{customers.customer.role}}</h5>
+            <h5 class="country" *ngIf="values.vendor">Proveedor</h5>
             
           </div>
         </div>
@@ -75,7 +75,7 @@
           </ion-card-content>
         </ion-card>
       </div>
-      <div class="margin">
+      <div class="margin" style="margin-bottom: 70px;">
         <button ion-button block color="button-color" type="submit" class="button button-block button-default" text-uppercase (click)="editAddress()">{{"EditAddress" | translate}}</button>
      </div>
 

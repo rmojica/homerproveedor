@@ -431,6 +431,7 @@ export class Service {
         .map(res => res.json())
         .subscribe(data => {
           this.customer = data
+          console.log(this.customer)
           resolve(this.customer)
         })
     })

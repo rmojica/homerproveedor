@@ -25,6 +25,7 @@ import { AccountPage } from '../pages/account/account/account';
 import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
 import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor';
 import { test } from '../pages/account/test/test';
+import { IframePage } from '../pages/iframe/iframe';
 
 
 
@@ -35,13 +36,18 @@ import {TabsPage} from '../pages/tabs/tabs';
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
-    rootPage: any = TabsPage;
+    rootPage: any = AccountLogin;
     status: any;
     items: any = {};
     buttonLanguagesSettings: boolean = false;
     Languages: any;
+    customers: any;
 
     constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
+
+        this.service.getCustomer()
+        .then((results) => this.customers = results);
+        
         this.Languages = []
         platform.ready().then(() => {
             statusBar.styleDefault();
@@ -76,6 +82,17 @@ export class MyApp {
         // this.translateService.setDefaultLang(this.values.settings.language);
        
         this.values.calc(this.platform.width());
+
+        if(this.values.isLoggedIn){
+            console.log('entro:',this.values.isLoggedIn);
+            this.nav.setRoot(TabsPage);
+        }else{
+            console.log('entro else:',this.values.isLoggedIn);
+            this.nav.setRoot(AccountLogin);
+        }
+
+            
+
         if (this.platform.is('cordova')) {
             this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);
             this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
@@ -113,7 +130,10 @@ export class MyApp {
     logout() {
         this.service.logout();
         this.values.wishlistId = [];
-        this.nav.setRoot(TabsPage);
+        this.nav.setRoot(AccountLogin);
+    }
+    iframe() {
+        this.nav.setRoot(IframePage);
     }
     account() {
         this.nav.setRoot(AccountPage);
@@ -131,7 +151,7 @@ export class MyApp {
         this.nav.setRoot(Orders);
     }
     orderVendor() {
-        this.nav.setRoot(OrdersVendor);
+        this.nav.setRoot(TabsPage);
     }
     bookingVendor() {
         this.nav.setRoot(BookingVendor);

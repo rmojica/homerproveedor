@@ -557,7 +557,7 @@
                     *ngIf="!values.wishlistId[item.id]"
                     (click)="addToWishlist(item.id)"
                   ></ion-icon> -->
-                  <div tappable (click)="getProduct(item)" class="card-name">
+                  <div tappable class="card-name">
                     <ion-label *ngIf="item.title">{{item.title}}</ion-label>
                     <ion-label class="membership" *ngIf="item.short_description" [innerHTML]="item.short_description"></ion-label>
                   </div>
@@ -588,7 +588,7 @@
     </div>
   </div>
   </div>
-   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
+   <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
             <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{'Loading more items...' | translate}}"> </ion-infinite-scroll-content>
-        </ion-infinite-scroll> 
+        </ion-infinite-scroll>  -->
 </ion-content>
