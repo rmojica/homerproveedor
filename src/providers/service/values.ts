@@ -7,6 +7,7 @@ export class Values {
   filter: any = 10;
   isLoggedIn: boolean = false;
   vendor: boolean = false;
+  subscription: any = [];
   customerName: string = "";
   customerId: number = null;
   listview: boolean = false;

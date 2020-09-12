@@ -84,13 +84,18 @@ export class MyApp {
         this.values.calc(this.platform.width());
 
         if(this.values.isLoggedIn){
-            console.log('entro:',this.values.isLoggedIn);
-            this.nav.setRoot(TabsPage);
+            if(this.values.subscription.length > 0){
+                console.log('entro:',this.values.isLoggedIn);
+                this.nav.setRoot(TabsPage);
+            }else{
+                console.log('entro:',this.values.isLoggedIn);
+                this.nav.setRoot(test);
+            }
+            
         }else{
             console.log('entro else:',this.values.isLoggedIn);
             this.nav.setRoot(AccountLogin);
         }
-
             
 
         if (this.platform.is('cordova')) {

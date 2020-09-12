@@ -7,6 +7,7 @@ import { AccountForgotten } from '../forgotten/forgotten'
 import { OneSignal } from '@ionic-native/onesignal'
 
 import { TabsPage } from '../../tabs/tabs'
+import { test } from '../../account/test/test'
 
 @Component({
   templateUrl: 'login.html',
@@ -69,12 +70,21 @@ export class AccountLogin {
     this.disableSubmit = false
     this.buttonText = 'Login'
     if (!results.errors) {
+
       if (this.platform.is('cordova'))
         this.oneSignal.getIds().then((data: any) => {
           this.service.subscribeNotification(data)
         })
-      this.nav.setRoot(TabsPage)
-    } 
+
+        console.log(results)
+        if(results.data.subscription.length == 0){
+          console.log('entro no subscription:',this.values.isLoggedIn);
+            this.nav.setRoot(test);
+        }else{
+          console.log('entro subscription:',this.values.isLoggedIn);
+          this.nav.setRoot(TabsPage);
+        }
+    }
     else if (results.errors) {
       if(results.errors.invalid_email)
         this.functions.showAlert('Email', results.errors.invalid_email)
