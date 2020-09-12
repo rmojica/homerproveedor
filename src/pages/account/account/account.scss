@@ -28,7 +28,7 @@ ion-chip {
 
   .header {
       height: 200px; // 20vh;
-      background-color: #cce0dc;
+      background-color: #76A7Ab;
 
       .avatar {
         width: 21%;
@@ -41,7 +41,7 @@ ion-chip {
               border-radius: 50%;
               position: absolute;
               bottom: calc(-1*(80px + 4px)); // -42px;
-              border: 8px solid #cce0dc;
+              border: 8px solid #76A7Ab;
           }
       }
   }
@@ -50,7 +50,8 @@ ion-chip {
 .card-body {
   background-color: #ffffff;
   padding: 30px;
-  height: calc(100vh - (330px + 140px));
+  // height: calc(100vh - (330px + 140px));
+  height: 150px;
   overflow: hidden;
 
   .user-meta {

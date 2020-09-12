@@ -272,6 +272,8 @@ export class Service {
               this.values.user_login = data.data.user_login
               console.log(data.data)
               this.values.vendor = data.allcaps.vendor
+              this.values.subscription = data.data.subscription
+              console.log(this.values.subscription)
               params = new URLSearchParams()
               params.append('customer_id', this.values.customerId.toString())
               this.http
@@ -431,6 +433,7 @@ export class Service {
         .map(res => res.json())
         .subscribe(data => {
           this.customer = data
+          console.log(this.customer)
           resolve(this.customer)
         })
     })

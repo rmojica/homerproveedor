@@ -7,6 +7,7 @@ export class Values {
   filter: any = 10;
   isLoggedIn: boolean = false;
   vendor: boolean = false;
+  subscription: any = [];
   customerName: string = "";
   customerId: number = null;
   listview: boolean = false;
@@ -18,6 +19,9 @@ export class Values {
   cartItem: any;
   cartNonce: any;
   avatar: any = "assets/image/logo.png";
+  logoMenu: any = "assets/image/logo-fondo-blanco.png";
+  logoLogin: any = "assets/image/logoLogin.png";
+  
   slider: any = "assets/image/bghome.png";
   headerLogin: any = "assets/image/header-login.png";
   currency: any = "USD";

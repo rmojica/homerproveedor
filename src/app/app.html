@@ -1,10 +1,27 @@
 <ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">
   <div class="menu-toolbar">
     <ion-toolbar color="header">
-      <div class="profile-image">
-        <img src="{{values.avatar}}">
-        <!--img src="{{values.avatar}}"-->
-      </div>
+      <!-- <div class="profile-image">
+        <img src="{{values.logoMenu}}">
+        <div class="tittle-homer-provider">
+            Homer Proveedor
+        </div>
+      </div> -->
+
+      <ion-row>
+        <ion-col col-5 class="profile-image"> 
+          <img src="{{values.logoMenu}}">
+        </ion-col>
+        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">
+          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">
+          Homer Proveedor
+          </strong>
+          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">
+            <h4 class="playername"> {{values.customerName}}</h4>
+            </strong>
+        </ion-col>
+      </ion-row>
+      
       <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">
         <strong>{{values.customerName}}
         </strong>
@@ -28,12 +45,15 @@
 
     </ion-list>
     <ion-list class="menu-items">
-      <ion-item tappable menuClose (click)="shop()">
-        <!-- <ion-icon item-left ios="ios-home" md="md-home">
-        </ion-icon> -->
+      <!-- <ion-item tappable menuClose (click)="shop()">
         <ion-icon item-left name="home"></ion-icon>
         {{"Inicio"}}
-      </ion-item>
+      </ion-item> -->
+      <!-- <ion-item tappable menuClose (click)="iframe()">
+        <ion-icon  name="contact" item-left>
+        </ion-icon>
+        {{"Iframe" | translate}}
+      </ion-item> -->
       <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">
         <ion-icon  name="contact" item-left>
         </ion-icon>
@@ -41,7 +61,7 @@
       </ion-item>
       <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">
         <ion-icon name="person" item-left>
-        </ion-icon>{{"LogIn" | translate}}
+        </ion-icon>{{"Acceder" | translate}}
       </ion-item>
       <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">
         <ion-icon item-left ios="ios-create" md="md-create">
@@ -52,7 +72,7 @@
         <ion-icon item-left name="locate">
         </ion-icon>{{"Address" | translate}}
       </ion-item> -->
-      <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">
+      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">
         <ion-icon item-left name="reorder">
         </ion-icon>{{"Your Orders" | translate}}
       </ion-item>
@@ -64,7 +84,7 @@
         <ion-icon ios="ios-cart" md="md-cart" item-left>
         </ion-icon>
         {{"Carrito" | translate}}
-      </ion-item> 
+      </ion-item>  -->
       <ion-item tappable menuClose (click)="contact()">
         {{"Contact Us" | translate}}
         <ion-icon name="mail" item-left></ion-icon>
@@ -88,10 +108,7 @@
         {{"Rate App" | translate}}
       </ion-item>
 
-      <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">
-        <ion-icon item-left name="md-log-out">
-        </ion-icon>{{"Logout" | translate}}
-      </ion-item>
+     
 
       <ion-list *ngIf="values.isLoggedIn">
         <ion-item *ngIf="values.vendor">
@@ -110,7 +127,13 @@
           <ion-icon item-left name="cart">
           </ion-icon>Membresia
         </ion-item>
+        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">
+          <ion-icon item-left name="md-log-out">
+          </ion-icon>{{"Logout" | translate}}
+        </ion-item>
       </ion-list>
+
+      
 
       <!-- <ion-item>
         <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>

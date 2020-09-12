@@ -5,6 +5,7 @@
     <author email="info@numu.digital" href="https://dev.digitalfactory.tech/demos/homer/">Numu Digital</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

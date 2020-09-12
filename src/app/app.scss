@@ -252,3 +252,31 @@ ion-icon {
     }
   
   }
+
+  .sidemenugrad {
+    background-color: black;
+  }
+  .sidemenugrad .menu-items .item ion-icon {
+    color: white;
+}
+.sidemenugrad ion-label {
+    color: white;
+}
+
+.toolbar-ios-header .toolbar-background-ios, .toolbar-md-header .toolbar-background-md {
+    background: #76A7Ab;
+}
+
+.menu-toolbar .profile-image img{
+    float: left;
+    margin-left: 20px;
+    width: 70%;
+    color: white;
+}
+.lbl-proveedor{
+    color: white;
+    text-transform: uppercase;
+}
+.toolbar-title {
+    width: 75%;
+}
