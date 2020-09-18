@@ -24,7 +24,7 @@ cd platforms/android/
 cd ../..
 
 #Firmamos el bundle
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore homerprovider.keystore -storepass numu2k2020 ./platforms/android/app/build/outputs/bundle/release/app.aab homerprovider
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore homerprovider.keystore -storepass numu2k20 ./platforms/android/app/build/outputs/bundle/release/app.aab homerprovider
 
 #si existe eliminanos el bundle anterior (el bundle ya firmado)
 rm ./platforms/android/app/build/outputs/bundle/release/homerprovider.aab
