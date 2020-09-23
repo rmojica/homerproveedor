@@ -80,6 +80,7 @@ export class IframePage {
         this.lat = '';
         this.long = '';  
 
+
         platform.ready().then(() => {
           // const subscription = this.geolocation.watchPosition()
           //   .filter((p) => p.coords !== undefined) //Filter Out Errors
@@ -102,6 +103,21 @@ export class IframePage {
 
         });
     }
+
+    
+
+
+    ionViewDidEnter() {
+      // setTimeout(() => {
+      //     this.searchbar.setFocus();
+      // }, 0);
+      setTimeout(() => {
+        let yt = document.getElementsByName('iframeHomer');
+        console.log(yt);
+        // yt.setAttribute("style", " display: none");
+        // yt.style.display = "none";
+      }, 3000)
+  }
 
     ionSelected() {
       console.log("productlist Page has been selected");
