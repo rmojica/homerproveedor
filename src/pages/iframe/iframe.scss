@@ -396,3 +396,7 @@ button.swiper-pagination-bullet {
 .picker-ios .picker-button .button-inner, .picker-ios .picker-button.activated{
   color: black;
 }
+
+.myIframe #page > header, .myIframe #page > footer{
+  display: none;
+}

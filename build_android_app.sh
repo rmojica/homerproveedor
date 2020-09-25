@@ -24,18 +24,18 @@ cd platforms/android/
 cd ../..
 
 #Firmamos el bundle
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore hexchange.jks -storepass numu2k19 ./platforms/android/app/build/outputs/bundle/release/app.aab hexchange
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore homerprovider.keystore -storepass numu2k20 ./platforms/android/app/build/outputs/bundle/release/app.aab homerprovider
 
 #si existe eliminanos el bundle anterior (el bundle ya firmado)
-rm ./platforms/android/app/build/outputs/bundle/release/hexchange.aab
+rm ./platforms/android/app/build/outputs/bundle/release/homerprovider.aab
 
 #Por último realizamos el zipalign del bundle
-zipalign -v 4 ./platforms/android/app/build/outputs/bundle/release/app.aab ./platforms/android/app/build/outputs/bundle/release/hexchange.aab
+zipalign -v 4 ./platforms/android/app/build/outputs/bundle/release/app.aab ./platforms/android/app/build/outputs/bundle/release/homerprovider.aab
 
 
 
 #imprimimos el path en la consola
-echo "Bundle para Android creado correctamente en la siguiente dirección $CURRENT/platforms/android/app/build/outputs/bundle/release/hexchange.aab"
+echo "Bundle para Android creado correctamente en la siguiente dirección $CURRENT/platforms/android/app/build/outputs/bundle/release/homerprovider.aab"
 
 #intentamos abrir la carpeta donde se creó el bundle
 xdg-open ./platforms/android/app/build/outputs/bundle/release/
