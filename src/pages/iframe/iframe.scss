@@ -397,10 +397,6 @@ button.swiper-pagination-bullet {
   color: black;
 }
 
-.iframe-full .site-header{
-  display: none;
-}
-
-#iframeHomer .site-header{
+.myIframe #page > header, .myIframe #page > footer{
   display: none;
 }
