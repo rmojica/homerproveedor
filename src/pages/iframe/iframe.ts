@@ -7,6 +7,7 @@ import { ProductsPage } from '../products/products';
 import { SearchPage } from '../search/search';
 import { ProductPage } from '../product/product';
 import { Post } from '../post/post';
+import { Http } from '@angular/http'
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 // import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
@@ -62,6 +63,7 @@ export class IframePage {
     has_more_items: boolean = true;
     loading: boolean = true;
     constructor(
+        private http: Http,
         private platform: Platform,
         private geolocation: Geolocation,
         private nativeGeocoder: NativeGeocoder,    
@@ -107,17 +109,9 @@ export class IframePage {
     
 
 
-    ionViewDidEnter() {
-      // setTimeout(() => {
-      //     this.searchbar.setFocus();
-      // }, 0);
-      setTimeout(() => {
-        let yt = document.getElementsByName('iframeHomer');
-        console.log(yt);
-        // yt.setAttribute("style", " display: none");
-        // yt.style.display = "none";
-      }, 3000)
-  }
+    async ionViewDidEnter() {
+    
+    }
 
     ionSelected() {
       console.log("productlist Page has been selected");
