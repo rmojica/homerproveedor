@@ -103,6 +103,227 @@ var Values = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 105:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_search_service__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_category_service__ = __webpack_require__(71);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var SearchPage = /** @class */ (function () {
+    function SearchPage(nav, categoryService, service, values, params) {
+        this.nav = nav;
+        this.categoryService = categoryService;
+        this.service = service;
+        this.values = values;
+        this.has_more_items = true;
+        this.page = 1;
+        this.shouldShowCancel = true;
+        this.showSearch = true;
+        this.showFilters = false;
+        this.filter = {};
+        this.filter.page = 1;
+        this.count = 10;
+        this.offset = 0;
+        this.values.filter = {};
+        this.options = [];
+        this.quantity = "1";
+        this.myInput = "";
+    }
+    SearchPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.searchbar.setFocus();
+        }, 0);
+    };
+    SearchPage.prototype.ionViewWillLeave = function () {
+        // this.showSearch = false;
+    };
+    SearchPage.prototype.getCart = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__cart_cart__["a" /* CartPage */]);
+    };
+    SearchPage.prototype.onInput = function ($event) {
+        var _this = this;
+        this.filter['filter[q]'] = $event.srcElement.value;
+        this.values.filter = {};
+        this.service.getSearch(this.filter)
+            .then(function (results) { return _this.products = results; });
+    };
+    SearchPage.prototype.onCancel = function ($event) {
+        console.log('cancelled');
+    };
+    SearchPage.prototype.getProduct = function (item) {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__product_product__["a" /* ProductPage */], item);
+    };
+    SearchPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.filter.page += 1;
+        // this.page += 1;
+        this.service.getSearch(this.filter)
+            .then(function (results) { return _this.handleMore(results, infiniteScroll); });
+    };
+    SearchPage.prototype.handleMore = function (results, infiniteScroll) {
+        // if (results.products == undefined) {
+        //     console.log('No hay mas productos que mostrar...', results.products)
+        //     this.has_more_items = false
+        //     infiniteScroll.complete()
+        //     return
+        // }
+        console.log(results);
+        if (results != undefined) {
+            for (var i = 0; i < results.length; i++) {
+                this.products.push(results[i]);
+            }
+            ;
+        }
+        if (results.length == 0) {
+            this.has_more_items = false;
+        }
+        infiniteScroll.complete();
+    };
+    SearchPage.prototype.deleteFromCart = function (id) {
+        var _this = this;
+        this.service.deleteFromCart(id)
+            .then(function (results) { return _this.status = results; });
+    };
+    SearchPage.prototype.addToCart = function (id) {
+        var _this = this;
+        var text = '{';
+        var i;
+        for (i = 0; i < this.options.length; i++) {
+            var res = this.options[i].split(":");
+            text += '"' + res[0] + '":"' + res[1] + '",';
+        }
+        text += '"product_id":"' + id + '",';
+        text += '"quantity":"' + this.quantity + '"}';
+        var obj = JSON.parse(text);
+        this.service.addToCart(obj)
+            .then(function (results) { return _this.updateCart(results); });
+    };
+    SearchPage.prototype.updateCart = function (a) {
+    };
+    SearchPage.prototype.setListView = function () {
+        this.values.listview = true;
+    };
+    SearchPage.prototype.setGridView = function () {
+        this.values.listview = false;
+    };
+    SearchPage.prototype.updateToCart = function (id) {
+        var _this = this;
+        this.service.updateToCart(id)
+            .then(function (results) { return _this.status = results; });
+    };
+    //Filter shit
+    SearchPage.prototype.getFilter = function () {
+        this.showFilters = true;
+        this.has_more_items = false;
+    };
+    SearchPage.prototype.cancel = function () {
+        this.showFilters = false;
+        this.has_more_items = true;
+    };
+    SearchPage.prototype.chnageFilter = function (sort) {
+        var _this = this;
+        this.showFilters = false;
+        this.has_more_items = true;
+        this.filter.page = 1;
+        // if (sort == 0) {
+        //   this.filter['filter[order]'] = 'ASC'
+        //   this.filter['filter[orderby]'] = 'date'
+        // }
+        // if (sort == 1) {
+        //   this.filter['filter[order]'] = 'ASC'
+        //   this.filter['filter[orderby]'] = 'name'
+        // } else if (sort == 2) {
+        //   this.filter['filter[order]'] = 'DESC'
+        //   this.filter['filter[orderby]'] = 'name'
+        // } else if (sort == 3) {
+        //   this.filter['filter[order]'] = 'ASC'
+        //   this.filter['filter[orderby]'] = 'meta_value_num'
+        //   this.filter['filter[orderby_meta_key]'] = '_price'
+        // } else if (sort == 4) {
+        //   this.filter['filter[order]'] = 'DESC'
+        //   this.filter['filter[orderby]'] = 'meta_value_num'
+        //   this.filter['filter[orderby_meta_key]'] = '_price'
+        // }
+        // FILTROS SHIT EN FUNCION
+        if (sort == 5) {
+            this.filter['orderby'] = 'menu_order';
+        }
+        else if (sort == 6) {
+            this.filter['orderby'] = 'popularity';
+        }
+        else if (sort == 7) {
+            this.filter['orderby'] = 'rating';
+        }
+        else if (sort == 8) {
+            this.filter['orderby'] = 'date';
+            this.filter['order'] = 'asc';
+        }
+        else if (sort == 9) {
+            this.filter['orderby'] = 'date';
+            this.filter['order'] = 'desc';
+        }
+        else if (sort == 10) {
+            this.filter['orderby'] = 'price';
+            this.filter['order'] = 'asc';
+        }
+        else if (sort == 11) {
+            this.filter['orderby'] = 'price';
+            this.filter['order'] = 'desc';
+        }
+        else if (sort == 12) {
+            this.filter['orderby'] = 'title';
+            this.filter['order'] = 'asc';
+        }
+        else if (sort == 13) {
+            this.filter['orderby'] = 'title';
+            this.filter['order'] = 'desc';
+        }
+        /*this.filter['filter[meta_query][key]'] = "_price";
+            this.filter['filter[meta_query][value]'] = '[0,10]';
+            this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
+        this.categoryService.load(this.filter).then(function (results) { return (_this.products = results); });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Searchbar"]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Searchbar"])
+    ], SearchPage.prototype, "searchbar", void 0);
+    SearchPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\search\search.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-searchbar *ngIf="showSearch" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"\n\n      (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">\n\n    </ion-searchbar>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="search">\n\n\n\n  <div *ngIf="showFilters" class="filter">\n\n    <ion-list radio-group [(ngModel)]="sort" (ngModelChange)="chnageFilter(sort)">\n\n      <ion-list-header>\n\n        <b>\n\n          {{"Sort" | translate}}\n\n        </b>\n\n      </ion-list-header>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Default" | translate}}</ion-label>\n\n        <ion-radio value="5"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by popularity" | translate}}</ion-label>\n\n        <ion-radio value="6"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by average rating" | translate}}</ion-label>\n\n        <ion-radio value="7"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: ASC" | translate}}</ion-label>\n\n        <ion-radio value="8"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: DESC" | translate}}</ion-label>\n\n        <ion-radio value="9"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: low to high" | translate}}</ion-label>\n\n        <ion-radio value="10"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: high to low" | translate}}</ion-label>\n\n        <ion-radio value="11"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: ASC" | translate}}</ion-label>\n\n        <ion-radio value="12"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: DESC" | translate}}</ion-label>\n\n        <ion-radio value="13"></ion-radio>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button block color="button-color" (click)="cancel()">\n\n      {{"CANCEL" | translate}}\n\n    </button>\n\n  </div>\n\n  <div *ngIf="!showFilters">\n\n    <div *ngIf="products" class="products-search">\n\n      <h2 *ngIf="!products.length" style="font-size: 15px;text-align: center;margin-top: 30px">No products found!.</h2>\n\n      <div *ngIf="products.length">\n\n        <div *ngIf="values.listview">\n\n          <ion-item no-lines class="item-name">\n\n            <ion-label text-uppercase>{{"Providers" | translate}}\n\n            </ion-label>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="getFilter()">\n\n              <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="setGridView()">\n\n              <ion-icon ios="ios-grid" md="md-grid">\n\n              </ion-icon>\n\n            </button>\n\n          </ion-item>\n\n          <ion-list *ngIf="products">\n\n            <div class="item-list" *ngFor="let item of products">\n\n              <ion-item no-lines class="price-list">\n\n                <ion-thumbnail item-left class="stock-list">\n\n                  <a (click)="getProduct(item)">\n\n                    <img [style.height.rem]="values.dimensions.imageListViewHeight" src="{{item.images[0].src}}">\n\n                    <button ion-button color="danger"\n\n                      *ngIf="item.stock_status !== \'instock\'">{{"OUTOFSTOCK" | translate}}\n\n                    </button>\n\n                  </a>\n\n                </ion-thumbnail>\n\n                <a (click)="getProduct(item)">\n\n                  <div class="product-name-top">\n\n                    <h2>{{item.title}}\n\n                    </h2>\n\n                    <h2 *ngIf="item.name">{{item.name}}</h2>\n\n                    <p class="max-lines" [innerHTML]="item.description">\n\n                    </p>\n\n                  </div>\n\n                  <div class="bottom-left">\n\n                    <h3 class="price-regular" *ngIf="!item.sale_price">\n\n                      {{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-special" *ngIf="item.sale_price">\n\n                      {{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-del" *ngIf="item.sale_price">\n\n                      <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n\n                      </del>\n\n                    </h3>\n\n                  </div>\n\n                </a>\n\n                <div class="bottom-right-button">\n\n                  <!-- <button ion-button text-uppercase color="button-color" item-right outline *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n\n                  {{"Add" | translate}}\n\n                </button> -->\n\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                    (click)="deleteFromCart(item.id)">\n\n                    <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">\n\n                    </ion-icon>\n\n                  </button>\n\n                  <button ion-button item-right color="button-color" clear\n\n                    *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n\n                  </button>\n\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                    (click)="updateToCart(item.id)">\n\n                    <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">\n\n                    </ion-icon>\n\n                  </button>\n\n                  <button ion-button text-uppercase color="button-color" item-right [disabled]=\'disableSubmit\' clear\n\n                    *ngIf="item.stock_status !== \'instock\' && values.cart[item.id] == undefined || values.cart[item.id] == 0"\n\n                    (click)="addToCart(item.id, item.type)">\n\n                    {{button}}\n\n                  </button>\n\n                </div>\n\n              </ion-item>\n\n            </div>\n\n          </ion-list>\n\n        </div>\n\n        <div *ngIf="!values.listview">\n\n          <ion-item no-lines class="item-name">\n\n            <ion-label text-uppercase>{{"Providers" | translate}}\n\n            </ion-label>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="getFilter()">\n\n              <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="setListView()">\n\n              <ion-icon ios="ios-list-box" md="ios-list-box">\n\n              </ion-icon>\n\n            </button>\n\n          </ion-item>\n\n          <div class="card-background-page grid" *ngIf="products">\n\n            <ion-row class="row unlimited-items">\n\n              <ion-col class="col" *ngFor="let item of products">\n\n                <ion-card>\n\n                  <ion-card-content class="stock">\n\n                    <a (click)="getProduct(item)">\n\n                      <img [style.height.px]="values.dimensions.imageGridViewHeight" src="{{item.images[0].src}}">\n\n                      <button ion-button color="danger"\n\n                        *ngIf="item.stock_status !== \'instock\'">{{"OUTOFSTOCK" | translate}}\n\n                      </button>\n\n                    </a>\n\n                  </ion-card-content>\n\n                  <ion-label class="product-label">{{item.title}}\n\n                  </ion-label>\n\n                  <h2 *ngIf="item.name">{{item.name}}</h2>\n\n                  <ion-item no-padding class="price-list">\n\n                    <h3 class="price-regular" *ngIf="!item.sale_price">\n\n                      {{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-special" *ngIf="item.sale_price">\n\n                      {{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-delete" *ngIf="item.sale_price">\n\n                      <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n\n                      </del>\n\n                    </h3>\n\n                    <button ion-button text-uppercase color="button-color" item-right [disabled]=\'disableSubmit\' clear\n\n                      *ngIf="item.stock_status !== \'instock\' && values.cart[item.id] == undefined || values.cart[item.id] == 0"\n\n                      (click)="addToCart(item.id, item.type)">\n\n                      {{button}}\n\n                    </button>\n\n                    <!-- <button ion-button text-uppercase color="button-color" item-right clear *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n\n                    {{"Add" | translate}}\n\n                  </button> -->\n\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                      (click)="deleteFromCart(item.id)">\n\n                      <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">\n\n                      </ion-icon>\n\n                    </button>\n\n                    <button ion-button item-right color="button-color" clear\n\n                      *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n\n                    </button>\n\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                      (click)="updateToCart(item.id)">\n\n                      <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">\n\n                      </ion-icon>\n\n                    </button>\n\n                  </ion-item>\n\n                </ion-card>\n\n              </ion-col>\n\n            </ion-row>\n\n          </div>\n\n        </div>\n\n      </div>\n\n    </div>\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n\n      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{\'Loading more items..\' | translate}}">\n\n      </ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\search\search.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"],
+            __WEBPACK_IMPORTED_MODULE_6__providers_service_category_service__["a" /* CategoryService */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_search_service__["a" /* SearchService */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
+    ], SearchPage);
+    return SearchPage;
+}());
+
+//# sourceMappingURL=search.js.map
+
+/***/ }),
+
 /***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -114,7 +335,7 @@ var Values = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__forgotten_forgotten__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__account_test_test__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__iframe_iframe__ = __webpack_require__(182);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -195,7 +416,6 @@ var AccountLogin = /** @class */ (function () {
             }
             else {
                 console.log('entro subscription:', this.values.isLoggedIn);
-                // this.nav.setRoot(TabsPage);
                 this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_8__iframe_iframe__["a" /* IframePage */]);
             }
         }
@@ -296,12 +516,12 @@ var AccountLogin = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__products_products__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__search_search__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__post_post__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_service_category_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__products_products__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__search_search__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__post_post__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_service_category_service__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_in_app_browser__ = __webpack_require__(169);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -558,7 +778,7 @@ var test = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__booking_details_booking_details__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(94);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -706,7 +926,7 @@ var BookingVendor = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(291);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin__);
@@ -1134,11 +1354,11 @@ var OrderSummary = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_service_category_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_service_category_service__ = __webpack_require__(71);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1369,14 +1589,10 @@ var Home = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_http__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_geolocation_ngx__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_native_geocoder__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tabs_tabs__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation_ngx__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_native_geocoder__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__tabs_tabs__ = __webpack_require__(78);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1386,45 +1602,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
 
 
 
@@ -1456,12 +1633,6 @@ var IframePage = /** @class */ (function () {
         this.miLongitude = 0;
         this.has_more_items = true;
         this.loading = true;
-        this.mySlideOptions = {
-            initialSlide: 1,
-            loop: true,
-            autoplay: 5800,
-            pager: true
-        };
         this.items = [];
         this.options = [];
         this.service.getProducts();
@@ -1493,325 +1664,82 @@ var IframePage = /** @class */ (function () {
             });
         });
     }
+    IframePage.prototype.ngAfterViewInit = function () {
+        //   const iframDoc = this.myIframe.nativeElement.contentWindow.document;
+        //  console.log(iframDoc)
+        // // iframDoc.head.appendChild('style.css');
+        // var z = document.createElement('p'); // is a node
+        // z.innerHTML = 'test satu dua tiga';
+        // document.body.appendChild(z);
+        // iframDoc.head.innerHTML = '<style type="text/css" id="wp-custom-css-fuck">.site-header .header-main .site-title img{display: none;}.mierda{display:none}</style>';
+        // //document.body.appendChild(z);
+        // iframDoc.head.appendChild(z);
+        // const iframDoc = this.myIframe.nativeElement.contentWindow.document;
+        // // var elmnt = iframe.nativeElement.contentWindow.document.getElementsByClassName("w3schools-logo")[0];
+        // let floorElements = this.myIframe.nativeElement.contentWindow.document.getElementsByClassName("header-main") as HTMLCollectionOf<HTMLElement>;
+        // var cssLink = document.createElement("link") 
+        // cssLink.href = "file://path/to/style.css"; 
+        // cssLink .rel = "stylesheet"; 
+        // cssLink .type = "text/css"; 
+        // cssLink .id = "mierda"; 
+        // iframDoc.head.innerHTML = cssLink;
+        // console.log(iframDoc)
+        // let iframe = document.getElementById("myIframe");
+        // console.log(iframe) 
+        // let element = (<HTMLIFrameElement>iframe).contentWindow.document.getElementsByTagName("h1")[0];
+        // console.log(element)
+    };
     IframePage.prototype.ionViewDidEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
+        // setTimeout(() => {
+        //     this.searchbar.setFocus();
+        // }, 0);
+        setTimeout(function () {
+            // let iframe = document.getElementById("myIframe");
+            // // let iframeWindow = (<HTMLIFrameElement>iframe).contentWindow;
+            // let iframeDocument = (<HTMLIFrameElement>iframe);
+            // let iframeHeader = iframeDocument.querySelectorAll
+            //  //iframeHeader.textContent = "hola mundo";
+            // console.log('iframeDocument:',iframeDocument)
+            // console.log('iframeHeader:',iframeHeader)
+            // var cssLink = document.createElement("style") 
+            // cssLink .id = "mierda"; 
+            // cssLink.innerHTML = '.header-main{display:none!important}';
+            // console.log('meh:',iframeDocument.appendChild(cssLink))
+        }, 3000);
     };
     IframePage.prototype.ionSelected = function () {
         console.log("productlist Page has been selected");
         // do your stuff here
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__tabs_tabs__["a" /* TabsPage */]);
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_7__tabs_tabs__["a" /* TabsPage */]);
         this.pageTop.scrollToTop();
     };
     IframePage.prototype.gohome = function () {
         this.nav.parent.select(0);
     };
-    IframePage.prototype.getCart = function () {
-        this.nav.parent.select(2);
-    };
-    IframePage.prototype.clickSearch = function () {
-        this.autocompleteCat.input = ' ';
-        this.getItemsCat();
-        console.log(this.autocompleteCat.input);
-    };
-    IframePage.prototype.doRefresh = function (refresher) {
-        var _this = this;
-        this.service.load().then(function (results) {
-            _this.handleService(results);
-            refresher.complete();
-        });
-    };
-    IframePage.prototype.handleService = function (results) {
-        // 
-    };
-    IframePage.prototype.getCategory = function (id, slug, name) {
-        this.items.id = id;
-        this.items.slug = slug;
-        this.items.name = name;
-        this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
-    };
-    IframePage.prototype.presentToastLoginAlert = function () {
-        var toast = this.toastCtrl.create({
-            message: 'You must login to add item to wishlist',
-            duration: 1000,
-            position: 'bottom'
-        });
-        toast.present();
-    };
-    IframePage.prototype.addToWishlist = function (id) {
-        var _this = this;
-        if (this.values.isLoggedIn) {
-            this.values.wishlistId[id] = true;
-            this.service.addToWishlist(id).then(function (results) { return _this.update(results, id); });
-        }
-        else {
-            this.presentToastLoginAlert();
-        }
-    };
-    IframePage.prototype.update = function (results, id) {
-        if (results.success == "Success") {
-            this.values.wishlistId[id] = true;
-        }
-        else { }
-    };
-    IframePage.prototype.removeFromWishlist = function (id) {
-        var _this = this;
-        this.values.wishlistId[id] = false;
-        this.service.deleteItem(id).then(function (results) { return _this.updateWish(results, id); });
-    };
-    IframePage.prototype.updateWish = function (results, id) {
-        if (results.status == "success") {
-            this.values.wishlistId[id] = false;
-        }
-    };
-    IframePage.prototype.getSearch = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__search_search__["a" /* SearchPage */]);
-    };
-    IframePage.prototype.getId = function () {
-        var i;
-        if (this.options.length >= 1)
-            var resa = this.options[0].split(":");
-        if (this.options.length >= 2)
-            var resb = this.options[1].split(":");
-        if (this.options.length >= 1)
-            for (i = 0; i < this.product.product.variations.length; i++) {
-                if (this.product.product.variations[i].attributes[0].option == resa[1]) {
-                    if (this.options.length == 1) {
-                        break;
-                    }
-                    else if (this.product.product.variations[i].attributes[1].option == resb[1]) {
-                        break;
-                    }
-                }
-            }
-    };
-    IframePage.prototype.goto = function (data) {
-        var _this = this;
-        if (data.description == "product") {
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], data.url);
-        }
-        else if (data.description == "category") {
-            this.items.id = data.url;
-            this.items.name = data.title;
-            this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(_this.items.id); });
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
-        }
-        else if (data.description == "post") {
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_7__post_post__["a" /* Post */], data.url);
-        }
-    };
-    IframePage.prototype.doInfinite = function (infiniteScroll) {
-        var _this = this;
-        this.service.loadMore().then(function (results) { return _this.handleMore(results, infiniteScroll); });
-    };
-    IframePage.prototype.handleMore = function (results, infiniteScroll) {
-        if (!results) {
-            this.has_more_items = false;
-        }
-        infiniteScroll.complete();
-    };
-    IframePage.prototype.getProduct = function (item) {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], item);
-    };
-    IframePage.prototype.hideLoading = function () {
-        this.loading = false;
-    };
-    IframePage.prototype.getSubCategories = function (id) {
-        var results = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
-        return results;
-    };
-    IframePage.prototype.getAddressFromCoords = function () {
-        var _this = this;
-        console.log("getAddressFromCoords " + this.miLatitude + " " + this.miLongitude);
-        var options = {
-            useLocale: true,
-            maxResults: 5
-        };
-        this.nativeGeocoder.reverseGeocode(this.miLatitude, this.miLongitude, options)
-            .then(function (result) {
-            console.log(JSON.stringify(result[0]));
-            _this.autocomplete.input = result[0].locality + ', ' + result[0].administrativeArea + ', ' + result[0].countryName;
-        })
-            .catch(function (error) {
-            _this.address = "Address Not Available!";
-            console.log(error);
-        });
-        this.lat = this.miLatitude.toString();
-        this.long = this.miLongitude.toString();
-        // this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
-        //   .then((result: NativeGeocoderReverseResult[]) => {
-        //     this.address = "";
-        //     let responseAddress = [];
-        //     // for (let [key, value] of Object.entries(result[0])) {
-        //     //   if(value.length>0)
-        //     //   responseAddress.push(value); 
-        //     // }
-        //     responseAddress.reverse();
-        //     for (let value of responseAddress) {
-        //       this.address += value+", ";
-        //     }
-        //     this.address = this.address.slice(0, -2);
-        //   })
-        //   .catch((error: any) =>{ 
-        //     this.address = "Address Not Available!";
-        //   }); 
-    };
-    IframePage.prototype.getCoordsFromAddress = function (Adrress) {
-        var _this = this;
-        console.log("getCoordsFromAddress " + Adrress);
-        var options = {
-            useLocale: true,
-            maxResults: 5
-        };
-        this.nativeGeocoder.forwardGeocode(Adrress, options)
-            .then(function (result) {
-            console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude);
-            _this.lat = result[0].latitude;
-            _this.long = result[0].longitude;
-        })
-            .catch(function (error) { return console.log(error); });
-    };
-    //FUNCTION SHOWING THE COORDINATES OF THE POINT AT THE CENTER OF THE MAP
-    IframePage.prototype.ShowCords = function () {
-        alert('lat' + this.lat + ', long' + this.long);
-    };
-    //AUTOCOMPLETE, SIMPLY LOAD THE PLACE USING GOOGLE PREDICTIONS AND RETURNING THE ARRAY.
-    IframePage.prototype.UpdateSearchResults = function () {
-        var _this = this;
-        if (this.autocomplete.input == '') {
-            this.autocompleteItems = [];
-            this.lat = '';
-            this.long = '';
-            this.HiddenList = false;
-            this.HideBtnSearch = false;
-            this.HideRadius = false;
-            return;
-        }
-        this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-        this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input, types: ['(cities)'], componentRestrictions: { country: 'es' } }, function (predictions, status) {
-            _this.autocompleteItems = [];
-            _this.zone.run(function () {
-                predictions.forEach(function (prediction) {
-                    _this.autocompleteItems.push(prediction);
-                    _this.HiddenList = true;
-                    _this.HideBtnSearch = true;
-                    _this.HideRadius = true;
-                });
-            });
-        });
-    };
-    //wE CALL THIS FROM EACH ITEM.
-    IframePage.prototype.SelectSearchResult = function (item) {
-        ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
-        // alert(JSON.stringify(item))      
-        this.placeid = item.place_id;
-        this.autocomplete.input = item.description;
-        var description;
-        description = item.description;
-        this.getCoordsFromAddress(description);
-        this.HiddenList = false;
-        this.HideBtnSearch = false;
-        this.HideRadius = false;
-    };
-    //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
-    IframePage.prototype.ClearAutocomplete = function () {
-        this.autocompleteItems = [];
-        this.autocomplete.input = '';
-        this.HideBtnSearch = false;
-        this.HideRadius = false;
-        this.lat = '';
-        this.long = '';
-    };
-    //sIMPLE EXAMPLE TO OPEN AN URL WITH THE PLACEID AS PARAMETER.
-    IframePage.prototype.GoTo = function () {
-        return window.location.href = 'https://www.google.com/maps/search/?api=1&query=Google&query_place_id=' + this.placeid;
-    };
-    IframePage.prototype.ClearAutocompleteCat = function () {
-        this.itemsCategory = [];
-        this.items = [];
-        this.autocompleteCat.input = '';
-        this.HiddenSearchLocation = false;
-        this.HideBtnSearch = false;
-        this.HideRadius = false;
-    };
-    IframePage.prototype.SelectSearchResultCat = function (item) {
-        ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
-        // alert(JSON.stringify(item))      
-        this.autocompleteCat.input = item.name;
-        this.selectedCategory = item.slug;
-        this.items.id = item.id;
-        this.items.slug = item.slug;
-        this.items.name = item.name;
-        this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(item.id); });
-        this.HiddenListCat = false;
-        this.HiddenSearchLocation = false;
-        this.HideBtnSearch = false;
-        this.HideRadius = false;
-    };
-    IframePage.prototype.getItemsCat = function () {
-        // const target = ev.target as HTMLTextAreaElement;
-        // let val = target.value;
-        var _this = this;
-        if (this.autocompleteCat.input == '') {
-            this.itemsCategory = [];
-            this.HiddenListCat = false;
-            this.HiddenSearchLocation = false;
-            this.HideBtnSearch = false;
-            this.HideRadius = false;
-            this.items = [];
-            return;
-        }
-        this.itemsCategory = this.service.mainCategories;
-        // if the value is an empty string don't filter the items
-        // if (this.autocompleteCat.input && this.autocompleteCat.input.trim() != '') {
-        console.log('entra');
-        this.HiddenListCat = true;
-        this.HiddenSearchLocation = true;
-        this.HideBtnSearch = true;
-        this.HideRadius = true;
-        this.itemsCategory = this.itemsCategory.filter(function (itemsCategory) {
-            return (itemsCategory.name.toLowerCase().indexOf(_this.autocompleteCat.input.toLowerCase()) > -1);
-        });
-        // }
-    };
-    IframePage.prototype.searchProduct = function () {
-        var _this = this;
-        this.items.productslocation = '';
-        if (this.radius > 0 && this.lat != '' && this.long != '') {
-            var midata = this.service.getLocationFromProduct(this.lat, this.long, this.radius)
-                .then(function (results) { return _this.handleLocationInit(results); });
-        }
-        else {
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
-            console.log(this.miLatitude);
-            //console.log("original=" + this.originalCoords + this.originalCoords.latitude + this.originalCoords.longitude);
-        }
-    };
-    IframePage.prototype.handleLocationInit = function (results) {
-        var dataResult = results;
-        this.items.productslocation = dataResult;
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
-    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
     ], IframePage.prototype, "mapContainer", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('pageTop'),
-        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Content"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Content"]) === "function" && _b || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Content"])
     ], IframePage.prototype, "pageTop", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('myIframe'),
+        __metadata("design:type", Object)
+    ], IframePage.prototype, "myIframe", void 0);
     IframePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "page-iframe",template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\iframe\iframe.html"*/'<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title >\n\n      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content #pageTop>\n\n  <!-- https://dev.digitalfactory.tech/demos/homer/wp-admin/admin-ajax.php?action=mstoreapp-redirectToDashboard&username=bonod49459?showElement=false -->\n\n \n\n  <iframe id="iframeHomer" class="iframe-full" src="https://dev.digitalfactory.tech/demos/homer/dashboard?showElement=false" style="height: 100%; width: 100%;" #myIframe></iframe>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\iframe\iframe.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__angular_http__["b" /* Http */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_native_geolocation_ngx__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_native_geolocation_ngx__["a" /* Geolocation */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_native_geocoder__["a" /* NativeGeocoder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_native_geocoder__["a" /* NativeGeocoder */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]) === "function" && _l || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation_ngx__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
     ], IframePage);
     return IframePage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 }());
 
 //# sourceMappingURL=iframe.js.map
@@ -1828,8 +1756,8 @@ var IframePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_wishlist_service__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cart_cart__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2076,7 +2004,7 @@ var EditAddressForm = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2191,11 +2119,11 @@ var OrderDetails = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_http__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_http__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3073,7 +3001,7 @@ var Functions = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3290,7 +3218,7 @@ var CartService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__order_summary_order_summary__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__terms_condition_terms_condition__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(69);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3646,7 +3574,7 @@ var Config = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__values__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3783,7 +3711,7 @@ var SearchService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(8);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3933,7 +3861,165 @@ var ProductService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 40:
+/***/ 47:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CartPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_cart_service__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkout_billing_address_form_billing_address_form__ = __webpack_require__(290);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var CartPage = /** @class */ (function () {
+    function CartPage(nav, service, values, params, functions) {
+        this.nav = nav;
+        this.service = service;
+        this.values = values;
+        this.params = params;
+        this.functions = functions;
+        this.addProduct = true;
+        this.disableSubmit = false;
+        this.buttonCoupon = false;
+        this.disableSubmitCoupon = false;
+        this.Apply = "Apply";
+        this.Checkout = "Checkout";
+        this.quantity = 1;
+        this.options = [];
+        this.obj = params.data;
+    }
+    CartPage.prototype.gohomep = function () {
+        this.nav.parent.select(0);
+    };
+    CartPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.service.loadCart()
+            .then(function (results) { return _this.handleCartInit(results); });
+    };
+    CartPage.prototype.handleCartInit = function (results) {
+        this.cart = results;
+        this.shipping = results.zone_shipping;
+        this.chosen_shipping = results.chosen_shipping;
+    };
+    CartPage.prototype.handleCart = function (results) {
+        this.cart = results;
+    };
+    CartPage.prototype.delete = function (key) {
+        var _this = this;
+        this.service.deleteItem(key)
+            .then(function (results) { return _this.handleCart(results); });
+    };
+    CartPage.prototype.checkout = function () {
+        var _this = this;
+        this.disableSubmit = true;
+        this.Checkout = "PleaseWait";
+        this.service.checkout()
+            .then(function (results) { return _this.handleBilling(results); });
+    };
+    CartPage.prototype.handleBilling = function (results) {
+        this.disableSubmit = false;
+        this.Checkout = "Checkout";
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__checkout_billing_address_form_billing_address_form__["a" /* BillingAddressForm */], results);
+    };
+    CartPage.prototype.deleteFromCart = function (id, key) {
+        var _this = this;
+        if (Object.keys(this.cart.cart_contents).length == 1) {
+            if (this.cart.cart_contents[key].quantity == 1) {
+                this.cart.cart_contents = {};
+                console.log(this.cart);
+            }
+            ;
+        }
+        this.service.deleteFromCart(id, key)
+            .then(function (results) { return _this.handleCart(results); });
+    };
+    CartPage.prototype.addToCart = function (id, key) {
+        var _this = this;
+        this.service.addToCart(id, key)
+            .then(function (results) { return _this.handleCart(results); });
+    };
+    CartPage.prototype.updateCart = function (results) {
+        var _this = this;
+        this.service.loadCart()
+            .then(function (results) { return _this.handleCart(results); });
+    };
+    CartPage.prototype.handleAddToCart = function (results) {
+        var _this = this;
+        this.service.loadCart()
+            .then(function (results) { return _this.handleCart(results); });
+    };
+    CartPage.prototype.submitCoupon = function () {
+        var _this = this;
+        if (this.cart.coupon != undefined) {
+            this.disableSubmitCoupon = true;
+            this.Apply = "Apply";
+            this.service.submitCoupon(this.cart.coupon)
+                .then(function (results) { return _this.handleCoupon(results); });
+        }
+    };
+    CartPage.prototype.removeCoupon = function () {
+        var _this = this;
+        this.service.removeCoupon(this.cart.applied_coupons)
+            .then(function (results) { return _this.handleCoupon(results); });
+    };
+    CartPage.prototype.handleCoupon = function (results) {
+        var _this = this;
+        console.log(results);
+        this.disableSubmitCoupon = false;
+        this.Apply = "Apply";
+        this.functions.showAlert("STATUS", results._body);
+        this.service.loadCart()
+            .then(function (results) { return _this.handleCart(results); });
+    };
+    CartPage.prototype.handleResults = function (a) {
+        if (a.message.status == 'success') {
+            this.functions.showAlert(a.message.status, a.message.text);
+        }
+        else {
+            this.functions.showAlert(a.message.status, a.message.text);
+        }
+    };
+    CartPage.prototype.updateShipping = function (method) {
+        var _this = this;
+        this.chosen_shipping = method;
+        this.service.updateShipping(method)
+            .then(function (results) { return _this.handleShipping(results); });
+    };
+    CartPage.prototype.gohome = function () {
+        this.nav.parent.select(1);
+    };
+    CartPage.prototype.handleShipping = function (results) {
+        this.cart = results;
+    };
+    CartPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\cart\cart.html"*/'<!-- <ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"Cart"| translate}}\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only light class="has-icon icon-only has-badge">\n\n        <ion-icon name="md-basket" class="item-icon">\n\n        </ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count">{{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <img (click)="gohomep();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="cart">\n\n  <ion-spinner *ngIf="!cart" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="cart">\n\n        <div class="empty" *ngIf="cart.cart_contents.length == 0"> \n\n            <ion-icon name="md-basket"></ion-icon>\n\n            <h4 color="side-heading-color" text-center no-lines>{{"Your cart is empty" | translate}}!</h4>\n\n            <h5 text-center no-lines>{{"Add some products available in our menu to checkout" | translate}}</h5> \n\n            <button ion-button class="butt" item-center medium color="button-color" text-uppercase (click)="gohome()">{{"Continue Booking" | translate}}</button> \n\n        </div>\n\n    <div *ngIf="cart?.cart_contents">\n\n\n\n      <div class="cart-items">\n\n      <ion-list>\n\n        <div class="cart-list" *ngFor="let item of cart.cart_contents | keys">\n\n          <ion-item no-lines *ngIf="item.value.quantity != 0">\n\n            <ion-thumbnail item-left>\n\n              <img src="{{item.value.thumb}}">\n\n            </ion-thumbnail>\n\n            <h2 wrap-text>{{item.value.name}}\n\n            </h2>\n\n            <h3 wrap-text > {{"Price" | translate}}: {{item.value.price | currency:values.currency:true:\'1.2-2\'}}\n\n            </h3>\n\n            <h3 wrap-text> {{"Totals" | translate}}: {{1*item.value.line_subtotal | currency:values.currency:true:\'1.2-2\'  }}\n\n            </h3>\n\n            <a (click)="delete( item.key )">\n\n              <ion-icon name="trash">\n\n              </ion-icon>\n\n            </a>\n\n            <!-- <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="deleteFromCart(item.value.product_id, item.key)">\n\n              <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">\n\n              </ion-icon>\n\n            </button>\n\n            <button ion-button item-right color="button-color" clear>{{item.value.quantity}}\n\n            </button>\n\n            <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="addToCart(item.value.product_id, item.key)">\n\n              <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">\n\n              </ion-icon>\n\n            </button> -->\n\n          </ion-item>\n\n        </div>\n\n      </ion-list>\n\n      </div>\n\n\n\n      <div *ngIf="cart.cart_contents.length != 0">\n\n        <ion-list *ngIf="shipping" no-margin text-wrap radio-group [(ngModel)]="chosen_shipping" (ngModelChange)="updateShipping(chosen_shipping)" class="shipping-methods">\n\n          <ion-item-divider>\n\n            <h2>{{"Select shipping method" | translate}}\n\n            </h2>\n\n          </ion-item-divider>\n\n          <ion-item *ngFor="let method of shipping | keys" >\n\n            <ion-label>{{method.value.method_title}} \n\n              <span *ngIf="method.value.cost">{{ 1*method.value.cost | currency:values.currency:true:\'1.2-2\'}}\n\n              </span> \n\n            </ion-label>\n\n            <ion-radio value="{{method.value.id + \':\' + method.value.instance_id}}" >\n\n            </ion-radio>\n\n          </ion-item>\n\n        </ion-list>\n\n\n\n        <form #f="ngForm" class="coupon">\n\n          <ion-item>\n\n            <ion-label>{{"Coupon Code" | translate}}</ion-label>\n\n            <ion-input type="text" [(ngModel)]="cart.coupon" name="coupon">\n\n            </ion-input>\n\n            <h2 item-right>\n\n              <button ion-button color="button-color" block type="submit" text-uppercase [disabled]=\'disableSubmitCoupon\' (click)="submitCoupon()"> {{Apply | translate}}\n\n              </button>\n\n            </h2>\n\n          </ion-item>\n\n        </form>\n\n\n\n        <ion-list class="totals" *ngIf="cart.cart_totals">\n\n          <!--ion-item-divider>\n\n            <h2>{{"Totals" | translate}}\n\n            </h2>\n\n          </ion-item-divider-->\n\n          <ion-row>\n\n            <ion-col width-75>\n\n              <ion-label>{{"SubTotal" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.subtotal | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>  \n\n\n\n          <ion-row *ngIf="cart.cart_totals.cart_contents_total != 0">\n\n            <ion-col width-75>\n\n              <ion-label>{{"Subtotal ex tax" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.cart_contents_total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>  \n\n\n\n          <ion-row *ngIf="cart.cart_totals.tax_total != 0">\n\n            <ion-col width-75>\n\n              <ion-label>{{"Tax total" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.total_tax | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n          <ion-row *ngIf="cart.cart_totals.discount_total && cart.cart_totals.discount_total != 0"> \n\n            <ion-col width-75 class="remove-coupon">\n\n              <ion-label>{{"Coupons" | translate}} - {{cart.applied_coupons}} \n\n                <a (click)="removeCoupon()"> (Remove)\n\n                </a>\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>- {{1*cart.cart_totals.discount_total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n          <ion-row *ngIf="cart.cart_totals.shipping_total != 0"> \n\n            <ion-col width-75>\n\n              <ion-label>{{"Shipping" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label >{{1*cart.cart_totals.shipping_total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n          <ion-row>\n\n            <ion-col width-75>\n\n              <ion-label>\n\n                <b> {{"Grand Total" | translate}}\n\n                </b>\n\n              </ion-label>\n\n            </ion-col >\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n        </ion-list>\n\n        \n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<div *ngIf="cart">\n\n  <ion-footer *ngIf="cart.cart_contents.length != 0" class="footer-cart">\n\n    <button style="font-weight: 600;" ion-button color="button-color" text-uppercase [disabled]=\'disableSubmit\' (click)="checkout()">{{Checkout | translate}}\n\n    </button>\n\n  </ion-footer>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\cart\cart.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_cart_service__["a" /* CartService */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__["a" /* Functions */]])
+    ], CartPage);
+    return CartPage;
+}());
+
+//# sourceMappingURL=cart.js.map
+
+/***/ }),
+
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3944,10 +4030,10 @@ var ProductService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__md5__ = __webpack_require__(858);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cart_cart__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cart_cart__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(94);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4326,164 +4412,6 @@ var ProductPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 48:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CartPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_cart_service__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkout_billing_address_form_billing_address_form__ = __webpack_require__(290);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var CartPage = /** @class */ (function () {
-    function CartPage(nav, service, values, params, functions) {
-        this.nav = nav;
-        this.service = service;
-        this.values = values;
-        this.params = params;
-        this.functions = functions;
-        this.addProduct = true;
-        this.disableSubmit = false;
-        this.buttonCoupon = false;
-        this.disableSubmitCoupon = false;
-        this.Apply = "Apply";
-        this.Checkout = "Checkout";
-        this.quantity = 1;
-        this.options = [];
-        this.obj = params.data;
-    }
-    CartPage.prototype.gohomep = function () {
-        this.nav.parent.select(0);
-    };
-    CartPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.service.loadCart()
-            .then(function (results) { return _this.handleCartInit(results); });
-    };
-    CartPage.prototype.handleCartInit = function (results) {
-        this.cart = results;
-        this.shipping = results.zone_shipping;
-        this.chosen_shipping = results.chosen_shipping;
-    };
-    CartPage.prototype.handleCart = function (results) {
-        this.cart = results;
-    };
-    CartPage.prototype.delete = function (key) {
-        var _this = this;
-        this.service.deleteItem(key)
-            .then(function (results) { return _this.handleCart(results); });
-    };
-    CartPage.prototype.checkout = function () {
-        var _this = this;
-        this.disableSubmit = true;
-        this.Checkout = "PleaseWait";
-        this.service.checkout()
-            .then(function (results) { return _this.handleBilling(results); });
-    };
-    CartPage.prototype.handleBilling = function (results) {
-        this.disableSubmit = false;
-        this.Checkout = "Checkout";
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__checkout_billing_address_form_billing_address_form__["a" /* BillingAddressForm */], results);
-    };
-    CartPage.prototype.deleteFromCart = function (id, key) {
-        var _this = this;
-        if (Object.keys(this.cart.cart_contents).length == 1) {
-            if (this.cart.cart_contents[key].quantity == 1) {
-                this.cart.cart_contents = {};
-                console.log(this.cart);
-            }
-            ;
-        }
-        this.service.deleteFromCart(id, key)
-            .then(function (results) { return _this.handleCart(results); });
-    };
-    CartPage.prototype.addToCart = function (id, key) {
-        var _this = this;
-        this.service.addToCart(id, key)
-            .then(function (results) { return _this.handleCart(results); });
-    };
-    CartPage.prototype.updateCart = function (results) {
-        var _this = this;
-        this.service.loadCart()
-            .then(function (results) { return _this.handleCart(results); });
-    };
-    CartPage.prototype.handleAddToCart = function (results) {
-        var _this = this;
-        this.service.loadCart()
-            .then(function (results) { return _this.handleCart(results); });
-    };
-    CartPage.prototype.submitCoupon = function () {
-        var _this = this;
-        if (this.cart.coupon != undefined) {
-            this.disableSubmitCoupon = true;
-            this.Apply = "Apply";
-            this.service.submitCoupon(this.cart.coupon)
-                .then(function (results) { return _this.handleCoupon(results); });
-        }
-    };
-    CartPage.prototype.removeCoupon = function () {
-        var _this = this;
-        this.service.removeCoupon(this.cart.applied_coupons)
-            .then(function (results) { return _this.handleCoupon(results); });
-    };
-    CartPage.prototype.handleCoupon = function (results) {
-        var _this = this;
-        console.log(results);
-        this.disableSubmitCoupon = false;
-        this.Apply = "Apply";
-        this.functions.showAlert("STATUS", results._body);
-        this.service.loadCart()
-            .then(function (results) { return _this.handleCart(results); });
-    };
-    CartPage.prototype.handleResults = function (a) {
-        if (a.message.status == 'success') {
-            this.functions.showAlert(a.message.status, a.message.text);
-        }
-        else {
-            this.functions.showAlert(a.message.status, a.message.text);
-        }
-    };
-    CartPage.prototype.updateShipping = function (method) {
-        var _this = this;
-        this.chosen_shipping = method;
-        this.service.updateShipping(method)
-            .then(function (results) { return _this.handleShipping(results); });
-    };
-    CartPage.prototype.gohome = function () {
-        this.nav.parent.select(1);
-    };
-    CartPage.prototype.handleShipping = function (results) {
-        this.cart = results;
-    };
-    CartPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\cart\cart.html"*/'<!-- <ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"Cart"| translate}}\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only light class="has-icon icon-only has-badge">\n\n        <ion-icon name="md-basket" class="item-icon">\n\n        </ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count">{{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <img (click)="gohomep();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="cart">\n\n  <ion-spinner *ngIf="!cart" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="cart">\n\n        <div class="empty" *ngIf="cart.cart_contents.length == 0"> \n\n            <ion-icon name="md-basket"></ion-icon>\n\n            <h4 color="side-heading-color" text-center no-lines>{{"Your cart is empty" | translate}}!</h4>\n\n            <h5 text-center no-lines>{{"Add some products available in our menu to checkout" | translate}}</h5> \n\n            <button ion-button class="butt" item-center medium color="button-color" text-uppercase (click)="gohome()">{{"Continue Booking" | translate}}</button> \n\n        </div>\n\n    <div *ngIf="cart?.cart_contents">\n\n\n\n      <div class="cart-items">\n\n      <ion-list>\n\n        <div class="cart-list" *ngFor="let item of cart.cart_contents | keys">\n\n          <ion-item no-lines *ngIf="item.value.quantity != 0">\n\n            <ion-thumbnail item-left>\n\n              <img src="{{item.value.thumb}}">\n\n            </ion-thumbnail>\n\n            <h2 wrap-text>{{item.value.name}}\n\n            </h2>\n\n            <h3 wrap-text > {{"Price" | translate}}: {{item.value.price | currency:values.currency:true:\'1.2-2\'}}\n\n            </h3>\n\n            <h3 wrap-text> {{"Totals" | translate}}: {{1*item.value.line_subtotal | currency:values.currency:true:\'1.2-2\'  }}\n\n            </h3>\n\n            <a (click)="delete( item.key )">\n\n              <ion-icon name="trash">\n\n              </ion-icon>\n\n            </a>\n\n            <!-- <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="deleteFromCart(item.value.product_id, item.key)">\n\n              <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">\n\n              </ion-icon>\n\n            </button>\n\n            <button ion-button item-right color="button-color" clear>{{item.value.quantity}}\n\n            </button>\n\n            <button ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="button-color" (click)="addToCart(item.value.product_id, item.key)">\n\n              <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">\n\n              </ion-icon>\n\n            </button> -->\n\n          </ion-item>\n\n        </div>\n\n      </ion-list>\n\n      </div>\n\n\n\n      <div *ngIf="cart.cart_contents.length != 0">\n\n        <ion-list *ngIf="shipping" no-margin text-wrap radio-group [(ngModel)]="chosen_shipping" (ngModelChange)="updateShipping(chosen_shipping)" class="shipping-methods">\n\n          <ion-item-divider>\n\n            <h2>{{"Select shipping method" | translate}}\n\n            </h2>\n\n          </ion-item-divider>\n\n          <ion-item *ngFor="let method of shipping | keys" >\n\n            <ion-label>{{method.value.method_title}} \n\n              <span *ngIf="method.value.cost">{{ 1*method.value.cost | currency:values.currency:true:\'1.2-2\'}}\n\n              </span> \n\n            </ion-label>\n\n            <ion-radio value="{{method.value.id + \':\' + method.value.instance_id}}" >\n\n            </ion-radio>\n\n          </ion-item>\n\n        </ion-list>\n\n\n\n        <form #f="ngForm" class="coupon">\n\n          <ion-item>\n\n            <ion-label>{{"Coupon Code" | translate}}</ion-label>\n\n            <ion-input type="text" [(ngModel)]="cart.coupon" name="coupon">\n\n            </ion-input>\n\n            <h2 item-right>\n\n              <button ion-button color="button-color" block type="submit" text-uppercase [disabled]=\'disableSubmitCoupon\' (click)="submitCoupon()"> {{Apply | translate}}\n\n              </button>\n\n            </h2>\n\n          </ion-item>\n\n        </form>\n\n\n\n        <ion-list class="totals" *ngIf="cart.cart_totals">\n\n          <!--ion-item-divider>\n\n            <h2>{{"Totals" | translate}}\n\n            </h2>\n\n          </ion-item-divider-->\n\n          <ion-row>\n\n            <ion-col width-75>\n\n              <ion-label>{{"SubTotal" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.subtotal | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>  \n\n\n\n          <ion-row *ngIf="cart.cart_totals.cart_contents_total != 0">\n\n            <ion-col width-75>\n\n              <ion-label>{{"Subtotal ex tax" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.cart_contents_total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>  \n\n\n\n          <ion-row *ngIf="cart.cart_totals.tax_total != 0">\n\n            <ion-col width-75>\n\n              <ion-label>{{"Tax total" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.total_tax | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n          <ion-row *ngIf="cart.cart_totals.discount_total && cart.cart_totals.discount_total != 0"> \n\n            <ion-col width-75 class="remove-coupon">\n\n              <ion-label>{{"Coupons" | translate}} - {{cart.applied_coupons}} \n\n                <a (click)="removeCoupon()"> (Remove)\n\n                </a>\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label>- {{1*cart.cart_totals.discount_total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n          <ion-row *ngIf="cart.cart_totals.shipping_total != 0"> \n\n            <ion-col width-75>\n\n              <ion-label>{{"Shipping" | translate}}\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label >{{1*cart.cart_totals.shipping_total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n          <ion-row>\n\n            <ion-col width-75>\n\n              <ion-label>\n\n                <b> {{"Grand Total" | translate}}\n\n                </b>\n\n              </ion-label>\n\n            </ion-col >\n\n            <ion-col width-25 text-right>\n\n              <ion-label>{{1*cart.cart_totals.total | currency:values.currency:true:\'1.2-2\'}}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n\n\n        </ion-list>\n\n        \n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<div *ngIf="cart">\n\n  <ion-footer *ngIf="cart.cart_contents.length != 0" class="footer-cart">\n\n    <button style="font-weight: 600;" ion-button color="button-color" text-uppercase [disabled]=\'disableSubmit\' (click)="checkout()">{{Checkout | translate}}\n\n    </button>\n\n  </ion-footer>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\cart\cart.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_cart_service__["a" /* CartService */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__["a" /* Functions */]])
-    ], CartPage);
-    return CartPage;
-}());
-
-//# sourceMappingURL=cart.js.map
-
-/***/ }),
-
 /***/ 516:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4604,13 +4532,13 @@ var AccountForgotten = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation_ngx__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_native_geocoder__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tabs_tabs__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tabs_tabs__ = __webpack_require__(78);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5020,7 +4948,7 @@ var ProductsListPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5218,7 +5146,7 @@ var OrdersVendor = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5435,8 +5363,8 @@ var Orders = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__tabs_tabs__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__tabs_tabs__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5646,7 +5574,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_account_edit_address_form_edit_address_form__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_account_forgotten_forgotten__ = __webpack_require__(517);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_account_login_login__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_post_post__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_post_post__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_account_order_details_order_details__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_account_orders_orders__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_account_orders_vendor_orders_vendor__ = __webpack_require__(520);
@@ -5657,14 +5585,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_account_register_register__ = __webpack_require__(524);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_account_wishlist_wishlist__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_account_account_account__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_cart_cart__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_cart_cart__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_checkout_billing_address_form_billing_address_form__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_checkout_order_summary_order_summary__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_checkout_terms_condition_terms_condition__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_products_products__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_search_search__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_tabs_tabs__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_products_products__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_search_search__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_tabs_tabs__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_products_list_products_list__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_status_bar__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_native_splash_screen__ = __webpack_require__(288);
@@ -5673,7 +5601,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__angular_platform_browser__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__providers_service_cart_service__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_service_wishlist_service__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__providers_service_category_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__providers_service_category_service__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__providers_service_checkout_service__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_service_config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__providers_service_functions__ = __webpack_require__(26);
@@ -5688,10 +5616,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_social_sharing__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__angular_common_http__ = __webpack_require__(863);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__angular_http__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ngx_translate_core__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ngx_translate_core__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ngx_translate_http_loader__ = __webpack_require__(864);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ionic_native_onesignal__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ionic_native_http__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ionic_native_onesignal__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ionic_native_http__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_ion2_calendar__ = __webpack_require__(866);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_54_ion2_calendar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__ionic_native_geolocation_ngx__ = __webpack_require__(183);
@@ -5880,18 +5808,292 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 55:
+/***/ 574:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_values__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_config__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_products_products__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_cart_cart__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_account_address_address__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_account_orders_orders__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_account_register_register__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_checkout_order_summary_order_summary__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_account_wishlist_wishlist__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_post_post__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_email_composer__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_native_storage__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_account_account_account__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_account_booking_vendor_booking_vendor__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_account_test_test__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_iframe_iframe__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__ = __webpack_require__(78);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var MyApp = /** @class */ (function () {
+    function MyApp(statusBar, splashScreen, alertCtrl, config, oneSignal, emailComposer, appRate, platform, service, values, translateService, socialSharing, nativeStorage) {
+        var _this = this;
+        this.splashScreen = splashScreen;
+        this.alertCtrl = alertCtrl;
+        this.config = config;
+        this.oneSignal = oneSignal;
+        this.emailComposer = emailComposer;
+        this.appRate = appRate;
+        this.platform = platform;
+        this.service = service;
+        this.values = values;
+        this.translateService = translateService;
+        this.socialSharing = socialSharing;
+        this.nativeStorage = nativeStorage;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */];
+        this.items = {};
+        this.buttonLanguagesSettings = false;
+        this.service.getCustomer()
+            .then(function (results) { return _this.customers = results; });
+        this.Languages = [];
+        platform.ready().then(function () {
+            statusBar.styleDefault();
+            statusBar.backgroundColorByHexString('#f4f5f8');
+            _this.service.load().then(function (results) { return _this.handleService(results); });
+            _this.nativeStorage.getItem('blocks').then(function (data) {
+                if (data) {
+                    _this.service.blocks = data.blocks;
+                    _this.values.settings = data.settings;
+                    _this.values.calc(platform.width());
+                }
+            }, function (error) { return console.error(error); });
+            _this.nativeStorage.getItem('categories').then(function (data) {
+                if (data) {
+                    _this.service.categories = data;
+                    _this.service.mainCategories = [];
+                    for (var i = 0; i < _this.service.categories.length; i++) {
+                        if (_this.service.categories[i].parent == '0') {
+                            _this.service.mainCategories.push(_this.service.categories[i]);
+                        }
+                    }
+                }
+            }, function (error) { return console.error(error); });
+        });
+    }
+    MyApp.prototype.handleService = function (results) {
+        var _this = this;
+        if (this.values.settings.app_dir == 'rtl')
+            this.platform.setDir('rtl', true);
+        //cambiar luego en la configuracion del wordpress en el plugin
+        this.translateService.setDefaultLang('spanish');
+        // this.translateService.setDefaultLang(this.values.settings.language);
+        this.values.calc(this.platform.width());
+        if (this.values.isLoggedIn) {
+            if (this.values.subscription.length > 0) {
+                console.log('entro:', this.values.isLoggedIn);
+                this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */]);
+            }
+            else {
+                console.log('entro:', this.values.isLoggedIn);
+                this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_25__pages_account_test_test__["a" /* test */]);
+            }
+        }
+        else {
+            console.log('entro else:', this.values.isLoggedIn);
+            this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */]);
+        }
+        if (this.platform.is('cordova')) {
+            this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);
+            this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+            this.oneSignal.handleNotificationReceived().subscribe(function (result) {
+                console.log(result);
+            });
+            this.oneSignal.handleNotificationOpened().subscribe(function (result) {
+                if (result.notification.payload.additionalData.category) {
+                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_9__pages_products_products__["a" /* ProductsPage */], { id: result.notification.payload.additionalData.category, slug: result.notification.payload.additionalData.slug, name: result.notification.payload.additionalData.name });
+                }
+                else if (result.notification.payload.additionalData.product) {
+                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_17__pages_product_product__["a" /* ProductPage */], { id: result.notification.payload.additionalData.product });
+                }
+                else if (result.notification.payload.additionalData.post) {
+                    _this.post({ di: result.notification.payload.additionalData.post });
+                }
+                else if (result.notification.payload.additionalData.order) {
+                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_15__pages_checkout_order_summary_order_summary__["a" /* OrderSummary */], { id: result.notification.payload.additionalData.order });
+                }
+            });
+            this.oneSignal.endInit();
+        }
+    };
+    MyApp.prototype.openPage = function (page) {
+        this.nav.setRoot(page);
+    };
+    MyApp.prototype.getCategory = function (id, slug, name) {
+        this.items = [];
+        this.items.id = id;
+        this.items.slug = slug;
+        this.items.name = name;
+        this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_9__pages_products_products__["a" /* ProductsPage */], this.items);
+    };
+    MyApp.prototype.getCart = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_cart_cart__["a" /* CartPage */]);
+    };
+    MyApp.prototype.logout = function () {
+        this.service.logout();
+        this.values.wishlistId = [];
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */]);
+    };
+    MyApp.prototype.iframe = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_26__pages_iframe_iframe__["a" /* IframePage */]);
+    };
+    MyApp.prototype.account = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_23__pages_account_account_account__["a" /* AccountPage */]);
+    };
+    MyApp.prototype.login = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */]);
+    };
+    MyApp.prototype.register = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_14__pages_account_register_register__["a" /* AccountRegister */]);
+    };
+    MyApp.prototype.address = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_12__pages_account_address_address__["a" /* Address */]);
+    };
+    MyApp.prototype.order = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_13__pages_account_orders_orders__["a" /* Orders */]);
+    };
+    MyApp.prototype.orderVendor = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */]);
+    };
+    MyApp.prototype.bookingVendor = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_24__pages_account_booking_vendor_booking_vendor__["a" /* BookingVendor */]);
+    };
+    MyApp.prototype.test = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_25__pages_account_test_test__["a" /* test */]);
+    };
+    MyApp.prototype.cart = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_cart_cart__["a" /* CartPage */]);
+    };
+    MyApp.prototype.wishlist = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_16__pages_account_wishlist_wishlist__["a" /* WishlistPage */]);
+    };
+    MyApp.prototype.shop = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */]);
+    };
+    MyApp.prototype.rateApp = function () {
+        if (this.platform.is('cordova')) {
+            this.appRate.preferences.storeAppURL = {
+                ios: this.values.settings.rate_app_ios_id,
+                android: this.values.settings.rate_app_android_id,
+                windows: 'ms-windows-store://review/?ProductId=' + this.values.settings.rate_app_windows_id
+            };
+            this.appRate.promptForRating(true);
+        }
+    };
+    MyApp.prototype.shareApp = function () {
+        if (this.platform.is('cordova')) {
+            var url = '';
+            if (this.platform.is('android'))
+                url = this.values.settings.share_app_android_link;
+            else
+                url = this.values.settings.share_app_ios_link;
+            var options = {
+                message: '',
+                subject: '',
+                // files: ['', ''],
+                url: url,
+                chooserTitle: ''
+            };
+            this.socialSharing.shareWithOptions(options);
+        }
+    };
+    MyApp.prototype.setLang = function () {
+        console.log(this.Languages);
+        this.translateService.setDefaultLang(this.Languages);
+    };
+    MyApp.prototype.contact = function () {
+        var email = {
+            to: this.values.settings.support_email,
+            subject: '',
+            body: '',
+            isHtml: true
+        };
+        this.emailComposer.open(email);
+    };
+    MyApp.prototype.post = function (id) {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_18__pages_post_post__["a" /* Post */], id);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"])
+    ], MyApp.prototype, "nav", void 0);
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/'<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">\n\n  <div class="menu-toolbar">\n\n    <ion-toolbar color="header">\n\n      <!-- <div class="profile-image">\n\n        <img src="{{values.logoMenu}}">\n\n        <div class="tittle-homer-provider">\n\n            Homer Proveedor\n\n        </div>\n\n      </div> -->\n\n\n\n      <ion-row>\n\n        <ion-col col-5 class="profile-image"> \n\n          <img src="{{values.logoMenu}}">\n\n        </ion-col>\n\n        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">\n\n          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">\n\n          Homer Proveedor\n\n          </strong>\n\n          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">\n\n            <h4 class="playername"> {{values.customerName}}</h4>\n\n            </strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">\n\n        <strong>{{values.customerName}}\n\n        </strong>\n\n      </button>\n\n      <button ion-button full menuClose clear color="light" class="button-welcome" *ngIf="!values.isLoggedIn">\n\n        <strong>{{"Welcome" | translate}}\n\n        </strong>\n\n      </button-->\n\n    </ion-toolbar>\n\n  </div>\n\n  <ion-content class="sidemenugrad">\n\n    <ion-list class="menu-items-single" no-margin>\n\n     \n\n      <!-- <div *ngIf="service.categories" class="category-name">\n\n        <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">\n\n          <ion-icon item-right class="ion-ios-arrow-forward item-icon">\n\n          </ion-icon>\n\n          <span [innerHTML]="item.name"></span>     \n\n        </ion-item>\n\n      </div> -->\n\n\n\n    </ion-list>\n\n    <ion-list class="menu-items">\n\n      <!-- <ion-item tappable menuClose (click)="shop()">\n\n        <ion-icon item-left name="home"></ion-icon>\n\n        {{"Inicio"}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="iframe()">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Iframe" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Account" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon name="person" item-left>\n\n        </ion-icon>{{"Acceder" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon item-left ios="ios-create" md="md-create">\n\n        </ion-icon>\n\n        {{"Register" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="locate">\n\n        </ion-icon>{{"Address" | translate}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="reorder">\n\n        </ion-icon>{{"Your Orders" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="wishlist()" *ngIf="values.isLoggedIn">\n\n        <ion-icon name="heart" item-left>\n\n        </ion-icon>{{"Wishlist" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="cart()">\n\n        <ion-icon ios="ios-cart" md="md-cart" item-left>\n\n        </ion-icon>\n\n        {{"Carrito" | translate}}\n\n      </ion-item>  -->\n\n      <ion-item tappable menuClose (click)="contact()">\n\n        {{"Contact Us" | translate}}\n\n        <ion-icon name="mail" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.about && values.data?.pages?.about != \'0\'"\n\n        (click)="post(values.data?.pages?.about)">\n\n        {{"About Us" | translate}}\n\n        <ion-icon name="ios-information-circle" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.terms && values.data?.pages?.terms != \'0\'"\n\n        (click)="post(values.data?.pages?.terms)">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Terms & Conditions" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose no-line (click)="shareApp()">\n\n        <ion-icon name="share" item-left></ion-icon>\n\n        {{"Share App" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose no-line (click)="rateApp()">\n\n        <ion-icon name="thumbs-up" item-left></ion-icon>\n\n        {{"Rate App" | translate}}\n\n      </ion-item> -->\n\n\n\n     \n\n\n\n      <ion-list *ngIf="values.isLoggedIn">\n\n        <ion-item *ngIf="values.vendor">\n\n          <label style="font-weight: bold;" for="">{{"Proveedor"}}</label>\n\n        </ion-item>\n\n\n\n        <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="reorder">\n\n          </ion-icon>{{"Customer Orders" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left ios="ios-calendar" md="md-calendar">\n\n          </ion-icon>{{"Bookings" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="cart">\n\n          </ion-icon>Membresia\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n          <ion-icon item-left name="md-log-out">\n\n          </ion-icon>{{"Logout" | translate}}\n\n        </ion-item>\n\n      </ion-list>\n\n\n\n      \n\n\n\n      <!-- <ion-item>\n\n        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>\n\n        <ion-label>\n\n          {{"SelectLanguage" | translate}}\n\n        </ion-label>\n\n        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">\n\n          <ion-option value="english">{{"Eglish" | translate}} </ion-option>\n\n          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n    </ion-list>\n\n    <br>\n\n    <br>\n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_6__providers_service_config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__["a" /* AppRate */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_4__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_5__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_22__ionic_native_native_storage__["a" /* NativeStorage */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 70:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_category_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_category_service__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cart_cart__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6176,324 +6378,7 @@ var ProductsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 56:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Post; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(20);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var Post = /** @class */ (function () {
-    function Post(service, values, params) {
-        var _this = this;
-        this.service = service;
-        this.values = values;
-        this.id = params.data;
-        this.service.getPage(this.id)
-            .then(function (results) { return _this.post = results; });
-    }
-    Post = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\post\post.html"*/'<ion-header class="settings-header">\n\n    <ion-navbar color="header"> <button ion-button menuToggle>\n\n    <ion-icon name="menu"></ion-icon>\n\n     </button>\n\n        <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content class="post" padding>\n\n    <ion-spinner *ngIf="!post" name="crescent"> </ion-spinner>\n\n    <div *ngIf="post">\n\n        <div [innerHTML]="post.post_content"></div>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\post\post.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], Post);
-    return Post;
-}());
-
-//# sourceMappingURL=post.js.map
-
-/***/ }),
-
-/***/ 574:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_products_products__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_account_address_address__ = __webpack_require__(522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_account_orders_orders__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_account_register_register__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_checkout_order_summary_order_summary__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_account_wishlist_wishlist__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_post_post__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_email_composer__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_native_storage__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_account_account_account__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_account_booking_vendor_booking_vendor__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_account_test_test__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_iframe_iframe__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__ = __webpack_require__(79);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var MyApp = /** @class */ (function () {
-    function MyApp(statusBar, splashScreen, alertCtrl, config, oneSignal, emailComposer, appRate, platform, service, values, translateService, socialSharing, nativeStorage) {
-        var _this = this;
-        this.splashScreen = splashScreen;
-        this.alertCtrl = alertCtrl;
-        this.config = config;
-        this.oneSignal = oneSignal;
-        this.emailComposer = emailComposer;
-        this.appRate = appRate;
-        this.platform = platform;
-        this.service = service;
-        this.values = values;
-        this.translateService = translateService;
-        this.socialSharing = socialSharing;
-        this.nativeStorage = nativeStorage;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */];
-        this.items = {};
-        this.buttonLanguagesSettings = false;
-        this.service.getCustomer()
-            .then(function (results) { return _this.customers = results; });
-        this.Languages = [];
-        platform.ready().then(function () {
-            statusBar.styleDefault();
-            statusBar.backgroundColorByHexString('#f4f5f8');
-            _this.service.load().then(function (results) { return _this.handleService(results); });
-            _this.nativeStorage.getItem('blocks').then(function (data) {
-                if (data) {
-                    _this.service.blocks = data.blocks;
-                    _this.values.settings = data.settings;
-                    _this.values.calc(platform.width());
-                }
-            }, function (error) { return console.error(error); });
-            _this.nativeStorage.getItem('categories').then(function (data) {
-                if (data) {
-                    _this.service.categories = data;
-                    _this.service.mainCategories = [];
-                    for (var i = 0; i < _this.service.categories.length; i++) {
-                        if (_this.service.categories[i].parent == '0') {
-                            _this.service.mainCategories.push(_this.service.categories[i]);
-                        }
-                    }
-                }
-            }, function (error) { return console.error(error); });
-        });
-    }
-    MyApp.prototype.handleService = function (results) {
-        var _this = this;
-        if (this.values.settings.app_dir == 'rtl')
-            this.platform.setDir('rtl', true);
-        //cambiar luego en la configuracion del wordpress en el plugin
-        this.translateService.setDefaultLang('spanish');
-        // this.translateService.setDefaultLang(this.values.settings.language);
-        this.values.calc(this.platform.width());
-        if (this.values.isLoggedIn) {
-            if (this.values.subscription.length > 0) {
-                console.log('entro:', this.values.isLoggedIn);
-                this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */]);
-            }
-            else {
-                console.log('entro:', this.values.isLoggedIn);
-                this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_25__pages_account_test_test__["a" /* test */]);
-            }
-        }
-        else {
-            console.log('entro else:', this.values.isLoggedIn);
-            this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */]);
-        }
-        if (this.platform.is('cordova')) {
-            this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);
-            this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-            this.oneSignal.handleNotificationReceived().subscribe(function (result) {
-                console.log(result);
-            });
-            this.oneSignal.handleNotificationOpened().subscribe(function (result) {
-                if (result.notification.payload.additionalData.category) {
-                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_9__pages_products_products__["a" /* ProductsPage */], { id: result.notification.payload.additionalData.category, slug: result.notification.payload.additionalData.slug, name: result.notification.payload.additionalData.name });
-                }
-                else if (result.notification.payload.additionalData.product) {
-                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_17__pages_product_product__["a" /* ProductPage */], { id: result.notification.payload.additionalData.product });
-                }
-                else if (result.notification.payload.additionalData.post) {
-                    _this.post({ di: result.notification.payload.additionalData.post });
-                }
-                else if (result.notification.payload.additionalData.order) {
-                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_15__pages_checkout_order_summary_order_summary__["a" /* OrderSummary */], { id: result.notification.payload.additionalData.order });
-                }
-            });
-            this.oneSignal.endInit();
-        }
-    };
-    MyApp.prototype.openPage = function (page) {
-        this.nav.setRoot(page);
-    };
-    MyApp.prototype.getCategory = function (id, slug, name) {
-        this.items = [];
-        this.items.id = id;
-        this.items.slug = slug;
-        this.items.name = name;
-        this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_9__pages_products_products__["a" /* ProductsPage */], this.items);
-    };
-    MyApp.prototype.getCart = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_cart_cart__["a" /* CartPage */]);
-    };
-    MyApp.prototype.logout = function () {
-        this.service.logout();
-        this.values.wishlistId = [];
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */]);
-    };
-    MyApp.prototype.iframe = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_26__pages_iframe_iframe__["a" /* IframePage */]);
-    };
-    MyApp.prototype.account = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_23__pages_account_account_account__["a" /* AccountPage */]);
-    };
-    MyApp.prototype.login = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_account_login_login__["a" /* AccountLogin */]);
-    };
-    MyApp.prototype.register = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_14__pages_account_register_register__["a" /* AccountRegister */]);
-    };
-    MyApp.prototype.address = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_12__pages_account_address_address__["a" /* Address */]);
-    };
-    MyApp.prototype.order = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_13__pages_account_orders_orders__["a" /* Orders */]);
-    };
-    MyApp.prototype.orderVendor = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */]);
-    };
-    MyApp.prototype.bookingVendor = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_24__pages_account_booking_vendor_booking_vendor__["a" /* BookingVendor */]);
-    };
-    MyApp.prototype.test = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_25__pages_account_test_test__["a" /* test */]);
-    };
-    MyApp.prototype.cart = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_cart_cart__["a" /* CartPage */]);
-    };
-    MyApp.prototype.wishlist = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_16__pages_account_wishlist_wishlist__["a" /* WishlistPage */]);
-    };
-    MyApp.prototype.shop = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */]);
-    };
-    MyApp.prototype.rateApp = function () {
-        if (this.platform.is('cordova')) {
-            this.appRate.preferences.storeAppURL = {
-                ios: this.values.settings.rate_app_ios_id,
-                android: this.values.settings.rate_app_android_id,
-                windows: 'ms-windows-store://review/?ProductId=' + this.values.settings.rate_app_windows_id
-            };
-            this.appRate.promptForRating(true);
-        }
-    };
-    MyApp.prototype.shareApp = function () {
-        if (this.platform.is('cordova')) {
-            var url = '';
-            if (this.platform.is('android'))
-                url = this.values.settings.share_app_android_link;
-            else
-                url = this.values.settings.share_app_ios_link;
-            var options = {
-                message: '',
-                subject: '',
-                // files: ['', ''],
-                url: url,
-                chooserTitle: ''
-            };
-            this.socialSharing.shareWithOptions(options);
-        }
-    };
-    MyApp.prototype.setLang = function () {
-        console.log(this.Languages);
-        this.translateService.setDefaultLang(this.Languages);
-    };
-    MyApp.prototype.contact = function () {
-        var email = {
-            to: this.values.settings.support_email,
-            subject: '',
-            body: '',
-            isHtml: true
-        };
-        this.emailComposer.open(email);
-    };
-    MyApp.prototype.post = function (id) {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_18__pages_post_post__["a" /* Post */], id);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"])
-    ], MyApp.prototype, "nav", void 0);
-    MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/'<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">\n\n  <div class="menu-toolbar">\n\n    <ion-toolbar color="header">\n\n      <!-- <div class="profile-image">\n\n        <img src="{{values.logoMenu}}">\n\n        <div class="tittle-homer-provider">\n\n            Homer Proveedor\n\n        </div>\n\n      </div> -->\n\n\n\n      <ion-row>\n\n        <ion-col col-5 class="profile-image"> \n\n          <img src="{{values.logoMenu}}">\n\n        </ion-col>\n\n        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">\n\n          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">\n\n          Homer Proveedor\n\n          </strong>\n\n          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">\n\n            <h4 class="playername"> {{values.customerName}}</h4>\n\n            </strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">\n\n        <strong>{{values.customerName}}\n\n        </strong>\n\n      </button>\n\n      <button ion-button full menuClose clear color="light" class="button-welcome" *ngIf="!values.isLoggedIn">\n\n        <strong>{{"Welcome" | translate}}\n\n        </strong>\n\n      </button-->\n\n    </ion-toolbar>\n\n  </div>\n\n  <ion-content class="sidemenugrad">\n\n    <ion-list class="menu-items-single" no-margin>\n\n     \n\n      <!-- <div *ngIf="service.categories" class="category-name">\n\n        <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">\n\n          <ion-icon item-right class="ion-ios-arrow-forward item-icon">\n\n          </ion-icon>\n\n          <span [innerHTML]="item.name"></span>     \n\n        </ion-item>\n\n      </div> -->\n\n\n\n    </ion-list>\n\n    <ion-list class="menu-items">\n\n      <!-- <ion-item tappable menuClose (click)="shop()">\n\n        <ion-icon item-left name="home"></ion-icon>\n\n        {{"Inicio"}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="iframe()">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Iframe" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Account" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon name="person" item-left>\n\n        </ion-icon>{{"Acceder" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon item-left ios="ios-create" md="md-create">\n\n        </ion-icon>\n\n        {{"Register" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="locate">\n\n        </ion-icon>{{"Address" | translate}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="reorder">\n\n        </ion-icon>{{"Your Orders" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="wishlist()" *ngIf="values.isLoggedIn">\n\n        <ion-icon name="heart" item-left>\n\n        </ion-icon>{{"Wishlist" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="cart()">\n\n        <ion-icon ios="ios-cart" md="md-cart" item-left>\n\n        </ion-icon>\n\n        {{"Carrito" | translate}}\n\n      </ion-item>  -->\n\n      <ion-item tappable menuClose (click)="contact()">\n\n        {{"Contact Us" | translate}}\n\n        <ion-icon name="mail" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.about && values.data?.pages?.about != \'0\'"\n\n        (click)="post(values.data?.pages?.about)">\n\n        {{"About Us" | translate}}\n\n        <ion-icon name="ios-information-circle" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.terms && values.data?.pages?.terms != \'0\'"\n\n        (click)="post(values.data?.pages?.terms)">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Terms & Conditions" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose no-line (click)="shareApp()">\n\n        <ion-icon name="share" item-left></ion-icon>\n\n        {{"Share App" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose no-line (click)="rateApp()">\n\n        <ion-icon name="thumbs-up" item-left></ion-icon>\n\n        {{"Rate App" | translate}}\n\n      </ion-item> -->\n\n\n\n     \n\n\n\n      <ion-list *ngIf="values.isLoggedIn">\n\n        <ion-item *ngIf="values.vendor">\n\n          <label style="font-weight: bold;" for="">{{"Proveedor"}}</label>\n\n        </ion-item>\n\n\n\n        <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="reorder">\n\n          </ion-icon>{{"Customer Orders" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left ios="ios-calendar" md="md-calendar">\n\n          </ion-icon>{{"Bookings" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="cart">\n\n          </ion-icon>Membresia\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n          <ion-icon item-left name="md-log-out">\n\n          </ion-icon>{{"Logout" | translate}}\n\n        </ion-item>\n\n      </ion-list>\n\n\n\n      \n\n\n\n      <!-- <ion-item>\n\n        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>\n\n        <ion-label>\n\n          {{"SelectLanguage" | translate}}\n\n        </ion-label>\n\n        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">\n\n          <ion-option value="english">{{"Eglish" | translate}} </ion-option>\n\n          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n    </ion-list>\n\n    <br>\n\n    <br>\n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_6__providers_service_config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__["a" /* AppRate */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_4__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_5__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_22__ionic_native_native_storage__["a" /* NativeStorage */]])
-    ], MyApp);
-    return MyApp;
-}());
-
-//# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ 72:
+/***/ 71:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6502,7 +6387,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(8);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6710,18 +6595,15 @@ var CategoryService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 78:
+/***/ 77:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Post; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_search_service__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__product_product__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_category_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(20);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6735,203 +6617,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
-var SearchPage = /** @class */ (function () {
-    function SearchPage(nav, categoryService, service, values, params) {
-        this.nav = nav;
-        this.categoryService = categoryService;
+var Post = /** @class */ (function () {
+    function Post(service, values, params) {
+        var _this = this;
         this.service = service;
         this.values = values;
-        this.has_more_items = true;
-        this.page = 1;
-        this.shouldShowCancel = true;
-        this.showSearch = true;
-        this.showFilters = false;
-        this.filter = {};
-        this.filter.page = 1;
-        this.count = 10;
-        this.offset = 0;
-        this.values.filter = {};
-        this.options = [];
-        this.quantity = "1";
-        this.myInput = "";
+        this.id = params.data;
+        this.service.getPage(this.id)
+            .then(function (results) { return _this.post = results; });
     }
-    SearchPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.searchbar.setFocus();
-        }, 0);
-    };
-    SearchPage.prototype.ionViewWillLeave = function () {
-        // this.showSearch = false;
-    };
-    SearchPage.prototype.getCart = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__cart_cart__["a" /* CartPage */]);
-    };
-    SearchPage.prototype.onInput = function ($event) {
-        var _this = this;
-        this.filter['filter[q]'] = $event.srcElement.value;
-        this.values.filter = {};
-        this.service.getSearch(this.filter)
-            .then(function (results) { return _this.products = results; });
-    };
-    SearchPage.prototype.onCancel = function ($event) {
-        console.log('cancelled');
-    };
-    SearchPage.prototype.getProduct = function (item) {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__product_product__["a" /* ProductPage */], item);
-    };
-    SearchPage.prototype.doInfinite = function (infiniteScroll) {
-        var _this = this;
-        this.filter.page += 1;
-        // this.page += 1;
-        this.service.getSearch(this.filter)
-            .then(function (results) { return _this.handleMore(results, infiniteScroll); });
-    };
-    SearchPage.prototype.handleMore = function (results, infiniteScroll) {
-        // if (results.products == undefined) {
-        //     console.log('No hay mas productos que mostrar...', results.products)
-        //     this.has_more_items = false
-        //     infiniteScroll.complete()
-        //     return
-        // }
-        console.log(results);
-        if (results != undefined) {
-            for (var i = 0; i < results.length; i++) {
-                this.products.push(results[i]);
-            }
-            ;
-        }
-        if (results.length == 0) {
-            this.has_more_items = false;
-        }
-        infiniteScroll.complete();
-    };
-    SearchPage.prototype.deleteFromCart = function (id) {
-        var _this = this;
-        this.service.deleteFromCart(id)
-            .then(function (results) { return _this.status = results; });
-    };
-    SearchPage.prototype.addToCart = function (id) {
-        var _this = this;
-        var text = '{';
-        var i;
-        for (i = 0; i < this.options.length; i++) {
-            var res = this.options[i].split(":");
-            text += '"' + res[0] + '":"' + res[1] + '",';
-        }
-        text += '"product_id":"' + id + '",';
-        text += '"quantity":"' + this.quantity + '"}';
-        var obj = JSON.parse(text);
-        this.service.addToCart(obj)
-            .then(function (results) { return _this.updateCart(results); });
-    };
-    SearchPage.prototype.updateCart = function (a) {
-    };
-    SearchPage.prototype.setListView = function () {
-        this.values.listview = true;
-    };
-    SearchPage.prototype.setGridView = function () {
-        this.values.listview = false;
-    };
-    SearchPage.prototype.updateToCart = function (id) {
-        var _this = this;
-        this.service.updateToCart(id)
-            .then(function (results) { return _this.status = results; });
-    };
-    //Filter shit
-    SearchPage.prototype.getFilter = function () {
-        this.showFilters = true;
-        this.has_more_items = false;
-    };
-    SearchPage.prototype.cancel = function () {
-        this.showFilters = false;
-        this.has_more_items = true;
-    };
-    SearchPage.prototype.chnageFilter = function (sort) {
-        var _this = this;
-        this.showFilters = false;
-        this.has_more_items = true;
-        this.filter.page = 1;
-        // if (sort == 0) {
-        //   this.filter['filter[order]'] = 'ASC'
-        //   this.filter['filter[orderby]'] = 'date'
-        // }
-        // if (sort == 1) {
-        //   this.filter['filter[order]'] = 'ASC'
-        //   this.filter['filter[orderby]'] = 'name'
-        // } else if (sort == 2) {
-        //   this.filter['filter[order]'] = 'DESC'
-        //   this.filter['filter[orderby]'] = 'name'
-        // } else if (sort == 3) {
-        //   this.filter['filter[order]'] = 'ASC'
-        //   this.filter['filter[orderby]'] = 'meta_value_num'
-        //   this.filter['filter[orderby_meta_key]'] = '_price'
-        // } else if (sort == 4) {
-        //   this.filter['filter[order]'] = 'DESC'
-        //   this.filter['filter[orderby]'] = 'meta_value_num'
-        //   this.filter['filter[orderby_meta_key]'] = '_price'
-        // }
-        // FILTROS SHIT EN FUNCION
-        if (sort == 5) {
-            this.filter['orderby'] = 'menu_order';
-        }
-        else if (sort == 6) {
-            this.filter['orderby'] = 'popularity';
-        }
-        else if (sort == 7) {
-            this.filter['orderby'] = 'rating';
-        }
-        else if (sort == 8) {
-            this.filter['orderby'] = 'date';
-            this.filter['order'] = 'asc';
-        }
-        else if (sort == 9) {
-            this.filter['orderby'] = 'date';
-            this.filter['order'] = 'desc';
-        }
-        else if (sort == 10) {
-            this.filter['orderby'] = 'price';
-            this.filter['order'] = 'asc';
-        }
-        else if (sort == 11) {
-            this.filter['orderby'] = 'price';
-            this.filter['order'] = 'desc';
-        }
-        else if (sort == 12) {
-            this.filter['orderby'] = 'title';
-            this.filter['order'] = 'asc';
-        }
-        else if (sort == 13) {
-            this.filter['orderby'] = 'title';
-            this.filter['order'] = 'desc';
-        }
-        /*this.filter['filter[meta_query][key]'] = "_price";
-            this.filter['filter[meta_query][value]'] = '[0,10]';
-            this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
-        this.categoryService.load(this.filter).then(function (results) { return (_this.products = results); });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Searchbar"]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Searchbar"])
-    ], SearchPage.prototype, "searchbar", void 0);
-    SearchPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\search\search.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-searchbar *ngIf="showSearch" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"\n\n      (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">\n\n    </ion-searchbar>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="search">\n\n\n\n  <div *ngIf="showFilters" class="filter">\n\n    <ion-list radio-group [(ngModel)]="sort" (ngModelChange)="chnageFilter(sort)">\n\n      <ion-list-header>\n\n        <b>\n\n          {{"Sort" | translate}}\n\n        </b>\n\n      </ion-list-header>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Default" | translate}}</ion-label>\n\n        <ion-radio value="5"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by popularity" | translate}}</ion-label>\n\n        <ion-radio value="6"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by average rating" | translate}}</ion-label>\n\n        <ion-radio value="7"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: ASC" | translate}}</ion-label>\n\n        <ion-radio value="8"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: DESC" | translate}}</ion-label>\n\n        <ion-radio value="9"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: low to high" | translate}}</ion-label>\n\n        <ion-radio value="10"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: high to low" | translate}}</ion-label>\n\n        <ion-radio value="11"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: ASC" | translate}}</ion-label>\n\n        <ion-radio value="12"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: DESC" | translate}}</ion-label>\n\n        <ion-radio value="13"></ion-radio>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button block color="button-color" (click)="cancel()">\n\n      {{"CANCEL" | translate}}\n\n    </button>\n\n  </div>\n\n  <div *ngIf="!showFilters">\n\n    <div *ngIf="products" class="products-search">\n\n      <h2 *ngIf="!products.length" style="font-size: 15px;text-align: center;margin-top: 30px">No products found!.</h2>\n\n      <div *ngIf="products.length">\n\n        <div *ngIf="values.listview">\n\n          <ion-item no-lines class="item-name">\n\n            <ion-label text-uppercase>{{"Providers" | translate}}\n\n            </ion-label>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="getFilter()">\n\n              <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="setGridView()">\n\n              <ion-icon ios="ios-grid" md="md-grid">\n\n              </ion-icon>\n\n            </button>\n\n          </ion-item>\n\n          <ion-list *ngIf="products">\n\n            <div class="item-list" *ngFor="let item of products">\n\n              <ion-item no-lines class="price-list">\n\n                <ion-thumbnail item-left class="stock-list">\n\n                  <a (click)="getProduct(item)">\n\n                    <img [style.height.rem]="values.dimensions.imageListViewHeight" src="{{item.images[0].src}}">\n\n                    <button ion-button color="danger"\n\n                      *ngIf="item.stock_status !== \'instock\'">{{"OUTOFSTOCK" | translate}}\n\n                    </button>\n\n                  </a>\n\n                </ion-thumbnail>\n\n                <a (click)="getProduct(item)">\n\n                  <div class="product-name-top">\n\n                    <h2>{{item.title}}\n\n                    </h2>\n\n                    <h2 *ngIf="item.name">{{item.name}}</h2>\n\n                    <p class="max-lines" [innerHTML]="item.description">\n\n                    </p>\n\n                  </div>\n\n                  <div class="bottom-left">\n\n                    <h3 class="price-regular" *ngIf="!item.sale_price">\n\n                      {{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-special" *ngIf="item.sale_price">\n\n                      {{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-del" *ngIf="item.sale_price">\n\n                      <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n\n                      </del>\n\n                    </h3>\n\n                  </div>\n\n                </a>\n\n                <div class="bottom-right-button">\n\n                  <!-- <button ion-button text-uppercase color="button-color" item-right outline *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n\n                  {{"Add" | translate}}\n\n                </button> -->\n\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                    (click)="deleteFromCart(item.id)">\n\n                    <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">\n\n                    </ion-icon>\n\n                  </button>\n\n                  <button ion-button item-right color="button-color" clear\n\n                    *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n\n                  </button>\n\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                    (click)="updateToCart(item.id)">\n\n                    <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">\n\n                    </ion-icon>\n\n                  </button>\n\n                  <button ion-button text-uppercase color="button-color" item-right [disabled]=\'disableSubmit\' clear\n\n                    *ngIf="item.stock_status !== \'instock\' && values.cart[item.id] == undefined || values.cart[item.id] == 0"\n\n                    (click)="addToCart(item.id, item.type)">\n\n                    {{button}}\n\n                  </button>\n\n                </div>\n\n              </ion-item>\n\n            </div>\n\n          </ion-list>\n\n        </div>\n\n        <div *ngIf="!values.listview">\n\n          <ion-item no-lines class="item-name">\n\n            <ion-label text-uppercase>{{"Providers" | translate}}\n\n            </ion-label>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="getFilter()">\n\n              <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only item-right clear color="button-color" (click)="setListView()">\n\n              <ion-icon ios="ios-list-box" md="ios-list-box">\n\n              </ion-icon>\n\n            </button>\n\n          </ion-item>\n\n          <div class="card-background-page grid" *ngIf="products">\n\n            <ion-row class="row unlimited-items">\n\n              <ion-col class="col" *ngFor="let item of products">\n\n                <ion-card>\n\n                  <ion-card-content class="stock">\n\n                    <a (click)="getProduct(item)">\n\n                      <img [style.height.px]="values.dimensions.imageGridViewHeight" src="{{item.images[0].src}}">\n\n                      <button ion-button color="danger"\n\n                        *ngIf="item.stock_status !== \'instock\'">{{"OUTOFSTOCK" | translate}}\n\n                      </button>\n\n                    </a>\n\n                  </ion-card-content>\n\n                  <ion-label class="product-label">{{item.title}}\n\n                  </ion-label>\n\n                  <h2 *ngIf="item.name">{{item.name}}</h2>\n\n                  <ion-item no-padding class="price-list">\n\n                    <h3 class="price-regular" *ngIf="!item.sale_price">\n\n                      {{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-special" *ngIf="item.sale_price">\n\n                      {{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n\n                    </h3>\n\n                    <h3 class="price-delete" *ngIf="item.sale_price">\n\n                      <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n\n                      </del>\n\n                    </h3>\n\n                    <button ion-button text-uppercase color="button-color" item-right [disabled]=\'disableSubmit\' clear\n\n                      *ngIf="item.stock_status !== \'instock\' && values.cart[item.id] == undefined || values.cart[item.id] == 0"\n\n                      (click)="addToCart(item.id, item.type)">\n\n                      {{button}}\n\n                    </button>\n\n                    <!-- <button ion-button text-uppercase color="button-color" item-right clear *ngIf="item.in_stock && values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n\n                    {{"Add" | translate}}\n\n                  </button> -->\n\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                      (click)="deleteFromCart(item.id)">\n\n                      <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline">\n\n                      </ion-icon>\n\n                    </button>\n\n                    <button ion-button item-right color="button-color" clear\n\n                      *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n\n                    </button>\n\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1"\n\n                      (click)="updateToCart(item.id)">\n\n                      <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline">\n\n                      </ion-icon>\n\n                    </button>\n\n                  </ion-item>\n\n                </ion-card>\n\n              </ion-col>\n\n            </ion-row>\n\n          </div>\n\n        </div>\n\n      </div>\n\n    </div>\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n\n      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{\'Loading more items..\' | translate}}">\n\n      </ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\search\search.html"*/
+    Post = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\post\post.html"*/'<ion-header class="settings-header">\n\n    <ion-navbar color="header"> <button ion-button menuToggle>\n\n    <ion-icon name="menu"></ion-icon>\n\n     </button>\n\n        <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content class="post" padding>\n\n    <ion-spinner *ngIf="!post" name="crescent"> </ion-spinner>\n\n    <div *ngIf="post">\n\n        <div [innerHTML]="post.post_content"></div>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\post\post.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"],
-            __WEBPACK_IMPORTED_MODULE_6__providers_service_category_service__["a" /* CategoryService */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_service_search_service__["a" /* SearchService */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], SearchPage);
-    return SearchPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
+    ], Post);
+    return Post;
 }());
 
-//# sourceMappingURL=search.js.map
+//# sourceMappingURL=post.js.map
 
 /***/ }),
 
-/***/ 79:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6940,7 +6647,7 @@ var SearchPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__products_list_products_list__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_account_wishlist_wishlist__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_account_account_account__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(8);
