@@ -26,6 +26,7 @@ import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
 import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor';
 import { test } from '../pages/account/test/test';
 import { IframePage } from '../pages/iframe/iframe';
+import {PagesSupportPage} from '../pages/pages-support/pages-support';
 
 
 
@@ -129,6 +130,7 @@ export class MyApp {
         this.items.categories = this.service.categories.filter(item => item.parent === parseInt(id));
         this.nav.setRoot(ProductsPage, this.items);
     }
+  
     getCart() {
         this.nav.setRoot(CartPage);
     }
@@ -212,7 +214,11 @@ export class MyApp {
         };
         this.emailComposer.open(email);
     }
+    support(){
+        this.nav.setRoot(PagesSupportPage);
+    }
     post(id) {
         this.nav.setRoot(Post, id);
     }
+   
 }

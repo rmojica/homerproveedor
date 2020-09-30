@@ -146,26 +146,42 @@ export class IframePage {
 
 
     ionViewDidEnter() {
+        // let iframe = document.getElementById("iframeHomer");
+        // let iframeWindow = (<HTMLIFrameElement>iframe).contentWindow;
+        // let iframeDocument = (<HTMLIFrameElement>iframe).contentDocument;
+
+        // let ver = iframeWindow.document.getElementById("main");
+        // var textnode = document.createTextNode("Water");         // Create a text node
+        // ver.appendChild(textnode); 
       
       // setTimeout(() => {
       //     this.searchbar.setFocus();
       // }, 0);
-      setTimeout(() => {
+      // setTimeout(() => {
+      //   let iframe = document.getElementById("iframeHomer");
+      //   let iframeWindow = (<HTMLIFrameElement>iframe).contentWindow;
+      //   let iframeDocument = (<HTMLIFrameElement>iframe).contentDocument;
 
-        // let iframe = document.getElementById("myIframe");
-        // // let iframeWindow = (<HTMLIFrameElement>iframe).contentWindow;
-        // let iframeDocument = (<HTMLIFrameElement>iframe);
-        // let iframeHeader = iframeDocument.querySelectorAll
-        //  //iframeHeader.textContent = "hola mundo";
-        // console.log('iframeDocument:',iframeDocument)
-        // console.log('iframeHeader:',iframeHeader)
+      //   let ver = iframeWindow.document.getElementsByClassName("site-main");
+      //   // var textnode = document.createTextNode("Rolando Jose Sanchez");
+       
+      //   // console.log('trextnode',textnode)
+      //   // ver.appendChild(textnode); 
+        
+      //   // let iframe = document.getElementById("myIframe");
+      //   // // let iframeWindow = (<HTMLIFrameElement>iframe).contentWindow;
+      //   // let iframeDocument = (<HTMLIFrameElement>iframe);
+      //   // let iframeHeader = iframeDocument.querySelectorAll
+      //   //  //iframeHeader.textContent = "hola mundo";
+      //   // console.log('iframeDocument:',iframeDocument)
+      //   // console.log('iframeHeader:',iframeHeader)
 
-        // var cssLink = document.createElement("style") 
-        // cssLink .id = "mierda"; 
-        // cssLink.innerHTML = '.header-main{display:none!important}';
-        // console.log('meh:',iframeDocument.appendChild(cssLink))
+      //   // var cssLink = document.createElement("style") 
+      //   // cssLink .id = "mierda"; 
+      //   // cssLink.innerHTML = '.header-main{display:none!important}';
+      //   // console.log('meh:',iframeDocument.appendChild(cssLink))
 
-      }, 3000)
+      // }, 3000)
   }
 
     ionSelected() {

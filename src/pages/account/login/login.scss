@@ -104,9 +104,15 @@
          border-top-right-radius: 0;
          border-bottom-right-radius: 0;
      }
-     .button-default{
-        width: 60%
+     .button-center{
+         width: 100%;
+         margin: 0 auto;
      }
+     .button-default{
+        width: 60%;
+        margin: 0 auto;
+     }
+     
      .button{
         text-transform: capitalize!important;
         font-size: 15px;
