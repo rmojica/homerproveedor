@@ -115,4 +115,5 @@
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <allow-navigation href="http://localhost:8100" sessionid="d49f9eb7" />
+    <allow-navigation href="http://localhost:8080" sessionid="d49f9eb7" />
 </widget>
