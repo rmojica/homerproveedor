@@ -27,6 +27,7 @@ import { ProductsPage } from '../pages/products/products'
 import { SearchPage } from '../pages/search/search'
 import { TabsPage } from '../pages/tabs/tabs'
 import { ProductsListPage } from '../pages/products-list/products-list'
+import {PagesSupportPage} from '../pages/pages-support/pages-support'
 
 /*------------------------Providers----------------------------------*/
 
@@ -96,6 +97,7 @@ export function createTranslateLoader(http: HttpClient) {
     TabsPage,
     ProductsListPage,
     KeysPipe,
+    PagesSupportPage
   ],
   imports: [
     BrowserModule,
@@ -139,6 +141,7 @@ export function createTranslateLoader(http: HttpClient) {
     SearchPage,
     TabsPage,
     ProductsListPage,
+    PagesSupportPage
   ],
   providers: [
     CartService,

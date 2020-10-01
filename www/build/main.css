@@ -46906,6 +46906,62 @@ ion-icon[class*="custom-spades"] {
   width: 75%;
 }
 
+.splash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #76a7ab;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
 ion-content {
   position: relative;
   height: 100%;
@@ -47395,8 +47451,14 @@ ion-chip {
   border-bottom-right-radius: 0;
 }
 
+.account-login .button-center {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .account-login .button-default {
   width: 60%;
+  margin: 0 auto;
 }
 
 .account-login .button {
@@ -50805,6 +50867,59 @@ page-products-list .datetime-ios {
 
 .myIframe #page > header, .myIframe #page > footer {
   display: none;
+}
+
+page-pages-support .sub-header {
+  background-color: #76a7ab;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+page-pages-support .sub-header h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: #fff;
+}
+
+page-pages-support h2 {
+  margin: 20px 0 10px 16px;
+  font-size: 18px;
+}
+
+page-pages-support h3 {
+  font-size: 15px;
+  margin: 5px 16px 8px 16px;
+  color: #222;
+  line-height: 1.6;
+}
+
+page-pages-support p {
+  line-height: 1.6;
+  text-indent: 0px;
+  font-size: 14px;
+  text-align: justify;
+  margin: 14px 16px 16px;
+  font-weight: 500;
+}
+
+.post .sub-header {
+  background-color: #76a7ab;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.post .sub-header h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: #fff;
 }
 
 .post h2 {
