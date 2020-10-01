@@ -31,6 +31,7 @@ import {PagesSupportPage} from '../pages/pages-support/pages-support';
 
 
 import {TabsPage} from '../pages/tabs/tabs';
+import { timer } from 'rxjs/observable/timer';
 
 @Component({
     templateUrl: 'app.html'
@@ -43,6 +44,7 @@ export class MyApp {
     buttonLanguagesSettings: boolean = false;
     Languages: any;
     customers: any;
+    showSplash = true;
 
     constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
 
@@ -53,6 +55,8 @@ export class MyApp {
         platform.ready().then(() => {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
+            this.splashScreen.hide();
+            timer(300).subscribe(()=>this.showSplash = false)
             this.service.load().then((results) => this.handleService(results));
             this.nativeStorage.getItem('blocks').then(data => { if (data) {
                 
@@ -119,6 +123,7 @@ export class MyApp {
             this.oneSignal.endInit();
         }
     }
+
     openPage(page) {
         this.nav.setRoot(page);
     }
