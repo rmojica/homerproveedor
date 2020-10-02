@@ -1,0 +1,96 @@
+page-dash-proveedor {
+    .sub-header {
+        background-color: #76a7ab;
+        position:relative;
+        left: 0;
+        top: 0;
+        padding: 20px;
+        width: 100%;
+        height: 90px;
+        
+            h1 {
+                text-align: center;
+                font-family:  sans-serif;
+                font-weight: 600;
+            }
+
+            img{
+                width: 45px;
+                position: absolute;
+                top: 70%;
+                left: 43%;
+                border-bottom: #76a7ab;
+                z-index: 1000;
+            }
+    }
+    .sub-header::after{
+        content: " ";
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 68%;
+        left: 42.4%;
+        background-color:#76a7ab;
+        border-radius: 100%;
+    }
+    .user-state{
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        text-align: center;
+            h5{
+                margin-top: 45px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 600;
+            }
+            .switch-online{
+                width: 50%;
+                margin:0px auto;
+                padding: 20px;
+                ion-label{
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+                ion-toggle {
+                    width: 20px;
+                    --background: #000;
+                    --background-checked: #7a49a5;
+                  
+                    --handle-background: #7a49a5;
+                    --handle-background-checked: #000;
+                  }
+            }
+    }
+    .center-information{
+        width: 100%;
+        height: 100px;
+        background-color: #ddd;
+        text-align: center;
+            h5{
+                margin-top: 45px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+    }
+    .button-dashboard{
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        padding: 10px;
+        text-align: center;
+            div{
+                width: 30%;
+                height: 15vh;               
+                margin-left: 8px;
+                a{
+                    font-family: Arial, Helvetica, sans-serif;
+                    text-decoration: none;
+                    img{
+                        width: 60%;
+                        background: #76a7ab;
+                        padding: 10px;
+                        border-radius: 100%;
+                    } 
+                }
+            }
+    }
+   
+}

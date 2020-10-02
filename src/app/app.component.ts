@@ -22,7 +22,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { AccountPage } from '../pages/account/account/account';
-import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
+// import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
 import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor';
 import { test } from '../pages/account/test/test';
 import { IframePage } from '../pages/iframe/iframe';
@@ -56,7 +56,7 @@ export class MyApp {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
             this.splashScreen.hide();
-            timer(300).subscribe(()=>this.showSplash = false)
+            timer(2000).subscribe(()=>this.showSplash = false);
             this.service.load().then((results) => this.handleService(results));
             this.nativeStorage.getItem('blocks').then(data => { if (data) {
                 

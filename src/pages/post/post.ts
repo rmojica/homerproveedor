@@ -15,7 +15,6 @@ export class Post {
     this.title = params.data.title;
     this.service.getPage(this.id)
        .then((results) => {
-         console.log(results)
         return this.post = results
        });  
        

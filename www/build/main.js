@@ -31,6 +31,10 @@ var Values = /** @class */ (function () {
         this.avatar = "assets/image/logo.png";
         this.logoMenu = "assets/image/logo-fondo-blanco.png";
         this.logoLogin = "assets/image/logoLogin.png";
+        this.userIcon = "assets/image/user.png";
+        this.lastIcon = "assets/image/last_service.png";
+        this.nextIcon = "assets/image/next_service.png";
+        this.oclockIcon = "assets/image/service-pending.png";
         this.slider = "assets/image/bghome.png";
         this.headerLogin = "assets/image/header-login.png";
         this.currency = "USD";
@@ -337,7 +341,7 @@ var SearchPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__forgotten_forgotten__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_onesignal__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__account_test_test__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__iframe_iframe__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dash_proveedor_dash_proveedor__ = __webpack_require__(873);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -357,6 +361,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { TabsPage } from '../../tabs/tabs'
 
 
+// import { IframePage } from '../../iframe/iframe'
+// import {Home} from '../../home/home'
 var AccountLogin = /** @class */ (function () {
     function AccountLogin(nav, service, functions, values, platform, oneSignal, alert) {
         var _this = this;
@@ -416,7 +422,7 @@ var AccountLogin = /** @class */ (function () {
             }
             else {
                 console.log('entro subscription:', this.values.isLoggedIn);
-                this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_8__iframe_iframe__["a" /* IframePage */]);
+                this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_8__dash_proveedor_dash_proveedor__["a" /* DashProveedorPage */]);
             }
         }
         else if (results.errors) {
@@ -3007,9 +3013,13 @@ webpackEmptyAsyncContext.id = 203;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../pages/dash-proveedor/dash-proveedor.module": [
+		872,
+		3
+	],
 	"../pages/pages-support/pages-support.module": [
 		871,
-		0
+		4
 	]
 };
 function webpackAsyncContext(req) {
@@ -5676,52 +5686,54 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_account_register_register__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_account_wishlist_wishlist__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_account_account_account__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_cart_cart__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_checkout_billing_address_form_billing_address_form__ = __webpack_require__(293);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_checkout_order_summary_order_summary__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_checkout_terms_condition_terms_condition__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_product_product__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_products_products__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_search_search__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_tabs_tabs__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_products_list_products_list__ = __webpack_require__(520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_pages_support_pages_support__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_native_status_bar__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_splash_screen__ = __webpack_require__(291);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_in_app_browser__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_native_native_storage__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__angular_platform_browser__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_service_cart_service__ = __webpack_require__(292);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__providers_service_wishlist_service__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__providers_service_category_service__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_service_checkout_service__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__providers_service_config__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__providers_service_functions__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__providers_service_product_service__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__providers_service_search_service__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__providers_service_values__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__providers_pipe_pipe__ = __webpack_require__(862);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_call_number__ = __webpack_require__(863);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_email_composer__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_rate__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_social_sharing__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__angular_common_http__ = __webpack_require__(864);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__angular_http__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ngx_translate_core__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ngx_translate_http_loader__ = __webpack_require__(865);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ionic_native_onesignal__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__ionic_native_http__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55_ion2_calendar__ = __webpack_require__(867);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_55_ion2_calendar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__ionic_native_geolocation_ngx__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__ionic_native_native_geocoder__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_dash_proveedor_dash_proveedor__ = __webpack_require__(873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_cart_cart__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_checkout_billing_address_form_billing_address_form__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_checkout_order_summary_order_summary__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_checkout_terms_condition_terms_condition__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_product_product__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_products_products__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_search_search__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_products_list_products_list__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_pages_support_pages_support__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_status_bar__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_splash_screen__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_native_in_app_browser__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ionic_native_native_storage__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__angular_platform_browser__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__providers_service_cart_service__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__providers_service_wishlist_service__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_service_category_service__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__providers_service_checkout_service__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__providers_service_config__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__providers_service_functions__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__providers_service_product_service__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__providers_service_search_service__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__providers_service_values__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__providers_pipe_pipe__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_call_number__ = __webpack_require__(863);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_email_composer__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_rate__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__ionic_native_social_sharing__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__angular_common_http__ = __webpack_require__(864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__angular_http__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ngx_translate_core__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ngx_translate_http_loader__ = __webpack_require__(865);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__ionic_native_onesignal__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__ionic_native_http__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56_ion2_calendar__ = __webpack_require__(867);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_56_ion2_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__ionic_native_geolocation_ngx__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__ionic_native_native_geocoder__ = __webpack_require__(186);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -5783,7 +5795,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 function createTranslateLoader(http) {
-    return new __WEBPACK_IMPORTED_MODULE_52__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
+    return new __WEBPACK_IMPORTED_MODULE_53__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
 }
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -5808,33 +5820,35 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_16__pages_account_register_register__["a" /* AccountRegister */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_account_wishlist_wishlist__["a" /* WishlistPage */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_account_account_account__["a" /* AccountPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_cart_cart__["a" /* CartPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_checkout_billing_address_form_billing_address_form__["a" /* BillingAddressForm */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_checkout_order_summary_order_summary__["a" /* OrderSummary */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_checkout_terms_condition_terms_condition__["a" /* TermsCondition */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_product_product__["a" /* ProductPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_products_products__["a" /* ProductsPage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_search_search__["a" /* SearchPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_products_list_products_list__["a" /* ProductsListPage */],
-                __WEBPACK_IMPORTED_MODULE_44__providers_pipe_pipe__["a" /* KeysPipe */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_pages_support_pages_support__["a" /* PagesSupportPage */]
+                __WEBPACK_IMPORTED_MODULE_20__pages_cart_cart__["a" /* CartPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_checkout_billing_address_form_billing_address_form__["a" /* BillingAddressForm */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_checkout_order_summary_order_summary__["a" /* OrderSummary */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_checkout_terms_condition_terms_condition__["a" /* TermsCondition */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_product_product__["a" /* ProductPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_products_products__["a" /* ProductsPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_search_search__["a" /* SearchPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_products_list_products_list__["a" /* ProductsListPage */],
+                __WEBPACK_IMPORTED_MODULE_45__providers_pipe_pipe__["a" /* KeysPipe */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_pages_support_pages_support__["a" /* PagesSupportPage */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_dash_proveedor_dash_proveedor__["a" /* DashProveedorPage */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_33__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_49__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_55_ion2_calendar__["CalendarModule"],
-                __WEBPACK_IMPORTED_MODULE_50__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_34__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_50__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_56_ion2_calendar__["CalendarModule"],
+                __WEBPACK_IMPORTED_MODULE_51__angular_http__["c" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicModule"].forRoot(__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/pages-support/pages-support.module#PagesSupportPageModule', name: 'PagesSupportPage', segment: 'pages-support', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/pages-support/pages-support.module#PagesSupportPageModule', name: 'PagesSupportPage', segment: 'pages-support', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dash-proveedor/dash-proveedor.module#DashProveedorPageModule', name: 'DashProveedorPage', segment: 'dash-proveedor', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_51__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+                __WEBPACK_IMPORTED_MODULE_52__ngx_translate_core__["b" /* TranslateModule */].forRoot({
                     loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_51__ngx_translate_core__["a" /* TranslateLoader */],
+                        provide: __WEBPACK_IMPORTED_MODULE_52__ngx_translate_core__["a" /* TranslateLoader */],
                         useFactory: createTranslateLoader,
-                        deps: [__WEBPACK_IMPORTED_MODULE_49__angular_common_http__["a" /* HttpClient */]],
+                        deps: [__WEBPACK_IMPORTED_MODULE_50__angular_common_http__["a" /* HttpClient */]],
                     },
                 }),
             ],
@@ -5857,40 +5871,41 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_16__pages_account_register_register__["a" /* AccountRegister */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_account_wishlist_wishlist__["a" /* WishlistPage */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_account_account_account__["a" /* AccountPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_cart_cart__["a" /* CartPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_checkout_billing_address_form_billing_address_form__["a" /* BillingAddressForm */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_checkout_order_summary_order_summary__["a" /* OrderSummary */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_checkout_terms_condition_terms_condition__["a" /* TermsCondition */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_product_product__["a" /* ProductPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_products_products__["a" /* ProductsPage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_search_search__["a" /* SearchPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_products_list_products_list__["a" /* ProductsListPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_pages_support_pages_support__["a" /* PagesSupportPage */]
+                __WEBPACK_IMPORTED_MODULE_20__pages_cart_cart__["a" /* CartPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_checkout_billing_address_form_billing_address_form__["a" /* BillingAddressForm */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_checkout_order_summary_order_summary__["a" /* OrderSummary */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_checkout_terms_condition_terms_condition__["a" /* TermsCondition */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_product_product__["a" /* ProductPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_products_products__["a" /* ProductsPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_search_search__["a" /* SearchPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_products_list_products_list__["a" /* ProductsListPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_pages_support_pages_support__["a" /* PagesSupportPage */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_dash_proveedor_dash_proveedor__["a" /* DashProveedorPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_34__providers_service_cart_service__["a" /* CartService */],
-                __WEBPACK_IMPORTED_MODULE_35__providers_service_wishlist_service__["a" /* WishlistService */],
-                __WEBPACK_IMPORTED_MODULE_36__providers_service_category_service__["a" /* CategoryService */],
-                __WEBPACK_IMPORTED_MODULE_37__providers_service_checkout_service__["a" /* CheckoutService */],
-                __WEBPACK_IMPORTED_MODULE_38__providers_service_config__["a" /* Config */],
-                __WEBPACK_IMPORTED_MODULE_39__providers_service_functions__["a" /* Functions */],
-                __WEBPACK_IMPORTED_MODULE_40__providers_service_product_service__["a" /* ProductService */],
-                __WEBPACK_IMPORTED_MODULE_41__providers_service_search_service__["a" /* SearchService */],
-                __WEBPACK_IMPORTED_MODULE_42__providers_service_service__["a" /* Service */],
-                __WEBPACK_IMPORTED_MODULE_43__providers_service_values__["a" /* Values */],
-                __WEBPACK_IMPORTED_MODULE_53__ionic_native_onesignal__["a" /* OneSignal */],
-                __WEBPACK_IMPORTED_MODULE_29__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_30__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_31__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_32__ionic_native_native_storage__["a" /* NativeStorage */],
-                __WEBPACK_IMPORTED_MODULE_48__ionic_native_social_sharing__["a" /* SocialSharing */],
-                __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_rate__["a" /* AppRate */],
-                __WEBPACK_IMPORTED_MODULE_46__ionic_native_email_composer__["a" /* EmailComposer */],
-                __WEBPACK_IMPORTED_MODULE_45__ionic_native_call_number__["a" /* CallNumber */],
-                __WEBPACK_IMPORTED_MODULE_54__ionic_native_http__["a" /* HTTP */],
-                __WEBPACK_IMPORTED_MODULE_56__ionic_native_geolocation_ngx__["a" /* Geolocation */],
-                __WEBPACK_IMPORTED_MODULE_57__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
+                __WEBPACK_IMPORTED_MODULE_35__providers_service_cart_service__["a" /* CartService */],
+                __WEBPACK_IMPORTED_MODULE_36__providers_service_wishlist_service__["a" /* WishlistService */],
+                __WEBPACK_IMPORTED_MODULE_37__providers_service_category_service__["a" /* CategoryService */],
+                __WEBPACK_IMPORTED_MODULE_38__providers_service_checkout_service__["a" /* CheckoutService */],
+                __WEBPACK_IMPORTED_MODULE_39__providers_service_config__["a" /* Config */],
+                __WEBPACK_IMPORTED_MODULE_40__providers_service_functions__["a" /* Functions */],
+                __WEBPACK_IMPORTED_MODULE_41__providers_service_product_service__["a" /* ProductService */],
+                __WEBPACK_IMPORTED_MODULE_42__providers_service_search_service__["a" /* SearchService */],
+                __WEBPACK_IMPORTED_MODULE_43__providers_service_service__["a" /* Service */],
+                __WEBPACK_IMPORTED_MODULE_44__providers_service_values__["a" /* Values */],
+                __WEBPACK_IMPORTED_MODULE_54__ionic_native_onesignal__["a" /* OneSignal */],
+                __WEBPACK_IMPORTED_MODULE_30__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_31__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_32__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_33__ionic_native_native_storage__["a" /* NativeStorage */],
+                __WEBPACK_IMPORTED_MODULE_49__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_rate__["a" /* AppRate */],
+                __WEBPACK_IMPORTED_MODULE_47__ionic_native_email_composer__["a" /* EmailComposer */],
+                __WEBPACK_IMPORTED_MODULE_46__ionic_native_call_number__["a" /* CallNumber */],
+                __WEBPACK_IMPORTED_MODULE_55__ionic_native_http__["a" /* HTTP */],
+                __WEBPACK_IMPORTED_MODULE_57__ionic_native_geolocation_ngx__["a" /* Geolocation */],
+                __WEBPACK_IMPORTED_MODULE_58__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicErrorHandler"] },
             ],
             schemas: [
@@ -5936,7 +5951,6 @@ var Post = /** @class */ (function () {
         this.title = params.data.title;
         this.service.getPage(this.id)
             .then(function (results) {
-            console.log(results);
             return _this.post = results;
         });
     }
@@ -6021,6 +6035,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+// import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
 
 
 
@@ -6053,7 +6068,7 @@ var MyApp = /** @class */ (function () {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
             _this.splashScreen.hide();
-            Object(__WEBPACK_IMPORTED_MODULE_29_rxjs_observable_timer__["timer"])(300).subscribe(function () { return _this.showSplash = false; });
+            Object(__WEBPACK_IMPORTED_MODULE_29_rxjs_observable_timer__["timer"])(2000).subscribe(function () { return _this.showSplash = false; });
             _this.service.load().then(function (results) { return _this.handleService(results); });
             _this.nativeStorage.getItem('blocks').then(function (data) {
                 if (data) {
@@ -6226,7 +6241,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/'<div *ngIf="showSplash" class="splash">\n\n  <div class="spinner"></div>\n\n</div>\n\n\n\n<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">\n\n  <div class="menu-toolbar">\n\n    <ion-toolbar color="header">\n\n      <!-- <div class="profile-image">\n\n        <img src="{{values.logoMenu}}">\n\n        <div class="tittle-homer-provider">\n\n            Homer Proveedor\n\n        </div>\n\n      </div> -->\n\n\n\n      <ion-row>\n\n        <ion-col col-5 class="profile-image"> \n\n          <img src="{{values.logoMenu}}">\n\n        </ion-col>\n\n        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">\n\n          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">\n\n          Homer Proveedor\n\n          </strong>\n\n          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">\n\n            <h4 class="playername"> {{values.customerName}}</h4>\n\n            </strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">\n\n        <strong>{{values.customerName}}\n\n        </strong>\n\n      </button>\n\n      <button ion-button full menuClose clear color="light" class="button-welcome" *ngIf="!values.isLoggedIn">\n\n        <strong>{{"Welcome" | translate}}\n\n        </strong>\n\n      </button-->\n\n    </ion-toolbar>\n\n  </div>\n\n  <ion-content class="sidemenugrad">\n\n    <ion-list class="menu-items-single" no-margin>\n\n     \n\n      <!-- <div *ngIf="service.categories" class="category-name">\n\n        <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">\n\n          <ion-icon item-right class="ion-ios-arrow-forward item-icon">\n\n          </ion-icon>\n\n          <span [innerHTML]="item.name"></span>     \n\n        </ion-item>\n\n      </div> -->\n\n\n\n    </ion-list>\n\n    <ion-list class="menu-items">\n\n      <!-- <ion-item tappable menuClose (click)="shop()">\n\n        <ion-icon item-left name="home"></ion-icon>\n\n        {{"Inicio"}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="iframe()">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Iframe" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Account" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon name="person" item-left>\n\n        </ion-icon>{{"Acceder" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon item-left ios="ios-create" md="md-create">\n\n        </ion-icon>\n\n        {{"Register" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="locate">\n\n        </ion-icon>{{"Address" | translate}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="reorder">\n\n        </ion-icon>{{"Your Orders" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="wishlist()" *ngIf="values.isLoggedIn">\n\n        <ion-icon name="heart" item-left>\n\n        </ion-icon>{{"Wishlist" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="cart()">\n\n        <ion-icon ios="ios-cart" md="md-cart" item-left>\n\n        </ion-icon>\n\n        {{"Carrito" | translate}}\n\n      </ion-item>  -->\n\n      <!-- <ion-item tappable menuClose (click)="contact()">\n\n        {{"Contact Us" | translate}}\n\n        <ion-icon name="mail" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.terms && values.data?.pages?.terms != \'0\'"\n\n        (click)="post(values.data?.pages?.terms)">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Terms & Conditions" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose \n\n        (click)="support()">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Soporte" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose no-line (click)="shareApp()">\n\n        <ion-icon name="share" item-left></ion-icon>\n\n        {{"Share App" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose no-line (click)="rateApp()">\n\n        <ion-icon name="thumbs-up" item-left></ion-icon>\n\n        {{"Rate App" | translate}}\n\n      </ion-item> -->\n\n\n\n     \n\n\n\n      <ion-list *ngIf="values.isLoggedIn">\n\n        <ion-item *ngIf="values.vendor">\n\n          <label style="font-weight: bold;" for="">{{"Proveedor"}}</label>\n\n        </ion-item>\n\n        <!-- <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"My profile" | translate}}\n\n        </ion-item>   \n\n        <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"Edit Profile" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"Ajustes de la tienda" | translate}}\n\n        </ion-item> -->\n\n        <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="reorder">\n\n          </ion-icon>{{"Customer Orders" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left ios="ios-calendar" md="md-calendar">\n\n          </ion-icon>{{"Bookings" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="cart">\n\n          </ion-icon>Membresia\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n          <ion-icon item-left name="md-log-out">\n\n          </ion-icon>{{"Logout" | translate}}\n\n        </ion-item>\n\n      </ion-list>\n\n\n\n      \n\n\n\n      <!-- <ion-item>\n\n        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>\n\n        <ion-label>\n\n          {{"SelectLanguage" | translate}}\n\n        </ion-label>\n\n        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">\n\n          <ion-option value="english">{{"Eglish" | translate}} </ion-option>\n\n          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n    </ion-list>\n\n    <br>\n\n    <br>\n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/'<div *ngIf="showSplash" class="splash">\n\n  <div class="splashSpinner" style="background: url({{values.logoMenu}});"></div>\n\n</div>\n\n\n\n<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">\n\n  <div class="menu-toolbar">\n\n    <ion-toolbar color="header">\n\n      <!-- <div class="profile-image">\n\n        <img src="{{values.logoMenu}}">\n\n        <div class="tittle-homer-provider">\n\n            Homer Proveedor\n\n        </div>\n\n      </div> -->\n\n\n\n      <ion-row>\n\n        <ion-col col-5 class="profile-image"> \n\n          <img src="{{values.logoMenu}}">\n\n        </ion-col>\n\n        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">\n\n          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">\n\n          Homer Proveedor\n\n          </strong>\n\n          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">\n\n            <h4 class="playername"> {{values.customerName}}</h4>\n\n            </strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">\n\n        <strong>{{values.customerName}}\n\n        </strong>\n\n      </button>\n\n      <button ion-button full menuClose clear color="light" class="button-welcome" *ngIf="!values.isLoggedIn">\n\n        <strong>{{"Welcome" | translate}}\n\n        </strong>\n\n      </button-->\n\n    </ion-toolbar>\n\n  </div>\n\n  <ion-content class="sidemenugrad">\n\n    <ion-list class="menu-items-single" no-margin>\n\n     \n\n      <!-- <div *ngIf="service.categories" class="category-name">\n\n        <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">\n\n          <ion-icon item-right class="ion-ios-arrow-forward item-icon">\n\n          </ion-icon>\n\n          <span [innerHTML]="item.name"></span>     \n\n        </ion-item>\n\n      </div> -->\n\n\n\n    </ion-list>\n\n    <ion-list class="menu-items">\n\n      <!-- <ion-item tappable menuClose (click)="shop()">\n\n        <ion-icon item-left name="home"></ion-icon>\n\n        {{"Inicio"}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="iframe()">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Iframe" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Account" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon name="person" item-left>\n\n        </ion-icon>{{"Acceder" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon item-left ios="ios-create" md="md-create">\n\n        </ion-icon>\n\n        {{"Register" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="locate">\n\n        </ion-icon>{{"Address" | translate}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="reorder">\n\n        </ion-icon>{{"Your Orders" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="wishlist()" *ngIf="values.isLoggedIn">\n\n        <ion-icon name="heart" item-left>\n\n        </ion-icon>{{"Wishlist" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="cart()">\n\n        <ion-icon ios="ios-cart" md="md-cart" item-left>\n\n        </ion-icon>\n\n        {{"Carrito" | translate}}\n\n      </ion-item>  -->\n\n      <!-- <ion-item tappable menuClose (click)="contact()">\n\n        {{"Contact Us" | translate}}\n\n        <ion-icon name="mail" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.terms && values.data?.pages?.terms != \'0\'"\n\n        (click)="post(values.data?.pages?.terms)">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Terms & Conditions" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose \n\n        (click)="support()">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Soporte" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose no-line (click)="shareApp()">\n\n        <ion-icon name="share" item-left></ion-icon>\n\n        {{"Share App" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose no-line (click)="rateApp()">\n\n        <ion-icon name="thumbs-up" item-left></ion-icon>\n\n        {{"Rate App" | translate}}\n\n      </ion-item> -->\n\n\n\n     \n\n\n\n      <ion-list *ngIf="values.isLoggedIn">\n\n        <ion-item *ngIf="values.vendor">\n\n          <label style="font-weight: bold;" for="">{{"Proveedor"}}</label>\n\n        </ion-item>\n\n        <!-- <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"My profile" | translate}}\n\n        </ion-item>   \n\n        <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"Edit Profile" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"Ajustes de la tienda" | translate}}\n\n        </ion-item> -->\n\n        <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="reorder">\n\n          </ion-icon>{{"Customer Orders" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left ios="ios-calendar" md="md-calendar">\n\n          </ion-icon>{{"Bookings" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="cart">\n\n          </ion-icon>Membresia\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n          <ion-icon item-left name="md-log-out">\n\n          </ion-icon>{{"Logout" | translate}}\n\n        </ion-item>\n\n      </ion-list>\n\n\n\n      \n\n\n\n      <!-- <ion-item>\n\n        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>\n\n        <ion-label>\n\n          {{"SelectLanguage" | translate}}\n\n        </ion-label>\n\n        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">\n\n          <ion-option value="english">{{"Eglish" | translate}} </ion-option>\n\n          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n    </ion-list>\n\n    <br>\n\n    <br>\n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_6__providers_service_config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__["a" /* AppRate */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_4__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_5__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_22__ionic_native_native_storage__["a" /* NativeStorage */]])
     ], MyApp);
@@ -7348,6 +7363,54 @@ var KeysPipe = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=pipe.js.map
+
+/***/ }),
+
+/***/ 873:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashProveedorPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(10);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the DashProveedorPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var DashProveedorPage = /** @class */ (function () {
+    function DashProveedorPage(navCtrl, navParams, values) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.values = values;
+    }
+    DashProveedorPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DashProveedorPage');
+    };
+    DashProveedorPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-dash-proveedor',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title >\n      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content >\n  <div class="sub-header">\n    <img src="{{values.userIcon}}" />\n  </div>\n  <div class="user-state">\n    <h5>{{values.customerName}}</h5>\n    <div class="switch-online">\n      <ion-label>GO ONLINE </ion-label>\n      <ion-toggle  checked color="success"></ion-toggle>\n    </div>\n  </div>\n  <div class="center-information">\n    <h5>Estado de mis servicios</h5>\n  </div>\n  <div class="button-dashboard">\n    <div class="last-services">\n      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>\n    </div>\n    <div class="proscess-services">\n      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>\n    </div>\n    <div class="future-services">\n      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]])
+    ], DashProveedorPage);
+    return DashProveedorPage;
+}());
+
+//# sourceMappingURL=dash-proveedor.js.map
 
 /***/ })
 

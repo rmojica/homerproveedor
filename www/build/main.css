@@ -46926,10 +46926,13 @@ ion-icon[class*="custom-spades"] {
   background: #76a7ab;
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  background-color: #333;
+.splashSpinner {
+  width: 80px;
+  height: 80px;
+  background-image: url("../../assets/image/logo-h.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   margin: 100px auto;
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
@@ -46953,12 +46956,12 @@ ion-icon[class*="custom-spades"] {
     -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
   }
   50% {
-    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(180.1deg) rotateY(0deg);
   }
   100% {
-    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    transform: perspective(120px) rotateX(180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(180deg) rotateY(-179.9deg);
   }
 }
 
@@ -49389,6 +49392,117 @@ ion-chip {
 
 .order-summary .order-total {
   background-color: #f9f9f9;
+}
+
+page-dash-proveedor .sub-header {
+  background-color: #76a7ab;
+  position: relative;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+  height: 90px;
+}
+
+page-dash-proveedor .sub-header h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+page-dash-proveedor .sub-header img {
+  width: 45px;
+  position: absolute;
+  top: 70%;
+  left: 43%;
+  border-bottom: #76a7ab;
+  z-index: 1000;
+}
+
+page-dash-proveedor .sub-header::after {
+  content: " ";
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 68%;
+  left: 42.4%;
+  background-color: #76a7ab;
+  border-radius: 100%;
+}
+
+page-dash-proveedor .user-state {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  text-align: center;
+}
+
+page-dash-proveedor .user-state h5 {
+  margin-top: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+page-dash-proveedor .user-state .switch-online {
+  width: 50%;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+page-dash-proveedor .user-state .switch-online ion-label {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .user-state .switch-online ion-toggle {
+  width: 20px;
+  --background: #000;
+  --background-checked: #7a49a5;
+  --handle-background: #7a49a5;
+  --handle-background-checked: #000;
+}
+
+page-dash-proveedor .center-information {
+  width: 100%;
+  height: 100px;
+  background-color: #ddd;
+  text-align: center;
+}
+
+page-dash-proveedor .center-information h5 {
+  margin-top: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .button-dashboard {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+page-dash-proveedor .button-dashboard div {
+  width: 30%;
+  height: 15vh;
+  margin-left: 8px;
+}
+
+page-dash-proveedor .button-dashboard div a {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+page-dash-proveedor .button-dashboard div a img {
+  width: 60%;
+  background: #76a7ab;
+  padding: 10px;
+  border-radius: 100%;
 }
 
 .bar-button-menutoggle-md {

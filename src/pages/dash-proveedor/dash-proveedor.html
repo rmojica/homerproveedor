@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+    </button>
+    <ion-title >
+      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <div class="sub-header">
+    <img src="{{values.userIcon}}" />
+  </div>
+  <div class="user-state">
+    <h5>{{values.customerName}}</h5>
+    <div class="switch-online">
+      <ion-label>GO ONLINE </ion-label>
+      <ion-toggle  checked color="success"></ion-toggle>
+    </div>
+  </div>
+  <div class="center-information">
+    <h5>Estado de mis servicios</h5>
+  </div>
+  <div class="button-dashboard">
+    <div class="last-services">
+      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>
+    </div>
+    <div class="proscess-services">
+      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>
+    </div>
+    <div class="future-services">
+      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>
+    </div>
+  </div>
+</ion-content>

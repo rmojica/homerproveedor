@@ -17,6 +17,7 @@ import { IframePage } from '../pages/iframe/iframe'
 import { AccountRegister } from '../pages/account/register/register'
 import { WishlistPage } from '../pages/account/wishlist/wishlist'
 import { AccountPage } from '../pages/account/account/account'
+import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor'
 
 import { CartPage } from '../pages/cart/cart'
 import { BillingAddressForm } from '../pages/checkout/billing-address-form/billing-address-form'
@@ -97,7 +98,8 @@ export function createTranslateLoader(http: HttpClient) {
     TabsPage,
     ProductsListPage,
     KeysPipe,
-    PagesSupportPage
+    PagesSupportPage,
+    DashProveedorPage
   ],
   imports: [
     BrowserModule,
@@ -141,7 +143,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchPage,
     TabsPage,
     ProductsListPage,
-    PagesSupportPage
+    PagesSupportPage,
+    DashProveedorPage
   ],
   providers: [
     CartService,

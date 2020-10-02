@@ -21,6 +21,10 @@ export class Values {
   avatar: any = "assets/image/logo.png";
   logoMenu: any = "assets/image/logo-fondo-blanco.png";
   logoLogin: any = "assets/image/logoLogin.png";
+  userIcon: any = "assets/image/user.png"
+  lastIcon:any = "assets/image/last_service.png";
+  nextIcon:any = "assets/image/next_service.png";
+  oclockIcon:any = "assets/image/service-pending.png"
   
   slider: any = "assets/image/bghome.png";
   headerLogin: any = "assets/image/header-login.png";
