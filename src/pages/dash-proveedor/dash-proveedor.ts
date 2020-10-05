@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Values} from '../../providers/service/values'
-
+import {Values} from '../../providers/service/values';
+import {Socket}  from 'ngx-socket-io';
 /**
  * Generated class for the DashProveedorPage page.
  *
@@ -15,12 +15,42 @@ import {Values} from '../../providers/service/values'
   templateUrl: 'dash-proveedor.html',
 })
 export class DashProveedorPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public values: Values) {
+  homerProviders = [];
+  isActive: boolean = false;
+  constructor(private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashProveedorPage');
   }
+
+  ngOnInit() {
+       
+    this.socket.fromEvent('adduser').subscribe((data:any) => {
+      this.homerProviders.push(...data);
+      console.log(data)
+    });
+ 
+    // this.socket.fromEvent('message').subscribe(message => {
+    //   // this.messages.push(message);
+    // });
+  }
+  changeToggle(){
+    if(!this.isActive){
+        this.socket.connect();
+        this.socket.emit('adduser',{id:this.values.customerId});
+        this.isActive = true;
+    }else{
+        this.socket.disconnect();
+        this.isActive = false;
+    }
+  }
+  // sendMessage() {
+  //   // this.socket.emit('send-message', { text: this.message });
+  //   // this.message = '';
+  // }
+    // ionViewWillLeave() {
+    //   this.socket.disconnect();
+    // }
 
 }

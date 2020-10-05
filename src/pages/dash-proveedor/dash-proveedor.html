@@ -16,8 +16,10 @@
   <div class="user-state">
     <h5>{{values.customerName}}</h5>
     <div class="switch-online">
-      <ion-label>GO ONLINE </ion-label>
-      <ion-toggle  checked color="success"></ion-toggle>
+      <ion-item>
+        <ion-label>GO ONLINE </ion-label>
+        <ion-toggle checked={{isActive}} (click)="changeToggle();" color="success"></ion-toggle>
+      </ion-item>
     </div>
   </div>
   <div class="center-information">

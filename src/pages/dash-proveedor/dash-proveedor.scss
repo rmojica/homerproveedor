@@ -7,7 +7,6 @@ page-dash-proveedor {
         padding: 20px;
         width: 100%;
         height: 90px;
-        
             h1 {
                 text-align: center;
                 font-family:  sans-serif;
@@ -35,29 +34,25 @@ page-dash-proveedor {
     }
     .user-state{
         width: 100%;
-        height: 100px;
+        height: 15vh;
         background-color: #fff;
         text-align: center;
             h5{
-                margin-top: 45px;
+                margin-top: 30px;
                 font-family: Arial, Helvetica, sans-serif;
                 font-weight: 600;
             }
             .switch-online{
                 width: 50%;
-                margin:0px auto;
-                padding: 20px;
+                margin:0px auto; 
+
+                ion-item{
+                    
+                }
+
                 ion-label{
                     font-family: Arial, Helvetica, sans-serif;
                 }
-                ion-toggle {
-                    width: 20px;
-                    --background: #000;
-                    --background-checked: #7a49a5;
-                  
-                    --handle-background: #7a49a5;
-                    --handle-background-checked: #000;
-                  }
             }
     }
     .center-information{
@@ -66,7 +61,6 @@ page-dash-proveedor {
         background-color: #ddd;
         text-align: center;
             h5{
-                margin-top: 45px;
                 font-family: Arial, Helvetica, sans-serif;
             }
     }
