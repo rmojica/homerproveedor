@@ -25,13 +25,11 @@ export class DashProveedorPage {
   }
 
   ngOnInit() {
-    console.log(this.values.isActive)
     this.socket.fromEvent('adduser').subscribe((data:any) => {
       this.homerProviders.push(...data);
       for(let provider of this.homerProviders){
         if(this.values.customerId == provider.id){
           this.values.isActive = true;
-          console.log(this.values.isActive)
         }else{
           this.values.isActive = false;
         }
