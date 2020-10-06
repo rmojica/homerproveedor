@@ -68,7 +68,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 
-const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
+// const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
+const config:SocketIoConfig = { url:'https://websockethomer.herokuapp.com', options:{} }
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
