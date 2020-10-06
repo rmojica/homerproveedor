@@ -25,6 +25,7 @@ var Values = /** @class */ (function () {
         this.subscription = [];
         this.customerName = "";
         this.customerId = null;
+        this.isActive = false;
         this.listview = false;
         this.cart = [];
         this.filterUpdate = false;
@@ -2778,16 +2779,25 @@ var DashProveedorPage = /** @class */ (function () {
         this.navParams = navParams;
         this.values = values;
         this.homerProviders = [];
-        this.isActive = false;
     }
     DashProveedorPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad DashProveedorPage');
     };
     DashProveedorPage.prototype.ngOnInit = function () {
         var _this = this;
+        console.log(this.values.isActive);
         this.socket.fromEvent('adduser').subscribe(function (data) {
             (_a = _this.homerProviders).push.apply(_a, data);
-            console.log(data);
+            for (var _i = 0, _b = _this.homerProviders; _i < _b.length; _i++) {
+                var provider = _b[_i];
+                if (_this.values.customerId == provider.id) {
+                    _this.values.isActive = true;
+                    console.log(_this.values.isActive);
+                }
+                else {
+                    _this.values.isActive = false;
+                }
+            }
             var _a;
         });
         // this.socket.fromEvent('message').subscribe(message => {
@@ -2795,23 +2805,24 @@ var DashProveedorPage = /** @class */ (function () {
         // });
     };
     DashProveedorPage.prototype.changeToggle = function () {
-        if (!this.isActive) {
+        if (!this.values.isActive) {
             this.socket.connect();
             this.socket.emit('adduser', { id: this.values.customerId });
-            this.isActive = true;
+            this.values.isActive = true;
         }
         else {
             this.socket.disconnect();
-            this.isActive = false;
+            this.values.isActive = false;
         }
     };
     DashProveedorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dash-proveedor',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title >\n      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content >\n  <div class="sub-header">\n    <img src="{{values.userIcon}}" />\n  </div>\n  <div class="user-state">\n    <h5>{{values.customerName}}</h5>\n    <div class="switch-online">\n      <ion-item>\n        <ion-label>GO ONLINE </ion-label>\n        <ion-toggle checked={{isActive}} (click)="changeToggle();" color="success"></ion-toggle>\n      </ion-item>\n    </div>\n  </div>\n  <div class="center-information">\n    <h5>Estado de mis servicios</h5>\n  </div>\n  <div class="button-dashboard">\n    <div class="last-services">\n      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>\n    </div>\n    <div class="proscess-services">\n      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>\n    </div>\n    <div class="future-services">\n      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/,
+            selector: 'page-dash-proveedor',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title >\n      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content >\n  <div class="sub-header">\n    <img src="{{values.userIcon}}" />\n  </div>\n  <div class="user-state">\n    <h5>{{values.customerName}}</h5>\n    <div class="switch-online">\n      <ion-item>\n        <ion-label>GO ONLINE </ion-label>\n        <ion-toggle checked={{values.isActive}} (click)="changeToggle();" color="success"></ion-toggle>\n      </ion-item>\n    </div>\n  </div>\n  <div class="center-information">\n    <h5>Estado de mis servicios</h5>\n  </div>\n  <div class="button-dashboard">\n    <div class="last-services">\n      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>\n    </div>\n    <div class="proscess-services">\n      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>\n    </div>\n    <div class="future-services">\n      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]) === "function" && _d || Object])
     ], DashProveedorPage);
     return DashProveedorPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=dash-proveedor.js.map
@@ -2873,15 +2884,16 @@ var PagesSupportPage = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"]) === "function" && _a || Object)
     ], PagesSupportPage.prototype, "nav", void 0);
     PagesSupportPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-pages-support',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\pages-support\pages-support.html"*/'<ion-header class="settings-header">\n  <ion-navbar color="header"> \n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n      </button>\n      <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->\n      <ion-title >\n          <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n      </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="support" padding [content]="content">\n  <div class="sub-header">\n    <h1>Soporte</h1>\n  </div>\n  <ion-card style="margin-top: 100px;">\n  <ion-card-content *ngIf="post"> \n  <ion-list>\n  \n        <ion-item tappable menuClose *ngIf="values.data?.pages?.about && values.data?.pages?.about != \'0\'"\n          (click)="post(values.data?.pages?.about,\'Acerca de Nosotros\')">\n          {{"About Us" | translate}}\n          <ion-icon name="ios-information-circle" item-left></ion-icon>\n        </ion-item>\n   \n  \n        <ion-item tappable menuClose *ngIf="values.data?.pages?.about && values.data?.pages?.privacy != \'0\'"\n          (click)="post(values.data?.pages?.privacy, \'Politicas de Privacidad\')">\n          {{"Politica de privacidad" | translate}}\n          <ion-icon name="ios-lock" item-left></ion-icon>\n        </ion-item>\n    \n\n        <ion-item tappable menuClose *ngIf="values.data?.pages?.about && values.data?.pages?.terms != \'0\'"\n          (click)="post(values.data?.pages?.terms, \'Terminos y Condiciones\')">\n          {{"Terminos & Condiciones" | translate}}\n          <ion-icon name="ios-bookmarks" item-left></ion-icon>\n        </ion-item>\n  \n        <ion-item tappable menuClose (click)="contact()">\n          {{"Contacta con nosotros" | translate}}\n          <ion-icon name="ios-call" item-left></ion-icon>\n        </ion-item>\n\n  </ion-list>\n</ion-card-content>\n</ion-card>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\pages-support\pages-support.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__ionic_native_email_composer__["a" /* EmailComposer */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_email_composer__["a" /* EmailComposer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_email_composer__["a" /* EmailComposer */]) === "function" && _e || Object])
     ], PagesSupportPage);
     return PagesSupportPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=pages-support.js.map

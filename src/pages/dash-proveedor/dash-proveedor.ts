@@ -16,7 +16,7 @@ import {Socket}  from 'ngx-socket-io';
 })
 export class DashProveedorPage {
   homerProviders = [];
-  isActive: boolean = false;
+
   constructor(private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values) {
   }
 
@@ -25,10 +25,17 @@ export class DashProveedorPage {
   }
 
   ngOnInit() {
-       
+    console.log(this.values.isActive)
     this.socket.fromEvent('adduser').subscribe((data:any) => {
       this.homerProviders.push(...data);
-      console.log(data)
+      for(let provider of this.homerProviders){
+        if(this.values.customerId == provider.id){
+          this.values.isActive = true;
+          console.log(this.values.isActive)
+        }else{
+          this.values.isActive = false;
+        }
+      }
     });
  
     // this.socket.fromEvent('message').subscribe(message => {
@@ -36,13 +43,13 @@ export class DashProveedorPage {
     // });
   }
   changeToggle(){
-    if(!this.isActive){
+    if(!this.values.isActive){
         this.socket.connect();
         this.socket.emit('adduser',{id:this.values.customerId});
-        this.isActive = true;
+        this.values.isActive = true;
     }else{
         this.socket.disconnect();
-        this.isActive = false;
+        this.values.isActive = false;
     }
   }
   // sendMessage() {

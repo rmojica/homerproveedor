@@ -10,6 +10,7 @@ export class Values {
   subscription: any = [];
   customerName: string = "";
   customerId: number = null;
+  isActive: boolean = false;
   listview: boolean = false;
   cart: Array<number> = [];
   filterUpdate: boolean = false;

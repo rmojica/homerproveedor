@@ -27,7 +27,7 @@ export class PagesSupportPage {
     console.log('ionViewDidLoad PagesSupportPage');
   }
 
-  post(id, title) {
+  post(id:any, title:any) {
     this.navCtrl.push(Post, {data:id, title:title});
   }
   contact() {
