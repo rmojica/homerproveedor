@@ -2753,6 +2753,8 @@ var AccountPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2762,6 +2764,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2779,9 +2782,19 @@ var DashProveedorPage = /** @class */ (function () {
         this.navParams = navParams;
         this.values = values;
         this.homerProviders = [];
+        // this.GetIfActiveUser().subscribe(data => {
+        //   console.log(data)
+        //   this.homerProviders.push(data);
+        //     for(let provider of this.homerProviders){
+        //       if(this.values.customerId == provider.id){
+        //         this.values.isActive = true;
+        //       }else{
+        //         this.values.isActive = false;
+        //       }
+        //     }
+        // })
     }
     DashProveedorPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad DashProveedorPage');
     };
     DashProveedorPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -2802,8 +2815,24 @@ var DashProveedorPage = /** @class */ (function () {
         //   // this.messages.push(message);
         // });
     };
+    // ionViewWillEnter(){
+    //   console.log("conectando al socket");
+    //   this.socket.connect();
+    // }
+    DashProveedorPage.prototype.GetIfActiveUser = function () {
+        var _this = this;
+        var observable = new __WEBPACK_IMPORTED_MODULE_4_rxjs__["Observable"](function (observer) {
+            _this.socket.fromEvent('adduser').subscribe(function (data) {
+                console.log('dentro den getIfActiveUser', data);
+                observer.next(data);
+            });
+        });
+        console.log('observable', observable);
+        return observable;
+    };
     DashProveedorPage.prototype.changeToggle = function () {
-        if (!this.values.isActive) {
+        console.log(this.values.isActive);
+        if (this.values.isActive) {
             this.socket.connect();
             this.socket.emit('adduser', { id: this.values.customerId });
             this.values.isActive = true;
@@ -2815,7 +2844,7 @@ var DashProveedorPage = /** @class */ (function () {
     };
     DashProveedorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dash-proveedor',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title >\n      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content >\n  <div class="sub-header">\n    <img src="{{values.userIcon}}" />\n  </div>\n  <div class="user-state">\n    <h5>{{values.customerName}}</h5>\n    <div class="switch-online">\n      <ion-item>\n        <ion-label>GO ONLINE </ion-label>\n        <ion-toggle checked={{values.isActive}} (click)="changeToggle();" color="success"></ion-toggle>\n      </ion-item>\n    </div>\n  </div>\n  <div class="center-information">\n    <h5>Estado de mis servicios</h5>\n  </div>\n  <div class="button-dashboard">\n    <div class="last-services">\n      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>\n    </div>\n    <div class="proscess-services">\n      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>\n    </div>\n    <div class="future-services">\n      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/,
+            selector: 'page-dash-proveedor',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title >\n      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content >\n  <div class="sub-header">\n    <img src="{{values.userIcon}}" />\n  </div>\n  <div class="user-state">\n    <h5>{{values.customerName}}</h5>\n    <div class="switch-online">\n      <ion-item>\n        <ion-label>GO ONLINE </ion-label>\n        <ion-toggle [(ngModel)]="values.isActive" (ngModelChange)="changeToggle()" color="success"></ion-toggle>\n      </ion-item>\n    </div>\n  </div>\n  <div class="center-information">\n    <h5>Estado de mis servicios</h5>\n  </div>\n  <div class="button-dashboard">\n    <div class="last-services">\n      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>\n    </div>\n    <div class="proscess-services">\n      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>\n    </div>\n    <div class="future-services">\n      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\dash-proveedor\dash-proveedor.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]) === "function" && _d || Object])
     ], DashProveedorPage);
@@ -5882,7 +5911,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // import socket io
 
 // const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
-var config = { url: 'https://websockethomer.herokuapp.com', options: {} };
+var config = { url: 'https://websockethomer.herokuapp.com/', options: {} };
 function createTranslateLoader(http) {
     return new __WEBPACK_IMPORTED_MODULE_53__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
 }
