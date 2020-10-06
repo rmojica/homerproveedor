@@ -12,7 +12,6 @@ import {Post} from '../../pages/post/post';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-pages-support',
   templateUrl: 'pages-support.html',

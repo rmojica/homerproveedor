@@ -9,7 +9,6 @@ import {Socket}  from 'ngx-socket-io';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-dash-proveedor',
   templateUrl: 'dash-proveedor.html',
@@ -27,6 +26,7 @@ export class DashProveedorPage {
   ngOnInit() {
     this.socket.fromEvent('adduser').subscribe((data:any) => {
       this.homerProviders.push(...data);
+      console.log('data:',data)
       for(let provider of this.homerProviders){
         if(this.values.customerId == provider.id){
           this.values.isActive = true;
