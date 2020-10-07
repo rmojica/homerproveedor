@@ -17,6 +17,7 @@ import { IframePage } from '../pages/iframe/iframe'
 import { AccountRegister } from '../pages/account/register/register'
 import { WishlistPage } from '../pages/account/wishlist/wishlist'
 import { AccountPage } from '../pages/account/account/account'
+import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor'
 
 import { CartPage } from '../pages/cart/cart'
 import { BillingAddressForm } from '../pages/checkout/billing-address-form/billing-address-form'
@@ -27,6 +28,7 @@ import { ProductsPage } from '../pages/products/products'
 import { SearchPage } from '../pages/search/search'
 import { TabsPage } from '../pages/tabs/tabs'
 import { ProductsListPage } from '../pages/products-list/products-list'
+import {PagesSupportPage} from '../pages/pages-support/pages-support'
 
 /*------------------------Providers----------------------------------*/
 
@@ -62,6 +64,12 @@ import { CalendarModule } from 'ion2-calendar'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
+// import socket io
+
+import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
+
+// const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
+const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{}}
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -96,12 +104,15 @@ export function createTranslateLoader(http: HttpClient) {
     TabsPage,
     ProductsListPage,
     KeysPipe,
+    PagesSupportPage,
+    DashProveedorPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     CalendarModule,
     HttpModule,
+    SocketIoModule.forRoot(config),
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
       loader: {
@@ -110,6 +121,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -139,6 +151,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchPage,
     TabsPage,
     ProductsListPage,
+    PagesSupportPage,
+    DashProveedorPage
   ],
   providers: [
     CartService,

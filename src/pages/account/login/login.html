@@ -4,7 +4,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title >
+    <ion-title>
       <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
     </ion-title>
   </ion-toolbar>
@@ -38,9 +38,11 @@
 
       </ion-list>
       <div class="margin">
-        <button ion-button block color="button-color" type="submit" class="button button-block button-default"
-          text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{"LogIn" | translate}}
-        </button>
+        <div class="button-center">
+          <button ion-button block color="button-color" type="submit" class="button button-block button-default"
+            text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{"LogIn" | translate}}
+          </button>
+        </div>
         <br>
         <button ion-button clear color="button-color" type="submit" class="forgot-pass button button-block button-clear"
           text-uppercase (click)="forgotten()">{{"Forgot Password" | translate}} ?

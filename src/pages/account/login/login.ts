@@ -6,9 +6,11 @@ import { Values } from '../../../providers/service/values'
 import { AccountForgotten } from '../forgotten/forgotten'
 import { OneSignal } from '@ionic-native/onesignal'
 
-import { TabsPage } from '../../tabs/tabs'
+// import { TabsPage } from '../../tabs/tabs'
 import { test } from '../../account/test/test'
-import { IframePage } from '../../iframe/iframe'
+import {DashProveedorPage} from '../../dash-proveedor/dash-proveedor'
+// import { IframePage } from '../../iframe/iframe'
+// import {Home} from '../../home/home'
 
 @Component({
   templateUrl: 'login.html',
@@ -83,7 +85,7 @@ export class AccountLogin {
             this.nav.setRoot(test);
         }else{
           console.log('entro subscription:',this.values.isLoggedIn);
-          this.nav.setRoot(IframePage);
+          this.nav.setRoot(DashProveedorPage);
         }
     }
     else if (results.errors) {

@@ -9,9 +9,14 @@ import { Service } from '../../providers/service/service';
 export class Post {
   post: any;
   id: any;
+  title: any;
   constructor (public service: Service, public values: Values, params: NavParams) {
-    this.id = params.data;
+    this.id = params.data.data;
+    this.title = params.data.title;
     this.service.getPage(this.id)
-       .then((results) => this.post = results);  
+       .then((results) => {
+        return this.post = results
+       });  
+       
  }
 }

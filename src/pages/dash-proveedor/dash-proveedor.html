@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+    </button>
+    <ion-title >
+      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <img src="../../../assets/image/avatar.png" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="user-meta ion-text-center">
+        <h3 class="playername"> {{values.customerName}}</h3>
+        <h5 class="country">Proveedor</h5>
+        <ion-item class="sign_toggle">
+          <ion-label>GO ONLINE </ion-label>
+          <ion-toggle ng-repeat="item in settingsList" [(ngModel)]="values.isActive" (ngModelChange)="changeToggle()" color="success"></ion-toggle>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+
+  <ion-card>
+    <ion-card-header style="background-color: #ebebeb"> 
+      <h3>Estado de mis servicios</h3>
+    </ion-card-header>
+    <!-- <ion-card-content style="margin-top: 10px">
+     
+    </ion-card-content> -->
+  </ion-card>
+  <div class="card">
+    <div class="card-body">
+      <div class="button-dashboard">
+        <div class="last-services">
+          <a href="#"><img src="{{values.lastIcon}}"></a>
+          <p>Servicios Pasados</p>
+        </div>
+        <div class="proscess-services">
+          <a href="#"><img src="{{values.oclockIcon}}"></a>
+          <p>Servicios Pendientes</p>
+        </div>
+        <div class="future-services">
+          <a href="#"><img src="{{values.nextIcon}}"></a>
+          <p>Proximos Servicios</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
