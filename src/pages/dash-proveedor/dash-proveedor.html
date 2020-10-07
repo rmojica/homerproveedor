@@ -10,30 +10,48 @@
   </ion-toolbar>
 </ion-header>
 <ion-content >
-  <div class="sub-header">
-    <img src="{{values.userIcon}}" />
-  </div>
-  <div class="user-state">
-    <h5>{{values.customerName}}</h5>
-    <div class="switch-online">
-      <ion-item>
-        <ion-label>GO ONLINE </ion-label>
-        <ion-toggle [(ngModel)]="values.isActive" (ngModelChange)="changeToggle()" color="success"></ion-toggle>
-      </ion-item>
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <img src="../../../assets/image/avatar.png" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="user-meta ion-text-center">
+        <h3 class="playername"> {{values.customerName}}</h3>
+        <h5 class="country">Proveedor</h5>
+        <ion-item class="sign_toggle">
+          <ion-label>GO ONLINE </ion-label>
+          <ion-toggle ng-repeat="item in settingsList" [(ngModel)]="values.isActive" (ngModelChange)="changeToggle()" color="success"></ion-toggle>
+        </ion-item>
+      </div>
     </div>
   </div>
-  <div class="center-information">
-    <h5>Estado de mis servicios</h5>
-  </div>
-  <div class="button-dashboard">
-    <div class="last-services">
-      <a href="#"><img src="{{values.lastIcon}}">Servicios Pasados</a>
-    </div>
-    <div class="proscess-services">
-      <a href="#"><img src="{{values.oclockIcon}}">Servicios Pendientes</a>
-    </div>
-    <div class="future-services">
-      <a href="#"><img src="{{values.nextIcon}}">Proximos Servicios</a>
+
+  <ion-card>
+    <ion-card-header style="background-color: #ebebeb"> 
+      <h3>Estado de mis servicios</h3>
+    </ion-card-header>
+    <!-- <ion-card-content style="margin-top: 10px">
+     
+    </ion-card-content> -->
+  </ion-card>
+  <div class="card">
+    <div class="card-body">
+      <div class="button-dashboard">
+        <div class="last-services">
+          <a href="#"><img src="{{values.lastIcon}}"></a>
+          <p>Servicios Pasados</p>
+        </div>
+        <div class="proscess-services">
+          <a href="#"><img src="{{values.oclockIcon}}"></a>
+          <p>Servicios Pendientes</p>
+        </div>
+        <div class="future-services">
+          <a href="#"><img src="{{values.nextIcon}}"></a>
+          <p>Proximos Servicios</p>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

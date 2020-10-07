@@ -46586,6 +46586,7 @@ ion-navbar.toolbar {
 
 * {
   font-family: 'HelveticaLt';
+  cursor: url("https://ionicframework.com/img/finger.png"), auto;
 }
 
 .rtl .item-ios ion-icon[item-left], .rtl .item-ios ion-icon[item-right] {
@@ -49394,72 +49395,7 @@ ion-chip {
   background-color: #f9f9f9;
 }
 
-page-dash-proveedor .sub-header {
-  background-color: #76a7ab;
-  position: relative;
-  left: 0;
-  top: 0;
-  padding: 20px;
-  width: 100%;
-  height: 90px;
-}
-
-page-dash-proveedor .sub-header h1 {
-  text-align: center;
-  font-family: sans-serif;
-  font-weight: 600;
-}
-
-page-dash-proveedor .sub-header img {
-  width: 45px;
-  position: absolute;
-  top: 70%;
-  left: 43%;
-  border-bottom: #76a7ab;
-  z-index: 1000;
-}
-
-page-dash-proveedor .sub-header::after {
-  content: " ";
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 68%;
-  left: 42.4%;
-  background-color: #76a7ab;
-  border-radius: 100%;
-}
-
-page-dash-proveedor .user-state {
-  width: 100%;
-  height: 15vh;
-  background-color: #fff;
-  text-align: center;
-}
-
-page-dash-proveedor .user-state h5 {
-  margin-top: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
-
-page-dash-proveedor .user-state .switch-online {
-  width: 50%;
-  margin: 0px auto;
-}
-
-page-dash-proveedor .user-state .switch-online ion-label {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-page-dash-proveedor .center-information {
-  width: 100%;
-  height: 100px;
-  background-color: #ddd;
-  text-align: center;
-}
-
-page-dash-proveedor .center-information h5 {
+page-dash-proveedor h3 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -49473,12 +49409,12 @@ page-dash-proveedor .button-dashboard {
   -ms-flex-align: center;
   align-items: center;
   margin-top: 10px;
-  padding: 10px;
+  width: 100%;
   text-align: center;
 }
 
 page-dash-proveedor .button-dashboard div {
-  width: 30%;
+  width: 33.33%;
   height: 15vh;
   margin-left: 8px;
 }
@@ -49493,6 +49429,80 @@ page-dash-proveedor .button-dashboard div a img {
   background: #76a7ab;
   padding: 10px;
   border-radius: 100%;
+}
+
+page-dash-proveedor .button-dashboard div p {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+page-dash-proveedor ion-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+page-dash-proveedor .card {
+  margin: 0 auto;
+}
+
+page-dash-proveedor .card .header {
+  height: 200px;
+  background-color: #76A7Ab;
+}
+
+page-dash-proveedor .card .header .avatar {
+  width: 21%;
+  height: 155px;
+  position: relative;
+  margin: 0 auto;
+}
+
+page-dash-proveedor .card .header .avatar img {
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  bottom: calc(-1*(80px + 4px));
+  border: 8px solid #76A7Ab;
+}
+
+page-dash-proveedor .card-body {
+  background-color: #ffffff;
+  padding: 30px;
+  height: 200px;
+  overflow: hidden;
+}
+
+page-dash-proveedor .card-body .user-meta {
+  padding-top: 40px;
+  text-align: center;
+}
+
+page-dash-proveedor .card-body .user-meta h3 {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .card-body .user-meta h5 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .card-body .user-meta .label {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .card-body .user-meta .playername {
+  font-size: 24px;
+  font-weight: 600;
+  color: #303940;
+}
+
+page-dash-proveedor .card-body .user-meta .country {
+  font-size: 90%;
+  color: #949ea6;
+  text-transform: uppercase;
+  margin: 0 auto;
 }
 
 .bar-button-menutoggle-md {
