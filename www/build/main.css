@@ -52771,6 +52771,82 @@ page-products-list .datetime-ios {
   text-overflow: ellipsis;
 }
 
+page-services ion-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+page-services .sub-header {
+  width: 100%;
+  padding: 20px;
+  background-color: #76a7ab;
+  text-align: center;
+  margin: 0;
+}
+
+page-services .sub-header h1 {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+page-services .card {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+page-services .card .card-body {
+  background-color: #fff;
+  padding: 30px;
+  height: 400px;
+  overflow: hidden;
+}
+
+page-services .card .card-body h2 {
+  font-size: 13px;
+}
+
+page-services .card .card-body h2 b {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+page-services .card .card-body .row-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+
+page-services .card .card-body .row-button button {
+  padding: 15px;
+  background-color: #76a7ab;
+  border-radius: 5px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+page-services .card .card-body > button {
+  padding: 15px;
+  background-color: #76a7ab;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 10px;
+  width: 100%;
+}
+
 page-tabs .tabs-md .tabbar, page-tabs .tabs-ios .tabbar {
   background: #76A7Ab;
   border-radius: 8px;

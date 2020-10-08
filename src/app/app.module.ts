@@ -29,6 +29,7 @@ import { SearchPage } from '../pages/search/search'
 import { TabsPage } from '../pages/tabs/tabs'
 import { ProductsListPage } from '../pages/products-list/products-list'
 import {PagesSupportPage} from '../pages/pages-support/pages-support'
+import {ServicesPage} from '../pages/services/services';
 
 /*------------------------Providers----------------------------------*/
 
@@ -64,9 +65,12 @@ import { CalendarModule } from 'ion2-calendar'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
+import { BackgroundMode } from '@ionic-native/background-mode';
+
 // import socket io
 
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
+import { from } from 'rxjs/observable/from'
 
 // const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
 const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{}}
@@ -105,7 +109,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProductsListPage,
     KeysPipe,
     PagesSupportPage,
-    DashProveedorPage
+    DashProveedorPage,
+    ServicesPage
   ],
   imports: [
     BrowserModule,
@@ -152,7 +157,8 @@ export function createTranslateLoader(http: HttpClient) {
     TabsPage,
     ProductsListPage,
     PagesSupportPage,
-    DashProveedorPage
+    DashProveedorPage,
+    ServicesPage
   ],
   providers: [
     CartService,
@@ -177,6 +183,7 @@ export function createTranslateLoader(http: HttpClient) {
     HTTP,
     Geolocation,    
     NativeGeocoder,
+    BackgroundMode,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
   schemas: [

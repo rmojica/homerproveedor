@@ -40,15 +40,15 @@
     <div class="card-body">
       <div class="button-dashboard">
         <div class="last-services">
-          <a href="#"><img src="{{values.lastIcon}}"></a>
+          <a (click)="services('Servicios Pasados', 'Completado');"><img src="{{values.lastIcon}}"></a>
           <p>Servicios Pasados</p>
         </div>
         <div class="proscess-services">
-          <a href="#"><img src="{{values.oclockIcon}}"></a>
+          <a (click)="services('Servicios Pendientes', 'Procesando');" href="#"><img src="{{values.oclockIcon}}"></a>
           <p>Servicios Pendientes</p>
         </div>
         <div class="future-services">
-          <a href="#"><img src="{{values.nextIcon}}"></a>
+          <a (click)="services('Proximos Servicios');"><img src="{{values.nextIcon}}"></a>
           <p>Proximos Servicios</p>
         </div>
       </div>

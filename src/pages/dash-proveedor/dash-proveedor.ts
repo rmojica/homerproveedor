@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+// import {Cordova} from 'ionic-native';
+import { BackgroundMode } from '@ionic-native/background-mode';
 import {Values} from '../../providers/service/values';
 import {Socket}  from 'ngx-socket-io';
-import { Observable } from 'rxjs';
+import {ServicesPage} from '../services/services';
+
 /**
  * Generated class for the DashProveedorPage page.
  *
@@ -17,18 +20,8 @@ import { Observable } from 'rxjs';
 export class DashProveedorPage {
   homerProviders = [];
 
-  constructor(private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values) {
-    // this.GetIfActiveUser().subscribe(data => {
-    //   console.log(data)
-    //   this.homerProviders.push(data);
-    //     for(let provider of this.homerProviders){
-    //       if(this.values.customerId == provider.id){
-    //         this.values.isActive = true;
-    //       }else{
-    //         this.values.isActive = false;
-    //       }
-    //     }
-    // })
+  constructor(private backgroundMode: BackgroundMode, private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values) {
+    
   }
 
   ionViewDidLoad() {
@@ -59,27 +52,41 @@ export class DashProveedorPage {
   //   this.socket.connect();
   // }
 
-  GetIfActiveUser(){
-    let observable = new Observable(observer => {
-      this.socket.fromEvent('adduser').subscribe((data:any) => {
-        console.log('dentro den getIfActiveUser',data)
-        observer.next(data);
-      });
-    });
-    console.log('observable', observable)
-    return observable;
-  }
+ 
 
-  changeToggle(){
-    console.log(this.values.isActive)
+  changeToggle(){  
     if(this.values.isActive){
+       
+      this.backgroundMode.on('deactivate').subscribe(() => {
+        console.log("backgroundMode deactivate");
+      });
+  
+      this.backgroundMode.on('activate').subscribe(() => {
+        this.backgroundMode.disableWebViewOptimizations();
+        console.log('backgroundMode activated');
+      });
+  
+      this.backgroundMode.setDefaults({ silent: true });
+      this.backgroundMode.enable();
+      
+  
+      console.log('interval start at', new Date().toISOString());
+      
+      console.log('waiting first response ....');  
+  
+          
         this.socket.connect();
         this.socket.emit('adduser',{id:this.values.customerId});
         this.values.isActive = true;
     }else{
+      this.backgroundMode.disable();
         this.socket.disconnect();
         this.values.isActive = false;
     }
+  }
+
+  services(title:string, status:string) {
+    this.navCtrl.push(ServicesPage,{title:title, status:status});
   }
   // sendMessage() {
   //   // this.socket.emit('send-message', { text: this.message });

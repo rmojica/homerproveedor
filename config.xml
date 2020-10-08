@@ -116,4 +116,12 @@
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <allow-navigation href="http://localhost:8100" sessionid="d49f9eb7" />
     <allow-navigation href="http://localhost:8080" sessionid="d49f9eb7" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/uses-permission" xmlns:android="http://schemas.android.com/apk/res/android">
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+            <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+        </edit-config>
+    </platform>
 </widget>

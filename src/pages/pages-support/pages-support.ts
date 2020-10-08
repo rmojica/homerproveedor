@@ -17,8 +17,7 @@ import {Post} from '../../pages/post/post';
   templateUrl: 'pages-support.html',
 })
 export class PagesSupportPage {
-  @ViewChild(Nav) nav: Nav;
-
+  
   constructor(public navCtrl: NavController, public values: Values,public navParams: NavParams, private emailComposer: EmailComposer) {
   }
 
