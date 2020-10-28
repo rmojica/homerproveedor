@@ -19,10 +19,11 @@ export class NewProductPage {
   // @ViewChild('tabs_control')tabs_control:ElementRef;
   // @ViewChild('tabs')tabs:ElementRef;
   // @ViewChild('tab')tab:ElementRef;
-    
+  desde:Date = new Date();
+  hacia:Date = new Date();
  
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, private renderer:Renderer2) {
-
+    
   }
 
   ngAfterViewInit() {

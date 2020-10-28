@@ -41,6 +41,7 @@
       <ion-item>       
         <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>
       </ion-item>
+
       <div style="display: flex;">
         <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase
         >{{"Agregar Rango" | translate}}
@@ -51,8 +52,12 @@
         <div><span>Rango</span></div>
       </div>
       <div class="availability2">
-        <div><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></div>
-        <div><ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>To<ion-datetime displayFormat="MM/DD/YYYY" ></ion-datetime></div> 
+        <ion-item><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></ion-item>
+        <ion-item>
+          <ion-datetime 
+            placeholder="Desde" displayFormat="HH:mm" name="desde"
+            value="{{desde | date:'yyyy-MM-dd'}}"></ion-datetime>
+        </ion-item>
       </div>
      <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">
         <span>Guardar Producto</span>
