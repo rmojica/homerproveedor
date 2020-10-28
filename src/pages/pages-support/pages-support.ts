@@ -1,7 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import {  NavController, NavParams } from 'ionic-angular';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { Nav } from 'ionic-angular';
 import { Values } from '../../providers/service/values';
 import {Post} from '../../pages/post/post';
 
@@ -18,7 +17,7 @@ import {Post} from '../../pages/post/post';
 })
 export class PagesSupportPage {
   
-  constructor(public navCtrl: NavController, public values: Values,public navParams: NavParams, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, public values: Values, public navParams: NavParams, private emailComposer: EmailComposer) {
   }
 
   ionViewDidLoad() {

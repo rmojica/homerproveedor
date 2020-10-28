@@ -19,7 +19,7 @@
   <div class="sub-header">
     <h1>{{title}}</h1>
   </div>
-  <ion-spinner *ngIf="!orders" name="crescent"></ion-spinner>
+  <ion-spinner *ngIf="!orders.length" name="crescent"></ion-spinner>
   <div *ngIf="orders.length">
     <div class="card" *ngFor="let item of orders[0]">
       <div class="card-body">
@@ -57,23 +57,28 @@
           </b> {{item.statusbooking}}
         </h2> 
         <div class="row-button">
-          <button *ngIf="item.row_actions.confirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="confirm(item.bookingId)">
+          <!-- <button *ngIf="item.row_actions.confirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="confirm(item.bookingId)">
             <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle">
             </ion-icon>		  		
             {{"Aceptar Trabajo" | translate}} 
+          </button> -->
+          <button *ngIf="item.row_actions.edit" text-center ion-button icon-left clear no-margin  icon-only class="has-icon icon-only" small text-uppercase (click)="getBookingDetails(item.order_id)">
+            <ion-icon name="ios-eye">
+            </ion-icon>		  		
+            {{"Ver" | translate}} 
           </button>
           <button *ngIf="item.row_actions.unconfirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="unconfirm(item.bookingId)">
             <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle">
             </ion-icon>		  		
-            {{"Rechazar Trabajo" | translate}} 
+            {{"Rechazar" | translate}} 
           </button>
         </div>
-        <button *ngIf="item.row_actions.edit" text-center ion-button icon-left clear no-margin  icon-only class="has-icon icon-only" small text-uppercase (click)="getBookingDetails(item.order_id)">
+        <!-- <button *ngIf="item.row_actions.edit" text-center ion-button icon-left clear no-margin  icon-only class="has-icon icon-only" small text-uppercase (click)="getBookingDetails(item.order_id)">
           <ion-icon name="ios-eye">
           </ion-icon>		  		
           {{"Ver detalles del servicio" | translate}} 
-        </button>
+        </button> -->
       </div>
     </div>
-  </div> 
+  </div>
 </ion-content>

@@ -40,17 +40,17 @@
     <div class="card-body">
       <div class="button-dashboard">
         <div class="last-services">
-          <a (click)="services('Servicios Pasados', 'Completado');"><img src="{{values.lastIcon}}"></a>
+          <a (click)="services('Servicios Pasados', 'Completado', 'Edit');"><img src="{{values.lastIcon}}"></a>
           <p>Servicios Pasados</p>
         </div>
         <div class="proscess-services">
-          <a (click)="services('Servicios Pendientes', 'Procesando');" href="#"><img src="{{values.oclockIcon}}"></a>
+          <a (click)="services('Servicios Pendientes', 'Procesando','Unconfirm');" href="#"><img src="{{values.oclockIcon}}"></a>
           <p>Servicios Pendientes</p>
         </div>
-        <div class="future-services">
+        <!-- <div class="future-services">
           <a (click)="services('Proximos Servicios');"><img src="{{values.nextIcon}}"></a>
           <p>Proximos Servicios</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -85,8 +85,8 @@ export class DashProveedorPage {
     }
   }
 
-  services(title:string, status:string) {
-    this.navCtrl.push(ServicesPage,{title:title, status:status});
+  services(title:string, status:string, unconfirm:string) {
+    this.navCtrl.push(ServicesPage,{title, status, unconfirm});
   }
   // sendMessage() {
   //   // this.socket.emit('send-message', { text: this.message });

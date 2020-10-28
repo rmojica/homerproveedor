@@ -25,14 +25,14 @@ export class ServicesPage {
   idVendor:any;
   orders: any=[];
   order_before_filter:any;
+  unconfirm:any;
   constructor(public values:Values, public navCtrl: NavController, public navParams: NavParams, public service: Service) {
     this.title = navParams.data.title;
     this.status = navParams.data.status;
+    this.unconfirm = navParams.data.unconfirm;
   }
 
-  ionViewDidEnter(){
-    console.log('status', this.status);
-    
+  ionViewDidEnter(){    
     this.filter = {};
         this.filter.page = 1;
         this.count = 10;
@@ -44,8 +44,7 @@ export class ServicesPage {
             .then((results) =>{
               this.order_before_filter = results;
               this.orders = [this.order_before_filter.orders.filter((order:any) => order.order_status === this.status)];
-              console.log(this.orders);
-              
+              console.log(this.orders); 
             });
             
   }

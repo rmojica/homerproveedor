@@ -27,11 +27,11 @@ import { BookingVendor } from '../pages/account/booking-vendor/booking-vendor';
 import { test } from '../pages/account/test/test';
 import { IframePage } from '../pages/iframe/iframe';
 import {PagesSupportPage} from '../pages/pages-support/pages-support';
-
-
-
+import {ChatPage} from '../pages/chat/chat';
+import {ProductsListPage} from '../pages/products-list/products-list';
 import {TabsPage} from '../pages/tabs/tabs';
 import { timer } from 'rxjs/observable/timer';
+import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
 
 @Component({
     templateUrl: 'app.html'
@@ -147,6 +147,9 @@ export class MyApp {
     iframe() {
         this.nav.setRoot(IframePage);
     }
+    chat(){
+        this.nav.setRoot(ChatPage);
+    }
     account() {
         this.nav.setRoot(AccountPage);
     }
@@ -164,6 +167,9 @@ export class MyApp {
     }
     orderVendor() {
         this.nav.setRoot(TabsPage);
+    }
+    pagesProductsProviders() {
+        this.nav.setRoot(PagesProductsProvidersPage);
     }
     bookingVendor() {
         this.nav.setRoot(BookingVendor);

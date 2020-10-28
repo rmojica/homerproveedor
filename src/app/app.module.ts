@@ -18,6 +18,8 @@ import { AccountRegister } from '../pages/account/register/register'
 import { WishlistPage } from '../pages/account/wishlist/wishlist'
 import { AccountPage } from '../pages/account/account/account'
 import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor'
+import {ChatPage} from '../pages/chat/chat';
+import {NewProductPage} from '../pages/new-product/new-product';
 
 import { CartPage } from '../pages/cart/cart'
 import { BillingAddressForm } from '../pages/checkout/billing-address-form/billing-address-form'
@@ -30,6 +32,7 @@ import { TabsPage } from '../pages/tabs/tabs'
 import { ProductsListPage } from '../pages/products-list/products-list'
 import {PagesSupportPage} from '../pages/pages-support/pages-support'
 import {ServicesPage} from '../pages/services/services';
+import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
 
 /*------------------------Providers----------------------------------*/
 
@@ -110,7 +113,10 @@ export function createTranslateLoader(http: HttpClient) {
     KeysPipe,
     PagesSupportPage,
     DashProveedorPage,
-    ServicesPage
+    ServicesPage,
+    ChatPage,
+    PagesProductsProvidersPage,
+    NewProductPage
   ],
   imports: [
     BrowserModule,
@@ -158,7 +164,10 @@ export function createTranslateLoader(http: HttpClient) {
     ProductsListPage,
     PagesSupportPage,
     DashProveedorPage,
-    ServicesPage
+    ServicesPage,
+    ChatPage,
+    PagesProductsProvidersPage,
+    NewProductPage
   ],
   providers: [
     CartService,
