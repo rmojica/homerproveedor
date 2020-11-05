@@ -11,60 +11,148 @@
 
 
 <ion-content padding>
-  <div class="card2">
-    <form action="">
+  <!-- <div class="card2"> -->
+    <ion-list>
+    <form #f="ngForm" (ngSubmit)="onSubmit()" >
       <div style="width: 100%;">
         <div style="border: 1px solid #999; width: 80px; height: 80px; margin: 0 auto; background: #ddd;"></div>
         <div style="margin: 0 auto; width: 50px;"><span>Adjuntar Imagen</span></div>
       </div>
-      <ion-item>
-        <!-- <ion-label>Nombre producto</ion-label> -->
-         <ion-input placeholder="Nombre producto" type="text" name="product_name"></ion-input>
-      </ion-item>
-         
-      <ion-item>
-         <ion-textarea placeholder="Descripcion del producto" name=""></ion-textarea>
-      </ion-item>
-    
-      <ion-item>
-         <ion-textarea placeholder="Descripcion corta del producto" name=""></ion-textarea>
-      </ion-item>
 
-      <ion-item>       
-         <ion-input placeholder="Costo Base" type="text" name="bookingByBlock"></ion-input>
-      </ion-item>
+        <ion-item>
+          <!-- <ion-label>Nombre servicio</ion-label> -->
+           <ion-input placeholder="Nombre servicio" type="text" name="product_name"></ion-input>
+        </ion-item>
 
-      <ion-item>       
-        <ion-input placeholder="Costo por Bloque" type="number" name="minimunBlock"></ion-input>
-      </ion-item>
+        <ion-item>
+           <ion-textarea placeholder="Descripcion del servicio" name=""></ion-textarea>
+        </ion-item>
 
-      <ion-item>       
-        <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>
-      </ion-item>
+        <ion-item>
+           <ion-textarea placeholder="Descripcion corta del servicio" name=""></ion-textarea>
+        </ion-item>
 
-      <div style="display: flex;">
-        <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase
-        >{{"Agregar Rango" | translate}}
-        </button>
-      </div>
-      <div class="availability">
+        <ion-item>
+           <ion-input placeholder="Costo Base" type="text" name="bookingByBlock"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input placeholder="Costo por Bloque" type="number" name="minimunBlock"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>
+        </ion-item>
+        <br>
+        <div class="card2">
+          <ion-item>
+            <ion-label>Select</ion-label>
+            <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="selDay">
+              <ion-option value="{{item.name}}" *ngFor="let item of days" >{{item.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Desde</ion-label>
+            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="initH" name="inithours"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Hasta</ion-label>
+            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="endH" name="endhours"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <button ion-button (click)="addAvailability()">
+              <ion-icon name="save"></ion-icon> Agregar Disponibilidad
+            </button>
+          </ion-item>
+          <ion-grid >
+            <ion-row class="ion-align-items-center">
+              <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">
+                 <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>
+              </ion-col>
+              <ion-col style="background-color:#76a7ab; color: #fff;">
+                <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>
+             </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center" *ngFor="let item of availability">
+             <ion-col style="margin-right: 1px;">
+                <div style="margin: 0 auto; width: 100%;">
+                  {{item.date}}
+               </div>
+             </ion-col>
+             <ion-col>
+               <div style="margin: 0 auto; width: 100%;">
+                  <span>De {{item.inithour}} A {{item.endhour}}</span>
+               </div>
+            </ion-col>
+           </ion-row>
+          </ion-grid>
+
+          <!-- <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">
+
+          </div> -->
+        </div>
+
+
+
+
+      <!-- <div class="availability">
         <div><span>Tipo Rango</span></div>
         <div><span>Rango</span></div>
       </div>
       <div class="availability2">
         <ion-item><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></ion-item>
         <ion-item>
-          <ion-datetime 
+          <ion-datetime
             placeholder="Desde" displayFormat="HH:mm" name="desde"
             value="{{desde | date:'yyyy-MM-dd'}}"></ion-datetime>
         </ion-item>
       </div>
      <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">
-        <span>Guardar Producto</span>
-     </div>
+        <span>Guardar servicio</span>
+     </div> -->
+     <!-- <ion-grid >
+       <ion-row>
+         <ion-col>
+          <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase
+          >{{"Agregar Rango" | translate}}
+          </button>
+         </ion-col>
+       </ion-row>
+       <ion-row class="ion-align-items-center">
+         <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">
+            <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>
+         </ion-col>
+         <ion-col style="background-color:#76a7ab; color: #fff;">
+           <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>
+        </ion-col>
+       </ion-row>
+       <ion-row class="ion-align-items-center">
+        <ion-col style="margin-right: 1px;">
+           <div style="margin: 0 auto; width: 100%;">
+            <ion-item>
+              <ion-label>Select</ion-label>
+              <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="day">
+                <ion-select-option *ngFor="let item of days" [value]="item.name">{{item.name}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div style="margin: 0 auto; width: 100%;">
+            <ion-item>
+              <ion-label>Select</ion-label>
+              <ion-datetime displayFormat="HH:mm" display-timezone="utc"></ion-datetime>
+            </ion-item>
+          </div>
+       </ion-col>
+      </ion-row>
+     </ion-grid> -->
      </form>
-  </div>
-  
+    </ion-list>
+  <!-- </div> -->
+
   <!-- <div class="card tabs-container">
     <nav #tabs_control class="tabs-control">
       <a href="#info">Informacion</a>
@@ -89,4 +177,9 @@
       </div>
     </div>
   </div> -->
+  <div>
+    <div style="margin:0 auto; width: 220px;">
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;">Guardar Servicio</button>
+    </div>
+  </div>
 </ion-content>

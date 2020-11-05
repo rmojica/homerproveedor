@@ -32,6 +32,7 @@ import {ProductsListPage} from '../pages/products-list/products-list';
 import {TabsPage} from '../pages/tabs/tabs';
 import { timer } from 'rxjs/observable/timer';
 import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
+import { CategoryServicePage } from '../pages/category-service/category-service';
 
 @Component({
     templateUrl: 'app.html'
@@ -50,7 +51,7 @@ export class MyApp {
 
         this.service.getCustomer()
         .then((results) => this.customers = results);
-        
+
         this.Languages = []
         platform.ready().then(() => {
             statusBar.styleDefault();
@@ -59,7 +60,7 @@ export class MyApp {
             timer(2000).subscribe(()=>this.showSplash = false);
             this.service.load().then((results) => this.handleService(results));
             this.nativeStorage.getItem('blocks').then(data => { if (data) {
-                
+
                 this.service.blocks = data.blocks;
                 this.values.settings = data.settings;
                 this.values.calc(platform.width());
@@ -78,14 +79,14 @@ export class MyApp {
             }, error => console.error(error));
 
         });
-    
+
     }
     handleService(results) {
         if (this.values.settings.app_dir == 'rtl') this.platform.setDir('rtl', true);
         //cambiar luego en la configuracion del wordpress en el plugin
-        this.translateService.setDefaultLang('spanish'); 
+        this.translateService.setDefaultLang('spanish');
         // this.translateService.setDefaultLang(this.values.settings.language);
-       
+
         this.values.calc(this.platform.width());
 
         if(this.values.isLoggedIn){
@@ -96,12 +97,12 @@ export class MyApp {
                 console.log('entro:',this.values.isLoggedIn);
                 this.nav.setRoot(test);
             }
-            
+
         }else{
             console.log('entro else:',this.values.isLoggedIn);
             this.nav.setRoot(AccountLogin);
         }
-            
+
 
         if (this.platform.is('cordova')) {
             this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);
@@ -135,7 +136,7 @@ export class MyApp {
         this.items.categories = this.service.categories.filter(item => item.parent === parseInt(id));
         this.nav.setRoot(ProductsPage, this.items);
     }
-  
+
     getCart() {
         this.nav.setRoot(CartPage);
     }
@@ -170,6 +171,9 @@ export class MyApp {
     }
     pagesProductsProviders() {
         this.nav.setRoot(PagesProductsProvidersPage);
+    }
+    mycategories(){
+      this.nav.setRoot(CategoryServicePage);
     }
     bookingVendor() {
         this.nav.setRoot(BookingVendor);
@@ -231,5 +235,5 @@ export class MyApp {
     post(id) {
         this.nav.setRoot(Post, id);
     }
-   
+
 }

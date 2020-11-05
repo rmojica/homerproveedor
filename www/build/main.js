@@ -228,7 +228,7 @@ var SearchPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountLogin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__forgotten_forgotten__ = __webpack_require__(531);
@@ -413,7 +413,7 @@ var AccountLogin = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__products_products__ = __webpack_require__(57);
@@ -671,7 +671,7 @@ var test = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingVendor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(15);
@@ -1188,657 +1188,7 @@ var CheckoutService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 187:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderSummary; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_checkout_service__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(188);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var OrderSummary = /** @class */ (function () {
-    function OrderSummary(nav, service, params, functions, values) {
-        this.nav = nav;
-        this.service = service;
-        this.params = params;
-        this.functions = functions;
-        this.values = values;
-        this.id = params.data;
-    }
-    OrderSummary.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.service.getOrderSummary(this.id)
-            .then(function (results) { return _this.orderSummary = results; });
-    };
-    OrderSummary.prototype.Continue = function () {
-        this.values.count = 0;
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* Home */]);
-    };
-    OrderSummary = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\checkout\order-summary\order-summary.html"*/'<ion-header>\n\n  <ion-navbar color="header" hideBackButton>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title text-wrap text-center>{{"OrderSummary" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content text-wrap class="order-summary">\n\n  <ion-spinner *ngIf="!orderSummary" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="orderSummary" class="margin">\n\n    <div *ngIf="orderSummary.order">\n\n      <div class="thank-you-message">\n\n        <ion-item>\n\n          <h2>{{"OrderReceived" | translate}} \n\n          </h2>\n\n          <h3>{{"orderreceivedtext" | translate}}\n\n          </h3>\n\n        </ion-item>\n\n      </div>\n\n      <div *ngIf="orderSummary" class="summary">\n\n        <ion-item no-lines>\n\n          <h2>{{"OrderNumber" | translate}} : {{orderSummary.order.order_number}}\n\n          </h2>\n\n          <h2>{{"Orderdate" | translate}} : {{orderSummary.order.created_at | date:\'medium\'}}\n\n          </h2>\n\n          <h2>{{"Totalquantity" | translate}} :  {{orderSummary.order.total_line_items_quantity}}\n\n          </h2>\n\n          <h2>{{"Totals" | translate}} :  {{1*orderSummary.order.total | currency:values.currency:true:\'1.2-2\'}}\n\n          </h2>\n\n          <h2>{{"PaymentMethod" | translate}} :  {{orderSummary.order.payment_details.method_title}}\n\n          </h2>\n\n        </ion-item>\n\n      </div>\n\n      <div class="order-details">\n\n        <ion-item no-lines>\n\n          <ion-label class="side-header">{{"OrderDetails" | translate}}\n\n          </ion-label>\n\n        </ion-item>\n\n        <div *ngFor="let item of orderSummary.order.line_items | keys">\n\n          <ion-row >\n\n            <ion-col width-75>\n\n              <ion-label no-margin>{{item.value.name}} - ({{item.value.quantity}})\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label no-margin>{{1*item.value.subtotal | currency:values.currency:true:\'1.2-2\' }}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n        <ion-row *ngIf="orderSummary.order.coupon_lines.length != 0" > \n\n          <ion-col width-75>\n\n            <ion-label no-margin>{{"Coupon" | translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-25 text-right>\n\n            <ion-label no-margin>{{1*orderSummary.order.total_discount | currency:values.currency:true:\'1.2-2\' }}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row > \n\n          <ion-col width-75>\n\n            <ion-label no-margin>{{"SubTotal" | translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-25 text-right>\n\n            <ion-label no-margin>{{1*orderSummary.order.subtotal | currency:values.currency:true:\'1.2-2\' }}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row > \n\n          <ion-col width-50>\n\n            <ion-label no-margin>{{"Shipping" | translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-50 text-right>\n\n            <ion-label no-margin>{{orderSummary.order.shipping_methods}}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row > \n\n          <ion-col width-50>\n\n            <ion-label no-margin>{{"PaymentMethod" |translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-50 text-right>\n\n            <ion-label no-margin>{{orderSummary.order.payment_details.method_title}}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="order-total"> \n\n          <ion-col width-75>\n\n            <ion-label class="side-header">{{"Totals" |translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-25 text-right>\n\n            <ion-label>\n\n              <b>{{1*orderSummary.order.total | currency:values.currency:true:\'1.2-2\' }}\n\n              </b>\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="orderSummary">\n\n  <button ion-button full color="button-color" no-padding no-margin text-uppercase (click)="Continue()">\n\n    {{"Continue" | translate}}\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\checkout\order-summary\order-summary.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_checkout_service__["a" /* CheckoutService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_4__providers_service_values__["a" /* Values */]])
-    ], OrderSummary);
-    return OrderSummary;
-}());
-
-//# sourceMappingURL=order-summary.js.map
-
-/***/ }),
-
-/***/ 188:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_service_category_service__ = __webpack_require__(58);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-var Home = /** @class */ (function () {
-    function Home(categoryService, toastCtrl, nav, service, values) {
-        this.categoryService = categoryService;
-        this.toastCtrl = toastCtrl;
-        this.nav = nav;
-        this.service = service;
-        this.values = values;
-        this.has_more_items = true;
-        this.loading = true;
-        this.showFilters = false;
-        this.mySlideOptions = {
-            initialSlide: 1,
-            loop: true,
-            autoplay: 5800,
-            pager: true
-        };
-        this.items = [];
-        this.options = [];
-        this.service.getProducts();
-        this.filter = {};
-        this.filter.page = 1;
-    }
-    Home.prototype.gohome = function () {
-        this.nav.parent.select(0);
-    };
-    Home.prototype.getCart = function () {
-        this.nav.parent.select(2);
-    };
-    Home.prototype.doRefresh = function (refresher) {
-        var _this = this;
-        this.service.load().then(function (results) {
-            _this.handleService(results);
-            refresher.complete();
-        });
-    };
-    Home.prototype.handleService = function (results) {
-        // 
-    };
-    Home.prototype.getCategory = function (id, slug, name) {
-        this.items.id = id;
-        this.items.slug = slug;
-        this.items.name = name;
-        this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
-    };
-    Home.prototype.presentToastLoginAlert = function () {
-        var toast = this.toastCtrl.create({
-            message: 'You must login to add item to wishlist',
-            duration: 1000,
-            position: 'bottom'
-        });
-        toast.present();
-    };
-    Home.prototype.addToWishlist = function (id) {
-        var _this = this;
-        if (this.values.isLoggedIn) {
-            this.values.wishlistId[id] = true;
-            this.service.addToWishlist(id).then(function (results) { return _this.update(results, id); });
-        }
-        else {
-            this.presentToastLoginAlert();
-        }
-    };
-    Home.prototype.update = function (results, id) {
-        if (results.success == "Success") {
-            this.values.wishlistId[id] = true;
-        }
-        else { }
-    };
-    Home.prototype.removeFromWishlist = function (id) {
-        var _this = this;
-        this.values.wishlistId[id] = false;
-        this.service.deleteItem(id).then(function (results) { return _this.updateWish(results, id); });
-    };
-    Home.prototype.updateWish = function (results, id) {
-        if (results.status == "success") {
-            this.values.wishlistId[id] = false;
-        }
-    };
-    Home.prototype.getSearch = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__search_search__["a" /* SearchPage */]);
-    };
-    Home.prototype.getId = function () {
-        var i;
-        if (this.options.length >= 1)
-            var resa = this.options[0].split(":");
-        if (this.options.length >= 2)
-            var resb = this.options[1].split(":");
-        if (this.options.length >= 1)
-            for (i = 0; i < this.product.product.variations.length; i++) {
-                if (this.product.product.variations[i].attributes[0].option == resa[1]) {
-                    if (this.options.length == 1) {
-                        break;
-                    }
-                    else if (this.product.product.variations[i].attributes[1].option == resb[1]) {
-                        break;
-                    }
-                }
-            }
-    };
-    Home.prototype.goto = function (data) {
-        var _this = this;
-        if (data.description == "product") {
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], data.url);
-        }
-        else if (data.description == "category") {
-            this.items.id = data.url;
-            this.items.name = data.title;
-            this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(_this.items.id); });
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
-        }
-        else if (data.description == "post") {
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_7__post_post__["a" /* Post */], data.url);
-        }
-    };
-    Home.prototype.doInfinite = function (infiniteScroll) {
-        var _this = this;
-        console.log(this.filter.page);
-        this.filter.page += 1;
-        this.service.loadMoreProvider(this.filter).then(function (results) { return _this.handleMore(results, infiniteScroll); });
-    };
-    Home.prototype.handleMore = function (results, infiniteScroll) {
-        if (!results) {
-            this.has_more_items = false;
-        }
-        infiniteScroll.complete();
-    };
-    Home.prototype.getProduct = function (item) {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], item);
-    };
-    Home.prototype.hideLoading = function () {
-        this.loading = false;
-    };
-    Home.prototype.getSubCategories = function (id) {
-        var results = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
-        return results;
-    };
-    //Filter shit
-    Home.prototype.getFilter = function () {
-        this.showFilters = true;
-        this.has_more_items = false;
-    };
-    Home.prototype.cancel = function () {
-        this.showFilters = false;
-        this.has_more_items = true;
-    };
-    Home.prototype.chnageFilter = function (sort) {
-        var _this = this;
-        this.showFilters = false;
-        this.has_more_items = true;
-        this.filter.page = 1;
-        console.log(this.filter.page);
-        // FILTROS SHIT EN FUNCION
-        if (sort == 5) {
-            this.filter['orderby'] = 'menu_order';
-        }
-        else if (sort == 6) {
-            this.filter['orderby'] = 'popularity';
-        }
-        else if (sort == 7) {
-            this.filter['orderby'] = 'rating';
-        }
-        else if (sort == 8) {
-            this.filter['orderby'] = 'date';
-            this.filter['order'] = 'asc';
-        }
-        else if (sort == 9) {
-            this.filter['orderby'] = 'date';
-            this.filter['order'] = 'desc';
-        }
-        else if (sort == 10) {
-            this.filter['orderby'] = 'price';
-            this.filter['order'] = 'asc';
-        }
-        else if (sort == 11) {
-            this.filter['orderby'] = 'price';
-            this.filter['order'] = 'desc';
-        }
-        else if (sort == 12) {
-            this.filter['orderby'] = 'title';
-            this.filter['order'] = 'asc';
-        }
-        else if (sort == 13) {
-            this.filter['orderby'] = 'title';
-            this.filter['order'] = 'desc';
-        }
-        /*this.filter['filter[meta_query][key]'] = "_price";
-            this.filter['filter[meta_query][value]'] = '[0,10]';
-            this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
-        this.categoryService.load(this.filter).then(function (results) { return (_this.service.products = results); });
-    };
-    Home = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\home\home.html"*/'<!-- <ion-header class="home-header">\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n       <img style="max-width: 200px;" src="{{values.avatar}}" /> \n\n      {{"Providers" | translate}}\n\n    </ion-title>\n\n    \n\n    <ion-buttons end>\n\n      <button ion-button icon-only color="icon-color" (click)="getFilter()">\n\n        <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>\n\n      </button>\n\n      <button ion-button icon-only color="icon-color" (click)="getSearch()">\n\n        <ion-icon color="icon-color" ios="ios-search" md="md-search"></ion-icon>\n\n      </button>\n\n      <button\n\n        ion-button\n\n        icon-only\n\n        color="icon-color"\n\n        class="has-icon icon-only has-badge"\n\n        (click)="getCart()"\n\n      >\n\n        <ion-icon\n\n          color="icon-color"\n\n          name="md-basket"\n\n          class="item-icon"\n\n        ></ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count != 0">\n\n          {{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button\n\n        ion-button\n\n        icon-only\n\n        light\n\n        class="has-icon icon-only has-badge"\n\n        (click)="getCart()"\n\n      >\n\n        <ion-icon class="ion-ios-cart item-icon"></ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count">\n\n          {{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="home">\n\n\n\n  <ion-slides initialSlide="0" speed="3000" loop="false" pager="true" dir="rtl">\n\n    <ion-slide>\n\n      <div class="overlay">\n\n        <img src="{{values.slider}}" />\n\n      </div>\n\n      <div class="title-home-banner">\n\n        {{\'Proveedores de Servicios\' | translate}}\n\n      </div>\n\n\n\n      <div class="card-search">\n\n        \n\n      </div>\n\n\n\n    </ion-slide>\n\n  </ion-slides>\n\n  \n\n  <ion-row>\n\n    <ion-col col-9> \n\n      <ion-searchbar class="searchbar-category" placeholder="Seleccionar Categoria"></ion-searchbar>\n\n    </ion-col>\n\n    <ion-col col-3 style="align-self: center;font-weight: bold;padding: 0;">\n\n      \n\n      <button class="btn-filter" (click)="getFilter()">\n\n        <!-- <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon> -->\n\n        Filtrar<img src="../../assets/icon/filter.svg" alt="">\n\n      </button>\n\n    </ion-col>\n\n  </ion-row>\n\n\n\n  <div *ngIf="showFilters" class="filter">\n\n    <ion-list radio-group [(ngModel)]="sort" (ngModelChange)="chnageFilter(sort)">\n\n      <ion-list-header>\n\n        <b>\n\n          {{"Sort" | translate}}\n\n        </b>\n\n      </ion-list-header>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Default" | translate}}</ion-label>\n\n        <ion-radio value="5"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by popularity" | translate}}</ion-label>\n\n        <ion-radio value="6"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by average rating" | translate}}</ion-label>\n\n        <ion-radio value="7"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: ASC" | translate}}</ion-label>\n\n        <ion-radio value="8"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: DESC" | translate}}</ion-label>\n\n        <ion-radio value="9"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: low to high" | translate}}</ion-label>\n\n        <ion-radio value="10"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: high to low" | translate}}</ion-label>\n\n        <ion-radio value="11"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: ASC" | translate}}</ion-label>\n\n        <ion-radio value="12"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: DESC" | translate}}</ion-label>\n\n        <ion-radio value="13"></ion-radio>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button block color="button-color" (click)="cancel()">\n\n      {{"Cancel" | translate}}\n\n    </button>\n\n  </div>\n\n\n\n  <!-- <ion-fab bottom right slot="fixed">\n\n    <button ion-fab>\n\n      <ion-icon name="chatboxes"></ion-icon>\n\n    </button>\n\n    <ion-fab-list side="left">\n\n      <a button ion-fab style="background-color: #ffffff;" href="https://www.messenger.com/t/thehexchange">\n\n        <ion-icon style="background: #2196f3;" name="custom-facebook"></ion-icon>\n\n      </a>\n\n      <a button ion-fab style="background-color: #ffffff;" href="https://www.instagram.com/thehexchange/">\n\n        <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>\n\n      </a>\n\n    </ion-fab-list>\n\n  </ion-fab> -->\n\n\n\n  <ion-refresher\n\n    *ngIf="values.settings.pull_to_refresh == \'1\'"\n\n    (ionRefresh)="doRefresh($event)"\n\n  >\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n  <ion-spinner *ngIf="!service?.blocks" name="crescent"></ion-spinner>\n\n\n\n  <div\n\n    *ngFor="let children of service?.blocks"\n\n    hideWhen="loading"\n\n    class="blocks"\n\n  >\n\n    <div\n\n      *ngIf="children.block_type == \'banner_block\'"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      [style.padding]="children.padding"\n\n      class="banner_block"\n\n    >\n\n      <div\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        {{children.title}}\n\n      </div>\n\n      <!-- Banner Slider -->\n\n      <div *ngIf="children.children.length && children.style == \'slider\'">\n\n        <ion-slides pager="true" loop="true" autoplay="5800">\n\n          <ion-slide *ngFor="let image of children.children">\n\n            <img\n\n              src="{{image.image}}"\n\n              (click)="goto(image)"\n\n              (load)="hideLoading()"\n\n              [style.border-radius]="children.border_radius"\n\n            />\n\n          </ion-slide>\n\n        </ion-slides>\n\n      </div>\n\n\n\n      <!-- Banner Scroll -->\n\n      <div\n\n        *ngIf="children.children.length && children.style == \'scroll\'"\n\n        [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        class="floating-header banner-scroll"\n\n      >\n\n        <img\n\n          class="banner"\n\n          tappable\n\n          *ngFor="let image of children.children"\n\n          (load)="hideLoading()"\n\n          src="{{image.image}}"\n\n          (click)="goto(image)"\n\n          [style.border-radius]="children.border_radius"\n\n          [style.width.%]="children.child_width"\n\n        />\n\n      </div>\n\n\n\n      <!-- Banner Grid -->\n\n      <div\n\n        *ngIf="children.children.length && children.style == \'grid\'"\n\n        class="banner-grid"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col\n\n            *ngFor="let image of children.children"\n\n            (load)="hideLoading()"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <img\n\n              src="{{image.image}}"\n\n              (click)="goto(image)"\n\n              [style.border-radius]="children.border_radius"\n\n              class="{{children.card_style}}"\n\n            />\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n\n\n    <div\n\n      *ngIf="children.block_type == \'product_block\'"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      class="product-block"\n\n    >\n\n      <div\n\n        *ngIf="children.products"\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        {{children.title}}\n\n      </div>\n\n      <!-- Products Scroll -->\n\n      <div\n\n        *ngIf="children.products && children.style == \'scroll\'"\n\n        class="product-scroll"\n\n      >\n\n        <div\n\n          class="scroller"\n\n          [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        >\n\n          <a\n\n            *ngFor="let item of children.products"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <ion-card>\n\n              <ion-card-content (click)="getProduct(item)">\n\n                <img\n\n                  [style.border-radius]="children.border_radius"\n\n                  src="{{item.images[0].src}}"\n\n                />\n\n              </ion-card-content>\n\n              <h5 *ngIf="item.title">{{item.title}}</h5>\n\n              <h5 *ngIf="item.name">{{item.name}}</h5>\n\n              <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\' }}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price | currency:values.currency:symbol:\'1.2-2\'\n\n                  }}\n\n                </span>\n\n                <span *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\' }}\n\n                  </del>\n\n                </span>\n\n              </ion-label>\n\n            </ion-card>\n\n          </a>\n\n        </div>\n\n      </div>\n\n      <!-- Products  Grid-->\n\n      <div\n\n        class="product-grid"\n\n        *ngIf="children.products && children.style == \'grid\'"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col class="col" *ngFor="let item of children.products">\n\n            <ion-card>\n\n              <ion-card-content>\n\n                <img\n\n                  [style.height.px]="values.dimensions.imageGridViewHeight"\n\n                  tappable\n\n                  src="{{item.images[0].src}}"\n\n                  (click)="getProduct(item)"\n\n                />\n\n                <button\n\n                  ion-button\n\n                  color="danger"\n\n                  class="stock"\n\n                  *ngIf="!item.in_stock"\n\n                >\n\n                  {{"No Stock" | translate}}\n\n                </button>\n\n                <ion-icon\n\n                  name="md-heart"\n\n                  color="icon-color"\n\n                  class="wishlist-button-grid1"\n\n                  *ngIf="values.wishlistId[item.id]"\n\n                  (click)="removeFromWishlist(item.id)"\n\n                ></ion-icon>\n\n                <ion-icon\n\n                  name="md-heart-outline"\n\n                  color="icon-color"\n\n                  class="wishlist-button-grid2"\n\n                  *ngIf="!values.wishlistId[item.id]"\n\n                  (click)="addToWishlist(item.id)"\n\n                ></ion-icon>\n\n\n\n                <div *ngIf="item.in_stock">\n\n                  <button\n\n                    ion-button\n\n                    class="offer"\n\n                    *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= \'1\'"\n\n                  >\n\n                    {{(item.regular_price - item.price) /item.regular_price*100\n\n                    | number : \'1.0-0\'}}%\n\n                  </button>\n\n                </div>\n\n              </ion-card-content>\n\n\n\n              <div tappable (click)="getProduct(item)" class="card-name">\n\n                <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n\n                <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n\n              </div>\n\n\n\n              <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price |\n\n                  currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-delete" *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\'}}\n\n                  </del>\n\n                </span>\n\n              </ion-label>\n\n            </ion-card>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n\n\n    <!--flash sale-->\n\n\n\n    <div\n\n      *ngIf="children.block_type == \'flash_sale_block\' && !children.hide"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      [style.padding]="children.padding"\n\n      class="product-block flash_sale"\n\n    >\n\n      <div\n\n        *ngIf="children.products"\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        <ion-item no-lines class="flash-item-name">\n\n          <h2 [style.color]="children.title_color">\n\n            <ion-icon\n\n              name="md-flash"\n\n              style="margin-right: 6px;font-size: 18px;"\n\n            ></ion-icon>\n\n            {{children.title}}\n\n          </h2>\n\n          <!--h4 [style.color]="children.title_color" style="filter: brightness(100%);">Ends in</h4-->\n\n          <div style="text-align: center;">\n\n            <h3 class="day"><span>{{children.days}}</span></h3>\n\n            :\n\n            <h3 class="day"><span>{{children.hours}}</span></h3>\n\n            :\n\n            <h3 class="day"><span>{{children.minutes}}</span></h3>\n\n            :\n\n            <h3 class="day"><span>{{children.seconds}}</span></h3>\n\n          </div>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Products Scroll -->\n\n      <div\n\n        *ngIf="children.products && children.style == \'scroll\'"\n\n        class="product-scroll"\n\n      >\n\n        <div\n\n          class="scroller"\n\n          [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        >\n\n          <a\n\n            *ngFor="let item of children.products"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <ion-card>\n\n              <ion-card-content (click)="getProduct(item)">\n\n                <img\n\n                  [style.height.px]="values.dimensions.productSliderHeight"\n\n                  [style.border-radius]="children.border_radius"\n\n                  src="{{item.images[0].src}}"\n\n                />\n\n              </ion-card-content>\n\n              <h5 *ngIf="item.title">{{item.title}}</h5>\n\n              <h5 *ngIf="item.name">{{item.name}}</h5>\n\n              <!-- <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\' }}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price | currency:values.currency:symbol:\'1.2-2\'\n\n                  }}\n\n                </span>\n\n                <span *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\' }}\n\n                  </del>\n\n                </span>\n\n              </ion-label> -->\n\n            </ion-card>\n\n          </a>\n\n        </div>\n\n      </div>\n\n      <!-- Products  Grid-->\n\n      <div\n\n        class="product-grid"\n\n        *ngIf="children.products && children.style == \'grid\'"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col\n\n            class="col"\n\n            *ngFor="let item of children.products"\n\n            [style.padding]="children.padding"\n\n          >\n\n            <ion-card>\n\n              <ion-card-content>\n\n                <img\n\n                  [style.height.px]="values.dimensions.imageGridViewHeight"\n\n                  tappable\n\n                  src="{{item.images[0].src}}"\n\n                  (click)="getProduct(item)"\n\n                />\n\n                <button\n\n                  ion-button\n\n                  color="danger"\n\n                  class="stock"\n\n                  *ngIf="item.stock_status == \'outofstock\'"\n\n                >\n\n                  {{"No Stock" | translate}}\n\n                </button>\n\n                <ion-icon\n\n                  name="md-heart"\n\n                  class="wishlist-button-grid1"\n\n                  *ngIf="values.wishlistId[item.id]"\n\n                  (click)="removeFromWishlist(item.id)"\n\n                ></ion-icon>\n\n                <ion-icon\n\n                  name="md-heart-outline"\n\n                  class="wishlist-button-grid2"\n\n                  *ngIf="!values.wishlistId[item.id]"\n\n                  (click)="addToWishlist(item.id)"\n\n                ></ion-icon>\n\n\n\n                <div *ngIf="item.stock_status == \'instock\'">\n\n                  <button\n\n                    ion-button\n\n                    class="offer"\n\n                    *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= \'1\'"\n\n                  >\n\n                    {{(item.regular_price - item.price) /item.regular_price*100\n\n                    | number : \'1.0-0\'}}%\n\n                  </button>\n\n                </div>\n\n              </ion-card-content>\n\n\n\n              <div tappable (click)="getProduct(item)" class="card-name">\n\n                <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n\n                <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n\n              </div>\n\n\n\n              <!-- <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price |\n\n                  currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-delete" *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\'}}\n\n                  </del>\n\n                </span>\n\n              </ion-label> -->\n\n            </ion-card>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n\n\n    <div\n\n      *ngIf="children.block_type == \'category_block\'"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      [style.padding]="children.padding"\n\n      class="category"\n\n    >\n\n      <div\n\n        *ngIf="service?.categories"\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        {{children.title}}\n\n      </div>\n\n      <!-- Category Scroll -->\n\n      <div\n\n        *ngIf="service?.categories && children.style == \'scroll\'"\n\n        class="category-slider-scroll"\n\n      >\n\n        <div\n\n          class="scrollmenu2"\n\n          [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        >\n\n          <a\n\n            *ngFor="let item of getSubCategories(children.link_id)"\n\n            class="{{item.slug}}"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <img\n\n              *ngIf="item.image?.src"\n\n              [style.border-radius]="children.border_radius"\n\n              (load)="hideLoading()"\n\n              src="{{item.image.src}}"\n\n              (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n            />\n\n            <h5\n\n              *ngIf="item.image"\n\n              (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n              [innerHTML]="item.name"\n\n            ></h5>\n\n            <div *ngIf="!item.image" class="no-image">\n\n              <h5\n\n                (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n                [innerHTML]="item.name"\n\n                [style.color]="children.title_color"\n\n              ></h5>\n\n            </div>\n\n          </a>\n\n        </div>\n\n      </div>\n\n\n\n      <!-- Category Grid -->\n\n      <div\n\n        *ngIf="service?.categories && children.style == \'grid\'"\n\n        class="category-slider-grid"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col\n\n            class="col {{item.slug}}"\n\n            *ngFor="let item of getSubCategories(children.link_id)"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <div\n\n              (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n            >\n\n              <ion-card>\n\n                <ion-card-content>\n\n                  <img\n\n                    *ngIf="item.image"\n\n                    (load)="hideLoading()"\n\n                    [style.border-radius]="children.border_radius"\n\n                    src="{{item.image}}"\n\n                  />\n\n                </ion-card-content>\n\n                <div text-center>\n\n                  <ion-label\n\n                    text-uppercase\n\n                    [innerHTML]="item.name"\n\n                    [style.color]="children.title_color"\n\n                  ></ion-label>\n\n                </div>\n\n              </ion-card>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n  </div>\n\n\n\n  <!--div *ngIf="service?.categories" style="margin-bottom: 10px;">\n\n\n\n    <div *ngIf="service.mainCategories" class="main-categories">\n\n      <ion-row class="row unlimited-items">\n\n        <ion-col class="col" *ngFor="let item of service.mainCategories">\n\n          <a (click)="getCategory(item.id, item.slug, item.name)">\n\n            <ion-card>\n\n              <ion-card-content>\n\n                <img src="{{item.image}}"/>\n\n              </ion-card-content>\n\n              <div text-center>\n\n                <ion-label text-uppercase><span [innerHTML]="item.name"></span>\n\n                </ion-label>\n\n              </div>\n\n            </ion-card>\n\n          </a>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n  </div-->\n\n  <div *ngIf="!showFilters">\n\n  <div class="products-listing">\n\n    <div *ngIf="service?.products">\n\n      <!--ion-item no-lines class="item-name">\n\n            <ion-label text-uppercase><b>{{"Products" | translate}}</b>\n\n            </ion-label>\n\n          </ion-item-->\n\n      <ion-list>\n\n        <div class="card-background-page grid">\n\n          <ion-row class="row unlimited-items">\n\n            <ion-col class="col" *ngFor="let item of service.products">\n\n              <ion-card>\n\n                <ion-card-content class="stock">\n\n                  <img\n\n                    [style.height.px]="values.dimensions.imageGridViewHeight * 2 - 200"\n\n                    tappable\n\n                    src="{{item.images[0].src}}"\n\n                    (load)="hideLoading()"\n\n                    (click)="getProduct(item)"\n\n                  />\n\n                  <button\n\n                    ion-button\n\n                    color="danger"\n\n                    *ngIf="item.stock_status !== \'instock\'"\n\n                  >\n\n                    {{"OUTOFSTOCK" | translate}}\n\n                  </button>\n\n\n\n                  <ion-icon\n\n                    name="md-heart"\n\n                    color="icon-color"\n\n                    class="wishlist-button-grid"\n\n                    *ngIf="values.wishlistId[item.id]"\n\n                    (click)="removeFromWishlist(item.id)"\n\n                  ></ion-icon>\n\n                  <ion-icon\n\n                    name="md-heart-outline"\n\n                    color="icon-color"\n\n                    class="wishlist-button-grid"\n\n                    *ngIf="!values.wishlistId[item.id]"\n\n                    (click)="addToWishlist(item.id)"\n\n                  ></ion-icon>\n\n                </ion-card-content>\n\n                <div tappable (click)="getProduct(item)" class="card-name">\n\n                  <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n\n                  <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n\n                </div>\n\n                <!-- <ion-item no-padding class="price-list">\n\n                  <h3 class="price-regular" *ngIf="item.minPrice">\n\n                    Starting from {{1*item.minPrice |\n\n                    currency:values.currency:true:\'1.2-2\'}}\n\n                  </h3>\n\n                </ion-item> -->\n\n                <ion-item no-padding class="price-list">\n\n                  <span item-left *ngIf="item.average_rating" class="rating">\n\n                    <!-- <span *ngIf="item.rating_count > 0">\n\n                      ({{item.rating_count}})\n\n                    </span> -->\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                  </span>\n\n                </ion-item>\n\n                \n\n              </ion-card>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n  </div>\n\n   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n\n            <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{\'Loading more items...\' | translate}}"> </ion-infinite-scroll-content>\n\n        </ion-infinite-scroll> \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\home\home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8__providers_service_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
-    ], Home);
-    return Home;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 194:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingDetails; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var BookingDetails = /** @class */ (function () {
-    function BookingDetails(nav, service, params, actionSheetCtrl, config, reqhttp, http, values) {
-        var _this = this;
-        this.nav = nav;
-        this.service = service;
-        this.actionSheetCtrl = actionSheetCtrl;
-        this.config = config;
-        this.reqhttp = reqhttp;
-        this.http = http;
-        this.values = values;
-        console.log(params);
-        this.idOrder = params.data.idOrder;
-        this.idVendor = params.data.idVendor;
-        this.service.getBooking(this.idOrder, this.idVendor)
-            .then(function (results) { return _this.orderDetails = results; });
-    }
-    BookingDetails = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\booking-details\booking-details.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"Booking Info" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="order-details">\n\n  <ion-spinner *ngIf="!orderDetails" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="orderDetails">\n\n    <ion-item-group>\n\n      <ion-item-divider>{{"Booked Product" | translate }}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.booked_product}}\n\n      </ion-item>\n\n      \n\n      <ion-item-divider>{{"Customer Details" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        <ion-row>\n\n          <ion-col>{{"Name" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.first_name}}\n\n            {{orderDetails.order.billing_address.last_name}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Email" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.email}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Phone" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.phone}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Address" | translate}} 1\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.address_1}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Address" | translate}} 2\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.address_2}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"City" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.city}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"State" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.city}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Postcode" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.postcode}}\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-item>\n\n\n\n      <ion-item-divider>{{"Booking Status" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.statusbooking}}\n\n      </ion-item> \n\n\n\n      <ion-item-divider>{{"Booking Date/Time" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        <ion-row>\n\n          <ion-col>{{"Start Date" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.start_date}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"End Date" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.end_date}\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-item>\n\n    </ion-item-group>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\booking-details\booking-details.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ActionSheetController"],
-            __WEBPACK_IMPORTED_MODULE_4__providers_service_config__["a" /* Config */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
-    ], BookingDetails);
-    return BookingDetails;
-}());
-
-//# sourceMappingURL=booking-details.js.map
-
-/***/ }),
-
-/***/ 195:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditAddressForm; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var EditAddressForm = /** @class */ (function () {
-    function EditAddressForm(nav, service, params, values) {
-        var _this = this;
-        this.nav = nav;
-        this.service = service;
-        this.values = values;
-        this.regions = [];
-        this.disableSubmit = false;
-        this.Save = "Save";
-        this.editAddress = params.data;
-        this.editAddress.shipping = true;
-        this.service.getCountry()
-            .then(function (results) { return _this.handleContries(results); });
-    }
-    EditAddressForm.prototype.handleContries = function (results) {
-        this.country = results;
-        this.billing_states = this.country.state[this.editAddress.billing_address.country];
-        this.shipping_states = this.country.state[this.editAddress.shipping_address.country];
-    };
-    EditAddressForm.prototype.getBillingRegion = function (countryId) {
-        this.billing_states = this.country.state[countryId];
-    };
-    EditAddressForm.prototype.getShippingRegion = function (countryId) {
-        this.shipping_states = this.country.state[countryId];
-    };
-    EditAddressForm.prototype.saveAddress = function () {
-        var _this = this;
-        this.Save = "Save";
-        this.disableSubmit = true;
-        if (this.editAddress.shipping) {
-            this.editAddress.shipping_address.first_name = this.editAddress.billing_address.first_name;
-            this.editAddress.shipping_address.last_name = this.editAddress.billing_address.last_name;
-            this.editAddress.shipping_address.company = this.editAddress.billing_address.company;
-            this.editAddress.shipping_address.address_1 = this.editAddress.billing_address.address_1;
-            this.editAddress.shipping_address.address_2 = this.editAddress.billing_address.address_2;
-            this.editAddress.shipping_address.city = this.editAddress.billing_address.city;
-            this.editAddress.shipping_address.country = this.editAddress.billing_address.country;
-            this.editAddress.shipping_address.state = this.editAddress.billing_address.state;
-            this.editAddress.shipping_address.postcode = this.editAddress.billing_address.postcode;
-        }
-        this.service.saveAddress(this.editAddress)
-            .then(function (results) { return _this.handleSaveAddress(results); });
-    };
-    EditAddressForm.prototype.handleSaveAddress = function (results) {
-        this.disableSubmit = false;
-        this.Save = "Saving...";
-        this.nav.pop();
-    };
-    EditAddressForm = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\edit-address-form\edit-address-form.html"*/'<ion-header no-border>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"Edit Address" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="edit-address-form">\n\n  <div>\n\n    <ion-list>\n\n      <ion-item class="side-heading-background">\n\n        <h2 class="heading-label">{{"Billing Address" | translate}}\n\n        </h2>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"First Name" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.first_name" name="first_name">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Last Name"| translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.last_name" name="last_name">\n\n        </ion-input>\n\n      </ion-item>\n\n      <!--ion-item>\n\n        <ion-label floating>{{"Company" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.company" name="company">\n\n        </ion-input>\n\n      </ion-item-->\n\n      <ion-item>\n\n        <ion-label floating>{{"Phone" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.phone" name="phone">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Email" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="email" [(ngModel)]="editAddress.billing_address.email" name="email">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 1\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.address_1" name="address_1">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 2\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.address_2" name="address_2">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"City" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.city" name="city">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item *ngIf="country">\n\n        <ion-label>  \n\n          {{"Country" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.billing_address.country" (ngModelChange)="getBillingRegion(editAddress.billing_address.country)" name="country">\n\n          <div *ngFor="let field of country.country.countries | keys">\n\n            <ion-option value="{{field.key}}"><span [innerHTML]="field.value"></span>\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item *ngIf="billing_states">\n\n        <ion-label>  \n\n          {{"State" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.billing_address.state" name="state">\n\n          <div *ngFor="let field of billing_states | keys">\n\n            <ion-option value="{{field.key}}">{{field.value}}\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>      \n\n      </ion-item>\n\n      <ion-item *ngIf="!billing_states">\n\n        <ion-label floating>{{"Country" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.state" name="state">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Postcode" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.postcode" name="postcode">\n\n        </ion-input>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n  <ion-item class="side-heading-background">\n\n    <ion-label class="heading-label">{{"Same For Shipping" | translate}}\n\n    </ion-label>\n\n    <ion-toggle checked="true" [(ngModel)]="editAddress.shipping_true" name="subscribe">\n\n    </ion-toggle>\n\n  </ion-item>\n\n  <br>\n\n  <div *ngIf="!editAddress.shipping_true">\n\n    <ion-list>\n\n      <ion-item class="side-heading-background">\n\n        <h2 class="heading-label">{{"Shipping Address" | translate}}\n\n        </h2>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"First Name" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.first_name" name="firstname">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Last Name"| translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.last_name" name="last_name">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Company" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.company" name="company">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 1\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.address_1" name="address_1">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 2\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.address_2" name="address_2">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"City" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.city" name="city">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item *ngIf="country">\n\n        <ion-label>  \n\n          {{"Country" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.shipping_address.country" (ngModelChange)="getShippingRegion(editAddress.shipping_address.country)" name="country">\n\n          <div *ngFor="let field of country.country.countries | keys">\n\n            <ion-option value="{{field.key}}">{{field.value}}\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item *ngIf="shipping_states">\n\n        <ion-label>  \n\n          {{"State" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.shipping_address.state" name="state">\n\n          <div *ngFor="let field of shipping_states | keys">\n\n            <ion-option value="{{field.key}}">{{field.value}}\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>      \n\n      </ion-item>\n\n      <ion-item *ngIf="!shipping_states">\n\n        <ion-label floating>{{"Country" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.state" name="state">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Postcode" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.postcode" name="postcode">\n\n        </ion-input>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n  <div class="margin">\n\n    <button ion-button block color="button-color" type="submit" [disabled]="disableSubmit" class="button button-block button-default" text-uppercase (click)="saveAddress()">{{Save | translate}}\n\n    </button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\edit-address-form\edit-address-form.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
-    ], EditAddressForm);
-    return EditAddressForm;
-}());
-
-//# sourceMappingURL=edit-address-form.js.map
-
-/***/ }),
-
-/***/ 196:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetails; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var OrderDetails = /** @class */ (function () {
-    function OrderDetails(nav, service, params, actionSheetCtrl, config, reqhttp, http, values) {
-        var _this = this;
-        this.nav = nav;
-        this.service = service;
-        this.actionSheetCtrl = actionSheetCtrl;
-        this.config = config;
-        this.reqhttp = reqhttp;
-        this.http = http;
-        this.values = values;
-        console.log(params);
-        this.id = params.data;
-        this.service.getOrder(this.id)
-            .then(function (results) { return _this.orderDetails = results; });
-    }
-    OrderDetails.prototype.confirmOrder = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Change Your Order Status ...',
-            cssClass: 'myaction',
-            buttons: [
-                {
-                    text: 'Processing',
-                    cssClass: 'processing',
-                    handler: function () {
-                        var params = {
-                            status: 'processing'
-                        };
-                        new Promise(function (resolve) {
-                            _this.http
-                                .post(_this.config.setUrl +
-                                '/wc-api/v3/orders/' + _this.id, params, _this.config.options)
-                                .map(function (res) { return res.json(); })
-                                .subscribe(function (data) {
-                            });
-                        });
-                        //  this.WooCommerce.putAsync("orders/" + this.order.id, data).then( (data) => {
-                        //   console.log(JSON.parse(data.body));
-                        //   this.navCtrl.push("OrderPage");
-                        // }, (err) => {
-                        //   console.log(err);
-                        // });
-                    }
-                },
-                {
-                    text: 'Cancel',
-                    cssClass: 'cancel',
-                    handler: function () {
-                        var params = {
-                            status: 'cancelled'
-                        };
-                        return new Promise(function (resolve) {
-                            _this.http
-                                .post(_this.config.setUrl('POST', '/wc-api/v3/orders/', false), params, _this.config.options)
-                                .map(function (res) { return res.json(); })
-                                .subscribe(function (data) {
-                                _this.dataOrder = data;
-                                resolve(_this.dataOrder);
-                                console.log(_this.dataOrder);
-                            }, function (err) {
-                                resolve(err.json());
-                            });
-                        });
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    OrderDetails = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\order-details\order-details.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"OrderInfo" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="order-details">\n\n  <ion-spinner *ngIf="!orderDetails" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="orderDetails">\n\n    <ion-item-group>\n\n      <ion-item-divider>{{"Order" | translate }} #\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.order_number}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"Date" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.created_at | date:\'medium\'}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"PaymentMethod" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.payment_details.method_title}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"BillingAddress" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        {{orderDetails.order.billing_address.first_name}}\n\n        {{orderDetails.order.billing_address.last_name}},\n\n        <br>\n\n        {{orderDetails.order.billing_address.email}}\n\n        <br>\n\n        {{orderDetails.order.billing_address.phone}}\n\n        <br>\n\n        {{orderDetails.order.billing_address.address_1}},\n\n        <br>\n\n        {{orderDetails.order.billing_address.address_2}},\n\n        <br>\n\n        {{orderDetails.order.billing_address.city}}, \n\n        {{orderDetails.order.billing_address.state}}\n\n        <br>\n\n        {{orderDetails.order.billing_address.postcode}}\n\n      </ion-item>\n\n      <!-- <ion-item-divider>{{"ShippingMethod" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.shipping_methods}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"ShippingAddress" | translate}} \n\n      </ion-item-divider>\n\n      <ion-item>\n\n        {{orderDetails.order.shipping_address.first_name}}\n\n        {{orderDetails.order.shipping_address.last_name}},\n\n        <br>\n\n        {{orderDetails.order.shipping_address.company}}\n\n        <br>\n\n        {{orderDetails.order.shipping_address.address_1}},\n\n        <br>\n\n        {{orderDetails.order.shipping_address.address_2}},\n\n        <br>\n\n        {{orderDetails.order.shipping_address.city}}, \n\n        {{orderDetails.order.shipping_address.state}}\n\n        <br>\n\n        {{orderDetails.order.shipping_address.country}}\n\n        <br>\n\n        {{orderDetails.order.shipping_address.postcode}}\n\n      </ion-item>-->\n\n      <ion-item-divider>{{"Provider Details" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item *ngFor="let item of orderDetails.order.line_items">\n\n        <h2>{{"ProductName" | translate}} : {{item.name}}\n\n        </h2>\n\n        <h2>{{"Price" | translate}} : {{item.price | currency:values.currency:true:\'1.2-2\'}}\n\n        </h2>\n\n        <h2>{{"Quantity" | translate}} : {{item.quantity}}\n\n        </h2>     \n\n        <h2>{{"SubTotal" | translate}} : {{1*item.subtotal | currency:values.currency:true:\'1.2-2\'}}\n\n        </h2>\n\n      </ion-item>\n\n      <ion-item-divider>{{"Totals" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        <ion-row>\n\n          <ion-col>{{"SubTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.subtotal | currency:values.currency:true:\'1.2-2\'}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col> {{"ShippingTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.total_shipping}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"TaxTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.total_tax}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row text-uppercase>\n\n          <ion-col>{{"GrandTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.total | currency:values.currency:true:\'1.2-2\'}}\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-item>\n\n    </ion-item-group>\n\n  </div>\n\n</ion-content>\n\n<!-- <ion-footer *ngIf="values.vendor">\n\n  <ion-toolbar color="brand">\n\n    <button ion-button round full color="primary" (click)="confirmOrder()">Confirm Order</button>\n\n  </ion-toolbar>\n\n</ion-footer> -->'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\order-details\order-details.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ActionSheetController"],
-            __WEBPACK_IMPORTED_MODULE_4__providers_service_config__["a" /* Config */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
-    ], OrderDetails);
-    return OrderDetails;
-}());
-
-//# sourceMappingURL=order-details.js.map
-
-/***/ }),
-
-/***/ 199:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WishlistPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_wishlist_service__ = __webpack_require__(553);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cart_cart__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(41);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var WishlistPage = /** @class */ (function () {
-    function WishlistPage(nav, values, params, functions, service) {
-        this.nav = nav;
-        this.values = values;
-        this.params = params;
-        this.functions = functions;
-        this.service = service;
-    }
-    WishlistPage.prototype.gohome = function () {
-        this.nav.parent.select(0);
-    };
-    WishlistPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.service.loadWishlist()
-            .then(function (results) { return _this.wishlist = results; });
-    };
-    WishlistPage.prototype.removeFromWishlist = function (id) {
-        var _this = this;
-        this.service.deleteItem(id)
-            .then(function (results) { return _this.updateWish(results, id); });
-    };
-    WishlistPage.prototype.updateWish = function (results, id) {
-        var _this = this;
-        if (results.status == "success") {
-            this.service.loadWishlist()
-                .then(function (results) { return _this.wishlist = results; });
-            this.values.wishlistId.splice(id, 0);
-        }
-    };
-    WishlistPage.prototype.getCart = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__cart_cart__["a" /* CartPage */]);
-    };
-    WishlistPage.prototype.addToCart = function (item, id, type) {
-        var _this = this;
-        console.log({ item: item });
-        if (type == 'variable') {
-            this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], id);
-        }
-        else {
-            this.service.addToCart(id)
-                .then(function (results) { return _this.updateCart(results, id); });
-        }
-    };
-    WishlistPage.prototype.getProduct = function (id) {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], id);
-    };
-    WishlistPage.prototype.updateCart = function (results, id) {
-        var _this = this;
-        if (results.error) {
-            this.functions.showAlert("ERROR", "Unable to add to Wishlist");
-        }
-        else {
-            this.service.deleteItem(id)
-                .then(function (results) { return _this.updateWishlist(results); });
-        }
-    };
-    WishlistPage.prototype.updateWishlist = function (results) {
-        var _this = this;
-        this.service.loadWishlist()
-            .then(function (results) { return _this.wishlist = results; });
-        this.functions.showAlert("SUCCESS", "Item has been added to cart");
-    };
-    WishlistPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\wishlist\wishlist.html"*/'<!-- Header -->\n\n<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button\n\n        ion-button\n\n        icon-only\n\n        light\n\n        class="has-icon icon-only has-badge"\n\n        (click)="getCart()"\n\n      >\n\n        <ion-icon class="ion-ios-cart item-icon"></ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count">\n\n          {{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="wishlistPage">\n\n  <div *ngIf="wishlist?.error" class="margin">\n\n    <h2>{{"Your wishlist is empty!" | translate}}</h2>\n\n  </div>\n\n\n\n  <div *ngIf="wishlist">\n\n    <div *ngIf="wishlist.length">\n\n      <div *ngFor="let item of wishlist | keys" class="wish-list">\n\n        <ion-item no-lines>\n\n          <ion-thumbnail item-left>\n\n            <img src="{{item.value.image_thumb}}" />\n\n          </ion-thumbnail>\n\n\n\n          <h2 wrap-text>{{item.value.name}}</h2>\n\n          <h3 wrap-text>\n\n            {{"Price" | translate}}: {{item.value.price |\n\n            currency:values.currency:true:\'1.2-2\'}}\n\n          </h3>\n\n\n\n          <ion-row class="add-remove-button">\n\n            <ion-col royal width-50>\n\n              <button\n\n                ion-button\n\n                full\n\n                color="danger"\n\n                clear\n\n                text-uppercase\n\n                no-padding\n\n                item-left\n\n                no-margin\n\n                (click)="removeFromWishlist(item.value.id)"\n\n              >\n\n                <ion-icon ios="ios-trash" md="md-trash"></ion-icon>\n\n                ELIMINAR\n\n              </button>\n\n            </ion-col>\n\n            <ion-col royal width-50>\n\n              <button\n\n              style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n\n                item-right\n\n                (click)="getProduct(item.value.id)"\n\n              >\n\n                <ion-icon ios="ios-cart" md="md-cart"></ion-icon>\n\n                SOLICITAR\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </ion-item>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\wishlist\wishlist.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_2__providers_service_wishlist_service__["a" /* WishlistService */]])
-    ], WishlistPage);
-    return WishlistPage;
-}());
-
-//# sourceMappingURL=wishlist.js.map
-
-/***/ }),
-
-/***/ 20:
+/***/ 18:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2633,6 +1983,656 @@ var Service = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 187:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderSummary; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_checkout_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(188);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var OrderSummary = /** @class */ (function () {
+    function OrderSummary(nav, service, params, functions, values) {
+        this.nav = nav;
+        this.service = service;
+        this.params = params;
+        this.functions = functions;
+        this.values = values;
+        this.id = params.data;
+    }
+    OrderSummary.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.service.getOrderSummary(this.id)
+            .then(function (results) { return _this.orderSummary = results; });
+    };
+    OrderSummary.prototype.Continue = function () {
+        this.values.count = 0;
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* Home */]);
+    };
+    OrderSummary = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\checkout\order-summary\order-summary.html"*/'<ion-header>\n\n  <ion-navbar color="header" hideBackButton>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title text-wrap text-center>{{"OrderSummary" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content text-wrap class="order-summary">\n\n  <ion-spinner *ngIf="!orderSummary" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="orderSummary" class="margin">\n\n    <div *ngIf="orderSummary.order">\n\n      <div class="thank-you-message">\n\n        <ion-item>\n\n          <h2>{{"OrderReceived" | translate}} \n\n          </h2>\n\n          <h3>{{"orderreceivedtext" | translate}}\n\n          </h3>\n\n        </ion-item>\n\n      </div>\n\n      <div *ngIf="orderSummary" class="summary">\n\n        <ion-item no-lines>\n\n          <h2>{{"OrderNumber" | translate}} : {{orderSummary.order.order_number}}\n\n          </h2>\n\n          <h2>{{"Orderdate" | translate}} : {{orderSummary.order.created_at | date:\'medium\'}}\n\n          </h2>\n\n          <h2>{{"Totalquantity" | translate}} :  {{orderSummary.order.total_line_items_quantity}}\n\n          </h2>\n\n          <h2>{{"Totals" | translate}} :  {{1*orderSummary.order.total | currency:values.currency:true:\'1.2-2\'}}\n\n          </h2>\n\n          <h2>{{"PaymentMethod" | translate}} :  {{orderSummary.order.payment_details.method_title}}\n\n          </h2>\n\n        </ion-item>\n\n      </div>\n\n      <div class="order-details">\n\n        <ion-item no-lines>\n\n          <ion-label class="side-header">{{"OrderDetails" | translate}}\n\n          </ion-label>\n\n        </ion-item>\n\n        <div *ngFor="let item of orderSummary.order.line_items | keys">\n\n          <ion-row >\n\n            <ion-col width-75>\n\n              <ion-label no-margin>{{item.value.name}} - ({{item.value.quantity}})\n\n              </ion-label>\n\n            </ion-col>\n\n            <ion-col width-25 text-right>\n\n              <ion-label no-margin>{{1*item.value.subtotal | currency:values.currency:true:\'1.2-2\' }}\n\n              </ion-label>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n        <ion-row *ngIf="orderSummary.order.coupon_lines.length != 0" > \n\n          <ion-col width-75>\n\n            <ion-label no-margin>{{"Coupon" | translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-25 text-right>\n\n            <ion-label no-margin>{{1*orderSummary.order.total_discount | currency:values.currency:true:\'1.2-2\' }}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row > \n\n          <ion-col width-75>\n\n            <ion-label no-margin>{{"SubTotal" | translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-25 text-right>\n\n            <ion-label no-margin>{{1*orderSummary.order.subtotal | currency:values.currency:true:\'1.2-2\' }}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row > \n\n          <ion-col width-50>\n\n            <ion-label no-margin>{{"Shipping" | translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-50 text-right>\n\n            <ion-label no-margin>{{orderSummary.order.shipping_methods}}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row > \n\n          <ion-col width-50>\n\n            <ion-label no-margin>{{"PaymentMethod" |translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-50 text-right>\n\n            <ion-label no-margin>{{orderSummary.order.payment_details.method_title}}\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="order-total"> \n\n          <ion-col width-75>\n\n            <ion-label class="side-header">{{"Totals" |translate}}\n\n            </ion-label>\n\n          </ion-col>\n\n          <ion-col width-25 text-right>\n\n            <ion-label>\n\n              <b>{{1*orderSummary.order.total | currency:values.currency:true:\'1.2-2\' }}\n\n              </b>\n\n            </ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<ion-footer *ngIf="orderSummary">\n\n  <button ion-button full color="button-color" no-padding no-margin text-uppercase (click)="Continue()">\n\n    {{"Continue" | translate}}\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\checkout\order-summary\order-summary.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_checkout_service__["a" /* CheckoutService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_4__providers_service_values__["a" /* Values */]])
+    ], OrderSummary);
+    return OrderSummary;
+}());
+
+//# sourceMappingURL=order-summary.js.map
+
+/***/ }),
+
+/***/ 188:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__post_post__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_service_category_service__ = __webpack_require__(58);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var Home = /** @class */ (function () {
+    function Home(categoryService, toastCtrl, nav, service, values) {
+        this.categoryService = categoryService;
+        this.toastCtrl = toastCtrl;
+        this.nav = nav;
+        this.service = service;
+        this.values = values;
+        this.has_more_items = true;
+        this.loading = true;
+        this.showFilters = false;
+        this.mySlideOptions = {
+            initialSlide: 1,
+            loop: true,
+            autoplay: 5800,
+            pager: true
+        };
+        this.items = [];
+        this.options = [];
+        this.service.getProducts();
+        this.filter = {};
+        this.filter.page = 1;
+    }
+    Home.prototype.gohome = function () {
+        this.nav.parent.select(0);
+    };
+    Home.prototype.getCart = function () {
+        this.nav.parent.select(2);
+    };
+    Home.prototype.doRefresh = function (refresher) {
+        var _this = this;
+        this.service.load().then(function (results) {
+            _this.handleService(results);
+            refresher.complete();
+        });
+    };
+    Home.prototype.handleService = function (results) {
+        // 
+    };
+    Home.prototype.getCategory = function (id, slug, name) {
+        this.items.id = id;
+        this.items.slug = slug;
+        this.items.name = name;
+        this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
+    };
+    Home.prototype.presentToastLoginAlert = function () {
+        var toast = this.toastCtrl.create({
+            message: 'You must login to add item to wishlist',
+            duration: 1000,
+            position: 'bottom'
+        });
+        toast.present();
+    };
+    Home.prototype.addToWishlist = function (id) {
+        var _this = this;
+        if (this.values.isLoggedIn) {
+            this.values.wishlistId[id] = true;
+            this.service.addToWishlist(id).then(function (results) { return _this.update(results, id); });
+        }
+        else {
+            this.presentToastLoginAlert();
+        }
+    };
+    Home.prototype.update = function (results, id) {
+        if (results.success == "Success") {
+            this.values.wishlistId[id] = true;
+        }
+        else { }
+    };
+    Home.prototype.removeFromWishlist = function (id) {
+        var _this = this;
+        this.values.wishlistId[id] = false;
+        this.service.deleteItem(id).then(function (results) { return _this.updateWish(results, id); });
+    };
+    Home.prototype.updateWish = function (results, id) {
+        if (results.status == "success") {
+            this.values.wishlistId[id] = false;
+        }
+    };
+    Home.prototype.getSearch = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__search_search__["a" /* SearchPage */]);
+    };
+    Home.prototype.getId = function () {
+        var i;
+        if (this.options.length >= 1)
+            var resa = this.options[0].split(":");
+        if (this.options.length >= 2)
+            var resb = this.options[1].split(":");
+        if (this.options.length >= 1)
+            for (i = 0; i < this.product.product.variations.length; i++) {
+                if (this.product.product.variations[i].attributes[0].option == resa[1]) {
+                    if (this.options.length == 1) {
+                        break;
+                    }
+                    else if (this.product.product.variations[i].attributes[1].option == resb[1]) {
+                        break;
+                    }
+                }
+            }
+    };
+    Home.prototype.goto = function (data) {
+        var _this = this;
+        if (data.description == "product") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], data.url);
+        }
+        else if (data.description == "category") {
+            this.items.id = data.url;
+            this.items.name = data.title;
+            this.items.categories = this.service.categories.filter(function (item) { return item.parent === parseInt(_this.items.id); });
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_4__products_products__["a" /* ProductsPage */], this.items);
+        }
+        else if (data.description == "post") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_7__post_post__["a" /* Post */], data.url);
+        }
+    };
+    Home.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        console.log(this.filter.page);
+        this.filter.page += 1;
+        this.service.loadMoreProvider(this.filter).then(function (results) { return _this.handleMore(results, infiniteScroll); });
+    };
+    Home.prototype.handleMore = function (results, infiniteScroll) {
+        if (!results) {
+            this.has_more_items = false;
+        }
+        infiniteScroll.complete();
+    };
+    Home.prototype.getProduct = function (item) {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], item);
+    };
+    Home.prototype.hideLoading = function () {
+        this.loading = false;
+    };
+    Home.prototype.getSubCategories = function (id) {
+        var results = this.service.categories.filter(function (item) { return item.parent === parseInt(id); });
+        return results;
+    };
+    //Filter shit
+    Home.prototype.getFilter = function () {
+        this.showFilters = true;
+        this.has_more_items = false;
+    };
+    Home.prototype.cancel = function () {
+        this.showFilters = false;
+        this.has_more_items = true;
+    };
+    Home.prototype.chnageFilter = function (sort) {
+        var _this = this;
+        this.showFilters = false;
+        this.has_more_items = true;
+        this.filter.page = 1;
+        console.log(this.filter.page);
+        // FILTROS SHIT EN FUNCION
+        if (sort == 5) {
+            this.filter['orderby'] = 'menu_order';
+        }
+        else if (sort == 6) {
+            this.filter['orderby'] = 'popularity';
+        }
+        else if (sort == 7) {
+            this.filter['orderby'] = 'rating';
+        }
+        else if (sort == 8) {
+            this.filter['orderby'] = 'date';
+            this.filter['order'] = 'asc';
+        }
+        else if (sort == 9) {
+            this.filter['orderby'] = 'date';
+            this.filter['order'] = 'desc';
+        }
+        else if (sort == 10) {
+            this.filter['orderby'] = 'price';
+            this.filter['order'] = 'asc';
+        }
+        else if (sort == 11) {
+            this.filter['orderby'] = 'price';
+            this.filter['order'] = 'desc';
+        }
+        else if (sort == 12) {
+            this.filter['orderby'] = 'title';
+            this.filter['order'] = 'asc';
+        }
+        else if (sort == 13) {
+            this.filter['orderby'] = 'title';
+            this.filter['order'] = 'desc';
+        }
+        /*this.filter['filter[meta_query][key]'] = "_price";
+            this.filter['filter[meta_query][value]'] = '[0,10]';
+            this.filter['filter[meta_query][compare]'] = "BETWEEN";*/
+        this.categoryService.load(this.filter).then(function (results) { return (_this.service.products = results); });
+    };
+    Home = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\home\home.html"*/'<!-- <ion-header class="home-header">\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n       <img style="max-width: 200px;" src="{{values.avatar}}" /> \n\n      {{"Providers" | translate}}\n\n    </ion-title>\n\n    \n\n    <ion-buttons end>\n\n      <button ion-button icon-only color="icon-color" (click)="getFilter()">\n\n        <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>\n\n      </button>\n\n      <button ion-button icon-only color="icon-color" (click)="getSearch()">\n\n        <ion-icon color="icon-color" ios="ios-search" md="md-search"></ion-icon>\n\n      </button>\n\n      <button\n\n        ion-button\n\n        icon-only\n\n        color="icon-color"\n\n        class="has-icon icon-only has-badge"\n\n        (click)="getCart()"\n\n      >\n\n        <ion-icon\n\n          color="icon-color"\n\n          name="md-basket"\n\n          class="item-icon"\n\n        ></ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count != 0">\n\n          {{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n\n\n<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button\n\n        ion-button\n\n        icon-only\n\n        light\n\n        class="has-icon icon-only has-badge"\n\n        (click)="getCart()"\n\n      >\n\n        <ion-icon class="ion-ios-cart item-icon"></ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count">\n\n          {{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="home">\n\n\n\n  <ion-slides initialSlide="0" speed="3000" loop="false" pager="true" dir="rtl">\n\n    <ion-slide>\n\n      <div class="overlay">\n\n        <img src="{{values.slider}}" />\n\n      </div>\n\n      <div class="title-home-banner">\n\n        {{\'Proveedores de Servicios\' | translate}}\n\n      </div>\n\n\n\n      <div class="card-search">\n\n        \n\n      </div>\n\n\n\n    </ion-slide>\n\n  </ion-slides>\n\n  \n\n  <ion-row>\n\n    <ion-col col-9> \n\n      <ion-searchbar class="searchbar-category" placeholder="Seleccionar Categoria"></ion-searchbar>\n\n    </ion-col>\n\n    <ion-col col-3 style="align-self: center;font-weight: bold;padding: 0;">\n\n      \n\n      <button class="btn-filter" (click)="getFilter()">\n\n        <!-- <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon> -->\n\n        Filtrar<img src="../../assets/icon/filter.svg" alt="">\n\n      </button>\n\n    </ion-col>\n\n  </ion-row>\n\n\n\n  <div *ngIf="showFilters" class="filter">\n\n    <ion-list radio-group [(ngModel)]="sort" (ngModelChange)="chnageFilter(sort)">\n\n      <ion-list-header>\n\n        <b>\n\n          {{"Sort" | translate}}\n\n        </b>\n\n      </ion-list-header>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Default" | translate}}</ion-label>\n\n        <ion-radio value="5"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by popularity" | translate}}</ion-label>\n\n        <ion-radio value="6"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by average rating" | translate}}</ion-label>\n\n        <ion-radio value="7"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: ASC" | translate}}</ion-label>\n\n        <ion-radio value="8"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by date: DESC" | translate}}</ion-label>\n\n        <ion-radio value="9"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: low to high" | translate}}</ion-label>\n\n        <ion-radio value="10"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by price: high to low" | translate}}</ion-label>\n\n        <ion-radio value="11"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: ASC" | translate}}</ion-label>\n\n        <ion-radio value="12"></ion-radio>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label text-wrap>{{"Sort by name: DESC" | translate}}</ion-label>\n\n        <ion-radio value="13"></ion-radio>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button block color="button-color" (click)="cancel()">\n\n      {{"Cancel" | translate}}\n\n    </button>\n\n  </div>\n\n\n\n  <!-- <ion-fab bottom right slot="fixed">\n\n    <button ion-fab>\n\n      <ion-icon name="chatboxes"></ion-icon>\n\n    </button>\n\n    <ion-fab-list side="left">\n\n      <a button ion-fab style="background-color: #ffffff;" href="https://www.messenger.com/t/thehexchange">\n\n        <ion-icon style="background: #2196f3;" name="custom-facebook"></ion-icon>\n\n      </a>\n\n      <a button ion-fab style="background-color: #ffffff;" href="https://www.instagram.com/thehexchange/">\n\n        <ion-icon style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);" name="custom-instagram"></ion-icon>\n\n      </a>\n\n    </ion-fab-list>\n\n  </ion-fab> -->\n\n\n\n  <ion-refresher\n\n    *ngIf="values.settings.pull_to_refresh == \'1\'"\n\n    (ionRefresh)="doRefresh($event)"\n\n  >\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n  <ion-spinner *ngIf="!service?.blocks" name="crescent"></ion-spinner>\n\n\n\n  <div\n\n    *ngFor="let children of service?.blocks"\n\n    hideWhen="loading"\n\n    class="blocks"\n\n  >\n\n    <div\n\n      *ngIf="children.block_type == \'banner_block\'"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      [style.padding]="children.padding"\n\n      class="banner_block"\n\n    >\n\n      <div\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        {{children.title}}\n\n      </div>\n\n      <!-- Banner Slider -->\n\n      <div *ngIf="children.children.length && children.style == \'slider\'">\n\n        <ion-slides pager="true" loop="true" autoplay="5800">\n\n          <ion-slide *ngFor="let image of children.children">\n\n            <img\n\n              src="{{image.image}}"\n\n              (click)="goto(image)"\n\n              (load)="hideLoading()"\n\n              [style.border-radius]="children.border_radius"\n\n            />\n\n          </ion-slide>\n\n        </ion-slides>\n\n      </div>\n\n\n\n      <!-- Banner Scroll -->\n\n      <div\n\n        *ngIf="children.children.length && children.style == \'scroll\'"\n\n        [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        class="floating-header banner-scroll"\n\n      >\n\n        <img\n\n          class="banner"\n\n          tappable\n\n          *ngFor="let image of children.children"\n\n          (load)="hideLoading()"\n\n          src="{{image.image}}"\n\n          (click)="goto(image)"\n\n          [style.border-radius]="children.border_radius"\n\n          [style.width.%]="children.child_width"\n\n        />\n\n      </div>\n\n\n\n      <!-- Banner Grid -->\n\n      <div\n\n        *ngIf="children.children.length && children.style == \'grid\'"\n\n        class="banner-grid"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col\n\n            *ngFor="let image of children.children"\n\n            (load)="hideLoading()"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <img\n\n              src="{{image.image}}"\n\n              (click)="goto(image)"\n\n              [style.border-radius]="children.border_radius"\n\n              class="{{children.card_style}}"\n\n            />\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n\n\n    <div\n\n      *ngIf="children.block_type == \'product_block\'"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      class="product-block"\n\n    >\n\n      <div\n\n        *ngIf="children.products"\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        {{children.title}}\n\n      </div>\n\n      <!-- Products Scroll -->\n\n      <div\n\n        *ngIf="children.products && children.style == \'scroll\'"\n\n        class="product-scroll"\n\n      >\n\n        <div\n\n          class="scroller"\n\n          [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        >\n\n          <a\n\n            *ngFor="let item of children.products"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <ion-card>\n\n              <ion-card-content (click)="getProduct(item)">\n\n                <img\n\n                  [style.border-radius]="children.border_radius"\n\n                  src="{{item.images[0].src}}"\n\n                />\n\n              </ion-card-content>\n\n              <h5 *ngIf="item.title">{{item.title}}</h5>\n\n              <h5 *ngIf="item.name">{{item.name}}</h5>\n\n              <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\' }}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price | currency:values.currency:symbol:\'1.2-2\'\n\n                  }}\n\n                </span>\n\n                <span *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\' }}\n\n                  </del>\n\n                </span>\n\n              </ion-label>\n\n            </ion-card>\n\n          </a>\n\n        </div>\n\n      </div>\n\n      <!-- Products  Grid-->\n\n      <div\n\n        class="product-grid"\n\n        *ngIf="children.products && children.style == \'grid\'"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col class="col" *ngFor="let item of children.products">\n\n            <ion-card>\n\n              <ion-card-content>\n\n                <img\n\n                  [style.height.px]="values.dimensions.imageGridViewHeight"\n\n                  tappable\n\n                  src="{{item.images[0].src}}"\n\n                  (click)="getProduct(item)"\n\n                />\n\n                <button\n\n                  ion-button\n\n                  color="danger"\n\n                  class="stock"\n\n                  *ngIf="!item.in_stock"\n\n                >\n\n                  {{"No Stock" | translate}}\n\n                </button>\n\n                <ion-icon\n\n                  name="md-heart"\n\n                  color="icon-color"\n\n                  class="wishlist-button-grid1"\n\n                  *ngIf="values.wishlistId[item.id]"\n\n                  (click)="removeFromWishlist(item.id)"\n\n                ></ion-icon>\n\n                <ion-icon\n\n                  name="md-heart-outline"\n\n                  color="icon-color"\n\n                  class="wishlist-button-grid2"\n\n                  *ngIf="!values.wishlistId[item.id]"\n\n                  (click)="addToWishlist(item.id)"\n\n                ></ion-icon>\n\n\n\n                <div *ngIf="item.in_stock">\n\n                  <button\n\n                    ion-button\n\n                    class="offer"\n\n                    *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= \'1\'"\n\n                  >\n\n                    {{(item.regular_price - item.price) /item.regular_price*100\n\n                    | number : \'1.0-0\'}}%\n\n                  </button>\n\n                </div>\n\n              </ion-card-content>\n\n\n\n              <div tappable (click)="getProduct(item)" class="card-name">\n\n                <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n\n                <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n\n              </div>\n\n\n\n              <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price |\n\n                  currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-delete" *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\'}}\n\n                  </del>\n\n                </span>\n\n              </ion-label>\n\n            </ion-card>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n\n\n    <!--flash sale-->\n\n\n\n    <div\n\n      *ngIf="children.block_type == \'flash_sale_block\' && !children.hide"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      [style.padding]="children.padding"\n\n      class="product-block flash_sale"\n\n    >\n\n      <div\n\n        *ngIf="children.products"\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        <ion-item no-lines class="flash-item-name">\n\n          <h2 [style.color]="children.title_color">\n\n            <ion-icon\n\n              name="md-flash"\n\n              style="margin-right: 6px;font-size: 18px;"\n\n            ></ion-icon>\n\n            {{children.title}}\n\n          </h2>\n\n          <!--h4 [style.color]="children.title_color" style="filter: brightness(100%);">Ends in</h4-->\n\n          <div style="text-align: center;">\n\n            <h3 class="day"><span>{{children.days}}</span></h3>\n\n            :\n\n            <h3 class="day"><span>{{children.hours}}</span></h3>\n\n            :\n\n            <h3 class="day"><span>{{children.minutes}}</span></h3>\n\n            :\n\n            <h3 class="day"><span>{{children.seconds}}</span></h3>\n\n          </div>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <!-- Products Scroll -->\n\n      <div\n\n        *ngIf="children.products && children.style == \'scroll\'"\n\n        class="product-scroll"\n\n      >\n\n        <div\n\n          class="scroller"\n\n          [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        >\n\n          <a\n\n            *ngFor="let item of children.products"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <ion-card>\n\n              <ion-card-content (click)="getProduct(item)">\n\n                <img\n\n                  [style.height.px]="values.dimensions.productSliderHeight"\n\n                  [style.border-radius]="children.border_radius"\n\n                  src="{{item.images[0].src}}"\n\n                />\n\n              </ion-card-content>\n\n              <h5 *ngIf="item.title">{{item.title}}</h5>\n\n              <h5 *ngIf="item.name">{{item.name}}</h5>\n\n              <!-- <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\' }}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price | currency:values.currency:symbol:\'1.2-2\'\n\n                  }}\n\n                </span>\n\n                <span *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\' }}\n\n                  </del>\n\n                </span>\n\n              </ion-label> -->\n\n            </ion-card>\n\n          </a>\n\n        </div>\n\n      </div>\n\n      <!-- Products  Grid-->\n\n      <div\n\n        class="product-grid"\n\n        *ngIf="children.products && children.style == \'grid\'"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col\n\n            class="col"\n\n            *ngFor="let item of children.products"\n\n            [style.padding]="children.padding"\n\n          >\n\n            <ion-card>\n\n              <ion-card-content>\n\n                <img\n\n                  [style.height.px]="values.dimensions.imageGridViewHeight"\n\n                  tappable\n\n                  src="{{item.images[0].src}}"\n\n                  (click)="getProduct(item)"\n\n                />\n\n                <button\n\n                  ion-button\n\n                  color="danger"\n\n                  class="stock"\n\n                  *ngIf="item.stock_status == \'outofstock\'"\n\n                >\n\n                  {{"No Stock" | translate}}\n\n                </button>\n\n                <ion-icon\n\n                  name="md-heart"\n\n                  class="wishlist-button-grid1"\n\n                  *ngIf="values.wishlistId[item.id]"\n\n                  (click)="removeFromWishlist(item.id)"\n\n                ></ion-icon>\n\n                <ion-icon\n\n                  name="md-heart-outline"\n\n                  class="wishlist-button-grid2"\n\n                  *ngIf="!values.wishlistId[item.id]"\n\n                  (click)="addToWishlist(item.id)"\n\n                ></ion-icon>\n\n\n\n                <div *ngIf="item.stock_status == \'instock\'">\n\n                  <button\n\n                    ion-button\n\n                    class="offer"\n\n                    *ngIf="((item.regular_price - item.price) /item.regular_price*100) >= \'1\'"\n\n                  >\n\n                    {{(item.regular_price - item.price) /item.regular_price*100\n\n                    | number : \'1.0-0\'}}%\n\n                  </button>\n\n                </div>\n\n              </ion-card-content>\n\n\n\n              <div tappable (click)="getProduct(item)" class="card-name">\n\n                <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n\n                <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n\n              </div>\n\n\n\n              <!-- <ion-label>\n\n                <span class="price-regular" *ngIf="!item.sale_price">\n\n                  {{1*item.price | currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-regular" *ngIf="item.sale_price">\n\n                  {{1*item.sale_price |\n\n                  currency:values.currency:symbol:\'1.2-2\'}}\n\n                </span>\n\n                <span class="price-delete" *ngIf="item.sale_price">\n\n                  <del>\n\n                    {{1*item.regular_price |\n\n                    currency:values.currency:symbol:\'1.2-2\'}}\n\n                  </del>\n\n                </span>\n\n              </ion-label> -->\n\n            </ion-card>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n\n\n    <div\n\n      *ngIf="children.block_type == \'category_block\'"\n\n      [style.background-color]="children.bg_color"\n\n      [style.margin]="children.margin"\n\n      [style.padding]="children.padding"\n\n      class="category"\n\n    >\n\n      <div\n\n        *ngIf="service?.categories"\n\n        class="{{children.header_align}}"\n\n        [style.color]="children.title_color"\n\n      >\n\n        {{children.title}}\n\n      </div>\n\n      <!-- Category Scroll -->\n\n      <div\n\n        *ngIf="service?.categories && children.style == \'scroll\'"\n\n        class="category-slider-scroll"\n\n      >\n\n        <div\n\n          class="scrollmenu2"\n\n          [ngClass]="{\'floating-header\': children.header_align == \'left_floating\'}"\n\n        >\n\n          <a\n\n            *ngFor="let item of getSubCategories(children.link_id)"\n\n            class="{{item.slug}}"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <img\n\n              *ngIf="item.image?.src"\n\n              [style.border-radius]="children.border_radius"\n\n              (load)="hideLoading()"\n\n              src="{{item.image.src}}"\n\n              (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n            />\n\n            <h5\n\n              *ngIf="item.image"\n\n              (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n              [innerHTML]="item.name"\n\n            ></h5>\n\n            <div *ngIf="!item.image" class="no-image">\n\n              <h5\n\n                (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n                [innerHTML]="item.name"\n\n                [style.color]="children.title_color"\n\n              ></h5>\n\n            </div>\n\n          </a>\n\n        </div>\n\n      </div>\n\n\n\n      <!-- Category Grid -->\n\n      <div\n\n        *ngIf="service?.categories && children.style == \'grid\'"\n\n        class="category-slider-grid"\n\n      >\n\n        <ion-row class="row unlimited-items">\n\n          <ion-col\n\n            class="col {{item.slug}}"\n\n            *ngFor="let item of getSubCategories(children.link_id)"\n\n            [style.width.%]="children.child_width"\n\n          >\n\n            <div\n\n              (click)="getCategory(item.id, item.slug, item.name, item.image)"\n\n            >\n\n              <ion-card>\n\n                <ion-card-content>\n\n                  <img\n\n                    *ngIf="item.image"\n\n                    (load)="hideLoading()"\n\n                    [style.border-radius]="children.border_radius"\n\n                    src="{{item.image}}"\n\n                  />\n\n                </ion-card-content>\n\n                <div text-center>\n\n                  <ion-label\n\n                    text-uppercase\n\n                    [innerHTML]="item.name"\n\n                    [style.color]="children.title_color"\n\n                  ></ion-label>\n\n                </div>\n\n              </ion-card>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n    </div>\n\n  </div>\n\n\n\n  <!--div *ngIf="service?.categories" style="margin-bottom: 10px;">\n\n\n\n    <div *ngIf="service.mainCategories" class="main-categories">\n\n      <ion-row class="row unlimited-items">\n\n        <ion-col class="col" *ngFor="let item of service.mainCategories">\n\n          <a (click)="getCategory(item.id, item.slug, item.name)">\n\n            <ion-card>\n\n              <ion-card-content>\n\n                <img src="{{item.image}}"/>\n\n              </ion-card-content>\n\n              <div text-center>\n\n                <ion-label text-uppercase><span [innerHTML]="item.name"></span>\n\n                </ion-label>\n\n              </div>\n\n            </ion-card>\n\n          </a>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n  </div-->\n\n  <div *ngIf="!showFilters">\n\n  <div class="products-listing">\n\n    <div *ngIf="service?.products">\n\n      <!--ion-item no-lines class="item-name">\n\n            <ion-label text-uppercase><b>{{"Products" | translate}}</b>\n\n            </ion-label>\n\n          </ion-item-->\n\n      <ion-list>\n\n        <div class="card-background-page grid">\n\n          <ion-row class="row unlimited-items">\n\n            <ion-col class="col" *ngFor="let item of service.products">\n\n              <ion-card>\n\n                <ion-card-content class="stock">\n\n                  <img\n\n                    [style.height.px]="values.dimensions.imageGridViewHeight * 2 - 200"\n\n                    tappable\n\n                    src="{{item.images[0].src}}"\n\n                    (load)="hideLoading()"\n\n                    (click)="getProduct(item)"\n\n                  />\n\n                  <button\n\n                    ion-button\n\n                    color="danger"\n\n                    *ngIf="item.stock_status !== \'instock\'"\n\n                  >\n\n                    {{"OUTOFSTOCK" | translate}}\n\n                  </button>\n\n\n\n                  <ion-icon\n\n                    name="md-heart"\n\n                    color="icon-color"\n\n                    class="wishlist-button-grid"\n\n                    *ngIf="values.wishlistId[item.id]"\n\n                    (click)="removeFromWishlist(item.id)"\n\n                  ></ion-icon>\n\n                  <ion-icon\n\n                    name="md-heart-outline"\n\n                    color="icon-color"\n\n                    class="wishlist-button-grid"\n\n                    *ngIf="!values.wishlistId[item.id]"\n\n                    (click)="addToWishlist(item.id)"\n\n                  ></ion-icon>\n\n                </ion-card-content>\n\n                <div tappable (click)="getProduct(item)" class="card-name">\n\n                  <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n\n                  <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n\n                </div>\n\n                <!-- <ion-item no-padding class="price-list">\n\n                  <h3 class="price-regular" *ngIf="item.minPrice">\n\n                    Starting from {{1*item.minPrice |\n\n                    currency:values.currency:true:\'1.2-2\'}}\n\n                  </h3>\n\n                </ion-item> -->\n\n                <ion-item no-padding class="price-list">\n\n                  <span item-left *ngIf="item.average_rating" class="rating">\n\n                    <!-- <span *ngIf="item.rating_count > 0">\n\n                      ({{item.rating_count}})\n\n                    </span> -->\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                    <span\n\n                      class="star-icon"\n\n                      [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}"\n\n                    >\n\n                      &#x2605;\n\n                    </span>\n\n                  </span>\n\n                </ion-item>\n\n                \n\n              </ion-card>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n  </div>\n\n   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n\n            <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="{{\'Loading more items...\' | translate}}"> </ion-infinite-scroll-content>\n\n        </ion-infinite-scroll> \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\home\home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8__providers_service_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
+    ], Home);
+    return Home;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 194:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingDetails; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var BookingDetails = /** @class */ (function () {
+    function BookingDetails(nav, service, params, actionSheetCtrl, config, reqhttp, http, values) {
+        var _this = this;
+        this.nav = nav;
+        this.service = service;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.config = config;
+        this.reqhttp = reqhttp;
+        this.http = http;
+        this.values = values;
+        console.log(params);
+        this.idOrder = params.data.idOrder;
+        this.idVendor = params.data.idVendor;
+        this.service.getBooking(this.idOrder, this.idVendor)
+            .then(function (results) { return _this.orderDetails = results; });
+    }
+    BookingDetails = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\booking-details\booking-details.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"Booking Info" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="order-details">\n\n  <ion-spinner *ngIf="!orderDetails" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="orderDetails">\n\n    <ion-item-group>\n\n      <ion-item-divider>{{"Booked Product" | translate }}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.booked_product}}\n\n      </ion-item>\n\n      \n\n      <ion-item-divider>{{"Customer Details" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        <ion-row>\n\n          <ion-col>{{"Name" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.first_name}}\n\n            {{orderDetails.order.billing_address.last_name}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Email" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.email}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Phone" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.phone}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Address" | translate}} 1\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.address_1}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Address" | translate}} 2\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.address_2}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"City" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.city}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"State" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.city}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"Postcode" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.billing_address.postcode}}\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-item>\n\n\n\n      <ion-item-divider>{{"Booking Status" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.statusbooking}}\n\n      </ion-item> \n\n\n\n      <ion-item-divider>{{"Booking Date/Time" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        <ion-row>\n\n          <ion-col>{{"Start Date" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.start_date}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"End Date" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{orderDetails.order.end_date}\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-item>\n\n    </ion-item-group>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\booking-details\booking-details.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ActionSheetController"],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_config__["a" /* Config */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
+    ], BookingDetails);
+    return BookingDetails;
+}());
+
+//# sourceMappingURL=booking-details.js.map
+
+/***/ }),
+
+/***/ 195:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditAddressForm; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var EditAddressForm = /** @class */ (function () {
+    function EditAddressForm(nav, service, params, values) {
+        var _this = this;
+        this.nav = nav;
+        this.service = service;
+        this.values = values;
+        this.regions = [];
+        this.disableSubmit = false;
+        this.Save = "Save";
+        this.editAddress = params.data;
+        this.editAddress.shipping = true;
+        this.service.getCountry()
+            .then(function (results) { return _this.handleContries(results); });
+    }
+    EditAddressForm.prototype.handleContries = function (results) {
+        this.country = results;
+        this.billing_states = this.country.state[this.editAddress.billing_address.country];
+        this.shipping_states = this.country.state[this.editAddress.shipping_address.country];
+    };
+    EditAddressForm.prototype.getBillingRegion = function (countryId) {
+        this.billing_states = this.country.state[countryId];
+    };
+    EditAddressForm.prototype.getShippingRegion = function (countryId) {
+        this.shipping_states = this.country.state[countryId];
+    };
+    EditAddressForm.prototype.saveAddress = function () {
+        var _this = this;
+        this.Save = "Save";
+        this.disableSubmit = true;
+        if (this.editAddress.shipping) {
+            this.editAddress.shipping_address.first_name = this.editAddress.billing_address.first_name;
+            this.editAddress.shipping_address.last_name = this.editAddress.billing_address.last_name;
+            this.editAddress.shipping_address.company = this.editAddress.billing_address.company;
+            this.editAddress.shipping_address.address_1 = this.editAddress.billing_address.address_1;
+            this.editAddress.shipping_address.address_2 = this.editAddress.billing_address.address_2;
+            this.editAddress.shipping_address.city = this.editAddress.billing_address.city;
+            this.editAddress.shipping_address.country = this.editAddress.billing_address.country;
+            this.editAddress.shipping_address.state = this.editAddress.billing_address.state;
+            this.editAddress.shipping_address.postcode = this.editAddress.billing_address.postcode;
+        }
+        this.service.saveAddress(this.editAddress)
+            .then(function (results) { return _this.handleSaveAddress(results); });
+    };
+    EditAddressForm.prototype.handleSaveAddress = function (results) {
+        this.disableSubmit = false;
+        this.Save = "Saving...";
+        this.nav.pop();
+    };
+    EditAddressForm = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\edit-address-form\edit-address-form.html"*/'<ion-header no-border>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"Edit Address" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="edit-address-form">\n\n  <div>\n\n    <ion-list>\n\n      <ion-item class="side-heading-background">\n\n        <h2 class="heading-label">{{"Billing Address" | translate}}\n\n        </h2>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"First Name" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.first_name" name="first_name">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Last Name"| translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.last_name" name="last_name">\n\n        </ion-input>\n\n      </ion-item>\n\n      <!--ion-item>\n\n        <ion-label floating>{{"Company" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.company" name="company">\n\n        </ion-input>\n\n      </ion-item-->\n\n      <ion-item>\n\n        <ion-label floating>{{"Phone" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.phone" name="phone">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Email" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="email" [(ngModel)]="editAddress.billing_address.email" name="email">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 1\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.address_1" name="address_1">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 2\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.address_2" name="address_2">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"City" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.city" name="city">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item *ngIf="country">\n\n        <ion-label>  \n\n          {{"Country" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.billing_address.country" (ngModelChange)="getBillingRegion(editAddress.billing_address.country)" name="country">\n\n          <div *ngFor="let field of country.country.countries | keys">\n\n            <ion-option value="{{field.key}}"><span [innerHTML]="field.value"></span>\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item *ngIf="billing_states">\n\n        <ion-label>  \n\n          {{"State" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.billing_address.state" name="state">\n\n          <div *ngFor="let field of billing_states | keys">\n\n            <ion-option value="{{field.key}}">{{field.value}}\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>      \n\n      </ion-item>\n\n      <ion-item *ngIf="!billing_states">\n\n        <ion-label floating>{{"Country" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.state" name="state">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Postcode" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.billing_address.postcode" name="postcode">\n\n        </ion-input>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n  <ion-item class="side-heading-background">\n\n    <ion-label class="heading-label">{{"Same For Shipping" | translate}}\n\n    </ion-label>\n\n    <ion-toggle checked="true" [(ngModel)]="editAddress.shipping_true" name="subscribe">\n\n    </ion-toggle>\n\n  </ion-item>\n\n  <br>\n\n  <div *ngIf="!editAddress.shipping_true">\n\n    <ion-list>\n\n      <ion-item class="side-heading-background">\n\n        <h2 class="heading-label">{{"Shipping Address" | translate}}\n\n        </h2>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"First Name" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.first_name" name="firstname">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Last Name"| translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.last_name" name="last_name">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Company" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.company" name="company">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 1\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.address_1" name="address_1">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Street Address" | translate}} 2\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.address_2" name="address_2">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"City" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.city" name="city">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item *ngIf="country">\n\n        <ion-label>  \n\n          {{"Country" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.shipping_address.country" (ngModelChange)="getShippingRegion(editAddress.shipping_address.country)" name="country">\n\n          <div *ngFor="let field of country.country.countries | keys">\n\n            <ion-option value="{{field.key}}">{{field.value}}\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item *ngIf="shipping_states">\n\n        <ion-label>  \n\n          {{"State" | translate}}\n\n        </ion-label>   \n\n        <ion-select [(ngModel)]="editAddress.shipping_address.state" name="state">\n\n          <div *ngFor="let field of shipping_states | keys">\n\n            <ion-option value="{{field.key}}">{{field.value}}\n\n            </ion-option>\n\n          </div>\n\n        </ion-select>      \n\n      </ion-item>\n\n      <ion-item *ngIf="!shipping_states">\n\n        <ion-label floating>{{"Country" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.state" name="state">\n\n        </ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label floating>{{"Postcode" | translate}}\n\n        </ion-label>\n\n        <ion-input required type="text" [(ngModel)]="editAddress.shipping_address.postcode" name="postcode">\n\n        </ion-input>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n  <div class="margin">\n\n    <button ion-button block color="button-color" type="submit" [disabled]="disableSubmit" class="button button-block button-default" text-uppercase (click)="saveAddress()">{{Save | translate}}\n\n    </button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\edit-address-form\edit-address-form.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
+    ], EditAddressForm);
+    return EditAddressForm;
+}());
+
+//# sourceMappingURL=edit-address-form.js.map
+
+/***/ }),
+
+/***/ 196:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetails; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var OrderDetails = /** @class */ (function () {
+    function OrderDetails(nav, service, params, actionSheetCtrl, config, reqhttp, http, values) {
+        var _this = this;
+        this.nav = nav;
+        this.service = service;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.config = config;
+        this.reqhttp = reqhttp;
+        this.http = http;
+        this.values = values;
+        console.log(params);
+        this.id = params.data;
+        this.service.getOrder(this.id)
+            .then(function (results) { return _this.orderDetails = results; });
+    }
+    OrderDetails.prototype.confirmOrder = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Change Your Order Status ...',
+            cssClass: 'myaction',
+            buttons: [
+                {
+                    text: 'Processing',
+                    cssClass: 'processing',
+                    handler: function () {
+                        var params = {
+                            status: 'processing'
+                        };
+                        new Promise(function (resolve) {
+                            _this.http
+                                .post(_this.config.setUrl +
+                                '/wc-api/v3/orders/' + _this.id, params, _this.config.options)
+                                .map(function (res) { return res.json(); })
+                                .subscribe(function (data) {
+                            });
+                        });
+                        //  this.WooCommerce.putAsync("orders/" + this.order.id, data).then( (data) => {
+                        //   console.log(JSON.parse(data.body));
+                        //   this.navCtrl.push("OrderPage");
+                        // }, (err) => {
+                        //   console.log(err);
+                        // });
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    cssClass: 'cancel',
+                    handler: function () {
+                        var params = {
+                            status: 'cancelled'
+                        };
+                        return new Promise(function (resolve) {
+                            _this.http
+                                .post(_this.config.setUrl('POST', '/wc-api/v3/orders/', false), params, _this.config.options)
+                                .map(function (res) { return res.json(); })
+                                .subscribe(function (data) {
+                                _this.dataOrder = data;
+                                resolve(_this.dataOrder);
+                                console.log(_this.dataOrder);
+                            }, function (err) {
+                                resolve(err.json());
+                            });
+                        });
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    OrderDetails = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\order-details\order-details.html"*/'<ion-header>\n\n  <ion-navbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu">\n\n      </ion-icon>\n\n    </button>\n\n    <ion-title>{{"OrderInfo" | translate}}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="order-details">\n\n  <ion-spinner *ngIf="!orderDetails" name="crescent">\n\n  </ion-spinner>\n\n  <div *ngIf="orderDetails">\n\n    <ion-item-group>\n\n      <ion-item-divider>{{"Order" | translate }} #\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.order_number}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"Date" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.created_at | date:\'medium\'}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"PaymentMethod" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.payment_details.method_title}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"BillingAddress" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        {{orderDetails.order.billing_address.first_name}}\n\n        {{orderDetails.order.billing_address.last_name}},\n\n        <br>\n\n        {{orderDetails.order.billing_address.email}}\n\n        <br>\n\n        {{orderDetails.order.billing_address.phone}}\n\n        <br>\n\n        {{orderDetails.order.billing_address.address_1}},\n\n        <br>\n\n        {{orderDetails.order.billing_address.address_2}},\n\n        <br>\n\n        {{orderDetails.order.billing_address.city}}, \n\n        {{orderDetails.order.billing_address.state}}\n\n        <br>\n\n        {{orderDetails.order.billing_address.postcode}}\n\n      </ion-item>\n\n      <!-- <ion-item-divider>{{"ShippingMethod" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item no-lines>{{orderDetails.order.shipping_methods}}\n\n      </ion-item>\n\n      <ion-item-divider>{{"ShippingAddress" | translate}} \n\n      </ion-item-divider>\n\n      <ion-item>\n\n        {{orderDetails.order.shipping_address.first_name}}\n\n        {{orderDetails.order.shipping_address.last_name}},\n\n        <br>\n\n        {{orderDetails.order.shipping_address.company}}\n\n        <br>\n\n        {{orderDetails.order.shipping_address.address_1}},\n\n        <br>\n\n        {{orderDetails.order.shipping_address.address_2}},\n\n        <br>\n\n        {{orderDetails.order.shipping_address.city}}, \n\n        {{orderDetails.order.shipping_address.state}}\n\n        <br>\n\n        {{orderDetails.order.shipping_address.country}}\n\n        <br>\n\n        {{orderDetails.order.shipping_address.postcode}}\n\n      </ion-item>-->\n\n      <ion-item-divider>{{"Provider Details" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item *ngFor="let item of orderDetails.order.line_items">\n\n        <h2>{{"ProductName" | translate}} : {{item.name}}\n\n        </h2>\n\n        <h2>{{"Price" | translate}} : {{item.price | currency:values.currency:true:\'1.2-2\'}}\n\n        </h2>\n\n        <h2>{{"Quantity" | translate}} : {{item.quantity}}\n\n        </h2>     \n\n        <h2>{{"SubTotal" | translate}} : {{1*item.subtotal | currency:values.currency:true:\'1.2-2\'}}\n\n        </h2>\n\n      </ion-item>\n\n      <ion-item-divider>{{"Totals" | translate}}\n\n      </ion-item-divider>\n\n      <ion-item>\n\n        <ion-row>\n\n          <ion-col>{{"SubTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.subtotal | currency:values.currency:true:\'1.2-2\'}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col> {{"ShippingTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.total_shipping}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>{{"TaxTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.total_tax}}\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row text-uppercase>\n\n          <ion-col>{{"GrandTotal" | translate}}\n\n          </ion-col>\n\n          <ion-col text-right>{{1*orderDetails.order.total | currency:values.currency:true:\'1.2-2\'}}\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-item>\n\n    </ion-item-group>\n\n  </div>\n\n</ion-content>\n\n<!-- <ion-footer *ngIf="values.vendor">\n\n  <ion-toolbar color="brand">\n\n    <button ion-button round full color="primary" (click)="confirmOrder()">Confirm Order</button>\n\n  </ion-toolbar>\n\n</ion-footer> -->'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\order-details\order-details.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ActionSheetController"],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_config__["a" /* Config */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
+    ], OrderDetails);
+    return OrderDetails;
+}());
+
+//# sourceMappingURL=order-details.js.map
+
+/***/ }),
+
+/***/ 199:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WishlistPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_wishlist_service__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cart_cart__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__product_product__ = __webpack_require__(41);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var WishlistPage = /** @class */ (function () {
+    function WishlistPage(nav, values, params, functions, service) {
+        this.nav = nav;
+        this.values = values;
+        this.params = params;
+        this.functions = functions;
+        this.service = service;
+    }
+    WishlistPage.prototype.gohome = function () {
+        this.nav.parent.select(0);
+    };
+    WishlistPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.service.loadWishlist()
+            .then(function (results) { return _this.wishlist = results; });
+    };
+    WishlistPage.prototype.removeFromWishlist = function (id) {
+        var _this = this;
+        this.service.deleteItem(id)
+            .then(function (results) { return _this.updateWish(results, id); });
+    };
+    WishlistPage.prototype.updateWish = function (results, id) {
+        var _this = this;
+        if (results.status == "success") {
+            this.service.loadWishlist()
+                .then(function (results) { return _this.wishlist = results; });
+            this.values.wishlistId.splice(id, 0);
+        }
+    };
+    WishlistPage.prototype.getCart = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__cart_cart__["a" /* CartPage */]);
+    };
+    WishlistPage.prototype.addToCart = function (item, id, type) {
+        var _this = this;
+        console.log({ item: item });
+        if (type == 'variable') {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], id);
+        }
+        else {
+            this.service.addToCart(id)
+                .then(function (results) { return _this.updateCart(results, id); });
+        }
+    };
+    WishlistPage.prototype.getProduct = function (id) {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_6__product_product__["a" /* ProductPage */], id);
+    };
+    WishlistPage.prototype.updateCart = function (results, id) {
+        var _this = this;
+        if (results.error) {
+            this.functions.showAlert("ERROR", "Unable to add to Wishlist");
+        }
+        else {
+            this.service.deleteItem(id)
+                .then(function (results) { return _this.updateWishlist(results); });
+        }
+    };
+    WishlistPage.prototype.updateWishlist = function (results) {
+        var _this = this;
+        this.service.loadWishlist()
+            .then(function (results) { return _this.wishlist = results; });
+        this.functions.showAlert("SUCCESS", "Item has been added to cart");
+    };
+    WishlistPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\wishlist\wishlist.html"*/'<!-- Header -->\n\n<ion-header>\n\n  <ion-toolbar color="header">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button\n\n        ion-button\n\n        icon-only\n\n        light\n\n        class="has-icon icon-only has-badge"\n\n        (click)="getCart()"\n\n      >\n\n        <ion-icon class="ion-ios-cart item-icon"></ion-icon>\n\n        <ion-badge class="badge badge-light" *ngIf="values.count">\n\n          {{values.count}}\n\n        </ion-badge>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="wishlistPage">\n\n  <div *ngIf="wishlist?.error" class="margin">\n\n    <h2>{{"Your wishlist is empty!" | translate}}</h2>\n\n  </div>\n\n\n\n  <div *ngIf="wishlist">\n\n    <div *ngIf="wishlist.length">\n\n      <div *ngFor="let item of wishlist | keys" class="wish-list">\n\n        <ion-item no-lines>\n\n          <ion-thumbnail item-left>\n\n            <img src="{{item.value.image_thumb}}" />\n\n          </ion-thumbnail>\n\n\n\n          <h2 wrap-text>{{item.value.name}}</h2>\n\n          <h3 wrap-text>\n\n            {{"Price" | translate}}: {{item.value.price |\n\n            currency:values.currency:true:\'1.2-2\'}}\n\n          </h3>\n\n\n\n          <ion-row class="add-remove-button">\n\n            <ion-col royal width-50>\n\n              <button\n\n                ion-button\n\n                full\n\n                color="danger"\n\n                clear\n\n                text-uppercase\n\n                no-padding\n\n                item-left\n\n                no-margin\n\n                (click)="removeFromWishlist(item.value.id)"\n\n              >\n\n                <ion-icon ios="ios-trash" md="md-trash"></ion-icon>\n\n                ELIMINAR\n\n              </button>\n\n            </ion-col>\n\n            <ion-col royal width-50>\n\n              <button\n\n              style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n\n                item-right\n\n                (click)="getProduct(item.value.id)"\n\n              >\n\n                <ion-icon ios="ios-cart" md="md-cart"></ion-icon>\n\n                SOLICITAR\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </ion-item>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\account\wishlist\wishlist.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_2__providers_service_wishlist_service__["a" /* WishlistService */]])
+    ], WishlistPage);
+    return WishlistPage;
+}());
+
+//# sourceMappingURL=wishlist.js.map
+
+/***/ }),
+
 /***/ 200:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2640,7 +2640,7 @@ var Service = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__edit_address_form_edit_address_form__ = __webpack_require__(195);
@@ -3823,7 +3823,7 @@ var CartPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_product_service__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__md5__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__md5__ = __webpack_require__(891);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cart_cart__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_moment__);
@@ -4247,7 +4247,7 @@ var TermsCondition = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountForgotten; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4433,7 +4433,7 @@ var DashProveedorPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__account_booking_details_booking_details__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4533,7 +4533,7 @@ var ServicesPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Address; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_address_form_edit_address_form__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4581,7 +4581,7 @@ var Address = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Orders; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__order_details_order_details__ = __webpack_require__(196);
@@ -4689,7 +4689,7 @@ var Orders = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountRegister; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(75);
@@ -4882,7 +4882,7 @@ var AccountRegister = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductsListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(108);
@@ -5382,7 +5382,7 @@ var WishlistService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersVendor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__order_details_order_details__ = __webpack_require__(196);
@@ -5495,7 +5495,7 @@ var OrdersVendor = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IframePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation_ngx__ = __webpack_require__(197);
@@ -6074,7 +6074,7 @@ var PagesProductsProvidersPage = /** @class */ (function () {
     };
     PagesProductsProvidersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-pages-products-providers',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\pages-products-providers\pages-products-providers.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content class="products">\n  <div class="sub-header">\n    <h1>Productos</h1>\n  </div>\n  <div class="body-product">\n    <ion-item no-padding no-lines class="item-background">\n      <button  style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n      (click)="newProduct()">{{"Add Product" | translate}}\n      </button>\n    </ion-item>\n    <ion-spinner *ngIf="!products" name="crescent"></ion-spinner>\n    <div *ngIf="products">\n      <h2\n        *ngIf="!products.length"\n        style="font-size: 15px;text-align: center;margin-top: 30px"\n      >\n        No products found!.\n      </h2>\n    </div>\n    <div *ngIf="products !== undefined" class="products-listing">\n      <div *ngIf="products.length">\n        <div *ngIf="values.listview">\n          <ion-list>\n            <div class="item-list" *ngFor="let item of products">\n              <ion-item class="left-padding" no-lines>\n                <ion-thumbnail item-left class="stock-list">\n                  <img\n                    [style.height.rem]="values.dimensions.imageListViewHeight"\n                    tappable\n                    (click)="getProduct(item)"\n                    src="{{item.images[0].src}}"\n                  />\n                  \n                </ion-thumbnail>\n\n                <div class="product-name-top">\n                  <ion-row>\n                    <ion-col width-80 class="product-label">\n                      <div tappable (click)="getProduct(item)">\n                        <h2 *ngIf="item.title">{{item.title}}</h2>\n                        <h2 *ngIf="item.name">{{item.name}}</h2>\n                      </div>\n                    </ion-col>\n                  </ion-row>\n                  <p\n                    tappable\n                    (click)="getProduct(item)"\n                    class="max-lines"\n                    [innerHTML]="item.description"\n                  ></p>\n                </div>\n\n                <div class="price-bottom-list">\n                  <h3 class="price-regular" *ngIf="!item.minPrice">\n                    Starting from {{1*item.price |\n                    currency:values.currency:true:\'1.2-2\'}}\n                  </h3>\n\n                  <h3 class="price-regular" *ngIf="item.minPrice">\n                    Starting from {{1*item.minPrice |\n                    currency:values.currency:true:\'1.2-2\'}}\n                  </h3>\n                \n                </div>\n\n                <div class="bottom-right-button">\n                  <button\n                    ion-button\n                    icon-only\n                    item-right\n                    clear\n                    color="button-color"\n                    *ngIf="values.cart[item.id] >= 1"\n                    (click)="deleteFromCart(item.id)"\n                  >\n                    <ion-icon\n                      ios="ios-remove-circle-outline"\n                      md="ios-remove-circle-outline"\n                    ></ion-icon>\n                  </button>\n                  <button\n                    ion-button\n                    item-right\n                    color="button-color"\n                    clear\n                    *ngIf="values.cart[item.id] >= 1"\n                  >\n                    {{values.cart[item.id]}}\n                  </button>\n                  <button\n                    ion-button\n                    icon-only\n                    item-right\n                    clear\n                    color="button-color"\n                    *ngIf="values.cart[item.id] >= 1"\n                    (click)="updateToCart(item.id)"\n                  >\n                    <ion-icon\n                      ios="ios-add-circle-outline"\n                      md="ios-add-circle-outline"\n                    ></ion-icon>\n                  </button>\n                </div>\n              </ion-item>\n            </div>\n          </ion-list>\n        </div>\n        <div *ngIf="!values.listview">\n          <div class="card-background-page grid">\n            <ion-row class="row unlimited-items">\n              <ion-col class="col" *ngFor="let item of products">\n                <ion-card class="item-product">\n                  <ion-card-content class="stock">\n                    <img\n                      [style.height.px]="values.dimensions.imageGridViewHeight"\n                      tappable\n                      src="{{item.images[0].src}}"\n                      (click)="getProduct(item)"\n                    />\n                  </ion-card-content>\n                  <div tappable (click)="getProduct(item)" class="card-name">\n                    <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n                    <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n                  </div>\n\n                    <ion-item no-padding no-lines class="item-background">\n                      {{"Descripción" | translate}} :\n                    </ion-item>\n                    <ion-item class="description" text-wrap no-lines>\n                      <div [innerHTML]="item.description"></div>\n                    </ion-item>\n\n                    <ion-item no-padding no-lines class="item-background">\n                      {{"Categoria" | translate}} : {{item.categories[0].name}}\n                    </ion-item>\n                    <ion-item no-padding no-lines class="item-background">\n                      <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n                      (click)="getProduct(item)">{{"Ver" | translate}}\n                      </button>\n                      <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n                      >{{"Editar" | translate}}\n                      </button>\n                    </ion-item>\n                   \n                  \n                </ion-card>\n              </ion-col>\n            </ion-row>\n          </div>\n        </div>\n      </div>\n      <ion-infinite-scroll\n        (ionInfinite)="doInfinite($event)"\n        *ngIf="has_more_items"\n      >\n        <ion-infinite-scroll-content\n          loadingSpinner="crescent"\n          loadingText="{{\'Loading more items..\' | translate}}"\n        ></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\pages-products-providers\pages-products-providers.html"*/,
+            selector: 'page-pages-products-providers',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\pages-products-providers\pages-products-providers.html"*/'<ion-header>\n  <ion-toolbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content class="products">\n  <div class="sub-header">\n    <h1>Servicios</h1>\n  </div>\n  <div class="body-product">\n    <ion-item no-padding no-lines class="item-background">\n      <button  style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n      (click)="newProduct()">{{"Agregar nuevo servicio" | translate}}\n      </button>\n    </ion-item>\n    <ion-spinner *ngIf="!products" name="crescent"></ion-spinner>\n    <div *ngIf="products">\n      <h2\n        *ngIf="!products.length"\n        style="font-size: 15px;text-align: center;margin-top: 30px"\n      >\n        No products found!.\n      </h2>\n    </div>\n    <div *ngIf="products !== undefined" class="products-listing">\n      <div *ngIf="products.length">\n        <div *ngIf="values.listview">\n          <ion-list>\n            <div class="item-list" *ngFor="let item of products">\n              <ion-item class="left-padding" no-lines>\n                <ion-thumbnail item-left class="stock-list">\n                  <img\n                    [style.height.rem]="values.dimensions.imageListViewHeight"\n                    tappable\n                    (click)="getProduct(item)"\n                    src="{{item.images[0].src}}"\n                  />\n\n                </ion-thumbnail>\n\n                <div class="product-name-top">\n                  <ion-row>\n                    <ion-col width-80 class="product-label">\n                      <div tappable (click)="getProduct(item)">\n                        <h2 *ngIf="item.title">{{item.title}}</h2>\n                        <h2 *ngIf="item.name">{{item.name}}</h2>\n                      </div>\n                    </ion-col>\n                  </ion-row>\n                  <p\n                    tappable\n                    (click)="getProduct(item)"\n                    class="max-lines"\n                    [innerHTML]="item.description"\n                  ></p>\n                </div>\n\n                <div class="price-bottom-list">\n                  <h3 class="price-regular" *ngIf="!item.minPrice">\n                    Starting from {{1*item.price |\n                    currency:values.currency:true:\'1.2-2\'}}\n                  </h3>\n\n                  <h3 class="price-regular" *ngIf="item.minPrice">\n                    Starting from {{1*item.minPrice |\n                    currency:values.currency:true:\'1.2-2\'}}\n                  </h3>\n\n                </div>\n\n                <div class="bottom-right-button">\n                  <button\n                    ion-button\n                    icon-only\n                    item-right\n                    clear\n                    color="button-color"\n                    *ngIf="values.cart[item.id] >= 1"\n                    (click)="deleteFromCart(item.id)"\n                  >\n                    <ion-icon\n                      ios="ios-remove-circle-outline"\n                      md="ios-remove-circle-outline"\n                    ></ion-icon>\n                  </button>\n                  <button\n                    ion-button\n                    item-right\n                    color="button-color"\n                    clear\n                    *ngIf="values.cart[item.id] >= 1"\n                  >\n                    {{values.cart[item.id]}}\n                  </button>\n                  <button\n                    ion-button\n                    icon-only\n                    item-right\n                    clear\n                    color="button-color"\n                    *ngIf="values.cart[item.id] >= 1"\n                    (click)="updateToCart(item.id)"\n                  >\n                    <ion-icon\n                      ios="ios-add-circle-outline"\n                      md="ios-add-circle-outline"\n                    ></ion-icon>\n                  </button>\n                </div>\n              </ion-item>\n            </div>\n          </ion-list>\n        </div>\n        <div *ngIf="!values.listview">\n          <div class="card-background-page grid">\n            <ion-row class="row unlimited-items">\n              <ion-col class="col" *ngFor="let item of products">\n                <ion-card class="item-product">\n                  <ion-card-content class="stock">\n                    <img\n                      [style.height.px]="values.dimensions.imageGridViewHeight"\n                      tappable\n                      src="{{item.images[0].src}}"\n                      (click)="getProduct(item)"\n                    />\n                  </ion-card-content>\n                  <div tappable (click)="getProduct(item)" class="card-name">\n                    <ion-label *ngIf="item.title">{{item.title}}</ion-label>\n                    <ion-label *ngIf="item.name">{{item.name}}</ion-label>\n                  </div>\n\n                    <ion-item no-padding no-lines class="item-background">\n                      {{"Descripción" | translate}} :\n                    </ion-item>\n                    <ion-item class="description" text-wrap no-lines>\n                      <div [innerHTML]="item.description"></div>\n                    </ion-item>\n\n                    <ion-item no-padding no-lines class="item-background">\n                      {{"Categoria" | translate}} : {{item.categories[0].name}}\n                    </ion-item>\n                    <ion-item no-padding no-lines class="item-background">\n                      <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n                      (click)="getProduct(item)">{{"Ver" | translate}}\n                      </button>\n                      <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase\n                      >{{"Editar" | translate}}\n                      </button>\n                    </ion-item>\n\n\n                </ion-card>\n              </ion-col>\n            </ion-row>\n          </div>\n        </div>\n      </div>\n      <ion-infinite-scroll\n        (ionInfinite)="doInfinite($event)"\n        *ngIf="has_more_items"\n      >\n        <ion-infinite-scroll-content\n          loadingSpinner="crescent"\n          loadingText="{{\'Loading more items..\' | translate}}"\n        ></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\pages-products-providers\pages-products-providers.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["PopoverController"],
@@ -6117,17 +6117,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var NewProductPage = /** @class */ (function () {
-    function NewProductPage(nav, navParams, values, renderer) {
+    function NewProductPage(nav, navParams, values, alert) {
         this.nav = nav;
         this.navParams = navParams;
         this.values = values;
-        this.renderer = renderer;
-        // @ViewChild('indicator')indicator:ElementRef;
-        // @ViewChild('tabs_control')tabs_control:ElementRef;
-        // @ViewChild('tabs')tabs:ElementRef;
-        // @ViewChild('tab')tab:ElementRef;
-        this.desde = new Date();
-        this.hacia = new Date();
+        this.alert = alert;
+        this.selectDay = '';
+        this.initH = '';
+        this.endH = '';
+        this.days = [
+            {
+                name: "MONDAY"
+            },
+            {
+                name: "TUESDAY"
+            },
+            {
+                name: "WEDNESDAY"
+            },
+            {
+                name: "THURSDAY"
+            },
+            {
+                name: "FRIDAY"
+            },
+            {
+                name: "SATURDAY"
+            },
+            {
+                name: "SUNDAY"
+            }
+        ];
+        this.availability = [];
     }
     NewProductPage.prototype.ngAfterViewInit = function () {
         // this.indicator.nativeElement.style.width = this.tabs_control.nativeElement.children[0].clientWidth + "px";
@@ -6135,27 +6156,169 @@ var NewProductPage = /** @class */ (function () {
         //   this.renderer.listen( this.tabs_control.nativeElement.children[i],'click',this.handleClick);
         // }
     };
+    NewProductPage.prototype.OnChange = function (event) {
+        console.log(this.days);
+        alert("selecciono " + event.target.value);
+    };
+    NewProductPage.prototype.onSubmit = function () {
+    };
+    NewProductPage.prototype.addAvailability = function () {
+        if (this.availability.length == 0) {
+            if (this.selectDay != '' && this.initH != '' && this.endH != '') {
+                this.availability.push({
+                    date: this.selectDay,
+                    inithour: this.initH,
+                    endhour: this.endH
+                });
+                this.selectDay = '';
+                this.initH = '';
+                this.endH = '';
+            }
+            else {
+                this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
+            }
+        }
+        else {
+            for (var i in this.availability) {
+                if (this.availability[i].date == this.selectDay) {
+                    this.showAlert(this.selectDay + " ya fue agregado", '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
+                    break;
+                }
+                else {
+                    if (this.selectDay != '' && this.initH != '' && this.endH != '') {
+                        this.availability.push({
+                            date: this.selectDay,
+                            inithour: this.initH,
+                            endhour: this.endH
+                        });
+                        this.selectDay = '';
+                        this.initH = '';
+                        this.endH = '';
+                    }
+                    else {
+                        this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
+                        break;
+                    }
+                }
+            }
+        }
+    };
+    NewProductPage.prototype.showAlert = function (title, text) {
+        var alert = this.alert.create({
+            title: title,
+            subTitle: text,
+            buttons: ['OK'],
+        });
+        alert.present();
+    };
     NewProductPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-new-product',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/'<ion-header>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <div class="card2">\n    <form action="">\n      <div style="width: 100%;">\n        <div style="border: 1px solid #999; width: 80px; height: 80px; margin: 0 auto; background: #ddd;"></div>\n        <div style="margin: 0 auto; width: 50px;"><span>Adjuntar Imagen</span></div>\n      </div>\n      <ion-item>\n        <!-- <ion-label>Nombre producto</ion-label> -->\n         <ion-input placeholder="Nombre producto" type="text" name="product_name"></ion-input>\n      </ion-item>\n         \n      <ion-item>\n         <ion-textarea placeholder="Descripcion del producto" name=""></ion-textarea>\n      </ion-item>\n    \n      <ion-item>\n         <ion-textarea placeholder="Descripcion corta del producto" name=""></ion-textarea>\n      </ion-item>\n\n      <ion-item>       \n         <ion-input placeholder="Costo Base" type="text" name="bookingByBlock"></ion-input>\n      </ion-item>\n\n      <ion-item>       \n        <ion-input placeholder="Costo por Bloque" type="number" name="minimunBlock"></ion-input>\n      </ion-item>\n\n      <ion-item>       \n        <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>\n      </ion-item>\n\n      <div style="display: flex;">\n        <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase\n        >{{"Agregar Rango" | translate}}\n        </button>\n      </div>\n      <div class="availability">\n        <div><span>Tipo Rango</span></div>\n        <div><span>Rango</span></div>\n      </div>\n      <div class="availability2">\n        <ion-item><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></ion-item>\n        <ion-item>\n          <ion-datetime \n            placeholder="Desde" displayFormat="HH:mm" name="desde"\n            value="{{desde | date:\'yyyy-MM-dd\'}}"></ion-datetime>\n        </ion-item>\n      </div>\n     <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n        <span>Guardar Producto</span>\n     </div>\n     </form>\n  </div>\n  \n  <!-- <div class="card tabs-container">\n    <nav #tabs_control class="tabs-control">\n      <a href="#info">Informacion</a>\n      <a href="#details">Detalle</a>\n      <a href="#lorem">Lorem Ipsum</a>\n      <div id="indicator" #indicator class="indicator"></div>\n    </nav>\n    <div  #tabs class="tabs">\n      <div class="container">\n        <div  #tab class="tab" id="info">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="details">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="lorem">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n      </div>\n    </div>\n  </div> -->\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/,
+            selector: 'page-new-product',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/'<ion-header>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <!-- <div class="card2"> -->\n    <ion-list>\n    <form #f="ngForm" (ngSubmit)="onSubmit()" >\n      <div style="width: 100%;">\n        <div style="border: 1px solid #999; width: 80px; height: 80px; margin: 0 auto; background: #ddd;"></div>\n        <div style="margin: 0 auto; width: 50px;"><span>Adjuntar Imagen</span></div>\n      </div>\n\n        <ion-item>\n          <!-- <ion-label>Nombre servicio</ion-label> -->\n           <ion-input placeholder="Nombre servicio" type="text" name="product_name"></ion-input>\n        </ion-item>\n\n        <ion-item>\n           <ion-textarea placeholder="Descripcion del servicio" name=""></ion-textarea>\n        </ion-item>\n\n        <ion-item>\n           <ion-textarea placeholder="Descripcion corta del servicio" name=""></ion-textarea>\n        </ion-item>\n\n        <ion-item>\n           <ion-input placeholder="Costo Base" type="text" name="bookingByBlock"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-input placeholder="Costo por Bloque" type="number" name="minimunBlock"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>\n        </ion-item>\n        <br>\n        <div class="card2">\n          <ion-item>\n            <ion-label>Select</ion-label>\n            <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="selDay">\n              <ion-option value="{{item.name}}" *ngFor="let item of days" >{{item.name}}</ion-option>\n            </ion-select>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Desde</ion-label>\n            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="initH" name="inithours"></ion-datetime>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Hasta</ion-label>\n            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="endH" name="endhours"></ion-datetime>\n          </ion-item>\n          <ion-item>\n            <button ion-button (click)="addAvailability()">\n              <ion-icon name="save"></ion-icon> Agregar Disponibilidad\n            </button>\n          </ion-item>\n          <ion-grid >\n            <ion-row class="ion-align-items-center">\n              <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">\n                 <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>\n              </ion-col>\n              <ion-col style="background-color:#76a7ab; color: #fff;">\n                <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>\n             </ion-col>\n            </ion-row>\n            <ion-row class="ion-align-items-center" *ngFor="let item of availability">\n             <ion-col style="margin-right: 1px;">\n                <div style="margin: 0 auto; width: 100%;">\n                  {{item.date}}\n               </div>\n             </ion-col>\n             <ion-col>\n               <div style="margin: 0 auto; width: 100%;">\n                  <span>De {{item.inithour}} A {{item.endhour}}</span>\n               </div>\n            </ion-col>\n           </ion-row>\n          </ion-grid>\n\n          <!-- <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n\n          </div> -->\n        </div>\n\n\n\n\n      <!-- <div class="availability">\n        <div><span>Tipo Rango</span></div>\n        <div><span>Rango</span></div>\n      </div>\n      <div class="availability2">\n        <ion-item><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></ion-item>\n        <ion-item>\n          <ion-datetime\n            placeholder="Desde" displayFormat="HH:mm" name="desde"\n            value="{{desde | date:\'yyyy-MM-dd\'}}"></ion-datetime>\n        </ion-item>\n      </div>\n     <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n        <span>Guardar servicio</span>\n     </div> -->\n     <!-- <ion-grid >\n       <ion-row>\n         <ion-col>\n          <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase\n          >{{"Agregar Rango" | translate}}\n          </button>\n         </ion-col>\n       </ion-row>\n       <ion-row class="ion-align-items-center">\n         <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">\n            <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>\n         </ion-col>\n         <ion-col style="background-color:#76a7ab; color: #fff;">\n           <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>\n        </ion-col>\n       </ion-row>\n       <ion-row class="ion-align-items-center">\n        <ion-col style="margin-right: 1px;">\n           <div style="margin: 0 auto; width: 100%;">\n            <ion-item>\n              <ion-label>Select</ion-label>\n              <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="day">\n                <ion-select-option *ngFor="let item of days" [value]="item.name">{{item.name}}</ion-select-option>\n              </ion-select>\n            </ion-item>\n          </div>\n        </ion-col>\n        <ion-col>\n          <div style="margin: 0 auto; width: 100%;">\n            <ion-item>\n              <ion-label>Select</ion-label>\n              <ion-datetime displayFormat="HH:mm" display-timezone="utc"></ion-datetime>\n            </ion-item>\n          </div>\n       </ion-col>\n      </ion-row>\n     </ion-grid> -->\n     </form>\n    </ion-list>\n  <!-- </div> -->\n\n  <!-- <div class="card tabs-container">\n    <nav #tabs_control class="tabs-control">\n      <a href="#info">Informacion</a>\n      <a href="#details">Detalle</a>\n      <a href="#lorem">Lorem Ipsum</a>\n      <div id="indicator" #indicator class="indicator"></div>\n    </nav>\n    <div  #tabs class="tabs">\n      <div class="container">\n        <div  #tab class="tab" id="info">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="details">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="lorem">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n      </div>\n    </div>\n  </div> -->\n  <div>\n    <div style="margin:0 auto; width: 220px;">\n      <button ion-button style="font-family: \'Courier New\', Courier, monospace;">Guardar Servicio</button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
     ], NewProductPage);
     return NewProductPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=new-product.js.map
 
 /***/ }),
 
-/***/ 566:
+/***/ 562:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CategoryServicePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(18);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the CategoryServicePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CategoryServicePage = /** @class */ (function () {
+    function CategoryServicePage(navCtrl, navParams, values, service, alert) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.values = values;
+        this.service = service;
+        this.alert = alert;
+        this.HiddenList = true;
+        this.HiddenListCat = true;
+        this.HiddenSearchLocation = false;
+        this.HideRadius = false;
+        this.HideBtnSearch = false;
+        this.radius = 0;
+        this.miLatitude = 0;
+        this.miLongitude = 0;
+        this.has_more_items = true;
+        this.loading = true;
+        this.items = [];
+        this.options = [];
+        this.service.getProducts();
+        this.autocomplete = { input: '' };
+        this.autocompleteItems = [];
+        this.autocompleteCat = { input: '' };
+        this.itemsCategory = [];
+        this.lat = '';
+        this.long = '';
+    }
+    CategoryServicePage.prototype.gohome = function () {
+        this.navCtrl.parent.select(0);
+    };
+    CategoryServicePage.prototype.addServicio = function (event) {
+        if (event.target.checked) {
+            this.showAlert('Se ha actualizado este servicio', '<strong>Genial:</strong> Has actualizado correctamente');
+        }
+    };
+    CategoryServicePage.prototype.showAlert = function (title, text) {
+        var alert = this.alert.create({
+            title: title,
+            subTitle: text,
+            buttons: ['OK'],
+        });
+        alert.present();
+    };
+    CategoryServicePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CategoryServicePage');
+    };
+    CategoryServicePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-category-service',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\category-service\category-service.html"*/'<ion-header class="settings-header">\n  <ion-navbar color="header">\n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n      </button>\n      <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->\n      <ion-title >\n          <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n      </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="support" padding [content]="content">\n  <div class="sub-header">\n    <h1>Mis Servicios</h1>\n  </div>\n  <ion-list *ngIf="service.categories" style="margin-top: 100px;">\n    <ion-item *ngFor="let item of service.mainCategories" style="margin-top:10px; border-radius: 5px;" class="card2">\n      <ion-thumbnail item-left>\n        <img src="{{item.image.src}}" />\n      </ion-thumbnail>\n      <ion-label  class="heading text-center" style="font-size: 18px; font-weight: 900;">\n        {{item.name}}\n      </ion-label>\n      <ion-checkbox item-right>\n        <ion-checkbox color="dark" (ionChange)="addServicio($event)" checked></ion-checkbox>\n      </ion-checkbox>\n    </ion-item>\n  </ion-list>\n  <div>\n    <div style="margin:0 auto; width: 220px;">\n      <button ion-button style="font-family: \'Courier New\', Courier, monospace;">Actualiza Tus Servicios</button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\category-service\category-service.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _e || Object])
+    ], CategoryServicePage);
+    return CategoryServicePage;
+    var _a, _b, _c, _d, _e;
+}());
+
+//# sourceMappingURL=category-service.js.map
+
+/***/ }),
+
+/***/ 567:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(567);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(568);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(572);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -6459,7 +6622,7 @@ var ProductsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 571:
+/***/ 572:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6467,7 +6630,7 @@ var ProductsPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(608);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(609);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_account_address_address__ = __webpack_require__(549);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_account_edit_address_form_edit_address_form__ = __webpack_require__(195);
@@ -6499,44 +6662,46 @@ var ProductsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_pages_support_pages_support__ = __webpack_require__(558);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_services_services__ = __webpack_require__(548);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_pages_products_providers_pages_products_providers__ = __webpack_require__(560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__ionic_native_status_bar__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ionic_native_splash_screen__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__ionic_native_in_app_browser__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_native_storage__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__angular_platform_browser__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__providers_service_cart_service__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__providers_service_wishlist_service__ = __webpack_require__(553);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__providers_service_category_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__providers_service_checkout_service__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__providers_service_config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__providers_service_functions__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__providers_service_product_service__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__providers_service_search_service__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__providers_service_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__providers_pipe_pipe__ = __webpack_require__(915);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_call_number__ = __webpack_require__(916);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_email_composer__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ionic_native_app_rate__ = __webpack_require__(555);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ionic_native_social_sharing__ = __webpack_require__(556);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__angular_common_http__ = __webpack_require__(917);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__angular_http__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__ngx_translate_core__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__ngx_translate_http_loader__ = __webpack_require__(918);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__ionic_native_onesignal__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__ionic_native_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60_ion2_calendar__ = __webpack_require__(920);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_60_ion2_calendar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__ionic_native_geolocation_ngx__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_native_geocoder__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_background_mode__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64_ngx_socket_io__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_category_service_category_service__ = __webpack_require__(562);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ionic_native_status_bar__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__ionic_native_splash_screen__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_in_app_browser__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_native_storage__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__angular_platform_browser__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__providers_service_cart_service__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__providers_service_wishlist_service__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__providers_service_category_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__providers_service_checkout_service__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__providers_service_config__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__providers_service_functions__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__providers_service_product_service__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__providers_service_search_service__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__providers_pipe_pipe__ = __webpack_require__(916);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_call_number__ = __webpack_require__(917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ionic_native_email_composer__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ionic_native_app_rate__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__ionic_native_social_sharing__ = __webpack_require__(556);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__angular_common_http__ = __webpack_require__(918);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__angular_http__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__ngx_translate_core__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__ngx_translate_http_loader__ = __webpack_require__(919);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__ionic_native_onesignal__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__ionic_native_http__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61_ion2_calendar__ = __webpack_require__(921);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_61_ion2_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__ionic_native_geolocation_ngx__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_geocoder__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__ionic_native_background_mode__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65_ngx_socket_io__ = __webpack_require__(534);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -6608,7 +6773,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
 var config = { url: 'https://websockethomer.herokuapp.com/', options: {} };
 function createTranslateLoader(http) {
-    return new __WEBPACK_IMPORTED_MODULE_57__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
+    return new __WEBPACK_IMPORTED_MODULE_58__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
 }
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -6642,28 +6807,29 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_28__pages_search_search__["a" /* SearchPage */],
                 __WEBPACK_IMPORTED_MODULE_29__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_30__pages_products_list_products_list__["a" /* ProductsListPage */],
-                __WEBPACK_IMPORTED_MODULE_49__providers_pipe_pipe__["a" /* KeysPipe */],
+                __WEBPACK_IMPORTED_MODULE_50__providers_pipe_pipe__["a" /* KeysPipe */],
                 __WEBPACK_IMPORTED_MODULE_31__pages_pages_support_pages_support__["a" /* PagesSupportPage */],
                 __WEBPACK_IMPORTED_MODULE_19__pages_dash_proveedor_dash_proveedor__["a" /* DashProveedorPage */],
                 __WEBPACK_IMPORTED_MODULE_32__pages_services_services__["a" /* ServicesPage */],
                 __WEBPACK_IMPORTED_MODULE_20__pages_chat_chat__["a" /* ChatPage */],
                 __WEBPACK_IMPORTED_MODULE_33__pages_pages_products_providers_pages_products_providers__["a" /* PagesProductsProvidersPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_new_product_new_product__["a" /* NewProductPage */]
+                __WEBPACK_IMPORTED_MODULE_21__pages_new_product_new_product__["a" /* NewProductPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_category_service_category_service__["a" /* CategoryServicePage */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_38__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_54__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_60_ion2_calendar__["CalendarModule"],
-                __WEBPACK_IMPORTED_MODULE_55__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_64_ngx_socket_io__["b" /* SocketIoModule */].forRoot(config),
+                __WEBPACK_IMPORTED_MODULE_39__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_55__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_61_ion2_calendar__["CalendarModule"],
+                __WEBPACK_IMPORTED_MODULE_56__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_65_ngx_socket_io__["b" /* SocketIoModule */].forRoot(config),
                 __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicModule"].forRoot(__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
-                __WEBPACK_IMPORTED_MODULE_56__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+                __WEBPACK_IMPORTED_MODULE_57__ngx_translate_core__["b" /* TranslateModule */].forRoot({
                     loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_56__ngx_translate_core__["a" /* TranslateLoader */],
+                        provide: __WEBPACK_IMPORTED_MODULE_57__ngx_translate_core__["a" /* TranslateLoader */],
                         useFactory: createTranslateLoader,
-                        deps: [__WEBPACK_IMPORTED_MODULE_54__angular_common_http__["a" /* HttpClient */]],
+                        deps: [__WEBPACK_IMPORTED_MODULE_55__angular_common_http__["a" /* HttpClient */]],
                     },
                 }),
             ],
@@ -6700,32 +6866,33 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_32__pages_services_services__["a" /* ServicesPage */],
                 __WEBPACK_IMPORTED_MODULE_20__pages_chat_chat__["a" /* ChatPage */],
                 __WEBPACK_IMPORTED_MODULE_33__pages_pages_products_providers_pages_products_providers__["a" /* PagesProductsProvidersPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_new_product_new_product__["a" /* NewProductPage */]
+                __WEBPACK_IMPORTED_MODULE_21__pages_new_product_new_product__["a" /* NewProductPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_category_service_category_service__["a" /* CategoryServicePage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_39__providers_service_cart_service__["a" /* CartService */],
-                __WEBPACK_IMPORTED_MODULE_40__providers_service_wishlist_service__["a" /* WishlistService */],
-                __WEBPACK_IMPORTED_MODULE_41__providers_service_category_service__["a" /* CategoryService */],
-                __WEBPACK_IMPORTED_MODULE_42__providers_service_checkout_service__["a" /* CheckoutService */],
-                __WEBPACK_IMPORTED_MODULE_43__providers_service_config__["a" /* Config */],
-                __WEBPACK_IMPORTED_MODULE_44__providers_service_functions__["a" /* Functions */],
-                __WEBPACK_IMPORTED_MODULE_45__providers_service_product_service__["a" /* ProductService */],
-                __WEBPACK_IMPORTED_MODULE_46__providers_service_search_service__["a" /* SearchService */],
-                __WEBPACK_IMPORTED_MODULE_47__providers_service_service__["a" /* Service */],
-                __WEBPACK_IMPORTED_MODULE_48__providers_service_values__["a" /* Values */],
-                __WEBPACK_IMPORTED_MODULE_58__ionic_native_onesignal__["a" /* OneSignal */],
-                __WEBPACK_IMPORTED_MODULE_34__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_35__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_36__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_37__ionic_native_native_storage__["a" /* NativeStorage */],
-                __WEBPACK_IMPORTED_MODULE_53__ionic_native_social_sharing__["a" /* SocialSharing */],
-                __WEBPACK_IMPORTED_MODULE_52__ionic_native_app_rate__["a" /* AppRate */],
-                __WEBPACK_IMPORTED_MODULE_51__ionic_native_email_composer__["a" /* EmailComposer */],
-                __WEBPACK_IMPORTED_MODULE_50__ionic_native_call_number__["a" /* CallNumber */],
-                __WEBPACK_IMPORTED_MODULE_59__ionic_native_http__["a" /* HTTP */],
-                __WEBPACK_IMPORTED_MODULE_61__ionic_native_geolocation_ngx__["a" /* Geolocation */],
-                __WEBPACK_IMPORTED_MODULE_62__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
-                __WEBPACK_IMPORTED_MODULE_63__ionic_native_background_mode__["a" /* BackgroundMode */],
+                __WEBPACK_IMPORTED_MODULE_40__providers_service_cart_service__["a" /* CartService */],
+                __WEBPACK_IMPORTED_MODULE_41__providers_service_wishlist_service__["a" /* WishlistService */],
+                __WEBPACK_IMPORTED_MODULE_42__providers_service_category_service__["a" /* CategoryService */],
+                __WEBPACK_IMPORTED_MODULE_43__providers_service_checkout_service__["a" /* CheckoutService */],
+                __WEBPACK_IMPORTED_MODULE_44__providers_service_config__["a" /* Config */],
+                __WEBPACK_IMPORTED_MODULE_45__providers_service_functions__["a" /* Functions */],
+                __WEBPACK_IMPORTED_MODULE_46__providers_service_product_service__["a" /* ProductService */],
+                __WEBPACK_IMPORTED_MODULE_47__providers_service_search_service__["a" /* SearchService */],
+                __WEBPACK_IMPORTED_MODULE_48__providers_service_service__["a" /* Service */],
+                __WEBPACK_IMPORTED_MODULE_49__providers_service_values__["a" /* Values */],
+                __WEBPACK_IMPORTED_MODULE_59__ionic_native_onesignal__["a" /* OneSignal */],
+                __WEBPACK_IMPORTED_MODULE_35__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_36__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_37__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_38__ionic_native_native_storage__["a" /* NativeStorage */],
+                __WEBPACK_IMPORTED_MODULE_54__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_53__ionic_native_app_rate__["a" /* AppRate */],
+                __WEBPACK_IMPORTED_MODULE_52__ionic_native_email_composer__["a" /* EmailComposer */],
+                __WEBPACK_IMPORTED_MODULE_51__ionic_native_call_number__["a" /* CallNumber */],
+                __WEBPACK_IMPORTED_MODULE_60__ionic_native_http__["a" /* HTTP */],
+                __WEBPACK_IMPORTED_MODULE_62__ionic_native_geolocation_ngx__["a" /* Geolocation */],
+                __WEBPACK_IMPORTED_MODULE_63__ionic_native_native_geocoder__["a" /* NativeGeocoder */],
+                __WEBPACK_IMPORTED_MODULE_64__ionic_native_background_mode__["a" /* BackgroundMode */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicErrorHandler"] },
             ],
             schemas: [
@@ -6965,7 +7132,7 @@ var CategoryService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7003,7 +7170,7 @@ var Post = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 608:
+/***/ 609:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7012,7 +7179,7 @@ var Post = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(97);
@@ -7041,6 +7208,7 @@ var Post = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_rxjs_observable_timer__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_rxjs_observable_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30_rxjs_observable_timer__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_pages_products_providers_pages_products_providers__ = __webpack_require__(560);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_category_service_category_service__ = __webpack_require__(562);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7075,6 +7243,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 // import { OrdersVendor } from '../pages/account/orders-vendor/orders-vendor';
+
 
 
 
@@ -7222,6 +7391,9 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.pagesProductsProviders = function () {
         this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_31__pages_pages_products_providers_pages_products_providers__["a" /* PagesProductsProvidersPage */]);
     };
+    MyApp.prototype.mycategories = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_32__pages_category_service_category_service__["a" /* CategoryServicePage */]);
+    };
     MyApp.prototype.bookingVendor = function () {
         this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_24__pages_account_booking_vendor_booking_vendor__["a" /* BookingVendor */]);
     };
@@ -7288,7 +7460,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Nav"])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/'<div *ngIf="showSplash" class="splash">\n\n  <div class="splashSpinner" style="background: url({{values.logoMenu}});"></div>\n\n</div>\n\n\n\n<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">\n\n  <div class="menu-toolbar">\n\n    <ion-toolbar color="header">\n\n      <!-- <div class="profile-image">\n\n        <img src="{{values.logoMenu}}">\n\n        <div class="tittle-homer-provider">\n\n            Homer Proveedor\n\n        </div>\n\n      </div> -->\n\n\n\n      <ion-row>\n\n        <ion-col col-5 class="profile-image"> \n\n          <img src="{{values.logoMenu}}">\n\n        </ion-col>\n\n        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">\n\n          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">\n\n          Homer Proveedor\n\n          </strong>\n\n          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">\n\n            <h4 class="playername"> {{values.customerName}}</h4>\n\n          </strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">\n\n        <strong>{{values.customerName}}\n\n        </strong>\n\n      </button>\n\n      <button ion-button full menuClose clear color="light" class="button-welcome" *ngIf="!values.isLoggedIn">\n\n        <strong>{{"Welcome" | translate}}\n\n        </strong>\n\n      </button-->\n\n    </ion-toolbar>\n\n  </div>\n\n  <ion-content class="sidemenugrad">\n\n    <ion-list class="menu-items-single" no-margin>\n\n     \n\n      <!-- <div *ngIf="service.categories" class="category-name">\n\n        <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">\n\n          <ion-icon item-right class="ion-ios-arrow-forward item-icon">\n\n          </ion-icon>\n\n          <span [innerHTML]="item.name"></span>     \n\n        </ion-item>\n\n      </div> -->\n\n\n\n    </ion-list>\n\n    <ion-list class="menu-items">\n\n      <!-- <ion-item tappable menuClose (click)="shop()">\n\n        <ion-icon item-left name="home"></ion-icon>\n\n        {{"Inicio"}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose (click)="chat()">\n\n        <ion-icon  name="chat" item-left>\n\n        </ion-icon>\n\n        {{"Chat" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n\n        <ion-icon  name="contact" item-left>\n\n        </ion-icon>\n\n        {{"Account" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon name="person" item-left>\n\n        </ion-icon>{{"Acceder" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">\n\n        <ion-icon item-left ios="ios-create" md="md-create">\n\n        </ion-icon>\n\n        {{"Register" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="locate">\n\n        </ion-icon>{{"Address" | translate}}\n\n      </ion-item> -->\n\n      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n\n        <ion-icon item-left name="reorder">\n\n        </ion-icon>{{"Your Orders" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="wishlist()" *ngIf="values.isLoggedIn">\n\n        <ion-icon name="heart" item-left>\n\n        </ion-icon>{{"Wishlist" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose (click)="cart()">\n\n        <ion-icon ios="ios-cart" md="md-cart" item-left>\n\n        </ion-icon>\n\n        {{"Carrito" | translate}}\n\n      </ion-item>  -->\n\n      <!-- <ion-item tappable menuClose (click)="contact()">\n\n        {{"Contact Us" | translate}}\n\n        <ion-icon name="mail" item-left></ion-icon>\n\n      </ion-item>\n\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.terms && values.data?.pages?.terms != \'0\'"\n\n        (click)="post(values.data?.pages?.terms)">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Terms & Conditions" | translate}}\n\n      </ion-item> -->\n\n      <ion-item tappable menuClose \n\n        (click)="support()">\n\n        <ion-icon name="paper" item-left></ion-icon>\n\n        {{"Soporte" | translate}}\n\n      </ion-item>\n\n      <ion-item tappable menuClose no-line (click)="shareApp()">\n\n        <ion-icon name="share" item-left></ion-icon>\n\n        {{"Share App" | translate}}\n\n      </ion-item>\n\n      <!-- <ion-item tappable menuClose no-line (click)="rateApp()">\n\n        <ion-icon name="thumbs-up" item-left></ion-icon>\n\n        {{"Rate App" | translate}}\n\n      </ion-item> -->\n\n\n\n     \n\n\n\n      <ion-list *ngIf="values.isLoggedIn">\n\n        <ion-item *ngIf="values.vendor">\n\n          <label style="font-weight: bold;" for="">{{"Proveedor"}}</label>\n\n        </ion-item>\n\n        <!-- <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"My profile" | translate}}\n\n        </ion-item>   \n\n        <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"Edit Profile" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose [href]="">\n\n          <ion-icon item-left name="people-outline">\n\n          </ion-icon>{{"Ajustes de la tienda" | translate}}\n\n        </ion-item> -->\n\n        <ion-item tappable menuClose (click)="pagesProductsProviders()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="reorder">\n\n          </ion-icon>{{"Products" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="reorder">\n\n          </ion-icon>{{"Customer Orders" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">\n\n          <ion-icon item-left ios="ios-calendar" md="md-calendar">\n\n          </ion-icon>{{"Bookings" | translate}}\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">\n\n          <ion-icon item-left name="cart">\n\n          </ion-icon>Membresia\n\n        </ion-item>\n\n        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n          <ion-icon item-left name="md-log-out">\n\n          </ion-icon>{{"Logout" | translate}}\n\n        </ion-item>\n\n      </ion-list>\n\n      <!-- <ion-item>\n\n        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>\n\n        <ion-label>\n\n          {{"SelectLanguage" | translate}}\n\n        </ion-label>\n\n        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">\n\n          <ion-option value="english">{{"Eglish" | translate}} </ion-option>\n\n          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n    </ion-list>\n\n    <br>\n\n    <br>\n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/'<div *ngIf="showSplash" class="splash">\n  <div class="splashSpinner" style="background: url({{values.logoMenu}});"></div>\n</div>\n\n<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">\n  <div class="menu-toolbar">\n    <ion-toolbar color="header">\n      <!-- <div class="profile-image">\n        <img src="{{values.logoMenu}}">\n        <div class="tittle-homer-provider">\n            Homer Proveedor\n        </div>\n      </div> -->\n\n      <ion-row>\n        <ion-col col-5 class="profile-image">\n          <img src="{{values.logoMenu}}">\n        </ion-col>\n        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">\n          <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">\n          Homer Proveedor\n          </strong>\n          <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">\n            <h4 class="playername"> {{values.customerName}}</h4>\n          </strong>\n        </ion-col>\n      </ion-row>\n\n      <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">\n        <strong>{{values.customerName}}\n        </strong>\n      </button>\n      <button ion-button full menuClose clear color="light" class="button-welcome" *ngIf="!values.isLoggedIn">\n        <strong>{{"Welcome" | translate}}\n        </strong>\n      </button-->\n    </ion-toolbar>\n  </div>\n  <ion-content class="sidemenugrad">\n    <ion-list class="menu-items-single" no-margin>\n\n      <!-- <div *ngIf="service.categories" class="category-name">\n        <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">\n          <ion-icon item-right class="ion-ios-arrow-forward item-icon">\n          </ion-icon>\n          <span [innerHTML]="item.name"></span>\n        </ion-item>\n      </div> -->\n\n    </ion-list>\n    <ion-list class="menu-items">\n      <!-- <ion-item tappable menuClose (click)="shop()">\n        <ion-icon item-left name="home"></ion-icon>\n        {{"Inicio"}}\n      </ion-item> -->\n      <ion-item tappable menuClose (click)="chat()">\n        <ion-icon  name="chat" item-left>\n        </ion-icon>\n        {{"Chat" | translate}}\n      </ion-item>\n      <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n        <ion-icon  name="contact" item-left>\n        </ion-icon>\n        {{"Account" | translate}}\n      </ion-item>\n      <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n        <ion-icon name="person" item-left>\n        </ion-icon>{{"Acceder" | translate}}\n      </ion-item>\n      <ion-item tappable menuClose (click)="register()" *ngIf="!values.isLoggedIn">\n        <ion-icon item-left ios="ios-create" md="md-create">\n        </ion-icon>\n        {{"Register" | translate}}\n      </ion-item>\n      <!-- <ion-item tappable menuClose (click)="address()" *ngIf="values.isLoggedIn">\n        <ion-icon item-left name="locate">\n        </ion-icon>{{"Address" | translate}}\n      </ion-item> -->\n      <!-- <ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n        <ion-icon item-left name="reorder">\n        </ion-icon>{{"Your Orders" | translate}}\n      </ion-item>\n      <ion-item tappable menuClose (click)="wishlist()" *ngIf="values.isLoggedIn">\n        <ion-icon name="heart" item-left>\n        </ion-icon>{{"Wishlist" | translate}}\n      </ion-item>\n      <ion-item tappable menuClose (click)="cart()">\n        <ion-icon ios="ios-cart" md="md-cart" item-left>\n        </ion-icon>\n        {{"Carrito" | translate}}\n      </ion-item>  -->\n      <!-- <ion-item tappable menuClose (click)="contact()">\n        {{"Contact Us" | translate}}\n        <ion-icon name="mail" item-left></ion-icon>\n      </ion-item>\n      <ion-item tappable menuClose *ngIf="values.data?.pages?.terms && values.data?.pages?.terms != \'0\'"\n        (click)="post(values.data?.pages?.terms)">\n        <ion-icon name="paper" item-left></ion-icon>\n        {{"Terms & Conditions" | translate}}\n      </ion-item> -->\n      <ion-item tappable menuClose\n        (click)="support()">\n        <ion-icon name="paper" item-left></ion-icon>\n        {{"Soporte" | translate}}\n      </ion-item>\n      <ion-item tappable menuClose no-line (click)="shareApp()">\n        <ion-icon name="share" item-left></ion-icon>\n        {{"Share App" | translate}}\n      </ion-item>\n      <!-- <ion-item tappable menuClose no-line (click)="rateApp()">\n        <ion-icon name="thumbs-up" item-left></ion-icon>\n        {{"Rate App" | translate}}\n      </ion-item> -->\n\n\n\n      <ion-list *ngIf="values.isLoggedIn">\n        <ion-item *ngIf="values.vendor">\n          <label style="font-weight: bold;" for="">{{"Proveedor"}}</label>\n        </ion-item>\n        <!-- <ion-item tappable menuClose [href]="">\n          <ion-icon item-left name="people-outline">\n          </ion-icon>{{"My profile" | translate}}\n        </ion-item>\n        <ion-item tappable menuClose [href]="">\n          <ion-icon item-left name="people-outline">\n          </ion-icon>{{"Edit Profile" | translate}}\n        </ion-item>\n        <ion-item tappable menuClose [href]="">\n          <ion-icon item-left name="people-outline">\n          </ion-icon>{{"Ajustes de la tienda" | translate}}\n        </ion-item> -->\n        <ion-item tappable menuClose (click)="pagesProductsProviders()" *ngIf="values.vendor">\n          <ion-icon item-left name="reorder">\n          </ion-icon>{{"Servicios" | translate}}\n        </ion-item>\n        <ion-item tappable menuClose (click)="mycategories()" *ngIf="values.vendor">\n          <ion-icon item-left name="reorder">\n          </ion-icon>{{"Categorias de servicios" | translate}}\n        </ion-item>\n        <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">\n          <ion-icon item-left name="reorder">\n          </ion-icon>{{"Customer Orders" | translate}}\n        </ion-item>\n        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">\n          <ion-icon item-left ios="ios-calendar" md="md-calendar">\n          </ion-icon>{{"Bookings" | translate}}\n        </ion-item>\n        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">\n          <ion-icon item-left name="cart">\n          </ion-icon>Membresia\n        </ion-item>\n        <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n          <ion-icon item-left name="md-log-out">\n          </ion-icon>{{"Logout" | translate}}\n        </ion-item>\n      </ion-list>\n      <!-- <ion-item>\n        <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>\n        <ion-label>\n          {{"SelectLanguage" | translate}}\n        </ion-label>\n        <ion-select [(ngModel)]="Languages" (ngModelChange)="setLang()">\n          <ion-option value="english">{{"Eglish" | translate}} </ion-option>\n          <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>\n        </ion-select>\n      </ion-item> -->\n    </ion-list>\n    <br>\n    <br>\n    <br>\n  </ion-content>\n</ion-menu>\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n</ion-nav>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_6__providers_service_config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_21__ionic_native_email_composer__["a" /* EmailComposer */], __WEBPACK_IMPORTED_MODULE_19__ionic_native_app_rate__["a" /* AppRate */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_4__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_5__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_20__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_22__ionic_native_native_storage__["a" /* NativeStorage */]])
     ], MyApp);
@@ -7473,7 +7645,7 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 890:
+/***/ 891:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7683,7 +7855,7 @@ var md5 = function (string) {
 
 /***/ }),
 
-/***/ 892:
+/***/ 893:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -7968,18 +8140,18 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 892;
+webpackContext.id = 893;
 
 /***/ }),
 
-/***/ 912:
+/***/ 913:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 915:
+/***/ 916:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8015,5 +8187,5 @@ var KeysPipe = /** @class */ (function () {
 
 /***/ })
 
-},[566]);
+},[567]);
 //# sourceMappingURL=main.js.map

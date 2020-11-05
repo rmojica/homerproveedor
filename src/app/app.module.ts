@@ -33,7 +33,7 @@ import { ProductsListPage } from '../pages/products-list/products-list'
 import {PagesSupportPage} from '../pages/pages-support/pages-support'
 import {ServicesPage} from '../pages/services/services';
 import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
-
+import {CategoryServicePage} from '../pages/category-service/category-service';
 /*------------------------Providers----------------------------------*/
 
 import { StatusBar } from '@ionic-native/status-bar'
@@ -116,7 +116,8 @@ export function createTranslateLoader(http: HttpClient) {
     ServicesPage,
     ChatPage,
     PagesProductsProvidersPage,
-    NewProductPage
+    NewProductPage,
+    CategoryServicePage
   ],
   imports: [
     BrowserModule,
@@ -132,7 +133,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-   
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -167,7 +168,8 @@ export function createTranslateLoader(http: HttpClient) {
     ServicesPage,
     ChatPage,
     PagesProductsProvidersPage,
-    NewProductPage
+    NewProductPage,
+    CategoryServicePage
   ],
   providers: [
     CartService,
@@ -190,7 +192,7 @@ export function createTranslateLoader(http: HttpClient) {
     EmailComposer,
     CallNumber,
     HTTP,
-    Geolocation,    
+    Geolocation,
     NativeGeocoder,
     BackgroundMode,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

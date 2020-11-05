@@ -13,7 +13,7 @@
       </div> -->
 
       <ion-row>
-        <ion-col col-5 class="profile-image"> 
+        <ion-col col-5 class="profile-image">
           <img src="{{values.logoMenu}}">
         </ion-col>
         <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">
@@ -25,7 +25,7 @@
           </strong>
         </ion-col>
       </ion-row>
-      
+
       <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">
         <strong>{{values.customerName}}
         </strong>
@@ -38,12 +38,12 @@
   </div>
   <ion-content class="sidemenugrad">
     <ion-list class="menu-items-single" no-margin>
-     
+
       <!-- <div *ngIf="service.categories" class="category-name">
         <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">
           <ion-icon item-right class="ion-ios-arrow-forward item-icon">
           </ion-icon>
-          <span [innerHTML]="item.name"></span>     
+          <span [innerHTML]="item.name"></span>
         </ion-item>
       </div> -->
 
@@ -98,7 +98,7 @@
         <ion-icon name="paper" item-left></ion-icon>
         {{"Terms & Conditions" | translate}}
       </ion-item> -->
-      <ion-item tappable menuClose 
+      <ion-item tappable menuClose
         (click)="support()">
         <ion-icon name="paper" item-left></ion-icon>
         {{"Soporte" | translate}}
@@ -112,7 +112,7 @@
         {{"Rate App" | translate}}
       </ion-item> -->
 
-     
+
 
       <ion-list *ngIf="values.isLoggedIn">
         <ion-item *ngIf="values.vendor">
@@ -121,7 +121,7 @@
         <!-- <ion-item tappable menuClose [href]="">
           <ion-icon item-left name="people-outline">
           </ion-icon>{{"My profile" | translate}}
-        </ion-item>   
+        </ion-item>
         <ion-item tappable menuClose [href]="">
           <ion-icon item-left name="people-outline">
           </ion-icon>{{"Edit Profile" | translate}}
@@ -132,7 +132,11 @@
         </ion-item> -->
         <ion-item tappable menuClose (click)="pagesProductsProviders()" *ngIf="values.vendor">
           <ion-icon item-left name="reorder">
-          </ion-icon>{{"Products" | translate}}
+          </ion-icon>{{"Servicios" | translate}}
+        </ion-item>
+        <ion-item tappable menuClose (click)="mycategories()" *ngIf="values.vendor">
+          <ion-icon item-left name="reorder">
+          </ion-icon>{{"Categorias de servicios" | translate}}
         </ion-item>
         <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">
           <ion-icon item-left name="reorder">

@@ -1,0 +1,34 @@
+<ion-header class="settings-header">
+  <ion-navbar color="header">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+      <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->
+      <ion-title >
+          <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="support" padding [content]="content">
+  <div class="sub-header">
+    <h1>Mis Servicios</h1>
+  </div>
+  <ion-list *ngIf="service.categories" style="margin-top: 100px;">
+    <ion-item *ngFor="let item of service.mainCategories" style="margin-top:10px; border-radius: 5px;" class="card2">
+      <ion-thumbnail item-left>
+        <img src="{{item.image.src}}" />
+      </ion-thumbnail>
+      <ion-label  class="heading text-center" style="font-size: 18px; font-weight: 900;">
+        {{item.name}}
+      </ion-label>
+      <ion-checkbox item-right>
+        <ion-checkbox color="dark" (ionChange)="addServicio($event)" checked></ion-checkbox>
+      </ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div>
+    <div style="margin:0 auto; width: 220px;">
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;">Actualiza Tus Servicios</button>
+    </div>
+  </div>
+</ion-content>

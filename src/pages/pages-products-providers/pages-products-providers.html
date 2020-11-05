@@ -10,12 +10,12 @@
 </ion-header>
 <ion-content class="products">
   <div class="sub-header">
-    <h1>Productos</h1>
+    <h1>Servicios</h1>
   </div>
   <div class="body-product">
     <ion-item no-padding no-lines class="item-background">
       <button  style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase
-      (click)="newProduct()">{{"Add Product" | translate}}
+      (click)="newProduct()">{{"Agregar nuevo servicio" | translate}}
       </button>
     </ion-item>
     <ion-spinner *ngIf="!products" name="crescent"></ion-spinner>
@@ -40,7 +40,7 @@
                     (click)="getProduct(item)"
                     src="{{item.images[0].src}}"
                   />
-                  
+
                 </ion-thumbnail>
 
                 <div class="product-name-top">
@@ -70,7 +70,7 @@
                     Starting from {{1*item.minPrice |
                     currency:values.currency:true:'1.2-2'}}
                   </h3>
-                
+
                 </div>
 
                 <div class="bottom-right-button">
@@ -152,8 +152,8 @@
                       >{{"Editar" | translate}}
                       </button>
                     </ion-item>
-                   
-                  
+
+
                 </ion-card>
               </ion-col>
             </ion-row>
