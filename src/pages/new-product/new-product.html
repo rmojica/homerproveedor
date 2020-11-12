@@ -13,7 +13,7 @@
 <ion-content padding>
   <!-- <div class="card2"> -->
     <ion-list>
-    <form #f="ngForm" (ngSubmit)="onSubmit()" >
+    <form #f="ngForm" >
       <div style="width: 100%;">
         <div style="border: 1px solid #999; width: 80px; height: 80px; margin: 0 auto; background: #ddd;"></div>
         <div style="margin: 0 auto; width: 50px;"><span>Adjuntar Imagen</span></div>
@@ -21,45 +21,91 @@
 
         <ion-item>
           <!-- <ion-label>Nombre servicio</ion-label> -->
-           <ion-input placeholder="Nombre servicio" type="text" name="product_name"></ion-input>
+           <ion-input placeholder="Nombre servicio" type="text"  [(ngModel)]="name" name="product_name"></ion-input>
         </ion-item>
 
         <ion-item>
-           <ion-textarea placeholder="Descripcion del servicio" name=""></ion-textarea>
+           <ion-textarea placeholder="Descripcion del servicio"  [(ngModel)]="description" name="description"></ion-textarea>
         </ion-item>
 
         <ion-item>
-           <ion-textarea placeholder="Descripcion corta del servicio" name=""></ion-textarea>
+           <ion-textarea placeholder="Descripcion corta del servicio" [(ngModel)]="short_description" name="short_description"></ion-textarea>
         </ion-item>
 
         <ion-item>
-           <ion-input placeholder="Costo Base" type="text" name="bookingByBlock"></ion-input>
+           <ion-input placeholder="Costo Base" type="text" [(ngModel)]="cost" name="cost"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-input placeholder="Costo por Bloque" type="number" name="minimunBlock"></ion-input>
+          <ion-input placeholder="Costo por Bloque" type="number" [(ngModel)]="block_cost" name="block_cost"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>
+          <ion-input placeholder="Visualización de costo" type="number" [(ngModel)]="display_cost" name="display_cost"></ion-input>
         </ion-item>
+
+        <ion-item>
+          <ion-label>Tipo de servicio</ion-label>
+          <ion-select  [(ngModel)]="categoriesValue" (ngModelChange)="onChange($event)" name="categories" interface="action-sheet">
+            <ion-option *ngFor="let item of getCategory" [value]="{id:item.id, name:item.name}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <div style="display: contents; max-width: 350px;">
+          <ion-chip *ngFor="let item of categories" >
+            <ion-label color="secondary">{{item.name}}</ion-label>
+            <button ion-button clear color="dark" (click)="deleteTipoServicio(item.id)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </ion-chip>
+        </div>
+
+
+        <!-- <ion-item>
+          <ion-label>Select</ion-label>
+          <ion-select class="custom-options" [(ngModel)]="categoryValue"  interface="action-sheet" name="category">
+            <ion-select-option *ngFor="let item of getCategory" [value]="item.name">{{item.name}}</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+        <!-- <ion-item>
+            <ion-select style="max-width: 80%;"
+          [(ngModel)]="categoryValue" >
+            <div *ngFor="let item of getCategory"">
+                <ion-option
+                [value]="item.name">
+                  {{item.name}}
+                </ion-option>
+            </div>
+          </ion-select>
+        </ion-item> -->
+
         <br>
         <div class="card2">
-          <ion-item>
+          <!-- <ion-item>
             <ion-label>Select</ion-label>
             <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="selDay">
               <ion-option value="{{item.name}}" *ngFor="let item of days" >{{item.name}}</ion-option>
             </ion-select>
+          </ion-item> -->
+
+          <ion-item>
+            <ion-label>Fecha Inicia</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" display-timezone="utc" [(ngModel)]="from_date" name="iniDate"></ion-datetime>
           </ion-item>
 
           <ion-item>
-            <ion-label>Desde</ion-label>
-            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="initH" name="inithours"></ion-datetime>
+            <ion-label>Fecha Finaliza</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" display-timezone="utc" [(ngModel)]="to_date" name="endDate"></ion-datetime>
           </ion-item>
 
           <ion-item>
-            <ion-label>Hasta</ion-label>
-            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="endH" name="endhours"></ion-datetime>
+            <ion-label>Hora Inicia</ion-label>
+            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="from" name="iniHour"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Hora Finaliza</ion-label>
+            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="to" name="endHour"></ion-datetime>
           </ion-item>
           <ion-item>
             <button ion-button (click)="addAvailability()">
@@ -69,23 +115,38 @@
           <ion-grid >
             <ion-row class="ion-align-items-center">
               <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">
-                 <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>
+                 <div style="margin: 0 auto;  text-align: center">Rango</div>
               </ion-col>
               <ion-col style="background-color:#76a7ab; color: #fff;">
-                <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>
-             </ion-col>
+                <div style="margin: 0 auto;text-align: center;">To</div>
+              </ion-col>
+              <ion-col style="background-color:#76a7ab; color: #fff;  margin-left: 1px;">
+                <div style="margin: 0 auto;  border:1px;"></div>
+              </ion-col>
             </ion-row>
-            <ion-row class="ion-align-items-center" *ngFor="let item of availability">
-             <ion-col style="margin-right: 1px;">
+            <ion-row class="ion-align-items-center" *ngFor="let item of availability"  style="border-bottom: 1px solid #ddd;">
+                <ion-col style="margin-right: 1px;">
+                  <div style="margin: 0 auto; width: 100%;">
+                    <span>{{item.from_date}}</span>
+                    <span>{{item.from}}</span>
+                  </div>
+              </ion-col>
+              <ion-col>
                 <div style="margin: 0 auto; width: 100%;">
-                  {{item.date}}
-               </div>
-             </ion-col>
-             <ion-col>
-               <div style="margin: 0 auto; width: 100%;">
-                  <span>De {{item.inithour}} A {{item.endhour}}</span>
-               </div>
-            </ion-col>
+                    <span>{{item.to_date}}</span>
+                    <span>{{item.to}}</span>
+                </div>
+              </ion-col>
+              <ion-col style="margin-right: 1px;">
+                <div style="margin: 0 auto; width: 100%; text-align: center;">
+                  <button
+                  ion-button
+                  (click)="deleteAvailability(item.from_date)"
+                  class="has-icon icon-only button" style="height: 1.0em!important; width: 0.1em!important;">
+                    <ion-icon class="ion-ios-close item-icon"></ion-icon>
+                  </button>
+                </div>
+              </ion-col>
            </ion-row>
           </ion-grid>
 
@@ -179,7 +240,7 @@
   </div> -->
   <div>
     <div style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;">Guardar Servicio</button>
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="sendProduct()">Guardar Servicio</button>
     </div>
   </div>
 </ion-content>

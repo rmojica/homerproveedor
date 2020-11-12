@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
+import { Http, RequestOptions } from '@angular/http'
 import { LoadingController } from 'ionic-angular'
 import { Config } from './config'
 import { Values } from './values'
@@ -16,6 +16,8 @@ import { AccountForgotten } from '../../pages/account/forgotten/forgotten'
 
 @Injectable()
 export class Service {
+
+  header:any = new Headers();
   cartDataMembership: any;
   data: any
   categories: any
@@ -243,11 +245,132 @@ export class Service {
     })
   }
 
+  addProduct(data){
+    this.header.append('Content-Type', 'application/json');
+    this.http
+    .post(
+      this.config.url + '/wp-json/wc-bookings/v1/products?consumer_key=ck_462b7613b1f89991924e149f7d7df2a1c37eb71a&consumer_secret=cs_81a58277089318569168ff48defefa83fa740d86',
+      {
+        'name':data.name,
+        'slug': data.slug,
+        'status': data.status,
+        'featured': data.featured,
+        'catalog_visibility': data.catalog_visibility,
+        'description': data.description,
+        'short_description': data.short_description,
+        'sku': data.sku,
+        'price': data.price,
+        'sale_price': data.sale_price,
+        'date_on_sale_from': data.date_on_sale_from,
+        'date_on_sale_from_gmt': data.date_on_sale_from_gmt,
+        'date_on_sale_to': data.date_on_sale_to,
+        'date_on_sale_to_gmt': data.date_on_sale_to_gmt,
+        'price_html': data.price_htm,
+        'on_sale': data.on_sale,
+        'purchasable': data.purchasable,
+        'virtual': data.virtual,
+        'downloadable':data.downloadabl,
+        'downloads': data.downloads,
+        'download_limit': data.download_limit,
+        'download_expiry': data.download_expiry,
+        'external_url': data.external_url,
+        'button_text': data.button_text,
+        'tax_status': data.tax_status,
+        'tax_class': data.tax_class,
+        'manage_stock': data.manage_stock,
+        'stock_quantity': data.stock_quantity,
+        'stock_status': data.stock_status,
+        'backorders': data.backorders,
+        'backorders_allowed':data.backorders_allowed,
+        'backordered': data.backordered,
+        'sold_individually': data.sold_individually,
+        'weight': data.weight,
+        'shipping_required': data.shipping_required,
+        'shipping_taxable': data.shipping_taxable,
+        'shipping_class': data.shipping_class,
+        'shipping_class_id': data.shipping_class_id,
+        'reviews_allowed': data.reviews_allowed,
+        'average_rating': data.average_rating,
+        'rating_count': data.rating_count,
+        'upsell_ids': data.upsell_ids,
+        'cross_sell_ids': data.cross_sell_ids,
+        'parent_id': data.parent_id,
+        'purchase_note': data.purchase_note,
+        'categories': data.categories,
+        'tags': data.tags,
+        'images': data.images,
+        'attributes': data.attributes,
+        'default_attributes': data.default_attributes,
+        'variations': data.variations,
+        'grouped_products': data.grouped_products,
+        'menu_order': data.menu_order,
+        'apply_adjacent_buffer': data.apply_adjacent_buffer,
+        'availability': data.availability,
+        'block_cost': data.block_cost,
+        'buffer_period': data.buffer_period,
+        'calendar_display_mode': data.calendar_display_mode,
+        'cancel_limit_unit': data.cancel_limit_unit,
+        'cancel_limit':data.cancel_limit,
+        'check_start_block_only': data.check_start_block_only,
+        'cost': data.cost,
+        'display_cost': data.display_cost,
+        'duration_type': data.duration_type,
+        'duration_unit': data.duration_unit,
+        'duration': data.duration,
+        'enable_range_picker': data.enable_range_picker,
+        'first_block_time':data.first_block_time,
+        'has_person_cost_multiplier': data.has_person_cost_multiplier,
+        'has_person_qty_multiplier': data.has_person_qty_multiplier,
+        'has_person_types': data.has_person_types,
+        'has_persons': data.has_persons,
+        'has_resources': data.has_resources,
+        'max_date_value': data.max_date_value,
+        'max_date_unit': data.max_date_unit,
+        'max_duration': data.max_duration,
+        'max_persons': data.max_persons,
+        'min_date_value': data.min_date_value,
+        'min_date_unit': data.min_date_unit,
+        'min_duration': data.min_duration,
+        'min_persons': data.min_person,
+        'person_types':data.person_types,
+        'pricing':data.pricing,
+        'qty': data.qty,
+        'requires_confirmation': data.requires_confirmation,
+        'resource_label': data.resource_label,
+        'resources_assignment': data.resources_assignment,
+        'restricted_days': data.restricted_days,
+        'can_be_cancelled': data.can_be_cancelled,
+        'user_can_cancel': data.user_can_cancel
+      },
+      this.header
+    )
+    .map(res => res.json())
+    .subscribe(
+      data => {
+        this.updateProductWithVendor(data.id)
+        console.log(data);
+      });
+  }
+
+  updateProductWithVendor(post_id){
+    let params = {
+      vendor: this.values.customerId,
+      post_id: post_id
+    }
+
+      this.http
+          .put(
+            this.config.url + '/wp-admin/admin-ajax.php?vendor='+this.values.customerId+'&post_id='+post_id+'&action=mstoreapp-update_product_author',
+            params,
+            this.header
+          ).subscribe();
+  }
+
   login(loginData) {
     var params = new URLSearchParams()
     params.append('username', loginData.username)
     params.append('password', encodeURIComponent(loginData.password))
-    // params.append('_wpnonce', this.login_nonce)
+    // params.append});('_wpnonce', this.login_nonce)
     // params.append('login', 'Login')
      params.append(
        'redirect',
@@ -394,7 +517,7 @@ export class Service {
         .subscribe(data => {
           resolve(data)
           if (data.statusText == "OK"){
-            this.functions.showAlert("ÉXITO", "Verifique el correo electrónico para ver si hay un nuevo enlace de verificación");  
+            this.functions.showAlert("ÉXITO", "Verifique el correo electrónico para ver si hay un nuevo enlace de verificación");
           }
           else
             this.functions.showAlert("ERROR", "an error has occurred please check. ");
@@ -621,7 +744,7 @@ export class Service {
         )
     })
   }
-  
+
   getOrders(filter) {
     return new Promise(resolve => {
       this.http
@@ -789,7 +912,7 @@ export class Service {
   testApiLogin(){
     var params = new URLSearchParams();
       // params.append("quantity", "1");
-      
+
       params.append("username", "bonod49459");
       params.append("productid", "5138");
         return new Promise(resolve => {
@@ -946,7 +1069,7 @@ export class Service {
             }
             this.includeProduct = this.includeProduct.slice(0, -1);
           }
-          
+
           resolve(this.includeProduct)
         })
     })

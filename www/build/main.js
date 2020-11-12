@@ -228,7 +228,7 @@ var SearchPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountLogin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__forgotten_forgotten__ = __webpack_require__(531);
@@ -413,7 +413,7 @@ var AccountLogin = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__products_products__ = __webpack_require__(57);
@@ -671,7 +671,7 @@ var test = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingVendor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(15);
@@ -815,380 +815,7 @@ var BookingVendor = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 176:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var CheckoutService = /** @class */ (function () {
-    function CheckoutService(http, config) {
-        this.http = http;
-        this.config = config;
-    }
-    CheckoutService.prototype.updateOrderReview = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("security", form.nonce.update_order_review_nonce);
-        params.append("payment_method", form.payment_method);
-        params.append("address", form.billing_address_1);
-        params.append("address_2", form.billing_address_2);
-        params.append("city", form.billing_city);
-        params.append("postcode", form.billing_postcode);
-        params.append("country", form.billing_country);
-        params.append("state", form.billing_state);
-        params.append("s_address", form.billing_address_1);
-        params.append("s_address_2", form.billing_address_2);
-        params.append("s_city", form.billing_city);
-        params.append("s_postcode", form.billing_postcode);
-        params.append("s_country", form.billing_country);
-        params.append("s_state", form.billing_state);
-        params.append("shipping_method[0]", form.shipping_method);
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-update_order_review', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.checkout = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("billing_first_name", form.billing_first_name);
-        params.append("billing_last_name", form.billing_last_name);
-        params.append("billing_company", form.billing_company);
-        params.append("billing_email", form.billing_email);
-        params.append("billing_phone", form.billing_phone);
-        params.append("billing_address_1", form.billing_address_1);
-        params.append("billing_address_2", form.billing_address_2);
-        params.append("billing_city", form.billing_city);
-        params.append("billing_postcode", form.billing_postcode);
-        params.append("shipping_first_name", form.shipping_first_name);
-        params.append("shipping_last_name", form.shipping_last_name);
-        params.append("shipping_company", form.shipping_company);
-        params.append("shipping_email", form.shipping_email);
-        params.append("shipping_phone", form.shipping_phone);
-        params.append("shipping_address_1", form.shipping_address_1);
-        params.append("shipping_address_2", form.shipping_address_2);
-        params.append("shipping_city", form.shipping_city);
-        params.append("shipping_postcode", form.shipping_postcode);
-        params.append("billing_country", form.billing_country);
-        params.append("billing_state", form.billing_state);
-        params.append("shipping_country", form.shipping_country);
-        params.append("shipping_state", form.shipping_state);
-        if (form.payment_method == 'authnet') {
-            params.append("authnet-card-number", form.authnet_card_number);
-            params.append("authnet-card-expiry", form.authnet_card_expiry);
-            params.append("authnet-card-cvc", form.authnet_card_cvc);
-            console.log(form);
-        }
-        if (form.terms) {
-            params.append("terms", 'on');
-            params.append("terms-field", '1');
-        }
-        params.append("payment_method", form.payment_method);
-        params.append("_wpnonce", form.checkout_nonce);
-        params.append("_wp_http_referer", this.config.url + '/checkout?wc-ajax=update_order_review');
-        if (form.password) {
-            params.append("createaccount", form.register);
-            params.append("account_password", form.password);
-        }
-        if (form.onesignal_user_id)
-            params.append("onesignal_user_id", form.onesignal_user_id);
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.checkouttest = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("billing_first_name", "Name hajsk");
-        params.append("billing_last_name", "Name hajsk");
-        params.append("billing_company", "Name hajsk");
-        params.append("billing_email", "test@gmail.com");
-        params.append("billing_phone", "237648372");
-        params.append("billing_address_1", "form billing_address_1");
-        params.append("billing_address_2", "dsjfh sdjfhsdkj");
-        params.append("billing_city", "fsdfdjgif");
-        params.append("billing_postcode", "560048");
-        params.append("billing_country", "IN");
-        params.append("billing_state", "KA");
-        params.append("payment_method", form.payment_method);
-        params.append("_wpnonce", form.checkout_nonce);
-        params.append("_wp_http_referer", this.config.url + '/checkout?wc-ajax=update_order_review');
-        if (form.password) {
-            params.append("createaccount", form.register);
-            params.append("account_password", form.password);
-        }
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.saveBillingAddress = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("billing_first_name", form.billing_first_name);
-        params.append("billing_last_name", form.billing_last_name);
-        params.append("billing_company", form.billing_company);
-        params.append("billing_email", form.billing_email);
-        params.append("billing_phone", form.nonce.billing_phone);
-        params.append("billing_address_1", form.billing_address_1);
-        params.append("billing_address_2", form.billing_address_2);
-        params.append("billing_city", form.billing_city);
-        params.append("billing_postcode", form.billing_postcode);
-        params.append("billing_country", form.billing_country);
-        params.append("billing_state", form.billing_state);
-        params.append("createaccount", form.billing_address_1);
-        params.append("account_password", form.billing_address_2);
-        params.append("payment_method", form.payment_method);
-        params.append("_wpnonce", "544bcd0d1d");
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.saveShippingAddress = function (shipping) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("shipping[firstname]", shipping.firstname);
-        params.append("shipping[lastname]", shipping.lastname);
-        params.append("shipping[company]", shipping.company);
-        params.append("shipping[street][0]", shipping.street1);
-        params.append("shipping[street][1]", shipping.street2);
-        params.append("shipping[city]", shipping.city);
-        params.append("shipping[postcode]", shipping.postcode);
-        params.append("shipping[country_id]", shipping.country_id);
-        params.append("shipping[state_id]", shipping.state_id);
-        if (shipping.entity_id) {
-            params.append("shipping_address_id", shipping.entity_id);
-        }
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-get_checkout_form', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.getShippingPayment = function () {
-        var _this = this;
-        if (this.shippingMethods && this.paymentMethods) {
-            return Promise.resolve(this.shippingMethods);
-        }
-        return new Promise(function (resolve) {
-            __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["Observable"].forkJoin(_this.http.get(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-payment', _this.config.options).map(function (res) { return res.json(); })).subscribe(function (data) {
-                _this.shippingMethods = data[0];
-                _this.paymentMethods = data[1];
-                resolve(_this.shippingMethods);
-            });
-        });
-    };
-    CheckoutService.prototype.saveMethods = function (shippingMethod, payment) {
-        var _this = this;
-        var shipping = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        shipping.append("shipping_method", shippingMethod);
-        for (var param in payment) {
-            params.set("payment[" + param + "]", payment[param]);
-        }
-        return new Promise(function (resolve) {
-            __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["Observable"].forkJoin(_this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-payment', params, _this.config.options).map(function (res) { return res.json(); })).subscribe(function (data) {
-                _this.shippingStatus = data[0];
-                _this.paymentStatus = data[1];
-                resolve(_this.shippingStatus);
-            });
-        });
-    };
-    CheckoutService.prototype.getTime = function (date) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("action", "iconic_wds_get_slots_on_date");
-        params.append("date", date);
-        console.log(params);
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                console.log(data);
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.getDate = function () {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("action", "iconic_wds_get_upcoming_bookable_dates");
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                console.log(data);
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.login = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("username", form.username);
-        params.append("password", form.password);
-        params.append("_wpnonce", form.checkout_login);
-        params.append("login", "Login");
-        params.append("_wp_http_referer", "/checkout/");
-        params.append("redirect", this.config.url + "/wp-admin/admin-ajax.php?action=mstoreapp-userdata");
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/checkout/', params, _this.config.options)
-                .subscribe(function (data) {
-                _this.http.get(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-get_checkout_form', _this.config.options).map(function (res) { return res.json(); })
-                    .subscribe(function (data) {
-                    _this.status = data;
-                    resolve(_this.status);
-                });
-            });
-        });
-    };
-    CheckoutService.prototype.submitCoupon = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("coupon_code", form.coupon_code);
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-apply_coupon', params, _this.config.options)
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.getStripeToken = function (form) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("key", form.payment.stripe.publishable_key);
-        params.append("payment_user_agent", 'stripe.js/6ea8d55');
-        params.append("card[number]", form.stripe_number);
-        params.append("card[cvc]", form.stripe_code);
-        params.append("card[exp_month]", form.stripe_exp_month);
-        params.append("card[exp_year]", form.stripe_exp_year);
-        params.append("card[name]", form.billing_first_name + form.billing_last_name);
-        params.append("card[address_line1]", form.billing_address_1);
-        params.append("card[address_line2]", form.billing_address_2);
-        params.append("card[address_state]", form.billing_state);
-        params.append("card[address_city]", form.billing_city);
-        params.append("card[address_zip]", form.billing_postcode);
-        params.append("card[address_country]", form.billing_country);
-        return new Promise(function (resolve) {
-            _this.http.post('https://api.stripe.com/v1/tokens', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            }, function (err) { return resolve(err.json()); });
-        });
-    };
-    CheckoutService.prototype.stripePlaceOrder = function (form, token) {
-        var _this = this;
-        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
-        params.append("billing_first_name", form.billing_first_name);
-        params.append("billing_last_name", form.billing_last_name);
-        params.append("billing_company", form.billing_company);
-        params.append("billing_email", form.billing_email);
-        params.append("billing_phone", form.billing_phone);
-        params.append("billing_address_1", form.billing_address_1);
-        params.append("billing_address_2", form.billing_address_2);
-        params.append("billing_city", form.billing_city);
-        params.append("billing_postcode", form.billing_postcode);
-        params.append("billing_country", form.billing_country);
-        params.append("billing_state", form.billing_state);
-        params.append("shipping_first_name", form.shipping_first_name);
-        params.append("shipping_last_name", form.shipping_last_name);
-        params.append("shipping_company", form.shipping_company);
-        params.append("shipping_email", form.shipping_email);
-        params.append("shipping_phone", form.shipping_phone);
-        params.append("shipping_address_1", form.shipping_address_1);
-        params.append("shipping_address_2", form.shipping_address_2);
-        params.append("shipping_city", form.shipping_city);
-        params.append("shipping_postcode", form.shipping_postcode);
-        params.append("shipping_country", form.shipping_country);
-        params.append("shipping_state", form.shipping_state);
-        params.append("payment_method", form.payment_method);
-        params.append("_wpnonce", form.checkout_nonce);
-        if (form.terms) {
-            params.append("terms", 'on');
-            params.append("terms-field", '1');
-        }
-        if (form.onesignal_user_id)
-            params.append("onesignal_user_id", form.onesignal_user_id);
-        params.append("wc-stripe-payment-token", 'new');
-        params.append("stripe_token", token.id);
-        params.append("_wp_http_referer", this.config.url + '/checkout?wc-ajax=update_order_review');
-        if (form.password) {
-            params.append("createaccount", form.register);
-            params.append("account_password", form.password);
-        }
-        return new Promise(function (resolve) {
-            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.status = data;
-                resolve(_this.status);
-            });
-        });
-    };
-    CheckoutService.prototype.getOrderSummary = function (id) {
-        var _this = this;
-        return new Promise(function (resolve) {
-            _this.http.get(_this.config.setUrl('GET', '/wc-api/v3/orders/' + id + '?', false), _this.config.options).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.orderSummary = data;
-                resolve(_this.orderSummary);
-            });
-        });
-    };
-    CheckoutService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */]])
-    ], CheckoutService);
-    return CheckoutService;
-}());
-
-//# sourceMappingURL=checkout-service.js.map
-
-/***/ }),
-
-/***/ 18:
+/***/ 16:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1234,6 +861,7 @@ var Service = /** @class */ (function () {
         this.loadingCtrl = loadingCtrl;
         this.nativeStorage = nativeStorage;
         this.functions = functions;
+        this.header = new Headers();
         this.dir = 'left';
         this.filter = {};
         this.has_more_items = true;
@@ -1389,12 +1017,122 @@ var Service = /** @class */ (function () {
             });
         });
     };
+    Service.prototype.addProduct = function (data) {
+        var _this = this;
+        this.header.append('Content-Type', 'application/json');
+        this.http
+            .post(this.config.url + '/wp-json/wc-bookings/v1/products?consumer_key=ck_462b7613b1f89991924e149f7d7df2a1c37eb71a&consumer_secret=cs_81a58277089318569168ff48defefa83fa740d86', {
+            'name': data.name,
+            'slug': data.slug,
+            'status': data.status,
+            'featured': data.featured,
+            'catalog_visibility': data.catalog_visibility,
+            'description': data.description,
+            'short_description': data.short_description,
+            'sku': data.sku,
+            'price': data.price,
+            'sale_price': data.sale_price,
+            'date_on_sale_from': data.date_on_sale_from,
+            'date_on_sale_from_gmt': data.date_on_sale_from_gmt,
+            'date_on_sale_to': data.date_on_sale_to,
+            'date_on_sale_to_gmt': data.date_on_sale_to_gmt,
+            'price_html': data.price_htm,
+            'on_sale': data.on_sale,
+            'purchasable': data.purchasable,
+            'virtual': data.virtual,
+            'downloadable': data.downloadabl,
+            'downloads': data.downloads,
+            'download_limit': data.download_limit,
+            'download_expiry': data.download_expiry,
+            'external_url': data.external_url,
+            'button_text': data.button_text,
+            'tax_status': data.tax_status,
+            'tax_class': data.tax_class,
+            'manage_stock': data.manage_stock,
+            'stock_quantity': data.stock_quantity,
+            'stock_status': data.stock_status,
+            'backorders': data.backorders,
+            'backorders_allowed': data.backorders_allowed,
+            'backordered': data.backordered,
+            'sold_individually': data.sold_individually,
+            'weight': data.weight,
+            'shipping_required': data.shipping_required,
+            'shipping_taxable': data.shipping_taxable,
+            'shipping_class': data.shipping_class,
+            'shipping_class_id': data.shipping_class_id,
+            'reviews_allowed': data.reviews_allowed,
+            'average_rating': data.average_rating,
+            'rating_count': data.rating_count,
+            'upsell_ids': data.upsell_ids,
+            'cross_sell_ids': data.cross_sell_ids,
+            'parent_id': data.parent_id,
+            'purchase_note': data.purchase_note,
+            'categories': data.categories,
+            'tags': data.tags,
+            'images': data.images,
+            'attributes': data.attributes,
+            'default_attributes': data.default_attributes,
+            'variations': data.variations,
+            'grouped_products': data.grouped_products,
+            'menu_order': data.menu_order,
+            'apply_adjacent_buffer': data.apply_adjacent_buffer,
+            'availability': data.availability,
+            'block_cost': data.block_cost,
+            'buffer_period': data.buffer_period,
+            'calendar_display_mode': data.calendar_display_mode,
+            'cancel_limit_unit': data.cancel_limit_unit,
+            'cancel_limit': data.cancel_limit,
+            'check_start_block_only': data.check_start_block_only,
+            'cost': data.cost,
+            'display_cost': data.display_cost,
+            'duration_type': data.duration_type,
+            'duration_unit': data.duration_unit,
+            'duration': data.duration,
+            'enable_range_picker': data.enable_range_picker,
+            'first_block_time': data.first_block_time,
+            'has_person_cost_multiplier': data.has_person_cost_multiplier,
+            'has_person_qty_multiplier': data.has_person_qty_multiplier,
+            'has_person_types': data.has_person_types,
+            'has_persons': data.has_persons,
+            'has_resources': data.has_resources,
+            'max_date_value': data.max_date_value,
+            'max_date_unit': data.max_date_unit,
+            'max_duration': data.max_duration,
+            'max_persons': data.max_persons,
+            'min_date_value': data.min_date_value,
+            'min_date_unit': data.min_date_unit,
+            'min_duration': data.min_duration,
+            'min_persons': data.min_person,
+            'person_types': data.person_types,
+            'pricing': data.pricing,
+            'qty': data.qty,
+            'requires_confirmation': data.requires_confirmation,
+            'resource_label': data.resource_label,
+            'resources_assignment': data.resources_assignment,
+            'restricted_days': data.restricted_days,
+            'can_be_cancelled': data.can_be_cancelled,
+            'user_can_cancel': data.user_can_cancel
+        }, this.header)
+            .map(function (res) { return res.json(); })
+            .subscribe(function (data) {
+            _this.updateProductWithVendor(data.id);
+            console.log(data);
+        });
+    };
+    Service.prototype.updateProductWithVendor = function (post_id) {
+        var params = {
+            vendor: this.values.customerId,
+            post_id: post_id
+        };
+        this.http
+            .put(this.config.url + '/wp-admin/admin-ajax.php?vendor=' + this.values.customerId + '&post_id=' + post_id + '&action=mstoreapp-update_product_author', params, this.header).subscribe();
+    };
     Service.prototype.login = function (loginData) {
         var _this = this;
         var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
         params.append('username', loginData.username);
         params.append('password', encodeURIComponent(loginData.password));
-        // params.append('_wpnonce', this.login_nonce)
+        // params.append});('_wpnonce', this.login_nonce)
         // params.append('login', 'Login')
         params.append('redirect', this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata');
         return new Promise(function (resolve) {
@@ -1968,18 +1706,386 @@ var Service = /** @class */ (function () {
     };
     Service = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8__ionic_native_http__["a" /* HTTP */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */],
-            __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["LoadingController"],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__["a" /* NativeStorage */],
-            __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__["a" /* Functions */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_http__["a" /* HTTP */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_http__["a" /* HTTP */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["LoadingController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__["a" /* NativeStorage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__["a" /* NativeStorage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__["a" /* Functions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__["a" /* Functions */]) === "function" && _g || Object])
     ], Service);
     return Service;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=service.js.map
+
+/***/ }),
+
+/***/ 176:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_forkJoin__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var CheckoutService = /** @class */ (function () {
+    function CheckoutService(http, config) {
+        this.http = http;
+        this.config = config;
+    }
+    CheckoutService.prototype.updateOrderReview = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("security", form.nonce.update_order_review_nonce);
+        params.append("payment_method", form.payment_method);
+        params.append("address", form.billing_address_1);
+        params.append("address_2", form.billing_address_2);
+        params.append("city", form.billing_city);
+        params.append("postcode", form.billing_postcode);
+        params.append("country", form.billing_country);
+        params.append("state", form.billing_state);
+        params.append("s_address", form.billing_address_1);
+        params.append("s_address_2", form.billing_address_2);
+        params.append("s_city", form.billing_city);
+        params.append("s_postcode", form.billing_postcode);
+        params.append("s_country", form.billing_country);
+        params.append("s_state", form.billing_state);
+        params.append("shipping_method[0]", form.shipping_method);
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-update_order_review', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.checkout = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("billing_first_name", form.billing_first_name);
+        params.append("billing_last_name", form.billing_last_name);
+        params.append("billing_company", form.billing_company);
+        params.append("billing_email", form.billing_email);
+        params.append("billing_phone", form.billing_phone);
+        params.append("billing_address_1", form.billing_address_1);
+        params.append("billing_address_2", form.billing_address_2);
+        params.append("billing_city", form.billing_city);
+        params.append("billing_postcode", form.billing_postcode);
+        params.append("shipping_first_name", form.shipping_first_name);
+        params.append("shipping_last_name", form.shipping_last_name);
+        params.append("shipping_company", form.shipping_company);
+        params.append("shipping_email", form.shipping_email);
+        params.append("shipping_phone", form.shipping_phone);
+        params.append("shipping_address_1", form.shipping_address_1);
+        params.append("shipping_address_2", form.shipping_address_2);
+        params.append("shipping_city", form.shipping_city);
+        params.append("shipping_postcode", form.shipping_postcode);
+        params.append("billing_country", form.billing_country);
+        params.append("billing_state", form.billing_state);
+        params.append("shipping_country", form.shipping_country);
+        params.append("shipping_state", form.shipping_state);
+        if (form.payment_method == 'authnet') {
+            params.append("authnet-card-number", form.authnet_card_number);
+            params.append("authnet-card-expiry", form.authnet_card_expiry);
+            params.append("authnet-card-cvc", form.authnet_card_cvc);
+            console.log(form);
+        }
+        if (form.terms) {
+            params.append("terms", 'on');
+            params.append("terms-field", '1');
+        }
+        params.append("payment_method", form.payment_method);
+        params.append("_wpnonce", form.checkout_nonce);
+        params.append("_wp_http_referer", this.config.url + '/checkout?wc-ajax=update_order_review');
+        if (form.password) {
+            params.append("createaccount", form.register);
+            params.append("account_password", form.password);
+        }
+        if (form.onesignal_user_id)
+            params.append("onesignal_user_id", form.onesignal_user_id);
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.checkouttest = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("billing_first_name", "Name hajsk");
+        params.append("billing_last_name", "Name hajsk");
+        params.append("billing_company", "Name hajsk");
+        params.append("billing_email", "test@gmail.com");
+        params.append("billing_phone", "237648372");
+        params.append("billing_address_1", "form billing_address_1");
+        params.append("billing_address_2", "dsjfh sdjfhsdkj");
+        params.append("billing_city", "fsdfdjgif");
+        params.append("billing_postcode", "560048");
+        params.append("billing_country", "IN");
+        params.append("billing_state", "KA");
+        params.append("payment_method", form.payment_method);
+        params.append("_wpnonce", form.checkout_nonce);
+        params.append("_wp_http_referer", this.config.url + '/checkout?wc-ajax=update_order_review');
+        if (form.password) {
+            params.append("createaccount", form.register);
+            params.append("account_password", form.password);
+        }
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.saveBillingAddress = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("billing_first_name", form.billing_first_name);
+        params.append("billing_last_name", form.billing_last_name);
+        params.append("billing_company", form.billing_company);
+        params.append("billing_email", form.billing_email);
+        params.append("billing_phone", form.nonce.billing_phone);
+        params.append("billing_address_1", form.billing_address_1);
+        params.append("billing_address_2", form.billing_address_2);
+        params.append("billing_city", form.billing_city);
+        params.append("billing_postcode", form.billing_postcode);
+        params.append("billing_country", form.billing_country);
+        params.append("billing_state", form.billing_state);
+        params.append("createaccount", form.billing_address_1);
+        params.append("account_password", form.billing_address_2);
+        params.append("payment_method", form.payment_method);
+        params.append("_wpnonce", "544bcd0d1d");
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.saveShippingAddress = function (shipping) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("shipping[firstname]", shipping.firstname);
+        params.append("shipping[lastname]", shipping.lastname);
+        params.append("shipping[company]", shipping.company);
+        params.append("shipping[street][0]", shipping.street1);
+        params.append("shipping[street][1]", shipping.street2);
+        params.append("shipping[city]", shipping.city);
+        params.append("shipping[postcode]", shipping.postcode);
+        params.append("shipping[country_id]", shipping.country_id);
+        params.append("shipping[state_id]", shipping.state_id);
+        if (shipping.entity_id) {
+            params.append("shipping_address_id", shipping.entity_id);
+        }
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-get_checkout_form', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.getShippingPayment = function () {
+        var _this = this;
+        if (this.shippingMethods && this.paymentMethods) {
+            return Promise.resolve(this.shippingMethods);
+        }
+        return new Promise(function (resolve) {
+            __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["Observable"].forkJoin(_this.http.get(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-payment', _this.config.options).map(function (res) { return res.json(); })).subscribe(function (data) {
+                _this.shippingMethods = data[0];
+                _this.paymentMethods = data[1];
+                resolve(_this.shippingMethods);
+            });
+        });
+    };
+    CheckoutService.prototype.saveMethods = function (shippingMethod, payment) {
+        var _this = this;
+        var shipping = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        shipping.append("shipping_method", shippingMethod);
+        for (var param in payment) {
+            params.set("payment[" + param + "]", payment[param]);
+        }
+        return new Promise(function (resolve) {
+            __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["Observable"].forkJoin(_this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-payment', params, _this.config.options).map(function (res) { return res.json(); })).subscribe(function (data) {
+                _this.shippingStatus = data[0];
+                _this.paymentStatus = data[1];
+                resolve(_this.shippingStatus);
+            });
+        });
+    };
+    CheckoutService.prototype.getTime = function (date) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("action", "iconic_wds_get_slots_on_date");
+        params.append("date", date);
+        console.log(params);
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                console.log(data);
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.getDate = function () {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("action", "iconic_wds_get_upcoming_bookable_dates");
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                console.log(data);
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.login = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("username", form.username);
+        params.append("password", form.password);
+        params.append("_wpnonce", form.checkout_login);
+        params.append("login", "Login");
+        params.append("_wp_http_referer", "/checkout/");
+        params.append("redirect", this.config.url + "/wp-admin/admin-ajax.php?action=mstoreapp-userdata");
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/checkout/', params, _this.config.options)
+                .subscribe(function (data) {
+                _this.http.get(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-get_checkout_form', _this.config.options).map(function (res) { return res.json(); })
+                    .subscribe(function (data) {
+                    _this.status = data;
+                    resolve(_this.status);
+                });
+            });
+        });
+    };
+    CheckoutService.prototype.submitCoupon = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("coupon_code", form.coupon_code);
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp-apply_coupon', params, _this.config.options)
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.getStripeToken = function (form) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("key", form.payment.stripe.publishable_key);
+        params.append("payment_user_agent", 'stripe.js/6ea8d55');
+        params.append("card[number]", form.stripe_number);
+        params.append("card[cvc]", form.stripe_code);
+        params.append("card[exp_month]", form.stripe_exp_month);
+        params.append("card[exp_year]", form.stripe_exp_year);
+        params.append("card[name]", form.billing_first_name + form.billing_last_name);
+        params.append("card[address_line1]", form.billing_address_1);
+        params.append("card[address_line2]", form.billing_address_2);
+        params.append("card[address_state]", form.billing_state);
+        params.append("card[address_city]", form.billing_city);
+        params.append("card[address_zip]", form.billing_postcode);
+        params.append("card[address_country]", form.billing_country);
+        return new Promise(function (resolve) {
+            _this.http.post('https://api.stripe.com/v1/tokens', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            }, function (err) { return resolve(err.json()); });
+        });
+    };
+    CheckoutService.prototype.stripePlaceOrder = function (form, token) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        params.append("billing_first_name", form.billing_first_name);
+        params.append("billing_last_name", form.billing_last_name);
+        params.append("billing_company", form.billing_company);
+        params.append("billing_email", form.billing_email);
+        params.append("billing_phone", form.billing_phone);
+        params.append("billing_address_1", form.billing_address_1);
+        params.append("billing_address_2", form.billing_address_2);
+        params.append("billing_city", form.billing_city);
+        params.append("billing_postcode", form.billing_postcode);
+        params.append("billing_country", form.billing_country);
+        params.append("billing_state", form.billing_state);
+        params.append("shipping_first_name", form.shipping_first_name);
+        params.append("shipping_last_name", form.shipping_last_name);
+        params.append("shipping_company", form.shipping_company);
+        params.append("shipping_email", form.shipping_email);
+        params.append("shipping_phone", form.shipping_phone);
+        params.append("shipping_address_1", form.shipping_address_1);
+        params.append("shipping_address_2", form.shipping_address_2);
+        params.append("shipping_city", form.shipping_city);
+        params.append("shipping_postcode", form.shipping_postcode);
+        params.append("shipping_country", form.shipping_country);
+        params.append("shipping_state", form.shipping_state);
+        params.append("payment_method", form.payment_method);
+        params.append("_wpnonce", form.checkout_nonce);
+        if (form.terms) {
+            params.append("terms", 'on');
+            params.append("terms-field", '1');
+        }
+        if (form.onesignal_user_id)
+            params.append("onesignal_user_id", form.onesignal_user_id);
+        params.append("wc-stripe-payment-token", 'new');
+        params.append("stripe_token", token.id);
+        params.append("_wp_http_referer", this.config.url + '/checkout?wc-ajax=update_order_review');
+        if (form.password) {
+            params.append("createaccount", form.register);
+            params.append("account_password", form.password);
+        }
+        return new Promise(function (resolve) {
+            _this.http.post(_this.config.url + '/checkout?wc-ajax=checkout', params, _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
+    CheckoutService.prototype.getOrderSummary = function (id) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.config.setUrl('GET', '/wc-api/v3/orders/' + id + '?', false), _this.config.options).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.orderSummary = data;
+                resolve(_this.orderSummary);
+            });
+        });
+    };
+    CheckoutService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */]])
+    ], CheckoutService);
+    return CheckoutService;
+}());
+
+//# sourceMappingURL=checkout-service.js.map
 
 /***/ }),
 
@@ -2046,7 +2152,7 @@ var OrderSummary = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(108);
@@ -2281,7 +2387,7 @@ var Home = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(96);
@@ -2342,7 +2448,7 @@ var BookingDetails = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditAddressForm; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2424,7 +2530,7 @@ var EditAddressForm = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(96);
@@ -2640,7 +2746,7 @@ var WishlistPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__edit_address_form_edit_address_form__ = __webpack_require__(195);
@@ -4247,7 +4353,7 @@ var TermsCondition = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountForgotten; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4433,7 +4539,7 @@ var DashProveedorPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__account_booking_details_booking_details__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4533,7 +4639,7 @@ var ServicesPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Address; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_address_form_edit_address_form__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4581,7 +4687,7 @@ var Address = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Orders; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__order_details_order_details__ = __webpack_require__(196);
@@ -4689,7 +4795,7 @@ var Orders = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountRegister; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_onesignal__ = __webpack_require__(75);
@@ -4882,7 +4988,7 @@ var AccountRegister = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductsListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_products__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__search_search__ = __webpack_require__(108);
@@ -5382,7 +5488,7 @@ var WishlistService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersVendor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__order_details_order_details__ = __webpack_require__(196);
@@ -5495,7 +5601,7 @@ var OrdersVendor = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IframePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation_ngx__ = __webpack_require__(197);
@@ -6097,7 +6203,8 @@ var PagesProductsProvidersPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewProductPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(7);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6110,6 +6217,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the NewProductPage page.
  *
@@ -6117,38 +6225,126 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var NewProductPage = /** @class */ (function () {
-    function NewProductPage(nav, navParams, values, alert) {
+    // days:Day[] = [
+    //   {
+    //     name:"MONDAY"
+    //   },
+    //   {
+    //     name:"TUESDAY"
+    //   },
+    //   {
+    //     name:"WEDNESDAY"
+    //   },
+    //   {
+    //     name:"THURSDAY"
+    //   },
+    //   {
+    //     name:"FRIDAY"
+    //   },
+    //   {
+    //     name:"SATURDAY"
+    //   },
+    //   {
+    //     name:"SUNDAY"
+    //   }
+    // ];
+    function NewProductPage(nav, navParams, values, alert, service) {
         this.nav = nav;
         this.navParams = navParams;
         this.values = values;
         this.alert = alert;
-        this.selectDay = '';
-        this.initH = '';
-        this.endH = '';
-        this.days = [
+        this.service = service;
+        this.data = [];
+        this.status = "publish";
+        this.featured = false;
+        this.catalog_visibility = "visible";
+        this.sku = "";
+        this.price_html = "Desde: <span class=\"woocommerce-Price-amount amount\"><span class=\"currency\"><span class=\"woocommerce-Price-currencySymbol\">&#36;</span></span>70<span class=\"decimals\">.00</span></span>";
+        this.on_sale = false;
+        this.purchasable = true;
+        this.virtual = false;
+        this.downloadable = false;
+        this.downloads = [];
+        this.download_limit = -1;
+        this.download_expiry = -1;
+        this.external_url = "";
+        this.button_text = "";
+        this.tax_status = "taxable";
+        this.tax_class = "";
+        this.manage_stock = false;
+        this.stock_status = "instock";
+        this.backorders = "no";
+        this.backorders_allowed = false;
+        this.backordered = false;
+        this.sold_individually = true;
+        this.weight = "";
+        this.shipping_required = true;
+        this.shipping_taxable = true;
+        this.shipping_class = "";
+        this.shipping_class_id = 0;
+        this.reviews_allowed = true;
+        this.average_rating = "1.00";
+        this.rating_count = 1;
+        this.upsell_ids = [];
+        this.cross_sell_ids = [];
+        this.parent_id = 0;
+        this.purchase_note = "";
+        this.categories = [];
+        this.tags = [];
+        this.images = [
             {
-                name: "MONDAY"
-            },
-            {
-                name: "TUESDAY"
-            },
-            {
-                name: "WEDNESDAY"
-            },
-            {
-                name: "THURSDAY"
-            },
-            {
-                name: "FRIDAY"
-            },
-            {
-                name: "SATURDAY"
-            },
-            {
-                name: "SUNDAY"
+                "id": 5489,
+                "date_created": "2020-08-17T02:37:55",
+                "date_created_gmt": "2020-08-17T10:37:55",
+                "date_modified": "2020-11-05T16:32:01",
+                "date_modified_gmt": "2020-11-06T00:32:01",
+                "src": "https://dev.digitalfactory.tech/demos/homer/wp-content/uploads/2020/06/unnamed-7.png",
+                "name": "unnamed (7)",
+                "alt": ""
             }
         ];
+        this.attributes = [];
+        this.default_attributes = [];
+        this.variations = [];
+        this.grouped_products = [];
+        this.menu_order = 0;
         this.availability = [];
+        this.buffer_period = 0;
+        this.calendar_display_mode = "always_visible";
+        this.cancel_limit_unit = "day";
+        this.cancel_limit = 1;
+        this.check_start_block_only = false;
+        this.duration_type = "fixed";
+        this.duration_unit = "hour";
+        this.duration = 1;
+        this.enable_range_picker = false;
+        this.first_block_time = "";
+        this.has_person_cost_multiplier = false;
+        this.has_person_qty_multiplier = false;
+        this.has_person_types = false;
+        this.has_persons = false;
+        this.has_resources = true;
+        this.max_date_value = 6;
+        this.max_date_unit = "month";
+        this.max_duration = 1;
+        this.max_persons = 0;
+        this.min_date_value = 0;
+        this.min_date_unit = "month";
+        this.min_duration = 1;
+        this.min_persons = 0;
+        this.person_types = [];
+        this.pricing = [];
+        this.qty = 1;
+        this.requires_confirmation = false;
+        this.resource_label = "Services";
+        this.resources_assignment = "customer";
+        this.restricted_days = "";
+        this.can_be_cancelled = true;
+        this.user_can_cancel = true;
+        this.availability = [];
+        this.categories = [];
+        this.service.getCategories(1);
+        this.getCategory = this.service.mainCategories;
     }
     NewProductPage.prototype.ngAfterViewInit = function () {
         // this.indicator.nativeElement.style.width = this.tabs_control.nativeElement.children[0].clientWidth + "px";
@@ -6156,23 +6352,150 @@ var NewProductPage = /** @class */ (function () {
         //   this.renderer.listen( this.tabs_control.nativeElement.children[i],'click',this.handleClick);
         // }
     };
-    NewProductPage.prototype.OnChange = function (event) {
-        console.log(this.days);
-        alert("selecciono " + event.target.value);
+    NewProductPage.prototype.deleteTipoServicio = function (id) {
+        var index = this.categories.map(function (result) { return result.id; }).indexOf(id);
+        if (index > -1) {
+            this.categories.splice(index, 1);
+        }
     };
-    NewProductPage.prototype.onSubmit = function () {
+    NewProductPage.prototype.deleteAvailability = function (item) {
+        var index = this.availability.map(function (result) { return result.from_date; }).indexOf(item);
+        if (index > -1) {
+            this.availability.splice(index, 1);
+        }
+    };
+    NewProductPage.prototype.sendProduct = function () {
+        console.log(this.availability);
+        this.data = {
+            name: this.name,
+            slug: this.slug,
+            status: this.status,
+            featured: this.featured,
+            catalog_visibility: this.catalog_visibility,
+            description: this.description,
+            short_description: this.short_description,
+            sku: this.sku,
+            price: this.price,
+            regular_price: this.regular_price,
+            sale_price: this.sale_price,
+            date_on_sale_from: this.date_on_sale_from,
+            date_on_sale_from_gmt: this.date_on_sale_from_gmt,
+            date_on_sale_to: this.date_on_sale_to,
+            date_on_sale_to_gmt: this.date_on_sale_to_gmt,
+            price_html: this.price_html,
+            on_sale: this.on_sale,
+            purchasable: this.purchasable,
+            virtual: this.virtual,
+            downloadable: this.downloadable,
+            downloads: this.downloads,
+            download_limit: this.download_limit,
+            download_expiry: this.download_expiry,
+            external_url: this.external_url,
+            button_text: this.button_text,
+            tax_status: this.tax_status,
+            tax_class: this.tax_class,
+            manage_stock: this.manage_stock,
+            stock_quantity: this.stock_quantity,
+            stock_status: this.stock_status,
+            backorders: this.backorders,
+            backorders_allowed: this.backorders_allowed,
+            backordered: this.backordered,
+            sold_individually: this.sold_individually,
+            weight: this.weight,
+            shipping_required: this.shipping_required,
+            shipping_taxable: this.shipping_taxable,
+            shipping_class: this.shipping_class,
+            shipping_class_id: this.shipping_class_id,
+            reviews_allowed: this.reviews_allowed,
+            average_rating: this.average_rating,
+            rating_count: this.rating_count,
+            upsell_ids: this.upsell_ids,
+            cross_sell_ids: this.cross_sell_ids,
+            parent_id: this.parent_id,
+            purchase_note: this.purchase_note,
+            categories: this.categories,
+            tags: this.tags,
+            images: this.images,
+            attributes: this.attributes,
+            default_attributes: this.default_attributes,
+            variations: this.variations,
+            grouped_products: this.grouped_products,
+            menu_order: this.menu_order,
+            apply_adjacent_buffer: this.apply_adjacent_buffer,
+            availability: this.availability,
+            block_cost: this.block_cost,
+            buffer_period: this.buffer_period,
+            calendar_display_mode: this.calendar_display_mode,
+            cancel_limit_unit: this.cancel_limit_unit,
+            cancel_limit: this.cancel_limit,
+            check_start_block_only: this.check_start_block_only,
+            cost: this.cost,
+            display_cost: this.display_cost,
+            duration_type: this.duration_type,
+            duration_unit: this.duration_unit,
+            duration: this.duration,
+            enable_range_picker: this.enable_range_picker,
+            first_block_time: this.first_block_time,
+            has_person_cost_multiplier: this.has_person_cost_multiplier,
+            has_person_qty_multiplier: this.has_person_qty_multiplier,
+            has_person_types: this.has_person_types,
+            has_persons: this.has_persons,
+            has_resources: this.has_resources,
+            max_date_value: this.max_date_value,
+            max_date_unit: this.max_date_unit,
+            max_duration: this.max_duration,
+            max_persons: this.max_persons,
+            min_date_value: this.min_date_value,
+            min_date_unit: this.min_date_unit,
+            min_duration: this.min_duration,
+            min_persons: this.min_persons,
+            person_types: this.person_types,
+            pricing: this.pricing,
+            qty: this.qty,
+            requires_confirmation: this.requires_confirmation,
+            resource_label: this.resource_label,
+            resources_assignment: this.resources_assignment,
+            restricted_days: this.restricted_days,
+            can_be_cancelled: this.can_be_cancelled,
+            user_can_cancel: this.user_can_cancel
+        };
+        if (this.name != undefined && this.description != undefined && this.short_description != undefined &&
+            this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0) {
+            this.service.addProduct(this.data);
+        }
+        else {
+            this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
+        }
+    };
+    NewProductPage.prototype.onChange = function (evt) {
+        if (this.categories.length == 0) {
+            this.categories.push({ id: evt.id, name: evt.name });
+            this.categoriesValue = [];
+        }
+        else {
+            if (this.categories.id != evt) {
+                this.categories.push({ id: evt.id, name: evt.name });
+                this.categoriesValue = [];
+            }
+        }
+        this.categoriesValue = [];
     };
     NewProductPage.prototype.addAvailability = function () {
         if (this.availability.length == 0) {
-            if (this.selectDay != '' && this.initH != '' && this.endH != '') {
+            if (this.from_date != undefined && this.from_date != '' && this.to_date != undefined && this.to_date != '' && this.from != undefined && this.from != '' && this.to != undefined && this.to != '') {
                 this.availability.push({
-                    date: this.selectDay,
-                    inithour: this.initH,
-                    endhour: this.endH
+                    type: "time:range",
+                    bookable: "yes",
+                    priority: 10,
+                    from: this.from,
+                    to: this.to,
+                    from_date: this.from_date,
+                    to_date: this.to_date
                 });
-                this.selectDay = '';
-                this.initH = '';
-                this.endH = '';
+                this.from = '';
+                this.to = '';
+                this.from_date = '';
+                this.to_date = '';
             }
             else {
                 this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
@@ -6180,20 +6503,25 @@ var NewProductPage = /** @class */ (function () {
         }
         else {
             for (var i in this.availability) {
-                if (this.availability[i].date == this.selectDay) {
-                    this.showAlert(this.selectDay + " ya fue agregado", '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
+                if (this.availability[i].from_date == this.from_date) {
+                    this.showAlert(this.from_date + " ya fue agregado", '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
                     break;
                 }
                 else {
-                    if (this.selectDay != '' && this.initH != '' && this.endH != '') {
+                    if (this.from_date != undefined && this.from_date != '' && this.to_date != undefined && this.to_date != '' && this.from != undefined && this.from != '' && this.to != undefined && this.to != '') {
                         this.availability.push({
-                            date: this.selectDay,
-                            inithour: this.initH,
-                            endhour: this.endH
+                            type: "time:range",
+                            bookable: "yes",
+                            priority: 10,
+                            from: this.from,
+                            to: this.to,
+                            from_date: this.from_date,
+                            to_date: this.to_date
                         });
-                        this.selectDay = '';
-                        this.initH = '';
-                        this.endH = '';
+                        this.from = '';
+                        this.to = '';
+                        this.from_date = '';
+                        this.to_date = '';
                     }
                     else {
                         this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
@@ -6213,11 +6541,12 @@ var NewProductPage = /** @class */ (function () {
     };
     NewProductPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-new-product',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/'<ion-header>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <!-- <div class="card2"> -->\n    <ion-list>\n    <form #f="ngForm" (ngSubmit)="onSubmit()" >\n      <div style="width: 100%;">\n        <div style="border: 1px solid #999; width: 80px; height: 80px; margin: 0 auto; background: #ddd;"></div>\n        <div style="margin: 0 auto; width: 50px;"><span>Adjuntar Imagen</span></div>\n      </div>\n\n        <ion-item>\n          <!-- <ion-label>Nombre servicio</ion-label> -->\n           <ion-input placeholder="Nombre servicio" type="text" name="product_name"></ion-input>\n        </ion-item>\n\n        <ion-item>\n           <ion-textarea placeholder="Descripcion del servicio" name=""></ion-textarea>\n        </ion-item>\n\n        <ion-item>\n           <ion-textarea placeholder="Descripcion corta del servicio" name=""></ion-textarea>\n        </ion-item>\n\n        <ion-item>\n           <ion-input placeholder="Costo Base" type="text" name="bookingByBlock"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-input placeholder="Costo por Bloque" type="number" name="minimunBlock"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-input placeholder="Visualización de costo" type="number" name="maximumBlock"></ion-input>\n        </ion-item>\n        <br>\n        <div class="card2">\n          <ion-item>\n            <ion-label>Select</ion-label>\n            <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="selDay">\n              <ion-option value="{{item.name}}" *ngFor="let item of days" >{{item.name}}</ion-option>\n            </ion-select>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Desde</ion-label>\n            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="initH" name="inithours"></ion-datetime>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Hasta</ion-label>\n            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="endH" name="endhours"></ion-datetime>\n          </ion-item>\n          <ion-item>\n            <button ion-button (click)="addAvailability()">\n              <ion-icon name="save"></ion-icon> Agregar Disponibilidad\n            </button>\n          </ion-item>\n          <ion-grid >\n            <ion-row class="ion-align-items-center">\n              <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">\n                 <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>\n              </ion-col>\n              <ion-col style="background-color:#76a7ab; color: #fff;">\n                <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>\n             </ion-col>\n            </ion-row>\n            <ion-row class="ion-align-items-center" *ngFor="let item of availability">\n             <ion-col style="margin-right: 1px;">\n                <div style="margin: 0 auto; width: 100%;">\n                  {{item.date}}\n               </div>\n             </ion-col>\n             <ion-col>\n               <div style="margin: 0 auto; width: 100%;">\n                  <span>De {{item.inithour}} A {{item.endhour}}</span>\n               </div>\n            </ion-col>\n           </ion-row>\n          </ion-grid>\n\n          <!-- <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n\n          </div> -->\n        </div>\n\n\n\n\n      <!-- <div class="availability">\n        <div><span>Tipo Rango</span></div>\n        <div><span>Rango</span></div>\n      </div>\n      <div class="availability2">\n        <ion-item><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></ion-item>\n        <ion-item>\n          <ion-datetime\n            placeholder="Desde" displayFormat="HH:mm" name="desde"\n            value="{{desde | date:\'yyyy-MM-dd\'}}"></ion-datetime>\n        </ion-item>\n      </div>\n     <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n        <span>Guardar servicio</span>\n     </div> -->\n     <!-- <ion-grid >\n       <ion-row>\n         <ion-col>\n          <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase\n          >{{"Agregar Rango" | translate}}\n          </button>\n         </ion-col>\n       </ion-row>\n       <ion-row class="ion-align-items-center">\n         <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">\n            <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>\n         </ion-col>\n         <ion-col style="background-color:#76a7ab; color: #fff;">\n           <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>\n        </ion-col>\n       </ion-row>\n       <ion-row class="ion-align-items-center">\n        <ion-col style="margin-right: 1px;">\n           <div style="margin: 0 auto; width: 100%;">\n            <ion-item>\n              <ion-label>Select</ion-label>\n              <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="day">\n                <ion-select-option *ngFor="let item of days" [value]="item.name">{{item.name}}</ion-select-option>\n              </ion-select>\n            </ion-item>\n          </div>\n        </ion-col>\n        <ion-col>\n          <div style="margin: 0 auto; width: 100%;">\n            <ion-item>\n              <ion-label>Select</ion-label>\n              <ion-datetime displayFormat="HH:mm" display-timezone="utc"></ion-datetime>\n            </ion-item>\n          </div>\n       </ion-col>\n      </ion-row>\n     </ion-grid> -->\n     </form>\n    </ion-list>\n  <!-- </div> -->\n\n  <!-- <div class="card tabs-container">\n    <nav #tabs_control class="tabs-control">\n      <a href="#info">Informacion</a>\n      <a href="#details">Detalle</a>\n      <a href="#lorem">Lorem Ipsum</a>\n      <div id="indicator" #indicator class="indicator"></div>\n    </nav>\n    <div  #tabs class="tabs">\n      <div class="container">\n        <div  #tab class="tab" id="info">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="details">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="lorem">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n      </div>\n    </div>\n  </div> -->\n  <div>\n    <div style="margin:0 auto; width: 220px;">\n      <button ion-button style="font-family: \'Courier New\', Courier, monospace;">Guardar Servicio</button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/,
+            selector: 'page-new-product',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/'<ion-header>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <img style="max-width: 150px;" src="{{values.avatar}}" />\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <!-- <div class="card2"> -->\n    <ion-list>\n    <form #f="ngForm" >\n      <div style="width: 100%;">\n        <div style="border: 1px solid #999; width: 80px; height: 80px; margin: 0 auto; background: #ddd;"></div>\n        <div style="margin: 0 auto; width: 50px;"><span>Adjuntar Imagen</span></div>\n      </div>\n\n        <ion-item>\n          <!-- <ion-label>Nombre servicio</ion-label> -->\n           <ion-input placeholder="Nombre servicio" type="text"  [(ngModel)]="name" name="product_name"></ion-input>\n        </ion-item>\n\n        <ion-item>\n           <ion-textarea placeholder="Descripcion del servicio"  [(ngModel)]="description" name="description"></ion-textarea>\n        </ion-item>\n\n        <ion-item>\n           <ion-textarea placeholder="Descripcion corta del servicio" [(ngModel)]="short_description" name="short_description"></ion-textarea>\n        </ion-item>\n\n        <ion-item>\n           <ion-input placeholder="Costo Base" type="text" [(ngModel)]="cost" name="cost"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-input placeholder="Costo por Bloque" type="number" [(ngModel)]="block_cost" name="block_cost"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-input placeholder="Visualización de costo" type="number" [(ngModel)]="display_cost" name="display_cost"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Tipo de servicio</ion-label>\n          <ion-select  [(ngModel)]="categoriesValue" (ngModelChange)="onChange($event)" name="categories" interface="action-sheet">\n            <ion-option *ngFor="let item of getCategory" [value]="{id:item.id, name:item.name}">{{item.name}}</ion-option>\n          </ion-select>\n        </ion-item>\n\n        <div style="display: contents; max-width: 350px;">\n          <ion-chip *ngFor="let item of categories" >\n            <ion-label color="secondary">{{item.name}}</ion-label>\n            <button ion-button clear color="dark" (click)="deleteTipoServicio(item.id)">\n              <ion-icon name="close-circle"></ion-icon>\n            </button>\n          </ion-chip>\n        </div>\n\n\n        <!-- <ion-item>\n          <ion-label>Select</ion-label>\n          <ion-select class="custom-options" [(ngModel)]="categoryValue"  interface="action-sheet" name="category">\n            <ion-select-option *ngFor="let item of getCategory" [value]="item.name">{{item.name}}</ion-select-option>\n          </ion-select>\n        </ion-item> -->\n        <!-- <ion-item>\n            <ion-select style="max-width: 80%;"\n          [(ngModel)]="categoryValue" >\n            <div *ngFor="let item of getCategory"">\n                <ion-option\n                [value]="item.name">\n                  {{item.name}}\n                </ion-option>\n            </div>\n          </ion-select>\n        </ion-item> -->\n\n        <br>\n        <div class="card2">\n          <!-- <ion-item>\n            <ion-label>Select</ion-label>\n            <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="selDay">\n              <ion-option value="{{item.name}}" *ngFor="let item of days" >{{item.name}}</ion-option>\n            </ion-select>\n          </ion-item> -->\n\n          <ion-item>\n            <ion-label>Fecha Inicia</ion-label>\n            <ion-datetime displayFormat="YYYY-MM-DD" display-timezone="utc" [(ngModel)]="from_date" name="iniDate"></ion-datetime>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Fecha Finaliza</ion-label>\n            <ion-datetime displayFormat="YYYY-MM-DD" display-timezone="utc" [(ngModel)]="to_date" name="endDate"></ion-datetime>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Hora Inicia</ion-label>\n            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="from" name="iniHour"></ion-datetime>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Hora Finaliza</ion-label>\n            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="to" name="endHour"></ion-datetime>\n          </ion-item>\n          <ion-item>\n            <button ion-button (click)="addAvailability()">\n              <ion-icon name="save"></ion-icon> Agregar Disponibilidad\n            </button>\n          </ion-item>\n          <ion-grid >\n            <ion-row class="ion-align-items-center">\n              <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">\n                 <div style="margin: 0 auto;  text-align: center">Rango</div>\n              </ion-col>\n              <ion-col style="background-color:#76a7ab; color: #fff;">\n                <div style="margin: 0 auto;text-align: center;">To</div>\n              </ion-col>\n              <ion-col style="background-color:#76a7ab; color: #fff;  margin-left: 1px;">\n                <div style="margin: 0 auto;  border:1px;"></div>\n              </ion-col>\n            </ion-row>\n            <ion-row class="ion-align-items-center" *ngFor="let item of availability"  style="border-bottom: 1px solid #ddd;">\n                <ion-col style="margin-right: 1px;">\n                  <div style="margin: 0 auto; width: 100%;">\n                    <span>{{item.from_date}}</span>\n                    <span>{{item.from}}</span>\n                  </div>\n              </ion-col>\n              <ion-col>\n                <div style="margin: 0 auto; width: 100%;">\n                    <span>{{item.to_date}}</span>\n                    <span>{{item.to}}</span>\n                </div>\n              </ion-col>\n              <ion-col style="margin-right: 1px;">\n                <div style="margin: 0 auto; width: 100%; text-align: center;">\n                  <button\n                  ion-button\n                  (click)="deleteAvailability(item.from_date)"\n                  class="has-icon icon-only button" style="height: 1.0em!important; width: 0.1em!important;">\n                    <ion-icon class="ion-ios-close item-icon"></ion-icon>\n                  </button>\n                </div>\n              </ion-col>\n           </ion-row>\n          </ion-grid>\n\n          <!-- <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n\n          </div> -->\n        </div>\n\n\n\n\n      <!-- <div class="availability">\n        <div><span>Tipo Rango</span></div>\n        <div><span>Rango</span></div>\n      </div>\n      <div class="availability2">\n        <ion-item><ion-input placeholder="Date Range" type="text" name="product_name"></ion-input></ion-item>\n        <ion-item>\n          <ion-datetime\n            placeholder="Desde" displayFormat="HH:mm" name="desde"\n            value="{{desde | date:\'yyyy-MM-dd\'}}"></ion-datetime>\n        </ion-item>\n      </div>\n     <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">\n        <span>Guardar servicio</span>\n     </div> -->\n     <!-- <ion-grid >\n       <ion-row>\n         <ion-col>\n          <button  style="font-size: x-small;font-weight: bold; color:#999; padding:5px; margin-top: 10px;" text-uppercase\n          >{{"Agregar Rango" | translate}}\n          </button>\n         </ion-col>\n       </ion-row>\n       <ion-row class="ion-align-items-center">\n         <ion-col style="background-color:#76a7ab; color: #fff; margin-right: 1px;">\n            <div style="margin: 0 auto; width: 50%;">Tipo Rango</div>\n         </ion-col>\n         <ion-col style="background-color:#76a7ab; color: #fff;">\n           <div style="margin: 0 auto; width: 50%; border:1px;">Rango</div>\n        </ion-col>\n       </ion-row>\n       <ion-row class="ion-align-items-center">\n        <ion-col style="margin-right: 1px;">\n           <div style="margin: 0 auto; width: 100%;">\n            <ion-item>\n              <ion-label>Select</ion-label>\n              <ion-select class="custom-options" [(ngModel)]="selectDay"  interface="action-sheet" name="day">\n                <ion-select-option *ngFor="let item of days" [value]="item.name">{{item.name}}</ion-select-option>\n              </ion-select>\n            </ion-item>\n          </div>\n        </ion-col>\n        <ion-col>\n          <div style="margin: 0 auto; width: 100%;">\n            <ion-item>\n              <ion-label>Select</ion-label>\n              <ion-datetime displayFormat="HH:mm" display-timezone="utc"></ion-datetime>\n            </ion-item>\n          </div>\n       </ion-col>\n      </ion-row>\n     </ion-grid> -->\n     </form>\n    </ion-list>\n  <!-- </div> -->\n\n  <!-- <div class="card tabs-container">\n    <nav #tabs_control class="tabs-control">\n      <a href="#info">Informacion</a>\n      <a href="#details">Detalle</a>\n      <a href="#lorem">Lorem Ipsum</a>\n      <div id="indicator" #indicator class="indicator"></div>\n    </nav>\n    <div  #tabs class="tabs">\n      <div class="container">\n        <div  #tab class="tab" id="info">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="details">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n        <div  class="tab" id="lorem">\n          <p>Lorem ipsum dolor sit amet consectetur\n             adipisicing elit. Nostrum, facilis vitae dolores consectetur nesciunt reiciendis impedit mollitia, odio, aut quibusdam quos eius earum odit reprehenderit illo ad autem velit tempore!</p>\n        </div>\n      </div>\n    </div>\n  </div> -->\n  <div>\n    <div style="margin:0 auto; width: 220px;">\n      <button ion-button style="font-family: \'Courier New\', Courier, monospace;" (click)="sendProduct()">Guardar Servicio</button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\new-product\new-product.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */]) === "function" && _e || Object])
     ], NewProductPage);
     return NewProductPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=new-product.js.map
@@ -6232,7 +6561,7 @@ var NewProductPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6302,10 +6631,9 @@ var CategoryServicePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-category-service',template:/*ion-inline-start:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\category-service\category-service.html"*/'<ion-header class="settings-header">\n  <ion-navbar color="header">\n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n      </button>\n      <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->\n      <ion-title >\n          <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />\n      </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="support" padding [content]="content">\n  <div class="sub-header">\n    <h1>Mis Servicios</h1>\n  </div>\n  <ion-list *ngIf="service.categories" style="margin-top: 100px;">\n    <ion-item *ngFor="let item of service.mainCategories" style="margin-top:10px; border-radius: 5px;" class="card2">\n      <ion-thumbnail item-left>\n        <img src="{{item.image.src}}" />\n      </ion-thumbnail>\n      <ion-label  class="heading text-center" style="font-size: 18px; font-weight: 900;">\n        {{item.name}}\n      </ion-label>\n      <ion-checkbox item-right>\n        <ion-checkbox color="dark" (ionChange)="addServicio($event)" checked></ion-checkbox>\n      </ion-checkbox>\n    </ion-item>\n  </ion-list>\n  <div>\n    <div style="margin:0 auto; width: 220px;">\n      <button ion-button style="font-family: \'Courier New\', Courier, monospace;">Actualiza Tus Servicios</button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Lenovo\Desktop\numu\homerproveedor\src\pages\category-service\category-service.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
     ], CategoryServicePage);
     return CategoryServicePage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=category-service.js.map
@@ -6676,7 +7004,7 @@ var ProductsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__providers_service_functions__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__providers_service_product_service__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__providers_service_search_service__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__providers_pipe_pipe__ = __webpack_require__(916);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_call_number__ = __webpack_require__(917);
@@ -7132,7 +7460,7 @@ var CategoryService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_values__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7179,7 +7507,7 @@ var Post = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(301);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_service__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_values__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_service_config__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(97);
