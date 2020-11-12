@@ -2,7 +2,9 @@ import {Component } from '@angular/core';
 import { NavController, NavParams, AlertController} from 'ionic-angular';
 import { Service } from '../../providers/service/service';
 import {Values} from '../../providers/service/values';
-
+import { Config } from '../../providers/service/config';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { ImagePicker } from '@ionic-native/image-picker';
 // interface Day {
 //   name:string;
 // }
@@ -34,6 +36,12 @@ export class NewProductPage {
   // @ViewChild('tabs')tabs:ElementRef;
   // @ViewChild('tab')tab:ElementRef;
 
+    photos: any;
+    err: any;
+    imageIndex: any = 0;
+    form: any = { type: 'simple', status: 'pending', in_stock: true, images: [], purchasable: true, manage_stock: true, shipping_required: true, sold_individually: false  };
+    imageresult: any;
+    uploadingImageSpinner: boolean = false;
     getCategory:any;
     data:any = [];
     name: string;
@@ -176,7 +184,7 @@ export class NewProductPage {
   //   }
   // ];
 
-  constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service) {
+  constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer, private imagePicker: ImagePicker) {
     this.availability = [];
     this.categories = [];
     this.service.getCategories(1);
@@ -190,6 +198,49 @@ export class NewProductPage {
     //   this.renderer.listen( this.tabs_control.nativeElement.children[i],'click',this.handleClick);
     // }
   }
+
+  picker() {
+    let options = {
+        //maximumImagesCount: 1, //Comment for multi images
+    }
+    this.photos = new Array < string > ();
+    this.imagePicker.getPictures(options).then((results : any) => {
+        // For Single select, crop and upload images
+        //this.reduceImages(results).then((results) => this.handleUpload(results));
+
+        // For multi image upload
+        for (var i = 0; i < results.length; i++) {
+           this.upload(results[i]);
+        }
+    }, (err) => {
+        console.log(err)
+    });
+}
+
+  upload(image) {
+    this.uploadingImageSpinner = true;
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    var headers = new Headers();
+    headers.append('Content-Type', 'multipart/form-data');
+    let options: FileUploadOptions = {
+        chunkedMode: false,
+        fileKey: 'file',
+        fileName: 'name.jpg',
+        headers: {
+            headers
+        }
+    }
+    fileTransfer.upload(image, this.config.url + '/wp-admin/admin-ajax.php?action=mstoreapp_admin_upload_image', options).then((data) => {
+        this.uploadingImageSpinner = false;
+        this.imageresult = JSON.parse(data.response);
+        this.form.images[this.imageIndex] = {};
+        this.form.images[this.imageIndex].src = this.imageresult.url;
+        this.imageIndex = this.imageIndex + 1;
+    }, (err) => {
+        this.err = err;
+        //this.functions.showAlert("error", err.error);
+    })
+}
 
   deleteTipoServicio(id){
     let index = this.categories.map(result => result.id).indexOf(id);

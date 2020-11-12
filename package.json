@@ -28,8 +28,10 @@
     "@ionic-native/call-number": "^4.5.3",
     "@ionic-native/core": "4.5.3",
     "@ionic-native/email-composer": "^4.5.3",
+    "@ionic-native/file-transfer": "^5.23.0",
     "@ionic-native/geolocation": "^5.27.0",
     "@ionic-native/http": "^4.7.0",
+    "@ionic-native/image-picker": "^4.20.0",
     "@ionic-native/in-app-browser": "^4.5.3",
     "@ionic-native/ionic-webview": "^5.27.0",
     "@ionic-native/native-geocoder": "^4.20.0",
@@ -86,6 +88,7 @@
     "cordova-ios": "^5.1.0",
     "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^2.5.3",
     "cordova-plugin-splashscreen": "^5.0.3",
@@ -127,7 +130,11 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-background-mode": {}
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-telerik-imagepicker": {
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
+      }
     },
     "platforms": [
       "browser",

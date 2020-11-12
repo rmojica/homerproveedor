@@ -68,12 +68,16 @@ import { CalendarModule } from 'ion2-calendar'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
+
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+
+import {ImagePicker} from '@ionic-native/image-picker';
+
 import { BackgroundMode } from '@ionic-native/background-mode';
 
 // import socket io
 
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
-import { from } from 'rxjs/observable/from'
 
 // const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
 const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{}}
@@ -195,6 +199,9 @@ export function createTranslateLoader(http: HttpClient) {
     Geolocation,
     NativeGeocoder,
     BackgroundMode,
+    FileTransfer,
+    ImagePicker,
+
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
   schemas: [
