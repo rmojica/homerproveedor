@@ -26,9 +26,13 @@ export class Values {
   lastIcon:any = "assets/image/last_service.png";
   nextIcon:any = "assets/image/next_service.png";
   oclockIcon:any = "assets/image/service-pending.png"
-  
+
   slider: any = "assets/image/bghome.png";
   headerLogin: any = "assets/image/header-login.png";
+  camarero:any = "assets/image/camarero.png";
+  cuido:any = "assets/image/cuido.png";
+  limpieza:any = "assets/image/limpieza.png";
+  planchado:any = "assets/image/planchado.png";
   currency: any = "USD";
   data: any;
   dir: any = 'left';
@@ -69,7 +73,7 @@ export class Values {
         this.dimensions.productSliderWidth = this.settings.product_slider_width * 0.7;
         this.dimensions.productSliderHeight = this.settings.imageGridViewHeight * 0.6;
         this.dimensions.imageProductViewHeight = (this.settings.image_height/100 * 0.6) * width;
-      } 
+      }
       else {
         this.dimensions.imageProductViewHeight = this.settings.image_height/100 * width;
         this.dimensions.productSliderWidth = this.settings.product_slider_width;
@@ -91,7 +95,7 @@ export class Values {
       if (width >= 481) {
         return 3;
       }
-          
+
       else {
         return 2;
       }

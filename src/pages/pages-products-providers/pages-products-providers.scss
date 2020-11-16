@@ -16,6 +16,11 @@ page-pages-products-providers {
     .body-product{
         margin-top: 80px;
     }
+    .img{
+      width: inherit;
+      min-height: 20%!important;
+      height: inherit;
+    }
     .rating {
         .star-icon {
           color: #ddd;
@@ -91,7 +96,7 @@ page-pages-products-providers {
       }
       .searchbar-ios .searchbar-input {
         color: black;
-      } 
+      }
       .searchbar-md .searchbar-search-icon, .searchbar-ios .searchbar-search-icon {
         left: auto;
         top: 0px;
@@ -350,7 +355,7 @@ page-pages-products-providers {
         white-space: nowrap;
         font-weight: 600;
     }
-    
+
     .item-product .description ion-label{
         margin-top: 0;
     }
@@ -484,6 +489,6 @@ page-pages-products-providers {
     }
     .item-ios [item-left] {
         margin: 0px;
-    }     
-        
+    }
+
 }

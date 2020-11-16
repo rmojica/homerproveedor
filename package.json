@@ -26,9 +26,10 @@
     "@ionic-native/background-mode": "^4.20.0",
     "@ionic-native/calendar": "^5.22.0",
     "@ionic-native/call-number": "^4.5.3",
+    "@ionic-native/camera": "^5.29.0",
     "@ionic-native/core": "4.5.3",
     "@ionic-native/email-composer": "^4.5.3",
-    "@ionic-native/file-transfer": "^5.23.0",
+    "@ionic-native/file-transfer": "^5.29.0",
     "@ionic-native/geolocation": "^5.27.0",
     "@ionic-native/http": "^4.7.0",
     "@ionic-native/image-picker": "^4.20.0",
@@ -87,6 +88,7 @@
     "@ionic/app-scripts": "^3.2.4",
     "cordova-ios": "^5.1.0",
     "cordova-plugin-background-mode": "^0.7.3",
+    "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
@@ -134,6 +136,9 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
+      },
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
     "platforms": [

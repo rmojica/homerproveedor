@@ -5,19 +5,20 @@ import {Values} from '../../providers/service/values';
 import { Config } from '../../providers/service/config';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 // interface Day {
 //   name:string;
 // }
 
-interface Availability{
-  type:string ;
-  bookable:string;
-  priority:number,
-  from:string;
-  to:string;
-  from_date:string;
-  to_date:string;
-}
+// interface Availability{
+//   type:string ;
+//   bookable:string;
+//   priority:number,
+//   from:string;
+//   to:string;
+//   from_date:string;
+//   to_date:string;
+// }
 /**
  * Generated class for the NewProductPage page.
  *
@@ -187,8 +188,37 @@ export class NewProductPage {
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer, private imagePicker: ImagePicker) {
     this.availability = [];
     this.categories = [];
-    this.service.getCategories(1);
+    this.service.getCategories(1);navParams.data.availability
     this.getCategory = this.service.mainCategories;
+
+    console.log(navParams.data);
+
+
+    if (navParams.data.id) {
+      this.name = navParams.data.name;
+      this.description = navParams.data.description.replace(/<[^>]*>?/gm,' ');
+      this.short_description = navParams.data.short_description.replace(/<[^>]*>?/gm,' ');
+      this.cost = navParams.data.cost;
+      this.block_cost = navParams.data.block_cost;
+      this.display_cost = navParams.data.display_cost;
+      navParams.data.availability.map(result =>{
+        this.availability.push({
+            type: result.type,
+            bookable: result.bookable,
+            priority:result.priority,
+            from: result.from,
+            to: result.to,
+            from_date: result.from_date,
+            to_date:result.to_date
+          });
+      });
+      navParams.data.categories.map(result => {
+        this.categories.push({
+          id:result.id,
+          name:result.name
+        })
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -240,7 +270,37 @@ export class NewProductPage {
         this.err = err;
         //this.functions.showAlert("error", err.error);
     })
-}
+  }
+
+  // upload2()
+  // {
+  //   let options = {
+  //     quality: 100
+  //   };
+
+  //   this.camera.getPicture(options).then((imageData) => {
+  //     // imageData is either a base64 encoded string or a file URI
+  //     // If it's base64:
+
+  //       const fileTransfer: FileTransferObject = this.transfer.create();
+
+  //         let options1: FileUploadOptions = {
+  //           fileKey: 'file',
+  //           fileName: 'name.jpg',
+  //           headers: {}
+
+  //         }
+
+  //     fileTransfer.upload(imageData, 'https://localhost/ionic/upload.php', options1)
+  //     .then((data) => {
+  //       // success
+  //       alert("success");
+  //     }, (err) => {
+  //       // error
+  //       alert("error"+JSON.stringify(err));
+  //     });
+  //  });
+  // }
 
   deleteTipoServicio(id){
     let index = this.categories.map(result => result.id).indexOf(id);
@@ -256,6 +316,26 @@ export class NewProductPage {
         this.availability.splice( index, 1 );
     }
 
+  }
+
+  updateProduct(){
+    this.data={
+      name : this.name,
+      description : this.description,
+      short_description: this.short_description,
+      cost : this.cost,
+      block_cost : this.block_cost,
+      display_cost : this.display_cost,
+      availability: this.availability,
+      categories : this.categories
+    }
+    if(this.name != undefined && this.description != undefined && this.short_description != undefined &&
+      this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
+   ){
+     this.service.updateProduct(this.data, this.navParams.data.id);
+   }else{
+     this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
+   }
   }
 
   sendProduct(){

@@ -142,18 +142,31 @@
                     </ion-item>
 
                     <ion-item no-padding no-lines class="item-background">
-                      {{"Categoria" | translate}} : {{item.categories[0].name}}
+                      {{"Categoria:" | translate}}<div  style="display: flex;">
+                        <div *ngFor="let c of item.categories" style="width: 10%; margin-bottom: 5px; margin-right: 5px; margin-top: 5px;">
+                          <div *ngIf="c.slug == 'servicio-limpieza'">
+                            <img class="img" src="{{values.limpieza}}" alt="{{c.name}}" >
+                          </div>
+                          <div *ngIf="c.slug == 'servicio-de-cuido-de-ninos'">
+                            <img class="img"src="{{values.cuido}}" alt="{{c.name}}" >
+                          </div>
+                          <div *ngIf="c.slug == 'servicio-planchado'">
+                            <img class="img" src="{{values.planchado}}" alt="{{c.name}}" >
+                          </div>
+                          <div *ngIf="c.slug == 'servicio-camarero'">
+                            <img class="img" src="{{values.camarero}}" alt="{{c.name}}" >
+                          </div>
+                        </div>
+                      </div>
                     </ion-item>
                     <ion-item no-padding no-lines class="item-background">
                       <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase
                       (click)="getProduct(item)">{{"Ver" | translate}}
                       </button>
                       <button style="font-weight: bold;" ion-button item-center medium color="button-color" text-uppercase
-                      >{{"Editar" | translate}}
+                      (click)="getProductForANewProduct(item)">{{"Editar" | translate}}
                       </button>
                     </ion-item>
-
-
                 </ion-card>
               </ion-col>
             </ion-row>

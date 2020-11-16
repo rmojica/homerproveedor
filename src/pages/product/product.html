@@ -37,7 +37,7 @@
       </a>
     </ion-fab-list>
   </ion-fab> -->
-  
+
   <ion-spinner *ngIf="!product?.product" name="crescent"></ion-spinner>
   <div *ngIf="product.product" class="product-details">
     <div *ngIf="product.product.images">
@@ -170,16 +170,16 @@
         <ion-select style="max-width: 80%;"
         [(ngModel)]="optionss" (ngModelChange)="chooseVariationOne()" >
           <div *ngFor="let optionss of usedVariationAttributes ; let i = index">
-            
-               <ion-option  
-               [ngClass]="{'selected-option': selectedService && optionss && optionss.resource_id == selectedService.resource_id }" 
+
+               <ion-option
+               [ngClass]="{'selected-option': selectedService && optionss && optionss.resource_id == selectedService.resource_id }"
               [value]="optionss">
               {{i+1}} - {{optionss.name}}
-              </ion-option> 
+              </ion-option>
           </div>
         </ion-select>
       </ion-item>
-    </div>  
+    </div>
 
   <!--variation product starts-->
     <!--div *ngIf="product?.product?.variations.length" class="variation-product">
@@ -342,6 +342,7 @@
           </h3>
         </ion-item>
         <p text-wrap>{{item.review}}</p>
+
       </div>
     </div>
   </div>

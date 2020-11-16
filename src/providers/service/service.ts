@@ -245,6 +245,30 @@ export class Service {
     })
   }
 
+  updateProduct(data, product){
+    this.header.append('Content-Type', 'application/json');
+    this.http
+    .put(
+      this.config.url + '/wp-json/wc-bookings/v1/products/'+product+'?consumer_key=ck_462b7613b1f89991924e149f7d7df2a1c37eb71a&consumer_secret=cs_81a58277089318569168ff48defefa83fa740d86',
+      {
+        'name' : data.name,
+        'description' : data.description,
+        'short_description':data.short_description,
+        'cost' : data.cost,
+        'block_cost' : data.block_cost,
+        'display_cost' : data.display_cost,
+        'availability': data.availability,
+        'categories' : data.categories
+      },
+      this.header
+    )
+    .map(res => res.json())
+    .subscribe(
+      data => {
+        console.log('Actualizado',data);
+      });
+  }
+
   addProduct(data){
     this.header.append('Content-Type', 'application/json');
     this.http

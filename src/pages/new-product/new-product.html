@@ -14,11 +14,19 @@
   <!-- <div class="card2"> -->
     <ion-list>
     <form #f="ngForm" >
+        <!-- <div   item-left style="margin-left:16px; margin-right: 16px; display: inline-flex;">
+          <img tappable *ngFor="let item of form.images; let i = index;" src="{{item.src}}" style="width: 80px; height: 80px; padding: 3px; display: inline; border: 1px solid #f5fdff" (click)="replaceImage(i)">
+          <div class="spinner"><ion-spinner *ngIf="uploadingImageSpinner" name="circles" class="add-image-icon"></ion-spinner></div>
+          <ion-icon *ngIf="!uploadingImageSpinner" color="medium" name="add-circle-outline" class="add-image-icon" (click)="picker()"></ion-icon>
+        </div> -->
+        <!-- *ngIf="service.options.vendors_write_product_fields?.includes('images')" -->
         <div   item-left style="margin-left:16px; margin-right: 16px; display: inline-flex;">
           <img tappable *ngFor="let item of form.images; let i = index;" src="{{item.src}}" style="width: 80px; height: 80px; padding: 3px; display: inline; border: 1px solid #f5fdff" (click)="replaceImage(i)">
           <div class="spinner"><ion-spinner *ngIf="uploadingImageSpinner" name="circles" class="add-image-icon"></ion-spinner></div>
           <ion-icon *ngIf="!uploadingImageSpinner" color="medium" name="add-circle-outline" class="add-image-icon" (click)="picker()"></ion-icon>
         </div>
+
+        <!-- <button (click)="upload2()" ion-button>Take Pic & Upload </button> -->
 
         <ion-item>
           <!-- <ion-label>Nombre servicio</ion-label> -->
@@ -240,8 +248,11 @@
     </div>
   </div> -->
   <div>
-    <div style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="sendProduct()">Guardar Servicio</button>
+    <div *ngIf="navParams.data.id" style="margin:0 auto; width: 220px;">
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="updateProduct()">Update Servicio</button>
+    </div>
+    <div *ngIf="!navParams.data.id" style="margin:0 auto; width: 220px;">
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="addProduct()">Guardar Servicio</button>
     </div>
   </div>
 </ion-content>

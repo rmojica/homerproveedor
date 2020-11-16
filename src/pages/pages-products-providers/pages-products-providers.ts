@@ -124,6 +124,9 @@ export class PagesProductsProvidersPage {
   getProduct(id) {
     this.nav.push(ProductPage, id)
   }
+  getProductForANewProduct(id) {
+    this.nav.push(NewProductPage, id)
+  }
   getCart() {
     this.nav.push(CartPage)
   }
