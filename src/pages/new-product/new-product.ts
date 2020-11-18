@@ -6,6 +6,7 @@ import { Config } from '../../providers/service/config';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { PagesProductsProvidersPage } from '../pages-products-providers/pages-products-providers';
 // interface Day {
 //   name:string;
 // }
@@ -333,6 +334,8 @@ export class NewProductPage {
       this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
    ){
      this.service.updateProduct(this.data, this.navParams.data.id);
+     this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado este producto correctamente');
+     this.nav.pop();
    }else{
      this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
    }
@@ -437,6 +440,8 @@ export class NewProductPage {
        this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
     ){
       this.service.addProduct(this.data);
+      this.showAlert('Registrado correctamente', '<strong>Exito:</strong> Has registrado un producto correctamente');
+      this.nav.pop();
     }else{
       this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
     }

@@ -19,6 +19,7 @@
         <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">
           <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">
           Homer Proveedor
+          {{values.isLoggedIn}}
           </strong>
           <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">
             <h4 class="playername"> {{values.customerName}}</h4>

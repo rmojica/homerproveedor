@@ -291,6 +291,6 @@ export class PagesProductsProvidersPage {
 
   gohome(){
     this.nav.parent.select(0);
-}
+  }
 
 }

@@ -21,26 +21,24 @@ export class DashProveedorPage {
   homerProviders = [];
 
   constructor(private backgroundMode: BackgroundMode, private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values) {
-    
+
   }
 
   ionViewDidLoad() {
-    
+
   }
 
   ngOnInit() {
     this.socket.fromEvent('adduser').subscribe((data:any) => {
-      this.homerProviders.push(...data);
+      this.homerProviders.push(data);
       console.log('data:',data)
       for(let provider of this.homerProviders){
-        if(this.values.customerId == provider.id){
+        if(this.values.customerId == provider){
           this.values.isActive = true;
-        }else{
-          this.values.isActive = false;
         }
       }
     });
- 
+
     // this.socket.fromEvent('message').subscribe(message => {
     //   // this.messages.push(message);
     // });
@@ -48,33 +46,33 @@ export class DashProveedorPage {
 
   // ionViewWillEnter(){
   //   console.log("conectando al socket");
-    
+
   //   this.socket.connect();
   // }
 
- 
 
-  changeToggle(){  
+
+  changeToggle(){
     if(this.values.isActive){
-       
+
       this.backgroundMode.on('deactivate').subscribe(() => {
         console.log("backgroundMode deactivate");
       });
-  
+
       this.backgroundMode.on('activate').subscribe(() => {
         this.backgroundMode.disableWebViewOptimizations();
         console.log('backgroundMode activated');
       });
-  
+
       this.backgroundMode.setDefaults({ silent: true });
       this.backgroundMode.enable();
-      
-  
+
+
       console.log('interval start at', new Date().toISOString());
-      
-      console.log('waiting first response ....');  
-  
-          
+
+      console.log('waiting first response ....');
+
+
         this.socket.connect();
         this.socket.emit('adduser',{id:this.values.customerId});
         this.values.isActive = true;
