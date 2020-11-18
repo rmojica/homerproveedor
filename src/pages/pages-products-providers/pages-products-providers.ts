@@ -22,6 +22,7 @@ import { NewProductPage } from '../new-product/new-product';
 export class PagesProductsProvidersPage {
 
   products: any
+  productsIdsVendor: any
   moreProducts: any
   count: any
   offset: any
@@ -64,6 +65,7 @@ export class PagesProductsProvidersPage {
         this.filter['include'] = params.data.productslocation
     }
 
+
     this.categoryName = params.data.name
     this.filter.page = 1
     this.count = 10
@@ -74,14 +76,20 @@ export class PagesProductsProvidersPage {
     this.items = []
     this.quantity = '1'
     this.subCategories = params.data.categories
+
+   
+  }
+
+  ionViewDidEnter() {
+    this.service.getProductsByIdVendor()
+    .then((resultsByVendor) => this.handleProdInit(resultsByVendor));
+  }  
+
+  handleProdInit(resultsByVendor) {
+    this.filter['include'] = resultsByVendor.toString()
+    console.log(this.filter)
     this.service.load(this.filter).then(results => {
       this.products = results
-      // this.products.forEach((element,index,arr) => {
-      //   if(element.wc_variations){
-      //     arr[index].wc_variations = JSON.parse(element.wc_variations)
-      //   }
-      // });
-
       for (let index = 0; index < this.products.length; index++) {
         const element = this.products[index]
         let resources = element.resource_block_costs
@@ -97,7 +105,9 @@ export class PagesProductsProvidersPage {
         }
       }
     })
-  }
+
+}
+
   getCategory(id, slug, name) {
     this.items.id = id
     this.items.slug = slug

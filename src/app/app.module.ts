@@ -68,7 +68,7 @@ import { CalendarModule } from 'ion2-calendar'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
-import {ImagePicker} from '@ionic-native/image-picker';
+// import {ImagePicker} from '@ionic-native/image-picker';
 
 import { BackgroundMode } from '@ionic-native/background-mode';
 
@@ -201,7 +201,6 @@ export function createTranslateLoader(http: HttpClient) {
     NativeGeocoder,
     BackgroundMode,
     FileTransfer,
-    ImagePicker,
 
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
