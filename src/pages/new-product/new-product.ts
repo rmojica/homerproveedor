@@ -4,7 +4,7 @@ import { Service } from '../../providers/service/service';
 import {Values} from '../../providers/service/values';
 import { Config } from '../../providers/service/config';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { ImagePicker } from '@ionic-native/image-picker';
+// import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 // interface Day {
 //   name:string;
@@ -185,7 +185,7 @@ export class NewProductPage {
   //   }
   // ];
 
-  constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer, private imagePicker: ImagePicker) {
+  constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
     this.categories = [];
     this.service.getCategories(1);navParams.data.availability
@@ -229,23 +229,23 @@ export class NewProductPage {
     // }
   }
 
-  picker() {
-    let options = {
-        //maximumImagesCount: 1, //Comment for multi images
-    }
-    this.photos = new Array < string > ();
-    this.imagePicker.getPictures(options).then((results : any) => {
-        // For Single select, crop and upload images
-        //this.reduceImages(results).then((results) => this.handleUpload(results));
+//   picker() {
+//     let options = {
+//         //maximumImagesCount: 1, //Comment for multi images
+//     }
+//     this.photos = new Array < string > ();
+//     this.imagePicker.getPictures(options).then((results : any) => {
+//         // For Single select, crop and upload images
+//         //this.reduceImages(results).then((results) => this.handleUpload(results));
 
-        // For multi image upload
-        for (var i = 0; i < results.length; i++) {
-           this.upload(results[i]);
-        }
-    }, (err) => {
-        console.log(err)
-    });
-}
+//         // For multi image upload
+//         for (var i = 0; i < results.length; i++) {
+//            this.upload(results[i]);
+//         }
+//     }, (err) => {
+//         console.log(err)
+//     });
+// }
 
   upload(image) {
     this.uploadingImageSpinner = true;

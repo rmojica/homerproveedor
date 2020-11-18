@@ -32,7 +32,6 @@
     "@ionic-native/file-transfer": "^5.29.0",
     "@ionic-native/geolocation": "^5.27.0",
     "@ionic-native/http": "^4.7.0",
-    "@ionic-native/image-picker": "^4.20.0",
     "@ionic-native/in-app-browser": "^4.5.3",
     "@ionic-native/ionic-webview": "^5.27.0",
     "@ionic-native/native-geocoder": "^4.20.0",
@@ -134,9 +133,6 @@
       },
       "cordova-plugin-background-mode": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-telerik-imagepicker": {
-        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
-      },
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
