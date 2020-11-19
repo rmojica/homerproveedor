@@ -14,6 +14,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { TabsPage } from '../tabs/tabs';
 
 import { CategoryService } from '../../providers/service/category-service'
+import { PagesProductsProvidersPage } from '../pages-products-providers/pages-products-providers';
 
 /**
  * Generated class for the CategoryServicePage page.
@@ -153,6 +154,7 @@ export class CategoryServicePage {
     }
     this.service.updateProduct(this.data, this.setProduct);
     this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado las categorías correctamente');
+    this.navCtrl.push(PagesProductsProvidersPage);
   }
 
   ionViewDidEnter() {
