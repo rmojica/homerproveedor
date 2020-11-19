@@ -13,6 +13,8 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 import { TabsPage } from '../tabs/tabs';
 
+import { CategoryService } from '../../providers/service/category-service'
+
 /**
  * Generated class for the CategoryServicePage page.
  *
@@ -51,6 +53,14 @@ export class CategoryServicePage {
   miLatitude = 0;
   miLongitude = 0;
 
+  setProduct:any;
+  data:any;
+  category:any;
+  checked:boolean=false;
+
+  filter: any;
+  products: any
+
     status: any;
     items: any;
     product: any;
@@ -61,8 +71,8 @@ export class CategoryServicePage {
     has_more_items: boolean = true;
     loading: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public values:Values, public service: Service, public alert:AlertController) {
-    this.items = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public values:Values, public service: Service, public alert:AlertController, public categoryService:CategoryService) {
+        this.items = [];
         this.options = [];
         this.service.getProducts();
 
@@ -74,6 +84,7 @@ export class CategoryServicePage {
 
         this.lat = '';
         this.long = '';
+        this.category = [];
 
   }
 
@@ -81,10 +92,45 @@ export class CategoryServicePage {
     this.navCtrl.parent.select(0);
   }
 
-  addServicio(event){
-    if(event.target.checked){
-    this.showAlert('Se ha actualizado este servicio', '<strong>Genial:</strong> Has actualizado correctamente');
-    }
+  addServicio(e,cat){
+    this.category.push({id:cat});
+    // let index;
+    // if(this.category.length != 0){
+    //   for(let i in this.category){
+
+    //     console.log('hi',this.category[i].id, cat);
+
+    //     if(this.category[i].id == cat){
+    //       console.log('elimino ');
+
+    //       index = this.category.map(result => result.id).indexOf(cat);
+    //       if ( index > -1 ) {
+    //         this.category.splice( index, 1 );
+    //       }
+
+    //     }else if(this.category[i].id != cat){
+    //       this.category.push({id:cat});
+    //     }
+    //   }
+
+
+    // }else{
+    //   this.category.push({id:cat});
+    // }
+
+    // let index;
+    // if(this.category.length != 0){
+    //   index = this.category.map(result => result.from_date).indexOf(cat);
+    //   console.log((index));
+
+    //   if ( index > -1 ) {
+    //       this.category.splice( index, 1 );
+    //   }
+    // }else{
+    //   this.category.push({id:cat})
+    // }
+
+
   }
 
   showAlert(title, text) {
@@ -99,5 +145,23 @@ export class CategoryServicePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryServicePage');
   }
+
+
+  updateCategory(){
+    this.data={
+      categories : this.category
+    }
+    this.service.updateProduct(this.data, this.setProduct);
+    this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado las categorías correctamente');
+  }
+
+  ionViewDidEnter() {
+    this.categoryService.getProductsByIdVendor()
+    .then((resultsByVendor) => {
+      this.setProduct = resultsByVendor;
+    });
+  }
+
+
 
 }

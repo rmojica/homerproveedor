@@ -21,14 +21,14 @@
       <ion-label  class="heading text-center" style="font-size: 18px; font-weight: 900;">
         {{item.name}}
       </ion-label>
-      <ion-checkbox item-right>
-        <ion-checkbox color="dark" (ionChange)="addServicio($event)" checked></ion-checkbox>
-      </ion-checkbox>
+
+      <ion-checkbox item-right color="dark" (click)="addServicio($event,item.id)"></ion-checkbox>
+
     </ion-item>
   </ion-list>
   <div>
     <div style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;">Actualiza Tus Servicios</button>
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="updateCategory()">Actualiza Tus Servicios</button>
     </div>
   </div>
 </ion-content>

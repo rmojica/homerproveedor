@@ -77,13 +77,13 @@ export class PagesProductsProvidersPage {
     this.quantity = '1'
     this.subCategories = params.data.categories
 
-   
+
   }
 
   ionViewDidEnter() {
     this.service.getProductsByIdVendor()
     .then((resultsByVendor) => this.handleProdInit(resultsByVendor));
-  }  
+  }
 
   handleProdInit(resultsByVendor) {
     this.filter['include'] = resultsByVendor.toString()
