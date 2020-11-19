@@ -335,7 +335,7 @@ export class NewProductPage {
    ){
      this.service.updateProduct(this.data, this.navParams.data.id);
      this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado este producto correctamente');
-     this.nav.pop();
+     this.nav.push(PagesProductsProvidersPage);
    }else{
      this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
    }
