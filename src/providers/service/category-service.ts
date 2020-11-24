@@ -227,7 +227,7 @@ export class CategoryService {
   }
 
   getProductsByIdVendor() {
-    
+
     return new Promise(resolve => {
       this.http
         .get(
@@ -240,6 +240,23 @@ export class CategoryService {
           this.productsIds = data
           console.log(this.productsIds)
           resolve(this.productsIds.toString())
+        })
+    })
+  }
+  getProductsByIdVendor2() {
+
+    return new Promise(resolve => {
+      this.http
+        .get(
+          this.config.url +
+          '/wp-json/custom-api/v1/get_products_by_id?id_vendor='+this.values.customerId+'',
+          this.config.options,
+        )
+        .map(res => res.json())
+        .subscribe(data => {
+          this.productsIds = data
+          console.log(this.productsIds)
+          resolve(this.productsIds)
         })
     })
   }
