@@ -116,7 +116,9 @@ export class AccountRegister {
         }
     }
     handleRegisterVendor(results) {
-        console.log(results.errors);
+      console.log('result', results);
+
+      console.log('error ',results.errors);
         if (!results.errors) {
             this.countries.checkout_login;
             this.service.login(this.registerVendorData)
@@ -132,7 +134,9 @@ export class AccountRegister {
         }
         else if (results.errors) {
             this.errors = results.errors;
-            this.service.getNonceResendKey(this.registerVendorData.email).then((results) => this.handleResultsNonce(results));
+            this.disableSubmit = false;
+            this.functions.showAlert('Verificación', this.errors.existing_user_email)
+            // this.service.getNonceResendKey(this.registerVendorData.email).then((results) => this.handleResultsNonce(results));
         }
     }
     handleResultsNonce(results) {
