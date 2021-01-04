@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Values {
-
+  pushToken:any
+  userId:any
   count: number = 0;
   filter: any = 10;
   isLoggedIn: boolean = false;

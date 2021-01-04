@@ -10,6 +10,9 @@ import {ServicesPage} from '../services/services';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { OrdersPage } from '../orders/orders';
+import { EndOrdersPage } from '../end-orders/end-orders';
+import { Post } from '../post/post';
 
 /**
  * Generated class for the DashProveedorPage page.
@@ -35,7 +38,6 @@ export class DashProveedorPage {
     this.lat = '';
     this.lng = '';
     this.products = [];
-
 
 
     this.platform.ready().then(() => {
@@ -80,7 +82,7 @@ export class DashProveedorPage {
   ngOnInit() {
     this.socket.fromEvent('adduser').subscribe((data:any) => {
       this.homerProviders.push(data);
-      console.log('data:',data)
+
       for(let provider of this.homerProviders){
         if(this.values.customerId == provider){
           this.values.isActive = true;
@@ -127,7 +129,8 @@ export class DashProveedorPage {
           id:this.values.customerId,
           lat: this.miLatitude,
           lng: this.miLongitude,
-          products:this.products
+          products:this.products,
+          onesignal:this.values.userId
         });
         this.values.isActive = true;
     }else{
@@ -137,8 +140,16 @@ export class DashProveedorPage {
     }
   }
 
-  services(title:string, status:string, unconfirm:string) {
-    this.navCtrl.push(ServicesPage,{title, status, unconfirm});
+  end_services() {
+    this.navCtrl.push(EndOrdersPage);
+  }
+
+  pastservice(){
+    this.navCtrl.push(Post,{title:'Servicios Pasados',id:93})
+  }
+
+  services() {
+    this.navCtrl.push(OrdersPage);
   }
   // sendMessage() {
   //   // this.socket.emit('send-message', { text: this.message });

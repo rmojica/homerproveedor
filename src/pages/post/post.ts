@@ -16,7 +16,7 @@ export class Post {
     this.service.getPage(this.id)
        .then((results) => {
         return this.post = results
-       });  
-       
+       });
+
  }
 }

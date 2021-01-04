@@ -29,23 +29,23 @@
   </div>
 
   <ion-card>
-    <ion-card-header style="background-color: #ebebeb"> 
+    <ion-card-header style="background-color: #ebebeb">
       <h3>Estado de mis servicios</h3>
     </ion-card-header>
     <!-- <ion-card-content style="margin-top: 10px">
-     
+
     </ion-card-content> -->
   </ion-card>
   <div class="card">
     <div class="card-body">
       <div class="button-dashboard">
         <div class="last-services">
-          <a (click)="services('Servicios Pasados', 'Completado', 'Edit');"><img src="{{values.lastIcon}}"></a>
+          <a (click)="end_services();"><img src="{{values.lastIcon}}"></a>
           <p>Servicios Pasados</p>
         </div>
         <div class="proscess-services">
-          <a (click)="services('Servicios Pendientes', 'Procesando','Unconfirm');" href="#"><img src="{{values.oclockIcon}}"></a>
-          <p>Servicios Pendientes</p>
+          <a (click)="services();" href="#"><img src="{{values.oclockIcon}}"></a>
+          <p>Próximos Servicios</p>
         </div>
         <!-- <div class="future-services">
           <a (click)="services('Proximos Servicios');"><img src="{{values.nextIcon}}"></a>

@@ -34,6 +34,9 @@ import {PagesSupportPage} from '../pages/pages-support/pages-support'
 import {ServicesPage} from '../pages/services/services';
 import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
 import {CategoryServicePage} from '../pages/category-service/category-service';
+import {OrdersPage} from '../pages/orders/orders';
+import {EndOrdersPage} from '../pages/end-orders/end-orders';
+import {OrdersDetailPage} from '../pages/orders-detail/orders-detail';
 /*------------------------Providers----------------------------------*/
 
 import { StatusBar } from '@ionic-native/status-bar'
@@ -52,6 +55,7 @@ import { SearchService } from '../providers/service/search-service'
 import { Service } from '../providers/service/service'
 import { Values } from '../providers/service/values'
 import { KeysPipe } from '../providers/pipe/pipe'
+import {EndOrdesService} from '../providers/service/endorders'
 //import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { CallNumber } from '@ionic-native/call-number'
 import { EmailComposer } from '@ionic-native/email-composer'
@@ -121,7 +125,11 @@ export function createTranslateLoader(http: HttpClient) {
     ChatPage,
     PagesProductsProvidersPage,
     NewProductPage,
-    CategoryServicePage
+    CategoryServicePage,
+    OrdersPage,
+    EndOrdersPage,
+    OrderDetails,
+    OrdersDetailPage
   ],
   imports: [
     BrowserModule,
@@ -173,7 +181,11 @@ export function createTranslateLoader(http: HttpClient) {
     ChatPage,
     PagesProductsProvidersPage,
     NewProductPage,
-    CategoryServicePage
+    CategoryServicePage,
+    OrdersPage,
+    EndOrdersPage,
+    OrderDetails,
+    OrdersDetailPage
   ],
   providers: [
     FileTransfer,
@@ -201,7 +213,8 @@ export function createTranslateLoader(http: HttpClient) {
     NativeGeocoder,
     BackgroundMode,
     FileTransfer,
-
+    EndOrdesService,
+    // BackgroundModule,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
   schemas: [

@@ -13,6 +13,7 @@ export class Config {
   // url: any = 'http://localhost/hexchange'
   url: any = 'https://dev.digitalfactory.tech/demos/homer'
   // url: any = 'https://hexchange.digitalfactory.tech'
+  urlApi:any = 'https://websockethomer.herokuapp.com/api/v1'
   consumerKey: any = 'ck_462b7613b1f89991924e149f7d7df2a1c37eb71a'
   consumerSecret: any = 'cs_81a58277089318569168ff48defefa83fa740d86'
 

@@ -121,6 +121,14 @@ export class MyApp {
                     this.nav.push(OrderSummary, {id: result.notification.payload.additionalData.order});
                 }
             });
+
+            this.oneSignal.getIds().then(identity => {
+              console.log("agarro id",identity.userId, identity.userId);
+
+              this.values.pushToken = identity.pushToken
+              this.values.userId = identity.userId
+            });
+
             this.oneSignal.endInit();
         }
     }
