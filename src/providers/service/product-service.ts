@@ -8,6 +8,7 @@ import { LoadingController } from 'ionic-angular'
 
 @Injectable()
 export class ProductService {
+  header:any = new Headers();
   data: any
   product: any
   gallery: any
@@ -168,5 +169,47 @@ export class ProductService {
           resolve(data)
         })
     })
+  }
+
+  changestate(data){
+
+    this.header.append('Content-Type', 'application/json');
+    this.http
+    .post(
+      this.config.urlApi + '/orders/changestate',
+      {
+        "order": data.order,
+        "state": data.state,
+        "isCancel":data.isCancel
+      },
+      this.header
+    )
+    .map(res => res.json())
+    .subscribe(
+      data => {
+        return data
+      });
+  }
+
+  sendNotification(data){
+
+    this.header.append('Content-Type', 'application/json');
+    this.http
+    .post(
+      'https://onesignal.com/api/v1/notifications',
+      {
+        "app_id": "8ad1c280-92da-4d39-b49c-cf0a81e0d1fc",
+        "include_player_ids": [`${data.onesignalid}`],
+        "data": {"foo": "bar"},
+        "headings": {"en": `${data.title}`},
+        "contents": {"en": `${data.content}`}
+      },
+      this.header
+    )
+    .map(res => res.json())
+    .subscribe(
+      data => {
+        return data
+      });
   }
 }

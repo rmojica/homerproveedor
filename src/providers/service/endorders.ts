@@ -26,7 +26,7 @@ export class EndOrdesService {
       .post(
         this.config.urlApi + '/orders/endorders',
         {
-          "provider": data.data,
+          "provider": data.provider,
         },
         this.header
       )

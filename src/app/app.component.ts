@@ -33,6 +33,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import { timer } from 'rxjs/observable/timer';
 import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
 import { CategoryServicePage } from '../pages/category-service/category-service';
+import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor';
 
 @Component({
     templateUrl: 'app.html'
@@ -242,6 +243,13 @@ export class MyApp {
     }
     post(id) {
         this.nav.setRoot(Post, id);
+    }
+
+    dashboard(){
+      this.nav.setRoot(DashProveedorPage)
+    }
+    openchat(){
+      this.nav.setRoot(ChatPage)
     }
 
 }

@@ -39,16 +39,9 @@ export class DashProveedorPage {
     this.lng = '';
     this.products = [];
 
-
+    this.socket.connect();
     this.platform.ready().then(() => {
-      // const subscription = this.geolocation.watchPosition()
-      //   .filter((p) => p.coords !== undefined) //Filter Out Errors
-      //   .subscribe(position => {
-      //     this.miLatitude = position.coords.latitude;
-      //     this.miLongitude = position.coords.longitude;
-      //     console.log("miLocation=" + position.coords.latitude + ' ' + position.coords.longitude);
-      //   });
-      const subscription = this.geolocation.watchPosition().subscribe(position => {
+       this.geolocation.watchPosition().subscribe(position => {
         if ((position as Geoposition).coords != undefined) {
           var geoposition = (position as Geoposition);
           this.miLatitude = geoposition.coords.latitude;
@@ -59,9 +52,26 @@ export class DashProveedorPage {
           console.log('Error ' + positionError.code + ': ' + positionError.message);
         }
       });
-    });
 
+
+    });
+    // this.backgroundMode.setDefaults({
+    //   title: "Homer background",
+    //   text: "Ahora esta a la escucha de notificaciones",
+    //   icon:'platforms/android/app/src/res/endmipmap-hdpi/ic_launcher.png',
+    //   color: 'F14F4D', // hex format like 'F14F4D'
+    //   resume: true,
+    //   hidden: false,
+    //   bigText: false
+    // });
+
+    // this.backgroundMode.on('activate').subscribe(() => {
+    //   console.log("backgroundMode Activate");
+    //   this.backgroundMode.disableWebViewOptimizations();
+    // });
   }
+
+
 
   ionViewDidLoad() {
 
@@ -85,7 +95,7 @@ export class DashProveedorPage {
 
       for(let provider of this.homerProviders){
         if(this.values.customerId == provider){
-          this.values.isActive = true;
+          // this.values.isActive = true;
         }
       }
     });
@@ -104,40 +114,32 @@ export class DashProveedorPage {
 
 
   changeToggle(){
-    if(this.values.isActive){
+    console.log(this.values.isActive)
+    // if(!this.values.isActive){
+    //   this.backgroundMode.disable();
+    //   this.values.isActive = false;
+    //   this.socket.emit('adduser',{
+    //     id:this.values.customerId,
+    //     lat: this.miLatitude,
+    //     lng: this.miLongitude,
+    //     products:this.products,
+    //     onesignal:this.values.userId
+    //   });
+    //   // this.backgroundMode.on('deactivate').subscribe(() => {
+    //   // });
+    // }else {
+    //   this.backgroundMode.enable();
+    //   this.socket.connect();
+    //   this.values.isActive = true;
+    //   this.socket.emit('adduser',{
+    //     id:this.values.customerId,
+    //     lat: this.miLatitude,
+    //     lng: this.miLongitude,
+    //     products:this.products,
+    //     onesignal:this.values.userId
+    //   });
 
-      // this.backgroundMode.on('deactivate').subscribe(() => {
-      //   console.log("backgroundMode deactivate");
-      // });
-
-      // this.backgroundMode.on('activate').subscribe(() => {
-      //   this.backgroundMode.disableWebViewOptimizations();
-      //   console.log('backgroundMode activated');
-      // });
-
-      // this.backgroundMode.setDefaults({ silent: true });
-      // this.backgroundMode.enable();
-
-
-      console.log('interval start at', new Date().toISOString());
-
-      console.log('waiting first response ....');
-
-
-        this.socket.connect();
-        this.socket.emit('adduser',{
-          id:this.values.customerId,
-          lat: this.miLatitude,
-          lng: this.miLongitude,
-          products:this.products,
-          onesignal:this.values.userId
-        });
-        this.values.isActive = true;
-    }else{
-      this.backgroundMode.disable();
-        this.socket.disconnect();
-        this.values.isActive = false;
-    }
+    // }
   }
 
   end_services() {

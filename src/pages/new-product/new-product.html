@@ -109,12 +109,12 @@
 
           <ion-item>
             <ion-label>Hora Inicia</ion-label>
-            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="from" name="iniHour"></ion-datetime>
+            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="from" name="iniHour" minuteValues="0,30"></ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label>Hora Finaliza</ion-label>
-            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="to" name="endHour"></ion-datetime>
+            <ion-datetime displayFormat="HH:mm" display-timezone="utc" [(ngModel)]="to" name="endHour" minuteValues="0,30"></ion-datetime>
           </ion-item>
           <ion-item>
             <button ion-button (click)="addAvailability()">
@@ -252,7 +252,7 @@
       <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="updateProduct()">Update Servicio</button>
     </div>
     <div *ngIf="!navParams.data.id" style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="addProduct()">Guardar Servicio</button>
+      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="sendProduct()">Guardar Servicio</button>
     </div>
   </div>
 </ion-content>

@@ -43,13 +43,13 @@ export class AccountLogin {
     this.buttonText = 'Login'
     this.service.getNonce().then(results => (this.nonce = results))
     this.countries = {}
-   
+
   }
 
   gohome(){
     this.nav.parent.select(0);
   }
-  
+
   login() {
     if (this.validateForm()) {
       this.disableSubmit = true
@@ -79,14 +79,16 @@ export class AccountLogin {
           this.service.subscribeNotification(data)
         })
 
-        console.log(results)
-        if(results.data.subscription.length == 0){
-          console.log('entro no subscription:',this.values.isLoggedIn);
-            this.nav.setRoot(test);
-        }else{
-          console.log('entro subscription:',this.values.isLoggedIn);
-          this.nav.setRoot(DashProveedorPage);
-        }
+        this.nav.setRoot(DashProveedorPage);
+
+        // console.log(results)
+        // if(results.data.subscription.length == 0){
+        //   console.log('entro no subscription:',this.values.isLoggedIn);
+        //     this.nav.setRoot(test);
+        // }else{
+        //   console.log('entro subscription:',this.values.isLoggedIn);
+        //   this.nav.setRoot(DashProveedorPage);
+        // }
     }
     else if (results.errors) {
       if(results.errors.invalid_email)

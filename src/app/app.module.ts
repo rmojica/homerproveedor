@@ -37,6 +37,8 @@ import {CategoryServicePage} from '../pages/category-service/category-service';
 import {OrdersPage} from '../pages/orders/orders';
 import {EndOrdersPage} from '../pages/end-orders/end-orders';
 import {OrdersDetailPage} from '../pages/orders-detail/orders-detail';
+
+import {ModalPage} from '../pages/modal/modal'
 /*------------------------Providers----------------------------------*/
 
 import { StatusBar } from '@ionic-native/status-bar'
@@ -71,6 +73,7 @@ import { HTTP } from '@ionic-native/http'
 import { CalendarModule } from 'ion2-calendar'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+
 
 // import {ImagePicker} from '@ionic-native/image-picker';
 
@@ -129,7 +132,8 @@ export function createTranslateLoader(http: HttpClient) {
     OrdersPage,
     EndOrdersPage,
     OrderDetails,
-    OrdersDetailPage
+    OrdersDetailPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -185,7 +189,8 @@ export function createTranslateLoader(http: HttpClient) {
     OrdersPage,
     EndOrdersPage,
     OrderDetails,
-    OrdersDetailPage
+    OrdersDetailPage,
+    ModalPage
   ],
   providers: [
     FileTransfer,
@@ -214,7 +219,7 @@ export function createTranslateLoader(http: HttpClient) {
     BackgroundMode,
     FileTransfer,
     EndOrdesService,
-    // BackgroundModule,
+    BackgroundMode,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
   schemas: [

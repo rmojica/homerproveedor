@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
   templateUrl: 'end-orders.html',
 })
 export class EndOrdersPage {
-  orders:any={}
+  orders = []
   constructor(
     public values:Values,
       public navCtrl: NavController,
@@ -23,24 +23,18 @@ export class EndOrdersPage {
       public endOrdersServices:EndOrdesService
     )
     {
-      this.getOrdenes().subscribe((data:any) =>{
-        this.orders= data.map(r => {return r})
-        console.log(this.orders);
-      })
 
+    }
+
+    ionViewDidEnter(){
+      this.endOrdersServices.getEndOrders({provider:this.values.customerId}).then((response:any) => {
+          for(let orders of response.data){
+            this.orders.push(orders)
+          }
+      });
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EndOrdersPage');
   }
-
-  getOrdenes(){
-    let observable = new Observable(observe =>{
-      this.endOrdersServices.getEndOrders({data:this.values.customerId}).then((result:any) => {
-        observe.next(result)
-      })
-    })
-    return observable
-  }
-
 }

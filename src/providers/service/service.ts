@@ -377,6 +377,25 @@ export class Service {
       });
   }
 
+  getMessage(data){
+    return new Promise(resolve => {
+      this.header.append('Content-Type', 'application/json');
+      this.http
+      .post(
+        this.config.urlApi + '/message/getmessages',
+        {
+          'roomName': data.roomName
+        },
+        this.header
+      )
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          resolve(data);
+        });
+    })
+  }
+
   updateProductWithVendor(post_id){
     let params = {
       vendor: this.values.customerId,

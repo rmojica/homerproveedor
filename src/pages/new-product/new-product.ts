@@ -5,7 +5,7 @@ import {Values} from '../../providers/service/values';
 import { Config } from '../../providers/service/config';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 // import { ImagePicker } from '@ionic-native/image-picker';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+// import { Camera, CameraOptions } from '@ionic-native/camera';
 import { PagesProductsProvidersPage } from '../pages-products-providers/pages-products-providers';
 // interface Day {
 //   name:string;
@@ -123,14 +123,14 @@ export class NewProductPage {
     display_cost:string;
     duration_type:string = "fixed";
     duration_unit:string = "hour";
-    duration: number = 1;
-    enable_range_picker:boolean = false;
+    duration: number = 2;
+    enable_range_picker:boolean = true;
     first_block_time:string = "";
     has_person_cost_multiplier:boolean = false;
     has_person_qty_multiplier:boolean = false;
     has_person_types:boolean = false;
     has_persons: boolean = false;
-    has_resources:boolean = true;
+    has_resources:boolean = false;
     max_date_value:number = 6;
     max_date_unit: string = "month";
     max_duration:number = 1;
@@ -189,7 +189,8 @@ export class NewProductPage {
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
     this.categories = [];
-    this.service.getCategories(1);navParams.data.availability
+    this.service.getCategories(1);
+    navParams.data.availability
     this.getCategory = this.service.mainCategories;
 
     console.log(navParams.data);
@@ -342,7 +343,6 @@ export class NewProductPage {
   }
 
   sendProduct(){
-   console.log(this.availability);
     this.data = {
       name:this.name,
       slug:this.slug,
