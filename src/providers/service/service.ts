@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Http, RequestOptions } from '@angular/http'
 import { LoadingController } from 'ionic-angular'
 import { Config } from './config'
-import { Values } from './values'
+import { Values } from './values';
 import { URLSearchParams } from '@angular/http'
 import { NativeStorage } from '@ionic-native/native-storage'
 import 'rxjs/add/operator/map'
@@ -1118,6 +1118,28 @@ export class Service {
           resolve(this.includeProduct)
         })
     })
+  }
+
+  registerProvider(data:any){
+    return new Promise(resolve => {
+      this.header.append('Content-Type', 'application/json');
+      this.http
+      .post(
+        this.config.urlApi + '/provider/register',
+        {
+          "id":data.id,
+          "lat": data.lat,
+          "lng": data.lng,
+          "products":data.products,
+          "onesignal": data.onesignal
+        },
+        this.header
+      ).map(res => res.json())
+      .subscribe(data => {
+        resolve(data)
+      })
+    });
+
   }
 
 }

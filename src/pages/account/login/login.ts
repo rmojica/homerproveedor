@@ -5,7 +5,7 @@ import { Functions } from '../../../providers/service/functions'
 import { Values } from '../../../providers/service/values'
 import { AccountForgotten } from '../forgotten/forgotten'
 import { OneSignal } from '@ionic-native/onesignal'
-
+import { CategoryService } from '../../../providers/service/category-service'
 // import { TabsPage } from '../../tabs/tabs'
 import { test } from '../../account/test/test'
 import {DashProveedorPage} from '../../dash-proveedor/dash-proveedor'
@@ -29,7 +29,7 @@ export class AccountLogin {
 
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
-
+  products:any;
   constructor(
     public nav: NavController,
     public service: Service,
@@ -38,13 +38,16 @@ export class AccountLogin {
     public platform: Platform,
     private oneSignal: OneSignal,
     public alert: AlertController,
+    public categoryService: CategoryService
   ) {
     this.loginData = {}
     this.buttonText = 'Login'
     this.service.getNonce().then(results => (this.nonce = results))
     this.countries = {}
+    this.products = []
 
   }
+
 
   gohome(){
     this.nav.parent.select(0);
@@ -77,7 +80,30 @@ export class AccountLogin {
       if (this.platform.is('cordova'))
         this.oneSignal.getIds().then((data: any) => {
           this.service.subscribeNotification(data)
-        })
+      })
+
+      // this.categoryService.getProductsByIdVendor2()
+      // .then((result:any) => {
+      //   if(result.length > 0){
+      //     for(let i=0; i<result.length; i++){
+      //       this.products.push(result[i])
+      //     }
+      //   }
+      // });
+
+
+
+      // this.service.registerProvider({
+      //   id:this.values.customerId,
+      //   lat: 'kdjlakda',
+      //   lng: 'ksajldkas',
+      //   products:this.products,
+      //   onesignal:this.values.userId
+      // })
+      // .then(results => console.log("resultado del registro del proveedor",results))
+      // .catch(error => console.log(error));
+
+
 
         this.nav.setRoot(DashProveedorPage);
 

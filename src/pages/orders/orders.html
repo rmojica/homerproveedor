@@ -30,7 +30,7 @@
         </h2>
       </div>
       <h2 style="text-align: right;">
-        <b>{{orders.status}}</b>
+        <b style="text-transform: uppercase;">{{orders.status}}</b>
       </h2>
       <h2 style="text-align: center; font-size: 20px;">
         <b>{{orders.productName}}</b>
@@ -51,10 +51,13 @@
 
 
       <div class="row-button">
-        <button (click)="changestate(orders.id,orders.status, orders.onesignal)"  [attr.disabled]= "orders.status === 'SOLICITADO' ? true:null" text-center ion-button icon-left clear   icon-only class="has-icon icon-only" small text-uppercase >
-          {{orders.status}}
+        <button (click)="changestate(orders.id,orders.status, orders.onesignal)"  [attr.disabled]= "orders.status === 'SOLICITADO' ? true:null" [attr.hidden]= "orders.status === 'finalizado' ? true:null" text-center ion-button icon-left clear   icon-only class="has-icon icon-only" small text-uppercase >
+          <span *ngIf="orders.status ===  'solicitado'">Aceptar</span>
+          <span *ngIf="orders.status ===  'aceptado'">He llegado</span>
+          <span *ngIf="orders.status ===  'he llegado'">Iniciar</span>
+          <span *ngIf="orders.status ===  'iniciado'">Finalizar</span>
         </button>
-        <button (click)="changestatecancel(orders.id, orders.onesignal)" text-center ion-button icon-left clear color="button-color" icon-only class="has-icon icon-only" small text-uppercase >
+        <button (click)="changestatecancel(orders.id, orders.onesignal)" [attr.hidden]= "orders.status === 'finalizado' ? true:null" text-center ion-button icon-left clear color="button-color" icon-only class="has-icon icon-only" small text-uppercase >
           Cancelar
         </button>
       </div>

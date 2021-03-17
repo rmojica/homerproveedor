@@ -14,6 +14,7 @@ import { OrdersPage } from '../orders/orders';
 import { EndOrdersPage } from '../end-orders/end-orders';
 import { Post } from '../post/post';
 
+
 /**
  * Generated class for the DashProveedorPage page.
  *
@@ -33,7 +34,7 @@ export class DashProveedorPage {
   miLongitude = 0;
   filter: any;
   products:any;
-  constructor(public service: CategoryService, private nativeGeocoder: NativeGeocoder, private platform: Platform, private backgroundMode: BackgroundMode, private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values, private geolocation: Geolocation) {
+  constructor(public serv:Service, public service: CategoryService, private nativeGeocoder: NativeGeocoder, private platform: Platform, private backgroundMode: BackgroundMode, private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values, private geolocation: Geolocation) {
     this.filter = {}
     this.lat = '';
     this.lng = '';
@@ -69,6 +70,16 @@ export class DashProveedorPage {
     //   console.log("backgroundMode Activate");
     //   this.backgroundMode.disableWebViewOptimizations();
     // });
+
+    // this.serv.registerProvider({
+    //   id:this.values.customerId,
+    //   lat: 'kdjlakda',
+    //   lng: 'ksajldkas',
+    //   products:this.products,
+    //   onesignal:this.values.userId
+    // })
+    // .then(results => console.log("resultado del registro del proveedor",results))
+    // .catch(error => console.log(error));
   }
 
 
@@ -115,31 +126,31 @@ export class DashProveedorPage {
 
   changeToggle(){
     console.log(this.values.isActive)
-    // if(!this.values.isActive){
-    //   this.backgroundMode.disable();
-    //   this.values.isActive = false;
-    //   this.socket.emit('adduser',{
-    //     id:this.values.customerId,
-    //     lat: this.miLatitude,
-    //     lng: this.miLongitude,
-    //     products:this.products,
-    //     onesignal:this.values.userId
-    //   });
-    //   // this.backgroundMode.on('deactivate').subscribe(() => {
-    //   // });
-    // }else {
-    //   this.backgroundMode.enable();
-    //   this.socket.connect();
-    //   this.values.isActive = true;
-    //   this.socket.emit('adduser',{
-    //     id:this.values.customerId,
-    //     lat: this.miLatitude,
-    //     lng: this.miLongitude,
-    //     products:this.products,
-    //     onesignal:this.values.userId
-    //   });
+    if(!this.values.isActive){
+      this.backgroundMode.disable();
+      this.values.isActive = false;
+      this.socket.emit('adduser',{
+        id:this.values.customerId,
+        lat: this.miLatitude,
+        lng: this.miLongitude,
+        products:this.products,
+        onesignal:this.values.userId
+      });
+      // this.backgroundMode.on('deactivate').subscribe(() => {
+      // });
+    }else {
+      this.backgroundMode.enable();
+      this.socket.connect();
+      this.values.isActive = true;
+      this.socket.emit('adduser',{
+        id:this.values.customerId,
+        lat: this.miLatitude,
+        lng: this.miLongitude,
+        products:this.products,
+        onesignal:this.values.userId
+      });
 
-    // }
+    }
   }
 
   end_services() {

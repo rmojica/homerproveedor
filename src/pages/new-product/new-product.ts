@@ -123,7 +123,7 @@ export class NewProductPage {
     display_cost:string;
     duration_type:string = "fixed";
     duration_unit:string = "hour";
-    duration: number = 2;
+    duration: number = 1;
     enable_range_picker:boolean = true;
     first_block_time:string = "";
     has_person_cost_multiplier:boolean = false;
