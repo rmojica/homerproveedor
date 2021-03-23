@@ -17,14 +17,14 @@
 </ion-header>
 <ion-content>
   <div class="sub-header">
-    <h1>Proximos Servicios</h1>
+    <h1>Próximos Servicios</h1>
   </div>
   <div class="card" *ngFor="let orders of data">
     <div class="card-body">
       <div class="row-h2">
         <h2>
           <b>Booking # {{orders.id}}</b>
-        </h2>
+        </h2>**a
         <h2>
          <b> {{orders.date | date: 'fullDate' }}, {{orders.hour}} </b>
         </h2>
@@ -32,14 +32,14 @@
       <h2 style="text-align: right;">
         <b style="text-transform: uppercase;">{{orders.status}}</b>
       </h2>
-      <h2 style="text-align: center; font-size: 20px;">
-        <b>{{orders.productName}}</b>
-      </h2>
-      <h2 style="text-align: left;">
-        <ul>
-          <li><b>{{orders.location}}</b></li>
-        </ul>
-      </h2>
+      <div class="rectangle">
+        <h2 style="text-align: center; font-size: 20px;">
+          <b>{{orders.productName}}</b>
+        </h2>
+        <h2 style="text-align: left;">
+          <b>{{orders.location}}</b>
+        </h2>
+      </div>
       <h2 style="text-align: center;" *ngIf="orders.isCancel != '' ">
         <b>{{orders.isCancel}}</b>
       </h2>

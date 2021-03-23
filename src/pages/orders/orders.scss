@@ -3,36 +3,53 @@ page-orders {
     position: relative;
     height: 100%;
     width: 100%;
+    background:#fafbff!important;
 }
 .sub-header{
     width: 100%;
     padding: 20px;
-    background-color: #76a7ab;
+    background-color: #fafbff!important;
     text-align: center;
     margin: 0;
     h1{
-       color: #fff;
+       color: #000;
        font-family: Arial, Helvetica, sans-serif;
        font-weight: 600;
        font-size: 2rem;
     }
 }
 .card{
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
-  margin-top:20px;
+  margin-top:10px;
   margin-bottom: 10px;
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.3);
+  // border: 1px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+  // box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.3);
+  padding: 10px;
+  background-color: #fff;
   .card-body{
-      background-color: #fff;
       padding: 10px;
       height: auto;
       overflow: hidden;
 
+      .rectangle{
+        // position: absolute;
+        width: 297px;
+        height: 98px;
+        left: 67px;
+        top: 323px;
+        opacity: 0.3;
+        color: #000!important;
+        background: #E5E5E5;
+        border-radius: 20px 0px 0px 0px;
+      }
+
       h2{
           b{
               font-family: Arial, Helvetica, sans-serif;
-              font-weight: 600;
+              font-weight: 700;
           }
           font-size: 13px;
 

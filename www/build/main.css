@@ -46585,17 +46585,20 @@ ion-navbar.toolbar {
 }
 
 * {
-  font-family: 'HelveticaLt';
+  font-family: "HelveticaLt";
   cursor: url("https://ionicframework.com/img/finger.png"), auto;
 }
 
-.rtl .item-ios ion-icon[item-left], .rtl .item-ios ion-icon[item-right] {
+.rtl .item-ios ion-icon[item-left],
+.rtl .item-ios ion-icon[item-right] {
   margin-top: 9px;
   margin-bottom: 8px;
   margin-left: 12px;
 }
 
-.rtl .item-ios[detail-push] .item-inner, .rtl button.item-ios:not([detail-none]) .item-inner, .rtl a.item-ios:not([detail-none]) .item-inner {
+.rtl .item-ios[detail-push] .item-inner,
+.rtl button.item-ios:not([detail-none]) .item-inner,
+.rtl a.item-ios:not([detail-none]) .item-inner {
   background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%…><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
   padding: 0;
   background-repeat: no-repeat;
@@ -46636,25 +46639,30 @@ ion-navbar.toolbar {
   background-color: #76A7Ab;
 }
 
-.alert-ios .alert-button, .alert-md .alert-button {
+.alert-ios .alert-button,
+.alert-md .alert-button {
   color: #76A7Ab;
 }
 
-.alert-ios [aria-checked=true] .alert-radio-label, .alert-md [aria-checked=true] .alert-radio-label {
+.alert-ios [aria-checked="true"] .alert-radio-label,
+.alert-md [aria-checked="true"] .alert-radio-label {
   color: #76A7Ab;
 }
 
-.alert-ios [aria-checked=true] .alert-radio-inner, .alert-md [aria-checked=true] .alert-radio-inner {
+.alert-ios [aria-checked="true"] .alert-radio-inner,
+.alert-md [aria-checked="true"] .alert-radio-inner {
   border-color: #76A7Ab;
 }
 
-.alert-ios .alert-title, .alert-md .alert-title {
+.alert-ios .alert-title,
+.alert-md .alert-title {
   font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.alert-ios .alert-radio-label, .alert-md .alert-radio-label {
+.alert-ios .alert-radio-label,
+.alert-md .alert-radio-label {
   font-size: 18px;
 }
 
@@ -46686,11 +46694,13 @@ ion-navbar.toolbar {
   white-space: pre-line;
 }
 
-.toggle-md .toggle-checked .toggle-inner, .toggle-ios .toggle-checked .toggle-inner {
+.toggle-md .toggle-checked .toggle-inner,
+.toggle-ios .toggle-checked .toggle-inner {
   background-color: #76A7Ab;
 }
 
-.toggle-md .toggle-checked, .toggle-ios .toggle-checked {
+.toggle-md .toggle-checked,
+.toggle-ios .toggle-checked {
   background-color: #fff;
 }
 
@@ -46753,8 +46763,22 @@ a {
   padding-top: 20px;
 }
 
+.sidemenugrad::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+}
+
 .sidemenugrad {
-  background-color: #fff;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  background-image: url("../../../assets/image/background-menu.png");
+  background-size: contain;
   margin-top: 120px;
 }
 
@@ -46771,7 +46795,8 @@ a {
   margin: 0px 0 16px 20px;
 }
 
-.sidemenugrad .menu-items .item > ion-icon, .sidemenugrad .menu-items .item-inner > ion-icon {
+.sidemenugrad .menu-items .item > ion-icon,
+.sidemenugrad .menu-items .item-inner > ion-icon {
   font-size: 2.8rem;
 }
 
@@ -46801,7 +46826,8 @@ a {
   font-size: 17px;
 }
 
-.sidemenugrad .item-divider .item > ion-icon, .sidemenugrad .item-divider .item-inner > ion-icon {
+.sidemenugrad .item-divider .item > ion-icon,
+.sidemenugrad .item-divider .item-inner > ion-icon {
   font-size: 2.8rem;
 }
 
@@ -46887,8 +46913,9 @@ ion-icon[class*="custom-spades"] {
   color: white;
 }
 
-.toolbar-ios-header .toolbar-background-ios, .toolbar-md-header .toolbar-background-md {
-  background: #76A7Ab;
+.toolbar-ios-header .toolbar-background-ios,
+.toolbar-md-header .toolbar-background-md {
+  background: #76a7ab;
 }
 
 .menu-toolbar .profile-image img {
@@ -47484,6 +47511,10 @@ ion-chip {
 
 .alert-md .alert-button {
   margin: 0;
+}
+
+ion-header {
+  background-color: transparent !important;
 }
 
 .order-details ion-item {
@@ -49601,34 +49632,60 @@ page-dash-proveedor .button-dashboard {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
   margin-top: 10px;
   width: 100%;
   text-align: center;
+  margin-bottom: 100px;
 }
 
-page-dash-proveedor .button-dashboard div {
-  width: 50%;
-  height: 15vh;
-  margin-left: 8px;
+page-dash-proveedor .button-dashboard div.last-services {
+  width: 40%;
+  height: 213px;
+  border-radius: 15%;
+  -webkit-box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-page-dash-proveedor .button-dashboard div a {
+page-dash-proveedor .button-dashboard div.last-services a {
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
 }
 
-page-dash-proveedor .button-dashboard div a img {
-  width: 60%;
-  background: #76a7ab;
+page-dash-proveedor .button-dashboard div.last-services a img {
+  width: 80%;
+  background: #ffff;
   padding: 10px;
   border-radius: 100%;
 }
 
-page-dash-proveedor .button-dashboard div p {
+page-dash-proveedor .button-dashboard div.last-services p {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+page-dash-proveedor .button-dashboard div.proscess-services {
+  width: 40%;
+  height: 213px;
+  margin-left: 60px;
+  border-radius: 15%;
+  -webkit-box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+page-dash-proveedor .button-dashboard div.proscess-services a {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+page-dash-proveedor .button-dashboard div.proscess-services a img {
+  width: 80%;
+  background: #ffff;
+  padding: 10px;
+  border-radius: 100%;
+}
+
+page-dash-proveedor .button-dashboard div.proscess-services p {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
@@ -49645,13 +49702,15 @@ page-dash-proveedor .card {
 }
 
 page-dash-proveedor .card .header {
-  height: 200px;
-  background-color: #76A7Ab;
+  height: 250px;
+  background-image: url("../../../assets/image/top-dashboard.png") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 page-dash-proveedor .card .header .avatar {
-  width: 21%;
-  height: 155px;
+  width: 25%;
+  height: 165px;
   position: relative;
   margin: 0 auto;
 }
@@ -49660,19 +49719,19 @@ page-dash-proveedor .card .header .avatar img {
   display: block;
   border-radius: 50%;
   position: absolute;
-  bottom: calc(-1*(80px + 4px));
-  border: 8px solid #76A7Ab;
+  bottom: calc(-1 * (130px + 4px));
+  border: 8px solid #ffff;
 }
 
 page-dash-proveedor .card-body {
   background-color: #ffffff;
   padding: 30px;
-  height: 200px;
+  height: calc(38vh - (20px + 100px));
   overflow: hidden;
 }
 
 page-dash-proveedor .card-body .user-meta {
-  padding-top: 40px;
+  padding-top: 10px;
   text-align: center;
 }
 
@@ -49696,6 +49755,44 @@ page-dash-proveedor .card-body .user-meta .playername {
 }
 
 page-dash-proveedor .card-body .user-meta .country {
+  font-size: 90%;
+  color: #949ea6;
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+
+page-dash-proveedor .card-body2 {
+  background-color: #ffffff;
+  padding: 30px;
+  height: calc(50vh - (20px + 100px));
+  overflow: hidden;
+}
+
+page-dash-proveedor .card-body2 .user-meta {
+  padding-top: 10px;
+  text-align: center;
+}
+
+page-dash-proveedor .card-body2 .user-meta h3 {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .card-body2 .user-meta h5 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .card-body2 .user-meta .label {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+page-dash-proveedor .card-body2 .user-meta .playername {
+  font-size: 24px;
+  font-weight: 600;
+  color: #303940;
+}
+
+page-dash-proveedor .card-body2 .user-meta .country {
   font-size: 90%;
   color: #949ea6;
   text-transform: uppercase;
@@ -51491,37 +51588,51 @@ page-orders ion-content {
   position: relative;
   height: 100%;
   width: 100%;
+  background: #fafbff !important;
 }
 
 page-orders .sub-header {
   width: 100%;
   padding: 20px;
-  background-color: #76a7ab;
+  background-color: #fafbff !important;
   text-align: center;
   margin: 0;
 }
 
 page-orders .sub-header h1 {
-  color: #fff;
+  color: #000;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 2rem;
 }
 
 page-orders .card {
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
-  -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+  padding: 10px;
+  background-color: #fff;
 }
 
 page-orders .card .card-body {
-  background-color: #fff;
   padding: 10px;
   height: auto;
   overflow: hidden;
+}
+
+page-orders .card .card-body .rectangle {
+  width: 297px;
+  height: 98px;
+  left: 67px;
+  top: 323px;
+  opacity: 0.3;
+  color: #000 !important;
+  background: #E5E5E5;
+  border-radius: 20px 0px 0px 0px;
 }
 
 page-orders .card .card-body h2 {
@@ -51530,7 +51641,7 @@ page-orders .card .card-body h2 {
 
 page-orders .card .card-body h2 b {
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 page-orders .card .card-body h2 ul {

@@ -1,4 +1,5 @@
 .account-login {
+
     .margin {
         margin: 10px;
     }
@@ -112,7 +113,7 @@
         width: 60%;
         margin: 0 auto;
      }
-     
+
      .button{
         text-transform: capitalize!important;
         font-size: 15px;
@@ -132,4 +133,11 @@
 .alert-md .alert-button {
     margin: 0;
 }
+// .toolbar-title-ios{
+//   display: none;
+// }
+ion-header{
+  background-color: transparent!important;
+}
+
 

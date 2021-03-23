@@ -1,8 +1,9 @@
 <!-- Header -->
-<ion-header>
+<ion-header class="header">
   <ion-toolbar color="header">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <!-- <ion-icon name="menu"></ion-icon> -->
+      <img class="logo-login" style="width: 70%;" src="{{values.iconMenu}}">
     </button>
     <ion-title>
       <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
@@ -11,6 +12,7 @@
 </ion-header>
 <ion-content class="account-login">
     <img class="header-login" src="{{values.headerLogin}}">
+    <!-- <img class="header-login" src="{{values.headerLogin2}}"> -->
 
   <div class="margin">
     <div>

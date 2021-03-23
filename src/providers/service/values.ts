@@ -21,19 +21,24 @@ export class Values {
   cartItem: any;
   cartNonce: any;
   avatar: any = "assets/image/logo.png";
+  logoHomer: any = "assets/image/logoHomer.png"
   logoMenu: any = "assets/image/logo-fondo-blanco.png";
+  iconMenu: any = "assets/image/menu.png";
   logoLogin: any = "assets/image/logoLogin.png";
+  logoLogin2: any = "assets/image/logoLogin2.png";
   userIcon: any = "assets/image/user.png"
   lastIcon:any = "assets/image/last_service.png";
   nextIcon:any = "assets/image/next_service.png";
   oclockIcon:any = "assets/image/service-pending.png"
-
   slider: any = "assets/image/bghome.png";
   headerLogin: any = "assets/image/header-login.png";
+  headerLogin2: any = "assets/image/header-login2.png";
   camarero:any = "assets/image/camarero.png";
   cuido:any = "assets/image/cuido.png";
   limpieza:any = "assets/image/limpieza.png";
   planchado:any = "assets/image/planchado.png";
+  group:any = "assets/image/group.png"
+  hourGlass:any = "assets/image/Hourglass.png";
   currency: any = "USD";
   data: any;
   dir: any = 'left';
