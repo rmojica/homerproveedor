@@ -2,7 +2,7 @@
   <div class="splashSpinner" style="background: url({{values.logoMenu}});"></div>
 </div>
 
-<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">
+<ion-menu type="overlay" [content]="content" side="{{this.values?.settings?.app_dir}}">
   <div class="menu-toolbar">
     <ion-toolbar color="header">
       <!-- <div class="profile-image">
@@ -12,11 +12,11 @@
         </div>
       </div> -->
 
-      <ion-row>
-        <ion-col col-5 class="profile-image">
-          <img src="{{values.logoMenu}}">
+      <ion-row class="user-auth">
+        <ion-col col-5 class="profile-image" >
+          <img src="{{values.homerCircle}}">
         </ion-col>
-        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">
+        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0; ">
           <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">
           Homer Proveedor
           </strong>
@@ -137,17 +137,17 @@
           </ion-icon>{{"Categorias de servicios" | translate}}
         </ion-item>
         <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">
-          <ion-icon item-left name="reorder">
+          <ion-icon item-left name="people">
           </ion-icon>{{"Customer Orders" | translate}}
         </ion-item>
         <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">
           <ion-icon item-left ios="ios-calendar" md="md-calendar">
           </ion-icon>{{"Bookings" | translate}}
         </ion-item>
-        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">
+        <!-- <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">
           <ion-icon item-left name="cart">
           </ion-icon>Membresia
-        </ion-item>
+        </ion-item> -->
 
         <ion-item tappable menuClose
         (click)="support()">

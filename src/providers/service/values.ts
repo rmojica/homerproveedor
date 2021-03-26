@@ -21,11 +21,15 @@ export class Values {
   cartItem: any;
   cartNonce: any;
   avatar: any = "assets/image/logo.png";
+  pen: any = "assets/image/logo.png";
+  cancel: any = "assets/image/cancel.png";
+  homerCircle: any = "assets/image/homer-circle.png";
   logoHomer: any = "assets/image/logoHomer.png"
   logoMenu: any = "assets/image/logo-fondo-blanco.png";
   iconMenu: any = "assets/image/menu.png";
   logoLogin: any = "assets/image/logoLogin.png";
   logoLogin2: any = "assets/image/logoLogin2.png";
+  homerLogoP: any = "assets/image/homerLogoP.png";
   userIcon: any = "assets/image/user.png"
   lastIcon:any = "assets/image/last_service.png";
   nextIcon:any = "assets/image/next_service.png";

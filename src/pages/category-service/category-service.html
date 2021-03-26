@@ -1,20 +1,23 @@
-<ion-header class="settings-header">
-  <ion-navbar color="header">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
-      <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->
-      <ion-title >
-          <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
-      </ion-title>
-  </ion-navbar>
+<ion-header style="background-color: #72A9AE;">
+  <ion-toolbar color="header">
+    <button ion-button menuToggle >
+      <ion-icon >
+        <img class="logo-login" src="{{values.iconMenu}}">
+      </ion-icon>
+    </button>
+    <ion-title class="logo-title">
+      <div>
+        <img width="200" src="{{values.homerLogoP}}" />
+      </div>
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
-<ion-content class="support" padding [content]="content">
+<ion-content  padding >
   <div class="sub-header">
     <h1>Mis Servicios</h1>
   </div>
-  <ion-list *ngIf="service.categories" style="margin-top: 100px;">
-    <ion-item *ngFor="let item of service.mainCategories" style="margin-top:10px; border-radius: 5px;" class="card2">
+  <ion-list *ngIf="service.categories">
+    <ion-item *ngFor="let item of service.mainCategories"  class="card2">
       <ion-thumbnail item-left>
         <img src="{{item.image.src}}" />
       </ion-thumbnail>
@@ -26,9 +29,7 @@
 
     </ion-item>
   </ion-list>
-  <div>
-    <div style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="updateCategory()">Actualiza Tus Servicios</button>
-    </div>
+  <div class="row-btn">
+    <button ion-button  (click)="updateCategory()">Actualiza Tus Servicios</button>
   </div>
 </ion-content>

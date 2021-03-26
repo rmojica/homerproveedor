@@ -1,23 +1,22 @@
 <!-- Header -->
-<ion-header class="header">
+<ion-header class="header" no-shadow no-border>
   <ion-toolbar color="header">
     <button ion-button menuToggle>
-      <!-- <ion-icon name="menu"></ion-icon> -->
-      <img class="logo-login" style="width: 70%;" src="{{values.iconMenu}}">
+      <ion-icon>
+        <img class="logo-login" style="width: 60%;" src="{{values.iconMenu}}">
+      </ion-icon>
     </button>
-    <ion-title>
-      <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
-    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="account-login">
-    <img class="header-login" src="{{values.headerLogin}}">
-    <!-- <img class="header-login" src="{{values.headerLogin2}}"> -->
+    <!-- <img class="header-login" src="{{values.headerLogin}}"> -->
+    <img class="logo" src="{{values.logoLogin2}}" width="80px">
+    <img class="header-login" src="{{values.headerLogin2}}">
 
   <div class="margin">
-    <div>
+    <!-- <div>
       <img class="logo-login" style="width: 70%;" src="{{values.logoLogin}}">
-    </div>
+    </div> -->
     <form #f="ngForm" class="login">
       <ion-list>
         <ion-item>
@@ -38,17 +37,17 @@
           <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
         </ion-item>
 
+        <button ion-button clear color="button-color" type="submit" class="forgot-pass button button-block button-clear"
+          text-uppercase (click)="forgotten()">{{"Forgot Password" | translate}} ?
+        </button>
+
       </ion-list>
       <div class="margin">
         <div class="button-center">
           <button ion-button block color="button-color" type="submit" class="button button-block button-default"
-            text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{"LogIn" | translate}}
+            text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{"Iniciar Sesión" | translate}}
           </button>
         </div>
-        <br>
-        <button ion-button clear color="button-color" type="submit" class="forgot-pass button button-block button-clear"
-          text-uppercase (click)="forgotten()">{{"Forgot Password" | translate}} ?
-        </button>
       </div>
     </form>
     <br />

@@ -151,7 +151,7 @@ export class OrdersPage {
   }
 
   openchat(order){
-    this.navCtrl.setRoot(ChatPage, {order:order})
+    this.navCtrl.push(ChatPage, {order:order})
   }
 
 

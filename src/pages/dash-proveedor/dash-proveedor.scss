@@ -98,14 +98,12 @@ page-dash-proveedor {
     }
   }
   .card-body {
-
     background-color: #ffffff;
     padding: 30px;
     height: calc(38vh - (20px + 100px));
     // height: 200px;
     overflow: hidden;
     .user-meta {
-
       padding-top: 10px;
       text-align: center;
       h3 {
@@ -134,14 +132,12 @@ page-dash-proveedor {
   }
 
   .card-body2 {
-
     background-color: #ffffff;
     padding: 30px;
     height: calc(50vh - (20px + 100px));
     // height: 200px;
     overflow: hidden;
     .user-meta {
-
       padding-top: 10px;
       text-align: center;
       h3 {
@@ -169,3 +165,41 @@ page-dash-proveedor {
     }
   }
 }
+.logo-title  {
+  width: 100%;
+}
+
+.logo-title div{
+  width:80%;
+  margin: 0 auto;
+}
+.logo-title div img{
+  width: 127px;
+}
+
+
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+  margin:0!important;
+  // width: 20px!important;
+  padding: 10px!important;
+
+}
+
+.bar-button-default-ios, .bar-button-clear-ios-default, .bar-button-ios-default{
+  margin:0!important;
+  // width: 20px!important;
+  padding: 10px!important;
+
+}
+
+.logo-login{
+  width: 60%!important;
+}
+.toolbar-ios-header .toolbar-background-ios,
+.toolbar-md-header .toolbar-background-md {
+  // background: #72a9ae!important;ion
+  // border: 0 !important;
+}
+
+

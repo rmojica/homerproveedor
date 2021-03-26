@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-shadow no-border>
   <ion-navbar color="header">
     <ion-title *ngIf="product?.product?.title">
       <span [innerHTML]="product.product.title"></span>
@@ -6,7 +6,7 @@
     <ion-title *ngIf="product?.product?.name">
       <span [innerHTML]="product.product.name"></span>
     </ion-title>
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button
         ion-button
         icon-only
@@ -19,7 +19,7 @@
           {{values.count}}
         </ion-badge>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 <ion-content class="product-page">
@@ -96,7 +96,7 @@
     </ion-item>
     <ion-item class="stock-label" no-lines>
       <ion-label class="price-regular" *ngIf="!product.product.sale_price">
-        {{1*product.product.price | currency:values.currency:true:'1.2-2'}}
+        <span>{{1*product.product.price | currency:values.currency:true:'1.2-2'}}</span>
       </ion-label>
       <ion-label class="price-special" *ngIf="product.product.sale_price">
         <span>
@@ -117,7 +117,7 @@
         </span>
       </ion-label>
 
-      <h2
+      <!-- <h2
         *ngIf="values.wishlistId[product.product.id]"
         item-right
         class="wishlist"
@@ -125,8 +125,8 @@
         (click)="removeFromWishlist(product.product.id)"
       >
         <ion-icon name="md-heart"></ion-icon>
-      </h2>
-      <h2
+      </h2> -->
+      <!-- <h2
         *ngIf="!values.wishlistId[product.product.id]"
         item-right
         class="wishlist"
@@ -134,7 +134,7 @@
         (click)="addToWishlist(product.product.id)"
       >
         <ion-icon name="md-heart-outline"></ion-icon>
-      </h2>
+      </h2> -->
     </ion-item>
 
     <!--variation product starts-->
@@ -158,11 +158,11 @@
 
 
     <!--Select Service product-->
-      <div class="select-services" *ngIf="usedVariationAttributes" class="variation-product">
-      <!-- <ion-item class="variation-title">
+    <!-- <div class="select-services" *ngIf="usedVariationAttributes" class="variation-product">
+      <ion-item class="variation-title">
         <strong>{{"Select Service"| translate}}
         </strong>
-      </ion-item> -->
+      </ion-item>
       <ion-item>
         <ion-label>
           {{"Please select a service" | translate}}
@@ -179,7 +179,7 @@
           </div>
         </ion-select>
       </ion-item>
-    </div>
+    </div> -->
 
   <!--variation product starts-->
     <!--div *ngIf="product?.product?.variations.length" class="variation-product">
@@ -218,14 +218,14 @@
       </button>
     </div>  -->
 
-    <ion-calendar
+    <!-- <ion-calendar
       [options]="optionsMulti"
       (onSelect)="onSelect($event,product.product.id)"
       [type]="type"
       [format]="'MM-DD-YYYY'"
-    ></ion-calendar>
+    ></ion-calendar> -->
 
-    <div *ngIf="schedule;else no_schedule">
+    <!-- <div *ngIf="schedule;else no_schedule">
       <h4 class="container flex text-center full-width">
         {{WhatTime | translate}}
       </h4>
@@ -259,21 +259,21 @@
       >
         {{BookNow | translate}}
       </button>
-    </div>
+    </div> -->
     <div *ngIf="product.product.short_description">
       <ion-item no-lines class="item-background">
-        {{"ShortDescription" | translate}} :
+        <span>{{"ShortDescription" | translate}} :</span>
       </ion-item>
-      <ion-item text-wrap no-lines>
-        <div [innerHTML]="product.product.short_description"></div>
+      <ion-item text-wrap no-lines class="item-background">
+        <span [innerHTML]="product.product.short_description"></span>
       </ion-item>
     </div>
     <div *ngIf="product.product.description">
       <ion-item no-lines class="item-background">
-        {{"Description" | translate}} :
+        <span>{{"Description" | translate}} :</span>
       </ion-item>
-      <ion-item text-wrap no-lines>
-        <div [innerHTML]="product.product.description"></div>
+      <ion-item text-wrap no-lines class="item-background">
+        <span [innerHTML]="product.product.description"></span>
       </ion-item>
     </div>
     <div *ngIf="reviews?.product_reviews.length">
