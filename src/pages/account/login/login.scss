@@ -1,7 +1,6 @@
 .account-login {
-  .margin {
-    margin: 10px;
-  }
+  position: relative;
+
   .list {
     margin: 0 0 16px 0;
   }
@@ -19,22 +18,34 @@
   .logo {
     position: absolute;
     width: 150px;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
     top: 18%;
-    left: 33%;
+    z-index: 1;
   }
 
   .header-login {
+    margin-top: -40px;
+    background: url("../../../assets/image/header-login3.png")  center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     width: 100%;
+    height: 70%;
   }
   form {
     margin: 0px;
     position: absolute;
+    height: auto;
     padding: 20px;
     left: 0%;
     right: 0%;
-    top: 38%;
-    bottom: -1.56%;
-
+    // top: 38%;
+    bottom: 5px;
     background: #fff;
     border-radius: 30px 30px 30px 30px;
   }

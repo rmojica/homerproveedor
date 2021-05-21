@@ -1,8 +1,10 @@
 <ion-header  style="background-color: #72A9AE;">
   <ion-navbar color="header">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
+    <button ion-button menuToggle >
+      <ion-icon >
+        <img class="logo-login" src="{{values.iconMenu}}">
+      </ion-icon>
+    </button>
       <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->
       <ion-title class="logo-title">
         <div>
@@ -136,6 +138,11 @@
             <ion-row class="row unlimited-items">
               <ion-col class="col" *ngFor="let item of products">
                 <ion-card class="item-product">
+                  <img
+                    [style.height.px]="values.dimensions.imageGridViewHeight"
+                    tappable
+                    src="{{item.images[0].src}}"
+                    />
                   <ion-card-content class="stock">
                     <!-- <img
                       [style.height.px]="values.dimensions.imageGridViewHeight"
@@ -143,11 +150,7 @@
                       src="{{item.images[0].src}}"
                       (click)="getProduct(item)"
                     /> -->
-                    <img
-                    [style.height.px]="values.dimensions.imageGridViewHeight"
-                    tappable
-                    src="{{item.images[0].src}}"
-                  />
+
                   </ion-card-content>
                   <!-- <div tappable (click)="getProduct(item)" class="card-name">
                     <ion-label *ngIf="item.title">{{item.title}}</ion-label>

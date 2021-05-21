@@ -160,6 +160,14 @@
               </ion-col>
            </ion-row>
           </ion-grid>
+          <div>
+            <div *ngIf="navParams.data.id" style="margin:0 auto; width: 220px;">
+              <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="updateProduct()">Update Servicio</button>
+            </div>
+            <div *ngIf="!navParams.data.id" style="margin:0 auto; width: 220px;">
+              <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="sendProduct()">Guardar Servicio</button>
+            </div>
+          </div>
 
           <!-- <div style="width: 100%; margin-top: 20px; background: #76a7ab; text-align: center; padding: 10px; color: white; cursor: pointer;">
 
@@ -249,12 +257,4 @@
       </div>
     </div>
   </div> -->
-  <div>
-    <div *ngIf="navParams.data.id" style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="updateProduct()">Update Servicio</button>
-    </div>
-    <div *ngIf="!navParams.data.id" style="margin:0 auto; width: 220px;">
-      <button ion-button style="font-family: 'Courier New', Courier, monospace;" (click)="sendProduct()">Guardar Servicio</button>
-    </div>
-  </div>
 </ion-content>

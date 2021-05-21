@@ -140,10 +140,11 @@
           <ion-icon item-left name="people">
           </ion-icon>{{"Customer Orders" | translate}}
         </ion-item>
-        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">
+        <!-- deshabilito booking para mientras -->
+        <!-- <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">
           <ion-icon item-left ios="ios-calendar" md="md-calendar">
           </ion-icon>{{"Bookings" | translate}}
-        </ion-item>
+        </ion-item> -->
         <!-- <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">
           <ion-icon item-left name="cart">
           </ion-icon>Membresia

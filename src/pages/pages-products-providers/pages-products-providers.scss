@@ -139,7 +139,7 @@ page-pages-products-providers {
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03) !important;
   }
   .card-md ion-card-content {
-    padding: 0px;
+    padding: 0px!important;
   }
   .price-list button {
     overflow: hidden;
@@ -322,7 +322,7 @@ page-pages-products-providers {
         position: relative;
         text-align: center;
         margin-bottom: 20px;
-        width: 100%;
+        width: 100%!important;
       }
       button {
         background-color: #72a9ae;

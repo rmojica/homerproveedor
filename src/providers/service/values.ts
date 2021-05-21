@@ -37,6 +37,7 @@ export class Values {
   slider: any = "assets/image/bghome.png";
   headerLogin: any = "assets/image/header-login.png";
   headerLogin2: any = "assets/image/header-login2.png";
+  headerLogin3: any = "assets/image/header-login3.png";
   camarero:any = "assets/image/camarero.png";
   cuido:any = "assets/image/cuido.png";
   limpieza:any = "assets/image/limpieza.png";
