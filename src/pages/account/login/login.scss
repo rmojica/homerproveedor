@@ -1,6 +1,12 @@
+ion-content {
+  --overflow: hidden;
+}
 .account-login {
   position: relative;
-
+  background-color: transparent !important;
+  .margin {
+    margin: 10px;
+  }
   .list {
     margin: 0 0 16px 0;
   }
@@ -16,38 +22,38 @@
   }
 
   .logo {
-    position: absolute;
+    position: fixed;
     width: 150px;
     right: 0;
     left: 0;
     margin-left: auto;
     margin-right: auto;
     top: 18%;
-    z-index: 1;
   }
 
   .header-login {
-    margin-top: -40px;
-    background: url("../../../assets/image/header-login3.png")  center;
+    margin-top: -20px;
+    background: url("../../../assets/image/header-login3.jpg") center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
-    width: 100%;
-    height: 70%;
+    background-size: 100% 100vh;
+    background-position: top;
+    width: 100% !important;
+    height: 100%;
   }
   form {
     margin: 0px;
     position: absolute;
-    height: auto;
+    height: 70%;
     padding: 20px;
     left: 0%;
     right: 0%;
     // top: 38%;
-    bottom: 5px;
+    bottom: -1px;
     background: #fff;
-    border-radius: 30px 30px 30px 30px;
+    border-radius: 30px 30px 0px 0px;
   }
   .login {
     .list .item-block .item-inner {
@@ -197,4 +203,8 @@
 .toolbar-md-header .toolbar-background-md {
   background: transparent !important;
   border: 0 !important;
+}
+
+.no-scroll .scroll-content {
+  overflow: hidden;
 }
