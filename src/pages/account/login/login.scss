@@ -35,23 +35,24 @@ ion-content {
     margin-top: -20px;
     background: url("../../../assets/image/header-login3.jpg") center;
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: 100% 100vh;
+    background-color: #93babe;
+    -webkit-background-size: 100% 35vh;
+    -moz-background-size: 100% 35vh;
+    -o-background-size: 100% 35vh;
+    background-size: 100% 35vh;
     background-position: top;
     width: 100% !important;
-    height: 100%;
+    height: 100vh;
+    background-attachment: fixed;
   }
   form {
-    margin: 0px;
     position: absolute;
-    height: 70%;
+    height: 100%;
     padding: 20px;
     left: 0%;
     right: 0%;
-    // top: 38%;
-    bottom: -1px;
+    top: 28%;
+    // bottom: 0px;
     background: #fff;
     border-radius: 30px 30px 0px 0px;
   }
@@ -198,6 +199,7 @@ ion-content {
 
 .scroll-content {
   margin-top: 0px !important;
+  padding-bottom: 0 !important;
 }
 .toolbar-ios-header .toolbar-background-ios,
 .toolbar-md-header .toolbar-background-md {
