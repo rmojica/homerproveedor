@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { NavController, Platform, AlertController } from 'ionic-angular'
 import { Service } from '../../../providers/service/service'
 import { Functions } from '../../../providers/service/functions'
@@ -16,6 +16,7 @@ import {DashProveedorPage} from '../../dash-proveedor/dash-proveedor'
   templateUrl: 'login.html',
 })
 export class AccountLogin {
+  @ViewChild('inputUser') myInput ;
   loginData: any
   loadLogin: any
   status: any
@@ -48,6 +49,13 @@ export class AccountLogin {
 
   }
 
+  ionViewLoaded() {
+
+    setTimeout(() => {
+      this.myInput.setFocus();
+    },150);
+
+ }
 
   gohome(){
     this.nav.parent.select(0);

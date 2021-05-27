@@ -20,7 +20,7 @@
         <ion-list>
           <ion-item>
             <ion-label floating>{{"username" | translate}}</ion-label>
-            <ion-input required type="email" [(ngModel)]="loginData.username"
+            <ion-input #inputUser required type="email" [(ngModel)]="loginData.username"
               name="firstname">
             </ion-input>
           </ion-item>
