@@ -43,7 +43,8 @@
     height: 100vh;
     background-attachment: fixed;
   }
-  form {
+
+  .login {
     position: absolute;
     height: 100%;
     padding: 20px;
@@ -53,8 +54,6 @@
     // bottom: 0px;
     background: #fff;
     border-radius: 30px 30px 0px 0px;
-  }
-  .login {
     .list .item-block .item-inner {
       border-bottom: none;
     }
