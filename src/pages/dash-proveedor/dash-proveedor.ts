@@ -40,22 +40,49 @@ export class DashProveedorPage {
     this.lng = '';
     this.products = [];
 
-    this.socket.connect();
-    this.platform.ready().then(() => {
-       this.geolocation.watchPosition().subscribe(position => {
-        if ((position as Geoposition).coords != undefined) {
-          var geoposition = (position as Geoposition);
-          this.miLatitude = geoposition.coords.latitude;
-          this.miLongitude = geoposition.coords.longitude;
-          console.log('Latitude: ' + geoposition.coords.latitude + ' - Longitude: ' + geoposition.coords.longitude);
-        } else {
-          var positionError = (position as PositionError);
-          console.log('Error ' + positionError.code + ': ' + positionError.message);
+    this.service.getProductsByIdVendor2()
+    .then((result:any) => {
+      if(result.length > 0){
+        for(let i=0; i<result.length; i++){
+          this.products.push({id:result[i]})
         }
+      }
+      this.socket.connect();
+      this.socket.emit('adduser',{
+        id:this.values.customerId,
+        lat: this.miLatitude,
+        lng: this.miLongitude,
+        products:this.products,
+        onesignal:this.values.userId
       });
-
-
     });
+
+    // this.socket.fromEvent('adduser').subscribe((data:any) => {
+    //   this.homerProviders.push(data);
+    //   console.log("mierda",data);
+
+    //   for(let provider of this.homerProviders){
+    //     if(this.values.customerId == provider){
+    //       // this.values.isActive = true;
+    //     }
+    //   }
+    // });
+
+    // this.platform.ready().then(() => {
+    //    this.geolocation.watchPosition().subscribe(position => {
+    //     if ((position as Geoposition).coords != undefined) {
+    //       var geoposition = (position as Geoposition);
+    //       this.miLatitude = geoposition.coords.latitude;
+    //       this.miLongitude = geoposition.coords.longitude;
+    //       console.log('Latitude: ' + geoposition.coords.latitude + ' - Longitude: ' + geoposition.coords.longitude);
+    //     } else {
+    //       var positionError = (position as PositionError);
+    //       console.log('Error ' + positionError.code + ': ' + positionError.message);
+    //     }
+    //   });
+
+
+    // });
     // this.backgroundMode.setDefaults({
     //   title: "Homer background",
     //   text: "Ahora esta a la escucha de notificaciones",
@@ -89,27 +116,11 @@ export class DashProveedorPage {
   }
 
   ionViewDidEnter(){
-    this.service.getProductsByIdVendor2()
-    .then((result:any) => {
-      if(result.length > 0){
-        for(let i=0; i<result.length; i++){
-          this.products.push({id:result[i]})
-        }
-      }
-    });
+
   }
 
 
   ngOnInit() {
-    this.socket.fromEvent('adduser').subscribe((data:any) => {
-      this.homerProviders.push(data);
-
-      for(let provider of this.homerProviders){
-        if(this.values.customerId == provider){
-          // this.values.isActive = true;
-        }
-      }
-    });
 
     // this.socket.fromEvent('message').subscribe(message => {
     //   // this.messages.push(message);
@@ -122,36 +133,6 @@ export class DashProveedorPage {
   //   this.socket.connect();
   // }
 
-
-
-  changeToggle(){
-    console.log(this.values.isActive)
-    if(!this.values.isActive){
-      this.backgroundMode.disable();
-      this.values.isActive = false;
-      this.socket.emit('adduser',{
-        id:this.values.customerId,
-        lat: this.miLatitude,
-        lng: this.miLongitude,
-        products:this.products,
-        onesignal:this.values.userId
-      });
-      // this.backgroundMode.on('deactivate').subscribe(() => {
-      // });
-    }else {
-      this.backgroundMode.enable();
-      this.socket.connect();
-      this.values.isActive = true;
-      this.socket.emit('adduser',{
-        id:this.values.customerId,
-        lat: this.miLatitude,
-        lng: this.miLongitude,
-        products:this.products,
-        onesignal:this.values.userId
-      });
-
-    }
-  }
 
   end_services() {
     this.navCtrl.push(EndOrdersPage);

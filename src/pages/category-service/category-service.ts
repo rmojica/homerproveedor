@@ -152,9 +152,10 @@ export class CategoryServicePage {
     this.data={
       categories : this.category
     }
-    this.service.updateProduct(this.data, this.setProduct);
-    this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado las categorías correctamente');
-    this.navCtrl.push(PagesProductsProvidersPage);
+    console.log(this.data)
+    // this.service.updateProduct(this.data, this.setProduct);
+    // this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado las categorías correctamente');
+    // this.navCtrl.push(PagesProductsProvidersPage);
   }
 
   ionViewDidEnter() {

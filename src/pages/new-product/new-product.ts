@@ -101,7 +101,7 @@ export class NewProductPage {
         "date_created_gmt": "2020-08-17T10:37:55",
         "date_modified": "2020-11-05T16:32:01",
         "date_modified_gmt": "2020-11-06T00:32:01",
-        "src": "https://dev.digitalfactory.tech/demos/homer/wp-content/uploads/2020/06/unnamed-7.png",
+        "src": "https://demohomer.digitalfactory.tech/wp-content/uploads/2020/06/unnamed-7.png",
         "name": "unnamed (7)",
         "alt": ""
       }
@@ -192,9 +192,6 @@ export class NewProductPage {
     this.service.getCategories(1);
     navParams.data.availability
     this.getCategory = this.service.mainCategories;
-
-    console.log(navParams.data);
-
 
     if (navParams.data.id) {
       this.name = navParams.data.name;
@@ -320,7 +317,7 @@ export class NewProductPage {
 
   }
 
-  updateProduct(){
+  async updateProduct(){
     this.data={
       name : this.name,
       description : this.description,
@@ -334,15 +331,19 @@ export class NewProductPage {
     if(this.name != undefined && this.description != undefined && this.short_description != undefined &&
       this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
    ){
-     this.service.updateProduct(this.data, this.navParams.data.id);
-     this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado este producto correctamente');
-     this.nav.push(PagesProductsProvidersPage);
+     let result = await this.service.updateProduct(this.data, this.navParams.data.id);
+     if(result === 200){
+       this.showAlert('Actualizado correctamente', '<strong>Exito:</strong> Has actualizado este producto correctamente');
+       this.nav.push(PagesProductsProvidersPage);
+     }else{
+      this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> revisa tus datos');
+     }
    }else{
      this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
    }
   }
 
-  sendProduct(){
+  async sendProduct(){
     this.data = {
       name:this.name,
       slug:this.slug,
@@ -436,12 +437,19 @@ export class NewProductPage {
       can_be_cancelled: this.can_be_cancelled,
       user_can_cancel:this.user_can_cancel
     }
+    console.log(this.data);
+
     if(this.name != undefined && this.description != undefined && this.short_description != undefined &&
        this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
     ){
-      this.service.addProduct(this.data);
-      this.showAlert('Registrado correctamente', '<strong>Exito:</strong> Has registrado un producto correctamente');
-      this.nav.pop();
+      let response:any = await this.service.addProduct(this.data);
+      if(response.status === 200){
+        console.log(response.status);
+        this.showAlert('Registrado correctamente', '<strong>Exito:</strong> Has registrado tu servicio correctamente');
+        this.nav.pop();
+      }else{
+        this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> contacta al administrador');
+      }
     }else{
       this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
     }

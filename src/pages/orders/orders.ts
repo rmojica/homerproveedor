@@ -37,14 +37,12 @@ export class OrdersPage {
     this.Lista = []
     this.socket.connect();
     this.dataCount = [];
-    // this.countDown(10,0)
   }
 
   ionViewWillEnter(){
-    this.getData().subscribe((data) => {
+    this.getData().subscribe((data:any) => {
       this.data = data
       var duplicado = false;
-
       duplicado = this.validateUnique(data)
 
       if (duplicado == false){
@@ -53,9 +51,7 @@ export class OrdersPage {
           // this.count++;
       }
     });
-
-    this.downCount()
-
+    // this.downCount()
   }
 
   validateUnique(myObject) {
@@ -91,7 +87,6 @@ export class OrdersPage {
       "content":message,
       "onesignalid":onesignal
     })
-    console.log(onesignal);
 
   }
   changestatecancel(order, onesignal)
@@ -143,10 +138,9 @@ export class OrdersPage {
   }
 
   downCount(){
-    this.socket.emit('getCountDown',{ id:'' });
+    this.socket.emit('getCountDown',{ id: this.values.customerId });
     this.socket.fromEvent('getCountDown').subscribe((data:any) => {
       this.counts = data;
-      console.log(this.counts)
     });
   }
 
@@ -155,31 +149,31 @@ export class OrdersPage {
   }
 
 
-countDown( minutes, seconds )
-{
-    var element, endTime, hours, mins, msLeft, time;
+  countDown( minutes, seconds )
+  {
+      var element, endTime, hours, mins, msLeft, time;
 
-    function twoDigits( n )
-    {
-        return (n <= 9 ? "0" + n : n);
-    }
+      function twoDigits( n )
+      {
+          return (n <= 9 ? "0" + n : n);
+      }
 
-    function updateTimer()
-    {
-        msLeft = endTime - (+new Date);
-        if ( msLeft < 1000 ) {
-            console.log("Time is up!");
-        } else {
-            time = new Date( msLeft );
-            hours = time.getUTCHours();
-            mins = time.getUTCMinutes();
-            console.log(( hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds()));
-            // this.count = ( hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds())
-            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-        }
-    }
-    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-    updateTimer();
-}
+      function updateTimer()
+      {
+          msLeft = endTime - (+new Date);
+          if ( msLeft < 1000 ) {
+              console.log("Time is up!");
+          } else {
+              time = new Date( msLeft );
+              hours = time.getUTCHours();
+              mins = time.getUTCMinutes();
+              console.log("mierda no sirve",( hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds()));
+              // this.count = ( hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds())
+              setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+          }
+      }
+      endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+      updateTimer();
+  }
 
 }

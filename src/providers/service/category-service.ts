@@ -251,11 +251,8 @@ export class CategoryService {
           this.config.url +
           '/wp-json/custom-api/v1/get_products_by_id?id_vendor='+this.values.customerId+'',
           this.config.options,
-        )
-        .map(res => res.json())
-        .subscribe(data => {
+        ).map(res => res.json()).subscribe(data => {
           this.productsIds = data
-          console.log(this.productsIds)
           resolve(this.productsIds)
         })
     })
