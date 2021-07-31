@@ -96,14 +96,9 @@ export class NewProductPage {
     tags:any = [];
     images:any = [
       {
-        "id": 5489,
-        "date_created": "2020-08-17T02:37:55",
-        "date_created_gmt": "2020-08-17T10:37:55",
-        "date_modified": "2020-11-05T16:32:01",
-        "date_modified_gmt": "2020-11-06T00:32:01",
-        "src": "https://demohomer.digitalfactory.tech/wp-content/uploads/2020/06/unnamed-7.png",
-        "name": "unnamed (7)",
-        "alt": ""
+        "src":  "https://demohomer.digitalfactory.tech/wp-content/uploads/2021/07/default.jpg",
+        "nombre":  "predeterminado",
+        "alt":"predeterminado"
       }
     ];
     attributes:any = [];
@@ -119,9 +114,9 @@ export class NewProductPage {
     cancel_limit_unit:string = "day";
     cancel_limit:number = 1;
     check_start_block_only:boolean = false;
-    cost:number;
-    display_cost:string;
-    duration_type:string = "fixed";
+    cost:number = 0;
+    default_date_availability:string = "non-available";
+    duration_type:string = "customer";
     duration_unit:string = "hour";
     duration: number = 1;
     enable_range_picker:boolean = true;
@@ -131,14 +126,14 @@ export class NewProductPage {
     has_person_types:boolean = false;
     has_persons: boolean = false;
     has_resources:boolean = false;
-    max_date_value:number = 6;
+    max_date_value:number = 1;
     max_date_unit: string = "month";
-    max_duration:number = 1;
+    max_duration:number = 12;
     max_persons:number = 0;
     min_date_value:number = 0;
-    min_date_unit:string = "month";
+    min_date_unit:string = "day";
     min_duration: number = 1;
-    min_persons:number = 0;
+    min_persons:number = 1;
     person_types:any = [];
     pricing:any = [];
     qty:number = 1;
@@ -156,35 +151,41 @@ export class NewProductPage {
     to_date:string;
 
     categoriesValue:any;
+    dayValue:any;
+    daySelected:any;
+    dayNameSelected:any;
+    daysWeek:any;
 
-  // days:Day[] = [
-  //   {
-
-  //     name:"MONDAY"
-  //   },
-  //   {
-
-  //     name:"TUESDAY"
-  //   },
-  //   {
-
-  //     name:"WEDNESDAY"
-  //   },
-  //   {
-
-  //     name:"THURSDAY"
-  //   },
-  //   {
-
-  //     name:"FRIDAY"
-  //   },
-  //   {
-  //     name:"SATURDAY"
-  //   },
-  //   {
-  //     name:"SUNDAY"
-  //   }
-  // ];
+  days:any = [
+    {
+      name:"Lunes",
+      value:1
+    },
+    {
+      name:"Martes",
+      value:2
+    },
+    {
+      name:"Miércoles",
+      value:3
+    },
+    {
+      name:"Jueves",
+      value:4
+    },
+    {
+      name:"Viernes",
+      value:5
+    },
+    {
+      name:"Sábado",
+      value:6
+    },
+    {
+      name:"Domingo",
+      value:7
+    }
+  ];
 
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
@@ -199,18 +200,16 @@ export class NewProductPage {
       this.short_description = navParams.data.short_description.replace(/<[^>]*>?/gm,' ');
       this.cost = navParams.data.cost;
       this.block_cost = navParams.data.block_cost;
-      this.display_cost = navParams.data.display_cost;
       navParams.data.availability.map(result =>{
         this.availability.push({
-            type: result.type,
-            bookable: result.bookable,
-            priority:result.priority,
-            from: result.from,
-            to: result.to,
-            from_date: result.from_date,
-            to_date:result.to_date
-          });
+          type: result.type,
+          bookable: result.bookable,
+          priority:result.priority,
+          from: result.from,
+          to: result.to,
+        });
       });
+
       navParams.data.categories.map(result => {
         this.categories.push({
           id:result.id,
@@ -324,7 +323,7 @@ export class NewProductPage {
       short_description: this.short_description,
       cost : this.cost,
       block_cost : this.block_cost,
-      display_cost : this.display_cost,
+      display_cost : this.block_cost.toString(),
       availability: this.availability,
       categories : this.categories
     }
@@ -408,7 +407,7 @@ export class NewProductPage {
       cancel_limit:this.cancel_limit,
       check_start_block_only:this.check_start_block_only,
       cost:this.cost,
-      display_cost:this.display_cost,
+      display_cost:this.block_cost,
       duration_type:this.duration_type,
       duration_unit:this.duration_unit,
       duration:this.duration,
@@ -435,9 +434,9 @@ export class NewProductPage {
       resources_assignment:this.resources_assignment,
       restricted_days:this.restricted_days,
       can_be_cancelled: this.can_be_cancelled,
-      user_can_cancel:this.user_can_cancel
+      user_can_cancel:this.user_can_cancel,
+      default_date_availability:this.default_date_availability
     }
-    console.log(this.data);
 
     if(this.name != undefined && this.description != undefined && this.short_description != undefined &&
        this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
@@ -467,54 +466,136 @@ export class NewProductPage {
     }
     this.categoriesValue = [];
   }
-  addAvailability(){
+  onChangeday(evt) {
+    this.daySelected = evt.value;
+    this.dayNameSelected = evt.name;
+  }
+  addAvailabilityRange(){
       if(this.availability.length == 0 ){
-        if(this.from_date != undefined && this.from_date != ''  && this.to_date != undefined && this.to_date != '' && this.from != undefined && this.from != '' && this.to != undefined && this.to != ''){
+        if(this.from_date != undefined && this.from_date != ''  && this.to_date != undefined && this.to_date != ''){
           this.availability.push({
-            type: "time:range",
-            bookable: "yes",
+            type: "custom",
+            bookable: "no",
             priority: 10,
-            from: this.from,
-            to: this.to,
-            from_date: this.from_date,
-            to_date:this.to_date
+            from: this.from_date,
+            to:this.to_date
           });
 
-          this.from = '';
-          this.to = '';
           this.from_date = '';
           this.to_date = '';
+
+
         }else{
-          this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
+          this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
         }
       }else{
         for( let i in this.availability ){
-         if(this.availability[i].from_date == this.from_date){
+         if(this.availability[i].from == this.from_date){
             this.showAlert(`${this.from_date} ya fue agregado`, '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
-            break;
-          }else{
-            if(this.from_date != undefined && this.from_date != ''  && this.to_date != undefined && this.to_date != '' && this.from != undefined && this.from != '' && this.to != undefined && this.to != ''){
-              this.availability.push({
-                type: "time:range",
-                bookable: "yes",
-                priority: 10,
-                from: this.from,
-                to: this.to,
-                from_date: this.from_date,
-                to_date:this.to_date
-              });
-              this.from = '';
-              this.to = '';
-              this.from_date = '';
-              this.to_date = '';
-            }else{
-              this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
-              break;
-            }
+            return;
           }
-      }
+        }
+        this.availability.push({
+          type: "custom",
+          bookable: "no",
+          priority: 10,
+          from: this.from_date,
+          to:this.to_date
+        });
+
+        this.from_date = '';
+        this.to_date = '';
     }
   }
+
+  addAvailabilityDay(){
+    if(this.availability.length == 0 ){
+      if(this.daySelected != undefined && this.daySelected != '', this.from != undefined && this.from != ''  && this.to != undefined && this.to != ''){
+        this.availability.push({
+          type: `time:${this.daySelected}`,
+          bookable: "yes",
+          priority: 10,
+          from: this.from,
+          to:this.to,
+          nameDay:this.dayNameSelected
+        });
+
+        this.from = '';
+        this.to = '';
+        this.daySelected = '';
+      }else{
+        this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
+      }
+    }else{
+      for( let i in this.availability ){
+       if(this.availability[i].type == `time:${this.daySelected}`){
+          this.showAlert('Atención', '<strong>Error:</strong> Por favor selecciona otro día.');
+          return;
+        }
+      }
+      this.availability.push({
+        type: `time:${this.daySelected}`,
+        bookable: "yes",
+        priority: 10,
+        from: this.from,
+        to:this.to,
+        nameDay:this.dayNameSelected
+      });
+
+      this.from = '';
+      this.to = '';
+      this.daySelected = '';
+  }
+}
+
+  // addAvailability(){
+  //   if(this.availability.length == 0 ){
+  //     if(this.from_date != undefined && this.from_date != ''  && this.to_date != undefined && this.to_date != '' && this.from != undefined && this.from != '' && this.to != undefined && this.to != ''){
+  //       this.availability.push({
+  //         type: "time:range",
+  //         bookable: "yes",
+  //         priority: 10,
+  //         from: this.from,
+  //         to: this.to,
+  //         from_date: this.from_date,
+  //         to_date:this.to_date
+  //       });
+
+  //       this.from = '';
+  //       this.to = '';
+  //       this.from_date = '';
+  //       this.to_date = '';
+  //     }else{
+  //       this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
+  //     }
+  //   }else{
+  //     for( let i in this.availability ){
+  //      if(this.availability[i].from_date == this.from_date){
+  //         this.showAlert(`${this.from_date} ya fue agregado`, '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
+  //         break;
+  //       }else{
+  //         if(this.from_date != undefined && this.from_date != ''  && this.to_date != undefined && this.to_date != '' && this.from != undefined && this.from != '' && this.to != undefined && this.to != ''){
+  //           this.availability.push({
+  //             type: "time:range",
+  //             bookable: "yes",
+  //             priority: 10,
+  //             from: this.from,
+  //             to: this.to,
+  //             from_date: this.from_date,
+  //             to_date:this.to_date
+  //           });
+  //           this.from = '';
+  //           this.to = '';
+  //           this.from_date = '';
+  //           this.to_date = '';
+  //         }else{
+  //           this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona todos los campos');
+  //           break;
+  //         }
+  //       }
+  //   }
+  // }
+  // }
 
   showAlert(title, text) {
     let alert = this.alert.create({

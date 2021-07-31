@@ -107,6 +107,7 @@ export class DashProveedorPage {
     // })
     // .then(results => console.log("resultado del registro del proveedor",results))
     // .catch(error => console.log(error));
+    console.log("viendo el this.values.isLoggedIn", this.values.isLoggedIn);
   }
 
 

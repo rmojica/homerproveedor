@@ -49,6 +49,7 @@ export class MyApp {
     showSplash = true;
 
     constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
+console.log("veo si esta logeado o no",this.values.isLoggedIn);
 
         this.service.getCustomer()
         .then((results) => this.customers = results);
@@ -87,16 +88,15 @@ export class MyApp {
         //cambiar luego en la configuracion del wordpress en el plugin
         this.translateService.setDefaultLang('spanish');
         // this.translateService.setDefaultLang(this.values.settings.language);
-
+        this.values.isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
         this.values.calc(this.platform.width());
-
         if(this.values.isLoggedIn){
             if(this.values.subscription.length > 0){
                 console.log('entro:',this.values.isLoggedIn);
-                this.nav.setRoot(TabsPage);
+                this.nav.setRoot(DashProveedorPage);
             }else{
                 console.log('entro:',this.values.isLoggedIn);
-                this.nav.setRoot(test);
+                this.nav.setRoot(DashProveedorPage);
             }
 
         }else{

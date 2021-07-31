@@ -25,7 +25,7 @@ export class Service {
   banners: any
   orders: any
   order: any
-  isloggedIn: any
+  isloggedIn: any = false;
   status: any
   address: any
   products: any
@@ -393,8 +393,8 @@ export class Service {
       });
     }).catch(error => {
       console.log("viendo error1", error.status);
-      console.log("viendo error1", error.error); // error message as string
-      console.log("viendo error1", error.headers);
+      console.log("viendo error2", error.error); // error message as string
+      console.log("viendo error3", error.headers);
     });
   }
 
@@ -454,8 +454,9 @@ export class Service {
         .map(res => res.json())
         .subscribe(
           data => {
-            console.log(data)
+
             if (!data.errors) {
+              localStorage.setItem('isLoggedIn',JSON.stringify(data.data.status));
               this.values.isLoggedIn = data.data.status
               this.values.customerName = data.data.display_name
               this.values.customerId = data.data.ID
@@ -530,6 +531,7 @@ export class Service {
             data => console.log('Login Data cleared'),
             error => console.error(error),
           )
+          localStorage.removeItem('isLoggedIn');
           this.http
             .get(
               this.config.url +

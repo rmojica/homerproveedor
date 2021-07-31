@@ -87,24 +87,30 @@ export class PagesProductsProvidersPage {
 
   handleProdInit(resultsByVendor) {
     this.filter['include'] = resultsByVendor.toString()
-    console.log(this.filter)
-    this.service.load(this.filter).then(results => {
-      this.products = results
-      for (let index = 0; index < this.products.length; index++) {
-        const element = this.products[index]
-        let resources = element.resource_block_costs
-        let prices = new Array()
-        for (var key in resources) {
-          prices = [...prices, resources[key]]
-        }
-        if (Object.keys(resources).length) {
-          let minPrice = Math.min(...prices)
-          this.products.map(function (element) {
-            return (element.minPrice = minPrice)
-          })
-        }
-      }
-    })
+    if(resultsByVendor != '')
+    {
+      this.service.load(this.filter).then(results => {
+
+          this.products = results
+
+          for (let index = 0; index < this.products.length; index++) {
+            const element = this.products[index]
+            let resources = element.resource_block_costs
+            let prices = new Array()
+            for (var key in resources) {
+              prices = [...prices, resources[key]]
+            }
+            if (Object.keys(resources).length) {
+              let minPrice = Math.min(...prices)
+              this.products.map(function (element) {
+                return (element.minPrice = minPrice)
+              })
+            }
+          }
+      })
+  }else{
+    this.products = [];
+  }
 
 }
 

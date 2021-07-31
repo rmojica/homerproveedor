@@ -139,7 +139,7 @@ page-pages-products-providers {
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03) !important;
   }
   .card-md ion-card-content {
-    padding: 0px!important;
+    padding: 0px !important;
   }
   .price-list button {
     overflow: hidden;
@@ -322,7 +322,7 @@ page-pages-products-providers {
         position: relative;
         text-align: center;
         margin-bottom: 20px;
-        width: 100%!important;
+        width: 100% !important;
       }
       button {
         background-color: #72a9ae;
@@ -382,16 +382,14 @@ page-pages-products-providers {
           font-family: Arial, Helvetica, sans-serif;
         }
       }
-
     }
-
   }
-  .category-line{
+  .category-line {
     display: flex;
     flex-direction: row;
     padding: 10px;
   }
-  .category-line span{
+  .category-line span {
     margin-top: 6px;
     margin-right: 3px;
   }
@@ -430,17 +428,16 @@ page-pages-products-providers {
     white-space: nowrap;
     font-weight: 600;
   }
-  .item-background span{
+  .item-background span {
     margin: 0px 10px 0px;
-    font-family: Arial, Helvetica, sans-serif!important;
-    margin-bottom: 20px!important;
-
+    font-family: Arial, Helvetica, sans-serif !important;
+    margin-bottom: 20px !important;
   }
-  .description span p{
+  .description span p {
     margin-top: 0;
     font-size: 12px;
     font-weight: lighter;
-    font-family: Arial, Helvetica, sans-serif!important;
+    font-family: Arial, Helvetica, sans-serif !important;
     margin: 0px 10px 0px;
   }
   .item ion-thumbnail[item-left] {
@@ -461,6 +458,7 @@ page-pages-products-providers {
     width: 12rem;
     height: 12rem;
   }
+
   .max-lines {
     display: block;
     /* or inline-block */
@@ -576,15 +574,15 @@ page-pages-products-providers {
   .item-ios [item-left] {
     margin: 0px;
   }
-  .logo-title  {
+  .logo-title {
     width: 100%;
   }
 
-  .logo-title div{
-    width:70%;
+  .logo-title div {
+    width: 70%;
     margin: 0 auto;
   }
-  .logo-title div img{
+  .logo-title div img {
     width: 127px;
   }
 }

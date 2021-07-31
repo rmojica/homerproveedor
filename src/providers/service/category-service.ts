@@ -227,7 +227,6 @@ export class CategoryService {
   }
 
   getProductsByIdVendor() {
-
     return new Promise(resolve => {
       this.http
         .get(
@@ -238,7 +237,6 @@ export class CategoryService {
         .map(res => res.json())
         .subscribe(data => {
           this.productsIds = data
-          console.log(this.productsIds)
           resolve(this.productsIds.toString())
         })
     })
