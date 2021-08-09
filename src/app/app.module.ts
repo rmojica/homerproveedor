@@ -85,7 +85,7 @@ import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
-// const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
+
 const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{}}
 
 

@@ -59,12 +59,13 @@
         </h2> -->
       <div class="row-button">
         <button (click)="changestate(orders.id,orders.status, orders.onesignal)"
-          [attr.disabled]="orders.status === 'SOLICITADO' ? true:null"
-          [attr.hidden]="orders.status === 'finalizado' ? true:null" text-center
-          ion-button icon-left clear icon-only class="has-icon icon-only" small
-          text-uppercase>
+          [attr.disabled]="orders.status === 'solicitado' ? true:null"
+          [attr.disabled]="orders.status === 'aceptado' ? true:null"
+          [attr.hidden]="orders.status === 'finalizado' ? true:null"
+          text-center ion-button icon-left clear icon-only class="has-icon icon-only" small text-uppercase>
           <span *ngIf="orders.status === 'solicitado'">Aceptar</span>
           <span *ngIf="orders.status === 'aceptado'">He llegado</span>
+          <span *ngIf="orders.status === 'pagado'">He llegado</span>
           <span *ngIf="orders.status === 'he llegado'">Iniciar</span>
           <span *ngIf="orders.status === 'iniciado'">Finalizar</span>
         </button>
