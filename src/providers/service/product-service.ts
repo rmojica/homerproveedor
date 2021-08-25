@@ -172,7 +172,6 @@ export class ProductService {
   }
 
   changestate(data){
-
     this.header.append('Content-Type', 'application/json');
     this.http
     .post(
@@ -188,7 +187,7 @@ export class ProductService {
     .subscribe(
       data => {
         return data
-      });
+    });
   }
 
   sendNotification(data){

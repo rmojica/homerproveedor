@@ -125,14 +125,16 @@ export class AccountLogin {
         // }
     }
     else if (results.errors) {
+      console.log(results.errors);
+
       if(results.errors.invalid_email)
-        this.functions.showAlert('Email', results.errors.invalid_email)
+        this.functions.showAlert('Correo', results.errors.invalid_email)
       else if(results.errors.invalid_username)
-        this.functions.showAlert('Username', results.errors.invalid_username)
+        this.functions.showAlert('Usuario', results.errors.invalid_username)
       else if(results.errors.incorrect_password)
-        this.showAlertForgotPass('Password', '<strong>ERROR</strong>: The password you entered for the email address <strong>'+this.loginData.username+'</strong> is incorrect.')
-      else if(results.errors.az_confirmation_error)
-      this.showAlertResendKey('Confirmation mail', '<strong>ERROR:</strong> Please verify your account before login.')
+        this.showAlertForgotPass('Contraseña', '<strong>ERROR</strong>: La contraseña que ingresó para la dirección de correo electrónico <strong>'+this.loginData.username+'</strong> es incorrecta.')
+      else if(results.errors.alg_wc_ev_email_verified_error)
+      this.showAlertResendKey('Correo de confirmación', '<strong>ERROR:</strong> Verifique su cuenta antes de iniciar sesión.')
       else
         this.functions.showAlert('error', 'invalid username/password')
     }
@@ -165,11 +167,11 @@ export class AccountLogin {
         subTitle: text,
         buttons: [
             {
-              text: 'Cancel',
+              text: 'Cancelar',
               role: 'cancel',
             },
             {
-              text: 'Resend Verification Link?',
+              text: '¿Reenviar el enlace de verificación?',
               handler: data => {
                 this.service.getNonceResendKey(this.loginData.username).then((results) => this.handleResultsNonce(results));
 

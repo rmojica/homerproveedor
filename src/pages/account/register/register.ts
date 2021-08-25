@@ -148,7 +148,6 @@ export class AccountRegister {
         this.nav.setRoot(AccountLogin);
     }
     handleRegister(results) {
-        console.log(results.errors);
         this.disableSubmit = false;
         if (!results.errors) {
             this.countries.checkout_login;

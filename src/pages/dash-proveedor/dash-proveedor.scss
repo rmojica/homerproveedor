@@ -90,7 +90,7 @@ page-dash-proveedor {
       background-image: url("../../../assets/image/top-dashboard.png") center !important;
       background-repeat: no-repeat;
       // background-size: 100% 100%;
-      background-position: 80% center ;
+      background-position: 80% center;
       .avatar {
         height: auto;
         position: absolute;
@@ -175,16 +175,40 @@ page-dash-proveedor {
     }
   }
 }
-.logo-title {
-  width: 100%;
+.toolbar-md ion-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.toolbar-md ion-title img {
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
 
-.logo-title div {
-  width: 80%;
-  margin: 0 auto;
+.toolbar-ios ion-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
-.logo-title div img {
-  width: 127px;
+.toolbar-ios ion-title img {
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
 
 .bar-button-default-md,

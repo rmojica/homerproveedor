@@ -590,7 +590,7 @@ export class Service {
             this.functions.showAlert("ÉXITO", "Verifique el correo electrónico para ver si hay un nuevo enlace de verificación");
           }
           else
-            this.functions.showAlert("ERROR", "an error has occurred please check. ");
+            this.functions.showAlert("ERROR", "ha ocurrido un error por favor verifique.");
         })
     })
   }

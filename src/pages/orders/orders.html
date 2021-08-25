@@ -58,18 +58,18 @@
           <b>{{counts.count | async}}</b>
         </h2> -->
       <div class="row-button">
-        <button (click)="changestate(orders.id,orders.status, orders.onesignal)"
+        <button (click)="changestate(orders.bookingId,orders.status, orders.onesignal)"
           [attr.disabled]="orders.status === 'solicitado' ? true:null"
           [attr.disabled]="orders.status === 'aceptado' ? true:null"
           [attr.hidden]="orders.status === 'finalizado' ? true:null"
           text-center ion-button icon-left clear icon-only class="has-icon icon-only" small text-uppercase>
           <span *ngIf="orders.status === 'solicitado'">Aceptar</span>
-          <span *ngIf="orders.status === 'aceptado'">He llegado</span>
+          <span *ngIf="orders.status === 'aceptado'">Pendiente de pago</span>
           <span *ngIf="orders.status === 'pagado'">He llegado</span>
           <span *ngIf="orders.status === 'he llegado'">Iniciar</span>
           <span *ngIf="orders.status === 'iniciado'">Finalizar</span>
         </button>
-        <button (click)="changestatecancel(orders.id, orders.onesignal)"
+        <button (click)="changestatecancel(orders.bookingId, orders.onesignal)"
           [attr.hidden]="orders.status === 'finalizado' ? true:null" text-center
           ion-button icon-left clear color="button-color" icon-only
           class="has-icon icon-only" small text-uppercase>
