@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Values} from '../../providers/service/values';
 import {EndOrdesService} from '../../providers/service/endorders';
 import { Observable } from 'rxjs';
+import { DashProveedorPage } from '../dash-proveedor/dash-proveedor';
 /**
  * Generated class for the EndOrdersPage page.
  *
@@ -20,7 +21,7 @@ export class EndOrdersPage {
     public values:Values,
       public navCtrl: NavController,
       public navParams: NavParams,
-      public endOrdersServices:EndOrdesService
+      public endOrdersServices:EndOrdesService,
     )
     {
 
@@ -35,6 +36,11 @@ export class EndOrdersPage {
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EndOrdersPage');
+
+  }
+
+  goHome(){
+    this.navCtrl.setRoot(DashProveedorPage);
+    this.navCtrl.popToRoot();
   }
 }

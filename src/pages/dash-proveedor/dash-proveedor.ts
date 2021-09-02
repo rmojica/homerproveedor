@@ -107,7 +107,7 @@ export class DashProveedorPage {
     // })
     // .then(results => console.log("resultado del registro del proveedor",results))
     // .catch(error => console.log(error));
-    console.log("viendo el this.values.isLoggedIn", this.values.isLoggedIn);
+
   }
 
 
@@ -136,15 +136,15 @@ export class DashProveedorPage {
 
 
   end_services() {
-    this.navCtrl.push(EndOrdersPage);
+    this.navCtrl.setRoot(EndOrdersPage);
   }
 
   pastservice(){
-    this.navCtrl.push(Post,{title:'Servicios Pasados',id:93})
+    this.navCtrl.setRoot(Post,{title:'Servicios Pasados',id:93})
   }
 
   services() {
-    this.navCtrl.push(OrdersPage);
+    this.navCtrl.setRoot(OrdersPage);
   }
   // sendMessage() {
   //   // this.socket.emit('send-message', { text: this.message });

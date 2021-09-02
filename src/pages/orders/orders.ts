@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController,Navbar } from 'ionic-angular';
 import {Values} from '../../providers/service/values';
 import {Socket}  from 'ngx-socket-io';
 import { Service } from '../../providers/service/service';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { OrdersDetailPage } from '../orders-detail/orders-detail';
 import {ModalPage} from '../modal/modal'
 import { ChatPage } from '../chat/chat';
+import {DashProveedorPage} from '../dash-proveedor/dash-proveedor';
 /**
  * Generated class for the OrdersPage page.
  *
@@ -20,6 +21,7 @@ import { ChatPage } from '../chat/chat';
   templateUrl: 'orders.html',
 })
 export class OrdersPage {
+  // @ViewChild (Navbar) navBar : Navbar;
   data
   downcount
   Lista:any
@@ -56,6 +58,11 @@ export class OrdersPage {
 
   validateUnique(myObject) {
       return !!this.Lista.find(i => i.id === myObject.id)
+  }
+
+  goHome(){
+     this.navCtrl.setRoot(DashProveedorPage);
+     this.navCtrl.popToRoot();
   }
 
   changestate(order, state, onesignal)
@@ -112,7 +119,9 @@ export class OrdersPage {
   }
 
   ionViewDidLoad() {
-
+    // this.navBar.backButtonClick = (e:UIEvent) => {      // add this event
+    //      this.navCtrl.pop();
+    // };
   }
 
   ionViewWillLeave() {

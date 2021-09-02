@@ -60,15 +60,14 @@ page-orders {
         margin-top: 0px;
         margin-bottom: 20px;
         width: 70%;
-        font-size: 12px!important;
-        font-family: Arial, Helvetica, sans-serif!important;
-        font-weight:lighter!important;
+        font-size: 12px !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-weight: lighter !important;
         color: #000;
       }
-      .orderDate b{
-        font-weight:lighter!important;
+      .orderDate b {
+        font-weight: lighter !important;
       }
-
 
       #status::before {
         position: absolute;
@@ -83,7 +82,7 @@ page-orders {
 
       h2 {
         b {
-          font-family: Arial, Helvetica, sans-serif!important;
+          font-family: Arial, Helvetica, sans-serif !important;
           font-weight: 700;
         }
         font-size: 13px;
@@ -104,13 +103,13 @@ page-orders {
 
       h5 {
         b {
-          font-family: Arial, Helvetica, sans-serif!important;
-          font-weight:lighter;
+          font-family: Arial, Helvetica, sans-serif !important;
+          font-weight: lighter;
           color: #767676;
         }
         font-size: 11px;
       }
-      .countDown{
+      .countDown {
         display: flex;
         align-items: center;
         h4 {
@@ -122,7 +121,8 @@ page-orders {
       .row-h2 {
         display: flex;
         align-items: center;
-        h2, h4 {
+        h2,
+        h4 {
           width: 100%;
         }
       }
@@ -134,35 +134,37 @@ page-orders {
           background-color: #000;
           border-radius: 5px;
           color: #fff;
-          font-family: Arial, Helvetica, sans-serif!important;
+          font-family: Arial, Helvetica, sans-serif !important;
           padding: 5px;
           margin: 5px;
           width: 200px;
           border-radius: 20px;
+          font-size: 12px;
+          font-weight: bolder;
         }
       }
       > button {
         padding: 15px;
-        background-color: #72A9AE;
+        background-color: #72a9ae;
         color: #fff;
         border-radius: 5px;
         font-weight: 600;
-        font-family: Arial, Helvetica, sans-serif!important;
+        font-family: Arial, Helvetica, sans-serif !important;
         margin-top: 10px;
         width: 100%;
         border-radius: 20px;
       }
     }
   }
-  .logo-title  {
+  .logo-title {
     width: 100%;
   }
 
-  .logo-title div{
-    width:70%;
+  .logo-title div {
+    width: 70%;
     margin: 0 auto;
   }
-  .logo-title div img{
+  .logo-title div img {
     width: 127px;
   }
 }

@@ -4,6 +4,7 @@ import {
   AlertController,
   Content,
   NavParams,
+  NavController
 } from 'ionic-angular';
 
 import {Values} from '../../providers/service/values';
@@ -12,6 +13,8 @@ import {Service} from '../../providers/service/service';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs/Observable';
 import { FormControl, FormBuilder } from '@angular/forms';
+import { DashProveedorPage } from '../dash-proveedor/dash-proveedor';
+import { OrdersPage } from '../orders/orders';
 @Component({
   selector: 'page-chat',
   templateUrl: 'chat.html',
@@ -32,7 +35,8 @@ export class ChatPage {
     public formBuilder: FormBuilder,
     public values:Values,
     public navParams: NavParams,
-    public service:Service
+    public service:Service,
+    public navCtrl: NavController,
   ) {
 
 
@@ -153,5 +157,10 @@ export class ChatPage {
       this.content.scrollToBottom();
     }, 100);
   }
+
+  goHome(){
+    // this.navCtrl.setRoot(OrdersPage);
+    this.navCtrl.popToRoot();
+ }
 
 }

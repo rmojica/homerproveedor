@@ -49,7 +49,6 @@ export class MyApp {
     showSplash = true;
 
     constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
-console.log("veo si esta logeado o no",this.values.isLoggedIn);
 
         this.service.getCustomer()
         .then((results) => this.customers = results);

@@ -125,8 +125,7 @@ export class AccountLogin {
         // }
     }
     else if (results.errors) {
-      console.log(results.errors);
-
+   
       if(results.errors.invalid_email)
         this.functions.showAlert('Correo', results.errors.invalid_email)
       else if(results.errors.invalid_username)
