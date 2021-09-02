@@ -47,7 +47,7 @@ export class Home {
         });
     }
     handleService(results){
-       // 
+       //
     }
     getCategory(id, slug, name) {
         this.items.id = id;
@@ -115,7 +115,7 @@ export class Home {
     }
     goto(data){
         if(data.description == "product"){
-            this.nav.push(ProductPage, data.url);   
+            this.nav.push(ProductPage, data.url);
         }
         else if(data.description == "category"){
             this.items.id = data.url;

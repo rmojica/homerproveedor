@@ -133,8 +133,8 @@
   "NoBlockAvailable" : "No hay bloques disponibles para el día seleccionado.",
   "WhatTime": "¿Qué hora?",
 	"PlaceOrder": "Realizar reserva",
-	"TermsConditions" : "Términos y condiciones",
-	"IAgree" : "estoy de acuerdo",
+	"TermsConditions" : "Términos y Condiciones",
+	"IAgree" : "Estoy de acuerdo con los",
 	"Contact Us":"Contáctanos",
 	"Share App":"Compartir App",
 	"Rate App":"Valoranos",
@@ -189,6 +189,6 @@
 	"Category" : "Servicio",
 	"Location" : "Ubicación",
 	"RADIUS" : "RADIO"
-	
+
 
 }

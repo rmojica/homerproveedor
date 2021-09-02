@@ -1,95 +1,237 @@
+ion-content {
+  background: #ffff !important;
+}
 page-dash-proveedor {
-    h3{
+  h3 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .button-dashboard {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 100px;
+    margin: 0 auto;
+    div.last-services {
+      // width: 33.33%;
+      width: 40%;
+      margin: 0 auto;
+      // border: 1px solid red;
+      // margin-left: 8px;
+      // margin: 20px;
+      border-radius: 13%;
+      // box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      //   rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+      box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+        rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      // box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      //   0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      //   0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      //   0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      a {
         font-family: Arial, Helvetica, sans-serif;
-    }
-    .button-dashboard{
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-        width: 100%;
-        text-align: center;
-            div{
-                width: 33.33%;
-                height: 15vh;               
-                margin-left: 8px;
-                a{
-                    font-family: Arial, Helvetica, sans-serif;
-                    text-decoration: none;
-                    img{
-                        width: 60%;
-                        background: #76a7ab;
-                        padding: 10px;
-                        border-radius: 100%;
-                    } 
-                }
-                p{
-                    font-weight: 600;
-                    font-family: Arial, Helvetica, sans-serif;
-                    padding: 10px;
-                }
-            }
+        text-decoration: none;
+        img {
+          width: 80%;
+          background: #ffff;
+          padding: 10px;
+          border-radius: 100%;
+        }
+      }
+      p {
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+      }
     }
 
-    ion-content {
-        position: relative;
-        height: 100%;
-        width: 100%;
+    div.proscess-services {
+      // width: 33.33%;
+      width: 40%;
+      margin: 0 auto;
+      // margin-left: 8px;
+      border-radius: 13%;
+      // box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      //   rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+      box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+        rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      // box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      //   0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      //   0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      //   0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      a {
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        img {
+          width: 80%;
+          background: #ffff;
+          padding: 10px;
+          border-radius: 100%;
+        }
+      }
+      p {
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+      }
     }
-    
-    .card {
+  }
+
+  ion-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .card {
+    margin: 0 auto;
+    // border: 1px solid red;
+    .header {
+      height: 250px; // 20vh;
+      background-image: url("../../../assets/image/top-dashboard.png") center !important;
+      background-repeat: no-repeat;
+      // background-size: 100% 100%;
+      background-position: 80% center;
+      .avatar {
+        height: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: calc(+1 * (125px + 4px));
+        img {
+          position: relative;
+          margin: 0 auto;
+          display: block;
+          border-radius: 50%;
+          border: 8px solid #ffff;
+        }
+      }
+    }
+  }
+  .card-body {
+    background: #ffff !important;
+    padding: 30px;
+    // height: calc(38vh - (20px + 100px));
+    // height: 200px;
+    .user-meta {
+      padding-top: 10%;
+      text-align: center;
+      h3 {
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      h5 {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .label {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .playername {
+        font-size: 24px;
+        font-weight: 600;
+        color: #303940;
+      }
+
+      .country {
+        font-size: 90%;
+        color: #949ea6;
+        text-transform: uppercase;
         margin: 0 auto;
-        .header {
-            height: 200px; // 20vh;
-            background-color: #76A7Ab;
-            .avatar {
-              width: 21%;
-              height: 155px;
-              position: relative;
-              margin: 0 auto;
-      
-                img {
-                    display: block;
-                    border-radius: 50%;
-                    position: absolute;
-                    bottom: calc(-1*(80px + 4px)); // -42px;
-                    border: 8px solid #76A7Ab;
-                }
-            }
-        }
       }
-      .card-body {
-        background-color: #ffffff;
-        padding: 30px;
-        // height: calc(100vh - (330px + 140px));
-        height: 200px;
-        overflow: hidden;
-        .user-meta {
-            padding-top: 40px;
-            text-align: center;
-            h3{
-                font-weight: 600;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            h5{
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            .label{
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            .playername {
-                font-size: 24px;
-                font-weight: 600;
-                color: #303940;
-            }
-      
-            .country {
-                font-size: 90%;
-                color: #949ea6;
-                text-transform: uppercase;
-                margin: 0 auto;
-            }
-        }
+    }
+  }
+
+  .card-body2 {
+    background: #ffff !important;
+    padding: 30px;
+    height: calc(50vh - (20px + 100px));
+    // height: 200px;
+    .user-meta {
+      padding-top: 10px;
+      text-align: center;
+      h3 {
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
       }
-   
+      h5 {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .label {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .playername {
+        font-size: 24px;
+        font-weight: 600;
+        color: #303940;
+      }
+
+      .country {
+        font-size: 90%;
+        color: #949ea6;
+        text-transform: uppercase;
+        margin: 0 auto;
+      }
+    }
+  }
 }
-  
+.toolbar-md ion-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.toolbar-md ion-title img {
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.toolbar-ios ion-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.toolbar-ios ion-title img {
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.bar-button-default-md,
+.bar-button-clear-md-default,
+.bar-button-md-default {
+  margin: 0 !important;
+  // width: 20px!important;
+  padding: 10px !important;
+}
+
+.bar-button-default-ios,
+.bar-button-clear-ios-default,
+.bar-button-ios-default {
+  margin: 0 !important;
+  // width: 20px!important;
+  padding: 10px !important;
+}
+
+.logo-login {
+  width: 60% !important;
+}
+.toolbar-ios-header .toolbar-background-ios,
+.toolbar-md-header .toolbar-background-md {
+  // background: #72a9ae!important;ion
+  // border: 0 !important;
+}

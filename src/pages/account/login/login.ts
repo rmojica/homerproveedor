@@ -1,11 +1,11 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { NavController, Platform, AlertController } from 'ionic-angular'
 import { Service } from '../../../providers/service/service'
 import { Functions } from '../../../providers/service/functions'
 import { Values } from '../../../providers/service/values'
 import { AccountForgotten } from '../forgotten/forgotten'
 import { OneSignal } from '@ionic-native/onesignal'
-
+import { CategoryService } from '../../../providers/service/category-service'
 // import { TabsPage } from '../../tabs/tabs'
 import { test } from '../../account/test/test'
 import {DashProveedorPage} from '../../dash-proveedor/dash-proveedor'
@@ -16,6 +16,7 @@ import {DashProveedorPage} from '../../dash-proveedor/dash-proveedor'
   templateUrl: 'login.html',
 })
 export class AccountLogin {
+  @ViewChild('inputUser') myInput ;
   loginData: any
   loadLogin: any
   status: any
@@ -29,7 +30,7 @@ export class AccountLogin {
 
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
-
+  products:any;
   constructor(
     public nav: NavController,
     public service: Service,
@@ -38,18 +39,28 @@ export class AccountLogin {
     public platform: Platform,
     private oneSignal: OneSignal,
     public alert: AlertController,
+    public categoryService: CategoryService
   ) {
     this.loginData = {}
     this.buttonText = 'Login'
     this.service.getNonce().then(results => (this.nonce = results))
     this.countries = {}
-   
+    this.products = []
+
   }
+
+  ionViewLoaded() {
+
+    setTimeout(() => {
+      this.myInput.setFocus();
+    },150);
+
+ }
 
   gohome(){
     this.nav.parent.select(0);
   }
-  
+
   login() {
     if (this.validateForm()) {
       this.disableSubmit = true
@@ -77,26 +88,52 @@ export class AccountLogin {
       if (this.platform.is('cordova'))
         this.oneSignal.getIds().then((data: any) => {
           this.service.subscribeNotification(data)
-        })
+      })
 
-        console.log(results)
-        if(results.data.subscription.length == 0){
-          console.log('entro no subscription:',this.values.isLoggedIn);
-            this.nav.setRoot(test);
-        }else{
-          console.log('entro subscription:',this.values.isLoggedIn);
-          this.nav.setRoot(DashProveedorPage);
-        }
+      // this.categoryService.getProductsByIdVendor2()
+      // .then((result:any) => {
+      //   if(result.length > 0){
+      //     for(let i=0; i<result.length; i++){
+      //       this.products.push(result[i])
+      //     }
+      //   }
+      // });
+
+
+
+      // this.service.registerProvider({
+      //   id:this.values.customerId,
+      //   lat: 'kdjlakda',
+      //   lng: 'ksajldkas',
+      //   products:this.products,
+      //   onesignal:this.values.userId
+      // })
+      // .then(results => console.log("resultado del registro del proveedor",results))
+      // .catch(error => console.log(error));
+
+
+
+        this.nav.setRoot(DashProveedorPage);
+
+        // console.log(results)
+        // if(results.data.subscription.length == 0){
+        //   console.log('entro no subscription:',this.values.isLoggedIn);
+        //     this.nav.setRoot(test);
+        // }else{
+        //   console.log('entro subscription:',this.values.isLoggedIn);
+        //   this.nav.setRoot(DashProveedorPage);
+        // }
     }
     else if (results.errors) {
+   
       if(results.errors.invalid_email)
-        this.functions.showAlert('Email', results.errors.invalid_email)
+        this.functions.showAlert('Correo', results.errors.invalid_email)
       else if(results.errors.invalid_username)
-        this.functions.showAlert('Username', results.errors.invalid_username)
+        this.functions.showAlert('Usuario', results.errors.invalid_username)
       else if(results.errors.incorrect_password)
-        this.showAlertForgotPass('Password', '<strong>ERROR</strong>: The password you entered for the email address <strong>'+this.loginData.username+'</strong> is incorrect.')
-      else if(results.errors.az_confirmation_error)
-      this.showAlertResendKey('Confirmation mail', '<strong>ERROR:</strong> Please verify your account before login.')
+        this.showAlertForgotPass('Contraseña', '<strong>ERROR</strong>: La contraseña que ingresó para la dirección de correo electrónico <strong>'+this.loginData.username+'</strong> es incorrecta.')
+      else if(results.errors.alg_wc_ev_email_verified_error)
+      this.showAlertResendKey('Correo de confirmación', '<strong>ERROR:</strong> Verifique su cuenta antes de iniciar sesión.')
       else
         this.functions.showAlert('error', 'invalid username/password')
     }
@@ -129,11 +166,11 @@ export class AccountLogin {
         subTitle: text,
         buttons: [
             {
-              text: 'Cancel',
+              text: 'Cancelar',
               role: 'cancel',
             },
             {
-              text: 'Resend Verification Link?',
+              text: '¿Reenviar el enlace de verificación?',
               handler: data => {
                 this.service.getNonceResendKey(this.loginData.username).then((results) => this.handleResultsNonce(results));
 

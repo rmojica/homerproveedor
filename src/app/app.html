@@ -2,7 +2,7 @@
   <div class="splashSpinner" style="background: url({{values.logoMenu}});"></div>
 </div>
 
-<ion-menu [content]="content" side="{{this.values?.settings?.app_dir}}">
+<ion-menu type="overlay" [content]="content" side="{{this.values?.settings?.app_dir}}">
   <div class="menu-toolbar">
     <ion-toolbar color="header">
       <!-- <div class="profile-image">
@@ -12,20 +12,20 @@
         </div>
       </div> -->
 
-      <ion-row>
-        <ion-col col-5 class="profile-image"> 
-          <img src="{{values.logoMenu}}">
+      <ion-row class="user-auth">
+        <ion-col col-5 class="profile-image" >
+          <img src="{{values.homerCircle}}">
         </ion-col>
-        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0;">
+        <ion-col col-7 style="align-self: center;font-weight: bold;padding: 0; ">
           <strong class="lbl-proveedor" *ngIf="!values.isLoggedIn">
           Homer Proveedor
           </strong>
           <strong class="lbl-proveedor" *ngIf="values.isLoggedIn">
             <h4 class="playername"> {{values.customerName}}</h4>
-            </strong>
+          </strong>
         </ion-col>
       </ion-row>
-      
+
       <!--button ion-button full menuClose clear color="light" class="button-customername" *ngIf="values.isLoggedIn">
         <strong>{{values.customerName}}
         </strong>
@@ -38,12 +38,12 @@
   </div>
   <ion-content class="sidemenugrad">
     <ion-list class="menu-items-single" no-margin>
-     
+
       <!-- <div *ngIf="service.categories" class="category-name">
         <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)">
           <ion-icon item-right class="ion-ios-arrow-forward item-icon">
           </ion-icon>
-          <span [innerHTML]="item.name"></span>     
+          <span [innerHTML]="item.name"></span>
         </ion-item>
       </div> -->
 
@@ -53,16 +53,23 @@
         <ion-icon item-left name="home"></ion-icon>
         {{"Inicio"}}
       </ion-item> -->
-      <!-- <ion-item tappable menuClose (click)="iframe()">
-        <ion-icon  name="contact" item-left>
+      <ion-item tappable menuClose (click)="dashboard()" *ngIf="values.isLoggedIn">
+        <ion-icon  name="home" item-left>
         </ion-icon>
-        {{"Iframe" | translate}}
-      </ion-item> -->
+        {{"Inicio" | translate}}
+      </ion-item>
       <ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">
         <ion-icon  name="contact" item-left>
         </ion-icon>
         {{"Account" | translate}}
       </ion-item>
+       <!-- chat -->
+       <!-- <ion-item tappable menuClose (click)="openchat()" >
+        <ion-icon  name="contact" item-left>
+        </ion-icon>
+        {{"Chat" | translate}}
+      </ion-item> -->
+      <!-- chat -->
       <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">
         <ion-icon name="person" item-left>
         </ion-icon>{{"Acceder" | translate}}
@@ -98,21 +105,12 @@
         <ion-icon name="paper" item-left></ion-icon>
         {{"Terms & Conditions" | translate}}
       </ion-item> -->
-      <ion-item tappable menuClose 
-        (click)="support()">
-        <ion-icon name="paper" item-left></ion-icon>
-        {{"Soporte" | translate}}
-      </ion-item>
-      <ion-item tappable menuClose no-line (click)="shareApp()">
-        <ion-icon name="share" item-left></ion-icon>
-        {{"Share App" | translate}}
-      </ion-item>
+
       <!-- <ion-item tappable menuClose no-line (click)="rateApp()">
         <ion-icon name="thumbs-up" item-left></ion-icon>
         {{"Rate App" | translate}}
       </ion-item> -->
 
-     
 
       <ion-list *ngIf="values.isLoggedIn">
         <ion-item *ngIf="values.vendor">
@@ -121,7 +119,7 @@
         <!-- <ion-item tappable menuClose [href]="">
           <ion-icon item-left name="people-outline">
           </ion-icon>{{"My profile" | translate}}
-        </ion-item>   
+        </ion-item>
         <ion-item tappable menuClose [href]="">
           <ion-icon item-left name="people-outline">
           </ion-icon>{{"Edit Profile" | translate}}
@@ -130,26 +128,45 @@
           <ion-icon item-left name="people-outline">
           </ion-icon>{{"Ajustes de la tienda" | translate}}
         </ion-item> -->
+        <ion-item tappable menuClose (click)="pagesProductsProviders()" *ngIf="values.isLoggedIn">
+          <ion-icon item-left name="briefcase">
+          </ion-icon>{{"Mis Servicios" | translate}}
+        </ion-item>
+        <ion-item tappable menuClose (click)="mycategories()" *ngIf="values.isLoggedIn">
+          <ion-icon item-left name="list">
+          </ion-icon>{{"Categorias de servicios" | translate}}
+        </ion-item>
         <ion-item tappable menuClose (click)="orderVendor()" *ngIf="values.vendor">
-          <ion-icon item-left name="reorder">
+          <ion-icon item-left name="people">
           </ion-icon>{{"Customer Orders" | translate}}
         </ion-item>
-        <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">
+        <!-- deshabilito booking para mientras -->
+        <!-- <ion-item tappable menuClose (click)="bookingVendor()" *ngIf="values.vendor">
           <ion-icon item-left ios="ios-calendar" md="md-calendar">
           </ion-icon>{{"Bookings" | translate}}
-        </ion-item>
-        <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">
+        </ion-item> -->
+        <!-- <ion-item tappable menuClose (click)="test()" *ngIf="values.vendor">
           <ion-icon item-left name="cart">
           </ion-icon>Membresia
+        </ion-item> -->
+
+        <ion-item tappable menuClose
+        (click)="support()">
+          <ion-icon name="paper" item-left></ion-icon>
+          {{"Soporte" | translate}}
         </ion-item>
+
+
+      <ion-item tappable menuClose no-line (click)="shareApp()">
+        <ion-icon name="share" item-left></ion-icon>
+        {{"Share App" | translate}}
+      </ion-item>
+
         <ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">
           <ion-icon item-left name="md-log-out">
           </ion-icon>{{"Logout" | translate}}
         </ion-item>
       </ion-list>
-
-      
-
       <!-- <ion-item>
         <ion-icon style="background-color: #e8453c" name="globe" item-left></ion-icon>
         <ion-label>
@@ -160,7 +177,6 @@
           <ion-option value="spanish">{{"Spanish" | translate}} </ion-option>
         </ion-select>
       </ion-item> -->
-
     </ion-list>
     <br>
     <br>

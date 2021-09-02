@@ -18,6 +18,8 @@ import { AccountRegister } from '../pages/account/register/register'
 import { WishlistPage } from '../pages/account/wishlist/wishlist'
 import { AccountPage } from '../pages/account/account/account'
 import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor'
+import {ChatPage} from '../pages/chat/chat';
+import {NewProductPage} from '../pages/new-product/new-product';
 
 import { CartPage } from '../pages/cart/cart'
 import { BillingAddressForm } from '../pages/checkout/billing-address-form/billing-address-form'
@@ -29,7 +31,14 @@ import { SearchPage } from '../pages/search/search'
 import { TabsPage } from '../pages/tabs/tabs'
 import { ProductsListPage } from '../pages/products-list/products-list'
 import {PagesSupportPage} from '../pages/pages-support/pages-support'
+import {ServicesPage} from '../pages/services/services';
+import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
+import {CategoryServicePage} from '../pages/category-service/category-service';
+import {OrdersPage} from '../pages/orders/orders';
+import {EndOrdersPage} from '../pages/end-orders/end-orders';
+import {OrdersDetailPage} from '../pages/orders-detail/orders-detail';
 
+import {ModalPage} from '../pages/modal/modal'
 /*------------------------Providers----------------------------------*/
 
 import { StatusBar } from '@ionic-native/status-bar'
@@ -48,6 +57,7 @@ import { SearchService } from '../providers/service/search-service'
 import { Service } from '../providers/service/service'
 import { Values } from '../providers/service/values'
 import { KeysPipe } from '../providers/pipe/pipe'
+import {EndOrdesService} from '../providers/service/endorders'
 //import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { CallNumber } from '@ionic-native/call-number'
 import { EmailComposer } from '@ionic-native/email-composer'
@@ -64,12 +74,20 @@ import { CalendarModule } from 'ion2-calendar'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
+
+// import {ImagePicker} from '@ionic-native/image-picker';
+
+import { BackgroundMode } from '@ionic-native/background-mode';
+
 // import socket io
 
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 
-// const config:SocketIoConfig  = { url:'http://localhost:3001', options:{}}
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+
+
 const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{}}
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -105,7 +123,17 @@ export function createTranslateLoader(http: HttpClient) {
     ProductsListPage,
     KeysPipe,
     PagesSupportPage,
-    DashProveedorPage
+    DashProveedorPage,
+    ServicesPage,
+    ChatPage,
+    PagesProductsProvidersPage,
+    NewProductPage,
+    CategoryServicePage,
+    OrdersPage,
+    EndOrdersPage,
+    OrderDetails,
+    OrdersDetailPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -121,7 +149,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-   
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -152,9 +180,20 @@ export function createTranslateLoader(http: HttpClient) {
     TabsPage,
     ProductsListPage,
     PagesSupportPage,
-    DashProveedorPage
+    DashProveedorPage,
+    ServicesPage,
+    ChatPage,
+    PagesProductsProvidersPage,
+    NewProductPage,
+    CategoryServicePage,
+    OrdersPage,
+    EndOrdersPage,
+    OrderDetails,
+    OrdersDetailPage,
+    ModalPage
   ],
   providers: [
+    FileTransfer,
     CartService,
     WishlistService,
     CategoryService,
@@ -175,8 +214,12 @@ export function createTranslateLoader(http: HttpClient) {
     EmailComposer,
     CallNumber,
     HTTP,
-    Geolocation,    
+    Geolocation,
     NativeGeocoder,
+    BackgroundMode,
+    FileTransfer,
+    EndOrdesService,
+    BackgroundMode,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ],
   schemas: [

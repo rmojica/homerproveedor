@@ -1,7 +1,8 @@
-<ion-header>
+<ion-header  style="background-color: #72A9AE;">
   <ion-navbar color="header">
-    <button ion-button menuToggle>
-      <ion-icon name="menu">
+    <button ion-button menuToggle >
+      <ion-icon >
+        <img class="logo-login" src="{{values.iconMenu}}">
       </ion-icon>
     </button>
     <ion-title  text-center>{{"Bookings" | translate}}
@@ -22,7 +23,7 @@
 
     <div *ngIf="orders.orders.length">
       <ion-item *ngFor="let item of orders.orders">
-        
+
         <h2>
           <b>{{"Details" | translate}} :
           </b>{{"Booking" | translate }} # {{item.bookingId}}
@@ -52,26 +53,26 @@
           </b> {{item.statusbooking}}
         </h2>
 
-        <button *ngIf="item.row_actions.edit" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="getBookingDetails(item.order_id)">
+        <!-- <button *ngIf="item.row_actions.edit" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="getBookingDetails(item.order_id)">
           <ion-icon name="ios-eye">
-          </ion-icon>		  		
-          {{"View" | translate}} 
-        </button>
+          </ion-icon>
+          {{"View" | translate}}
+        </button> -->
 
-        <button *ngIf="item.row_actions.confirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="confirm(item.bookingId)">
+        <!-- <button *ngIf="item.row_actions.confirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="confirm(item.bookingId)">
           <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle">
-          </ion-icon>		  		
-          {{"Confirm" | translate}} 
-        </button>
+          </ion-icon>
+          {{"Confirm" | translate}}
+        </button> -->
 
-        <button *ngIf="item.row_actions.unconfirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="unconfirm(item.bookingId)">
+        <!-- <button *ngIf="item.row_actions.unconfirm" text-center ion-button icon-left clear no-margin color="button-color" icon-only class="has-icon icon-only" small text-uppercase (click)="unconfirm(item.bookingId)">
           <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle">
-          </ion-icon>		  		
-          {{"Unconfirm" | translate}} 
-        </button>
+          </ion-icon>
+          {{"Unconfirm" | translate}}
+        </button> -->
 
       </ion-item>
-    </div> 
+    </div>
     <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
       <ion-infinite-scroll-content
       loadingSpinner="crescent"
