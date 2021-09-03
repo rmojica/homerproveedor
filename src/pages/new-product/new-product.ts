@@ -96,7 +96,7 @@ export class NewProductPage {
     tags:any = [];
     images:any = [
       {
-        "src":  "https://demohomer.digitalfactory.tech/wp-content/uploads/2021/07/default.jpg",
+        "src":  "https://demohomer.digitalfactory.tech/wp-content/uploads/2021/09/default.jpg",
         "nombre":  "predeterminado",
         "alt":"predeterminado"
       }
