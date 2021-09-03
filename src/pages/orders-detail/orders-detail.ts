@@ -65,7 +65,7 @@ export class OrdersDetailPage  implements AfterViewInit{
 
   ngAfterViewInit(){
     mapboxgl.accessToken = 'pk.eyJ1Ijoicm9sYXM5MSIsImEiOiJja2l5YjZkbTUwdDlyMnltNmZmdmhuNGxsIn0.zShdGlc5rvqi1nxslqD7WA';
-   
+
     const map = new mapboxgl.Map({
       style: 'mapbox://styles/mapbox/light-v10',
       center: [this.lng, this.lat],
@@ -160,6 +160,10 @@ export class OrdersDetailPage  implements AfterViewInit{
           labelLayerId
         );
     });
+  }
+
+  goHome(){
+    this.navCtrl.popToRoot();
   }
 
 }
