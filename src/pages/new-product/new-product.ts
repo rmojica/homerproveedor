@@ -606,7 +606,9 @@ export class NewProductPage {
     alert.present();
   }
 
-
+  goHome(){
+    this.nav.popToRoot();
+  }
   //  handleClick (ev){
   //   ev.preventDefault();
   //   let button = ev.currentTarget;
