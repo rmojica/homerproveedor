@@ -1,14 +1,16 @@
 <ion-header style="background-color: #72A9AE;">
-  <ion-navbar color="header">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <button ion-button icon-only  (click)="goHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="logo-title">
       <div>
         <img width="200" src="{{values.homerLogoP}}" />
       </div>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 

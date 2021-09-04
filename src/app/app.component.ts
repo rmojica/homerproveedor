@@ -178,7 +178,7 @@ export class MyApp {
         this.nav.setRoot(TabsPage);
     }
     pagesProductsProviders() {
-        this.nav.setRoot(PagesProductsProvidersPage);
+        this.nav.push(PagesProductsProvidersPage);
     }
     mycategories(){
       this.nav.setRoot(CategoryServicePage);
