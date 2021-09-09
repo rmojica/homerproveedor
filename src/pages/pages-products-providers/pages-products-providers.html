@@ -1,21 +1,21 @@
 <ion-header style="background-color: #72A9AE;">
-  <ion-navbar color="header">
-    <button ion-button menuToggle>
-      <ion-icon>
-        <img class="logo-login" src="{{values.iconMenu}}">
-      </ion-icon>
-    </button>
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->
     <ion-title class="logo-title">
       <div>
         <img width="200" src="{{values.homerLogoP}}" />
       </div>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content class="products">
   <div class="sub-header">
-    <h1>Servicios</h1>
+    <h1>Mis Servicios</h1>
   </div>
   <div class="body-product">
     <ion-item no-padding no-lines class="bg-blank">
@@ -141,24 +141,23 @@
                     tappable
                     src="{{item.images[0].src}}"
                     />
-                  
-                  <ion-card-content class="stock">
-                    <!-- <img
+
+                  <!-- <ion-card-content class="stock">
+                    <img
                       [style.height.px]="values.dimensions.imageGridViewHeight"
                       tappable
                       src="{{item.images[0].src}}"
                       (click)="getProduct(item)"
-                    /> -->
-                  </ion-card-content>
+                    />
+                  </ion-card-content> -->
                   <!-- <div tappable (click)="getProduct(item)" class="card-name">
                     <ion-label *ngIf="item.title">{{item.title}}</ion-label>
                     <ion-label *ngIf="item.name">{{item.name}}</ion-label>
                   </div> -->
-                  <div tappable class="card-name">
-                    <ion-label *ngIf="item.title">{{item.title}}</ion-label>
-                    <ion-label *ngIf="item.name">{{item.name}}</ion-label>
-                  </div>
-
+                  <ion-item>
+                    <ion-label *ngIf="item.title"><ion-span>{{item.title}}</ion-span></ion-label>
+                    <ion-label *ngIf="item.name"><ion-span>{{item.name}}</ion-span></ion-label>
+                  </ion-item>
                   <ion-item no-padding no-lines class="item-background">
                     <span> {{"Descripción" | translate}} :</span>
                   </ion-item>
@@ -196,11 +195,11 @@
                         medium color="button-color" text-uppercase
                         (click)="getProduct(item)">{{"Ver" | translate}}
                       </button>
-                      <span>Editar</span>
-                      <button id="btnround" ion-button
+
+                      <button ion-button color="#0000"
                         (click)="getProductForANewProduct(item)" end>
                         <ion-icon ios="ios-create" md="md-create"></ion-icon>
-                        <!-- {{"Editar" | translate}} -->
+                        {{"Editar" | translate}}
                       </button>
                     </div>
                   </ion-item>

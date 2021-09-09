@@ -146,43 +146,34 @@ a {
     text-align: center;
   }
   .profile-image img {
-    //border-radius: 50%;
-    //margin: 10px;
-    //border: 4px solid rgba(255, 255, 255, 0.4);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     height: auto;
-    width: 60px!important;
-    border-bottom: 1px;
+    width: 60px !important;
   }
-  .user-auth::after{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100px;
-    background:rgba(0,0,0,0.8);
-    z-index:-1;
-
+  .user-auth::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: -1;
   }
-  .user-auth{
-
-    margin-top: 20px;
-
+  .user-auth {
+    width: 100%;
+    height: auto;
   }
-
 }
 
 .sidemenugrad::after {
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100vh;
-  background:rgba(0,0,0,0.8);
-  z-index:0;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 0;
 }
 .sidemenugrad {
   ion-label {
@@ -196,7 +187,7 @@ a {
   background-size: contain;
 
   .menu-items-single {
-    margin-top: 150px!important;
+    margin-top: 150px !important;
     // margin: 0px 0 0 20px;
   }
   .menu-items {
@@ -223,7 +214,7 @@ a {
   }
   .scroll-content {
     // padding-bottom: 120px;
-    padding-bottom:0px!important;
+    padding-bottom: 0px !important;
   }
   .item-divider {
     .item > ion-icon,
@@ -311,13 +302,20 @@ ion-icon {
 }
 
 .menu-toolbar .profile-image img {
-  float: left;
   margin-left: 20px;
-  width: 70%;
+  // width: 70%;
   color: white;
 }
 .lbl-proveedor {
+  padding:0;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+.lbl-proveedor h4 {
   color: white;
+  font-size: 14px;
+  width:80%;
   text-transform: uppercase;
 }
 .toolbar-title {
@@ -353,7 +351,6 @@ ion-menu {
 .list-ios > .item-block:first-child {
   border-top: 0;
 }
-
 
 @-webkit-keyframes sk-rotateplane {
   0% {

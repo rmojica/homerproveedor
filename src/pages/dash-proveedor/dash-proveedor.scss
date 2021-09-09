@@ -86,8 +86,9 @@ page-dash-proveedor {
     margin: 0 auto;
     // border: 1px solid red;
     .header {
-      height: 250px; // 20vh;
-      background-image: url("../../../assets/image/top-dashboard.png") center !important;
+      height: 200px; // 20vh;
+      // background-image: url("../../../assets/image/top-dashboard.png") center !important;
+      background: #83c1c7!important;
       background-repeat: no-repeat;
       // background-size: 100% 100%;
       background-position: 80% center;
@@ -98,7 +99,7 @@ page-dash-proveedor {
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        top: calc(+1 * (125px + 4px));
+        top: calc(+1 * (160px + 4px));
         img {
           position: relative;
           margin: 0 auto;

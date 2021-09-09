@@ -14,7 +14,7 @@
       <div *ngIf="addresses.customer.billing_address">
       <ion-card>
         <ion-card-header style="background-color: #f9f9f9">
-          {{"BillingAddress" | translate}}
+          {{"Dirección de Envio" | translate}}
         </ion-card-header>
         <ion-card-content style="margin-top: 10px">
           {{addresses.customer.billing_address.first_name}} {{addresses.customer.billing_address.last_name}}<br *ngIf="addresses.customer.billing_address.first_name">

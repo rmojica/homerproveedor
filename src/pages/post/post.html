@@ -1,27 +1,30 @@
-<ion-header class="settings-header">
-    <ion-navbar color="header"> 
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->
-        <ion-title >
-            <img  (click)="gohome();" style="max-width: 150px;" src="{{values.avatar}}" />
-        </ion-title>
-    </ion-navbar>
+<ion-header  style="background-color: #72A9AE;">
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <button ion-button icon-only (click)="goHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <!-- <ion-title text-wrap text-center *ngIf="post?.post_title">{{post.post_title}} </ion-title> -->
+    <ion-title class="logo-title" (click)="goHome()">
+      <img width="150" src="{{values.homerLogoP}}" />
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
-<ion-content class="post" padding>
+<ion-content padding>
+  <div class="my-container">
     <div class="sub-header">
-        <h1 *ngIf="title">{{ title }}</h1>
+      <h1 *ngIf="title">{{ title }}</h1>
     </div>
     <ion-spinner *ngIf="!post" name="crescent"> </ion-spinner>
     <ion-card style="margin-top: 100px;">
-        <!-- <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            <ion-card-title>Card Title</ion-card-title>
-        </ion-card-header> -->
-        <ion-card-content *ngIf="post"> 
-          <div [innerHTML]="post"></div>
-        </ion-card-content>
-      </ion-card>
-   
+      <!-- <ion-card-header>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Card Title</ion-card-title>
+      </ion-card-header> -->
+      <ion-card-content *ngIf="post">
+        <div [innerHTML]="post"></div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

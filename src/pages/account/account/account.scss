@@ -71,22 +71,23 @@ ion-chip {
   margin: 0 auto;
 
   .header {
-    height: 200px; // 20vh;
-    background-color: #76a7ab;
-    background-image: url("../../../assets/image/top-dashboard.png") !important;
+    height: 120px; // 20vh;
+    background-color: #83c1c7;
+    // background-image: url("../../../assets/image/top-dashboard.png") !important;
     background-repeat: no-repeat;
     background-size: cover;
     .avatar {
+      left: 0;
+      right: 0;
       width: 21%;
-      height: 155px;
-      position: relative;
+      height: auto;
+      position: absolute;
       margin: 0 auto;
-
+      top: calc(+1 * (160px + 4px)); // -42px;
       img {
         display: block;
         border-radius: 50%;
-        position: absolute;
-        bottom: calc(-1 * (80px + 4px)); // -42px;
+        position: relative;
         border: 8px solid #fcfcfc;
       }
     }
@@ -120,13 +121,12 @@ ion-chip {
 }
 
 .button-margin {
-  width: 80%!important;
+  width: 80% !important;
   margin: 0 auto;
-
 }
 
 .button-margin button {
   width: 100% !important;
   border-radius: 20px;
-  font-family: Arial, Helvetica, sans-serif!important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }

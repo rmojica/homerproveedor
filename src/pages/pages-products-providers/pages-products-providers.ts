@@ -305,8 +305,8 @@ export class PagesProductsProvidersPage {
     this.nav.push(NewProductPage);
   }
 
-  gohome(){
-    this.nav.parent.select(0);
-  }
+  goHome(){
+    this.nav.popToRoot();
+ }
 
 }

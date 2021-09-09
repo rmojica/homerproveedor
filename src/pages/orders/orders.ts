@@ -1,5 +1,5 @@
 import { Component, ViewChild  } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController,Navbar } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Navbar } from 'ionic-angular';
 import {Values} from '../../providers/service/values';
 import {Socket}  from 'ngx-socket-io';
 import { Service } from '../../providers/service/service';

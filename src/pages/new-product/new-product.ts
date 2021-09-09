@@ -37,7 +37,7 @@ export class NewProductPage {
   // @ViewChild('tabs_control')tabs_control:ElementRef;
   // @ViewChild('tabs')tabs:ElementRef;
   // @ViewChild('tab')tab:ElementRef;
-
+    itemsCategory: any;
     photos: any;
     err: any;
     imageIndex: any = 0;
@@ -186,13 +186,15 @@ export class NewProductPage {
       value:7
     }
   ];
-
+  selectedCate:any;
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
     this.categories = [];
+    this.selectedCate = [];
+    this.itemsCategory = [];
     this.service.getCategories(1);
     navParams.data.availability
-    this.getCategory = this.service.mainCategories;
+    this.itemsCategory = this.service.DataCategories;
 
     if (navParams.data.id) {
       this.name = navParams.data.name;
@@ -321,14 +323,14 @@ export class NewProductPage {
       name : this.name,
       description : this.description,
       short_description: this.short_description,
-      cost : this.cost,
+      cost : this.block_cost,
       block_cost : this.block_cost,
       display_cost : this.block_cost.toString(),
       availability: this.availability,
-      categories : this.categories
+      categories : this.selectedCate
     }
     if(this.name != undefined && this.description != undefined && this.short_description != undefined &&
-      this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
+      this.block_cost != undefined && this.selectedCate.length != 0 && this.availability.length != 0
    ){
      let result = await this.service.updateProduct(this.data, this.navParams.data.id);
      if(result === 200){
@@ -390,7 +392,7 @@ export class NewProductPage {
       cross_sell_ids:this.cross_sell_ids,
       parent_id:this.parent_id,
       purchase_note:this.purchase_note,
-      categories:this.categories,
+      categories:this.selectedCate,
       tags:this.tags,
       images:this.images,
       attributes:this.attributes,
@@ -406,7 +408,7 @@ export class NewProductPage {
       cancel_limit_unit:this.cancel_limit_unit,
       cancel_limit:this.cancel_limit,
       check_start_block_only:this.check_start_block_only,
-      cost:this.cost,
+      cost:this.block_cost,
       display_cost:this.block_cost,
       duration_type:this.duration_type,
       duration_unit:this.duration_unit,
@@ -439,7 +441,7 @@ export class NewProductPage {
     }
 
     if(this.name != undefined && this.description != undefined && this.short_description != undefined &&
-       this.cost != undefined && this.block_cost != undefined && this.categories.length != 0 && this.availability.length != 0
+       this.block_cost != undefined && this.selectedCate.length != 0 && this.availability.length != 0
     ){
       let response:any = await this.service.addProduct(this.data);
       if(response.status === 200){
