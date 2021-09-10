@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {Service} from '../../../providers/service/service';
 import { Values } from '../../../providers/service/values';
+import { AccountPage } from '../account/account';
 
 @Component({
     templateUrl: 'edit-address-form.html'
@@ -18,7 +19,7 @@ export class EditAddressForm {
     shipping_states: any;
     public disableSubmit: boolean = false;
     Save: any;
-    constructor(public nav: NavController, public service: Service, params: NavParams, public values: Values) {
+    constructor(public nav: NavController, public service: Service, params: NavParams, public values: Values, public navCtrl: NavController,) {
         this.Save = "Save";
         this.editAddress = params.data;
         this.editAddress.shipping = true;
@@ -58,4 +59,8 @@ export class EditAddressForm {
         this.Save = "Saving...";
         this.nav.pop();
     }
+
+    goHome(){
+      this.navCtrl.popToRoot();
+   }
 }

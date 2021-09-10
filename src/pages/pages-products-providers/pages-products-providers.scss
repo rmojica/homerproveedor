@@ -1,9 +1,12 @@
 page-pages-products-providers {
+  .item-ios .item-button {
+    font-size: 1.2rem !important;
+  }
   ion-content {
-    position: relative;
     height: 100%;
     width: 100%;
     background: #fafbff !important;
+    top: 50px;
   }
   .sub-header {
     width: 100%;
@@ -138,6 +141,18 @@ page-pages-products-providers {
     background: #ffff !important;
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03) !important;
   }
+  .card-ios {
+    margin: 0px;
+    width: 100%;
+    border-radius: 20px;
+    background: #ffff !important;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  .card-ios ion-card-content {
+    padding: 0px !important;
+  }
+
   .card-md ion-card-content {
     padding: 0px !important;
   }
@@ -248,6 +263,7 @@ page-pages-products-providers {
         box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.3);
         padding: 0 0 0 16px;
       }
+
       .stock-list {
         .out-of-stock-button {
           position: absolute;
@@ -373,6 +389,8 @@ page-pages-products-providers {
         }
       }
       .card-name {
+        border: 1px solid red;
+
         .label {
           font-weight: 800 !important;
           font-size: 14px;
@@ -380,6 +398,8 @@ page-pages-products-providers {
           margin: 20px 20px 0px;
           float: left;
           font-family: Arial, Helvetica, sans-serif;
+          background: #ffff;
+          border: 1px solid red;
         }
       }
     }
@@ -392,6 +412,8 @@ page-pages-products-providers {
   .category-line span {
     margin-top: 6px;
     margin-right: 3px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    margin-bottom: 20px !important;
   }
   .line-btn {
     display: flex;
@@ -428,6 +450,12 @@ page-pages-products-providers {
     white-space: nowrap;
     font-weight: 600;
   }
+
+  ion-label ion-span {
+    font-size: 20px;
+    margin-left: 12px;
+  }
+
   .item-background span {
     margin: 0px 10px 0px;
     font-family: Arial, Helvetica, sans-serif !important;
@@ -453,8 +481,8 @@ page-pages-products-providers {
   .item ion-thumbnail img {
     min-width: 10rem;
     min-height: 10rem;
-    max-width: 15rem;
-    max-height: 15rem;
+    max-width: 10rem;
+    max-height: 10rem;
     width: 12rem;
     height: 12rem;
   }
@@ -479,6 +507,7 @@ page-pages-products-providers {
   }
   .category {
     margin: 0;
+
     .category-name {
       box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.3);
       background-color: #f9f9f9;

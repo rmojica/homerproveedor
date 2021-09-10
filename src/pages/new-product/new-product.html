@@ -1,7 +1,7 @@
 <ion-header style="background-color: #72A9AE;">
   <ion-toolbar color="header">
     <ion-buttons slot="start">
-      <button ion-button icon-only  (click)="goHome()">
+      <button ion-button icon-only (click)="goHome()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
@@ -24,7 +24,7 @@
           <ion-icon *ngIf="!uploadingImageSpinner" color="medium" name="add-circle-outline" class="add-image-icon" (click)="picker()"></ion-icon>
         </div> -->
       <!-- *ngIf="service.options.vendors_write_product_fields?.includes('images')" -->
-      <div item-left style="margin-left:16px; margin-right: 16px; display:
+      <!-- <div item-left style="margin-left:16px; margin-right: 16px; display:
         inline-flex;">
         <img tappable *ngFor="let item of form.images; let i= index;"
           src="{{item.src}}" style="width: 80px; height: 80px; padding: 3px;
@@ -33,13 +33,42 @@
             name="circles" class="add-image-icon"></ion-spinner></div>
         <ion-icon *ngIf="!uploadingImageSpinner" color="medium"
           name="add-circle-outline" class="add-image-icon" (click)="picker()"></ion-icon>
-      </div>
-
+      </div> -->
       <!-- <button (click)="upload2()" ion-button>Take Pic & Upload </button> -->
       <ion-item>
         <!-- <ion-label>Nombre servicio</ion-label> -->
         <ion-input placeholder="Nombre servicio" type="text" [(ngModel)]="name"
           name="product_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <!-- <ion-label>Tipo de servicio</ion-label> -->
+        <!-- <ion-select [(ngModel)]="categoriesValue"
+          (ngModelChange)="onChange($event)" name="categories"
+          interface="action-sheet"
+          cancelText="Cancelar">
+          <ion-option *ngFor="let item of getCategory" [value]="{id:item.id,
+            name:item.name}">{{item.name}}</ion-option>
+        </ion-select> -->
+
+        <ion-select required="true"
+          interface="action-sheet"
+          multiple="true"
+          [(ngModel)]="selectedCate"
+          name="categories"
+          cancelText="Cancelar" okText="Aceptar"
+          class="select-category"
+          placeholder="Tipo de servicio">
+
+          <ion-option *ngFor="let item of itemsCategory[0]"
+            [value]="{id:item.id, slug:item.slug, name:item.name}">{{item.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Costo por hora" type="number"
+          [(ngModel)]="block_cost" name="block_cost"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -55,25 +84,10 @@
       <!-- <ion-item>
            <ion-input placeholder="Costo Base" type="text" [(ngModel)]="cost" name="cost"></ion-input>
         </ion-item> -->
-      <ion-item>
-        <ion-input placeholder="Costo por hora" type="number"
-          [(ngModel)]="block_cost" name="block_cost"></ion-input>
-      </ion-item>
-
       <!-- <ion-item>
           <ion-input placeholder="Visualización de costo" type="number" [(ngModel)]="display_cost" name="display_cost"></ion-input>
         </ion-item> -->
-      <ion-item>
-        <ion-label>Tipo de servicio</ion-label>
-        <ion-select [(ngModel)]="categoriesValue"
-          (ngModelChange)="onChange($event)" name="categories"
-          interface="action-sheet">
-          <ion-option *ngFor="let item of getCategory" [value]="{id:item.id,
-            name:item.name}">{{item.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-
-      <div style="display: contents; max-width: 350px;">
+      <!-- <div style="display: contents; max-width: 350px;">
         <ion-chip *ngFor="let item of categories">
           <ion-label color="secondary">{{item.name}}</ion-label>
           <button ion-button clear color="dark"
@@ -81,7 +95,7 @@
             <ion-icon name="close-circle"></ion-icon>
           </button>
         </ion-chip>
-      </div>
+      </div> -->
 
 
       <!-- <ion-item>
@@ -113,7 +127,7 @@
           <ion-label>Agregar fechas no disponibles</ion-label>
         </ion-list-header> -->
         <div class="sub-card">
-          <h3>Agregar fechas no disponibles</h3>
+          <h2>Agregar fechas no disponibles</h2>
           <ion-item>
             <ion-label>Fecha Inicial</ion-label>
             <ion-datetime displayFormat="YYYY-MM-DD" display-timezone="utc"
@@ -144,7 +158,7 @@
           <ion-label>Agregar días disponibles.</ion-label>
         </ion-list-header> -->
         <div class="sub-card">
-          <h3>Agregar días disponibles</h3>
+          <h2>Agregar días disponibles</h2>
           <ion-item>
             <ion-label>Día de la semana</ion-label>
             <ion-select [(ngModel)]="dayValue"
@@ -187,45 +201,60 @@
           <ion-row class="ion-align-items-center;">
             <ion-col style="background-color:#76a7ab; color: #fff; margin-right:
               1px;">
-              <div style="margin: 0 auto; text-align: center; font-family: Arial, Helvetica, sans-serif !important;">Desde</div>
+              <div style="margin: 0 auto; text-align: center; font-family:
+                Arial, Helvetica, sans-serif !important; font-size: 16px;
+                font-weight: bold;">Desde</div>
             </ion-col>
             <ion-col style="background-color:#76a7ab; color: #fff;">
-              <div style="margin: 0 auto;text-align: center; font-family: Arial, Helvetica, sans-serif !important;">Hasta</div>
+              <div style="margin: 0 auto;text-align: center; font-family: Arial,
+                Helvetica, sans-serif !important; font-size: 16px; font-weight:
+                bold;">Hasta</div>
             </ion-col>
             <ion-col style="background-color:#76a7ab; color: #fff;">
-              <div style="margin: 0 auto;text-align: center; font-family: Arial, Helvetica, sans-serif !important;">Disponibilidad</div>
+              <div style="margin: 0 auto;text-align: center; font-family: Arial,
+                Helvetica, sans-serif !important; font-size: 16px; font-weight:
+                bold;">Disponibilidad</div>
             </ion-col>
             <ion-col style="background-color:#76a7ab; color: #fff; margin-left:
               1px;">
-              <div style="margin: 0 auto; border:1px;"></div>
+              <div style="margin: 0 auto;text-align: center; font-family: Arial,
+                Helvetica, sans-serif !important; font-size: 16px; font-weight:
+                bold;">Acción</div>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center"
             *ngFor="let item of
             availability" style="border-bottom: 1px solid #ddd;">
             <ion-col style="margin-right: 1px;">
-              <div style="margin: auto; width: 100%; justify-content: space-between; align-items: center;  text-align:center; font-family: Arial, Helvetica, sans-serif !important;
+              <div style="margin: auto; width: 100%; justify-content:
+                space-between; align-items: center; text-align:center;
+                font-family: Arial, Helvetica, sans-serif !important;
                 height:100%; display:flex">
                 <span>{{item.nameDay}}</span>
                 <span>{{item.from}}</span>
               </div>
             </ion-col>
             <ion-col>
-              <div style="margin: auto; width: 100%; justify-content: center; align-items: center;  text-align:center; font-family: Arial, Helvetica, sans-serif !important;
-                height:100%;  display:flex">
+              <div style="margin: auto; width: 100%; justify-content: center;
+                align-items: center; text-align:center; font-family: Arial,
+                Helvetica, sans-serif !important;
+                height:100%; display:flex">
                 <!-- <span>{{item.to_date}}</span> -->
                 <span>{{item.to}}</span>
               </div>
             </ion-col>
             <ion-col>
-              <div style="margin: auto; width: 100%; justify-content: center; align-items: center;  text-align:center; font-family: Arial, Helvetica, sans-serif !important;
+              <div style="margin: auto; width: 100%; justify-content: center;
+                align-items: center; text-align:center; font-family: Arial,
+                Helvetica, sans-serif !important;
                 height:100%; display:flex">
                 <span *ngIf="item.bookable == 'yes'">Si</span>
                 <span *ngIf="item.bookable == 'no'">No</span>
               </div>
             </ion-col>
             <ion-col style="margin-right: 1px;">
-              <div style="margin: auto; width: 100%; text-align:center; justify-content: center; align-items: center;">
+              <div style="margin: auto; width: 100%; text-align:center;
+                justify-content: center; align-items: center;">
                 <button
                   ion-button
                   color="danger" clear icon-only

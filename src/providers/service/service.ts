@@ -46,6 +46,7 @@ export class Service {
   customer: any
   dataSearchProduct: any = []
   includeProduct: any
+  DataCategories:any
   constructor(
     private reqhttp: HTTP,
     private http: Http,
@@ -55,6 +56,7 @@ export class Service {
     private nativeStorage: NativeStorage,
     public functions: Functions,
   ) {
+    this.DataCategories = [];
     this.mainCategories = []
     this.filter.page = 1
   }
@@ -198,6 +200,7 @@ export class Service {
       )
       .map(res => res.json())
       .subscribe(data => {
+        this.DataCategories.push(data);
         if (page == 1) this.categories = data
         else {
           this.categories.push.apply(this.categories, data)

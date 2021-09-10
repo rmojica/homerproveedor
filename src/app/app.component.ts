@@ -57,7 +57,7 @@ export class MyApp {
         platform.ready().then(() => {
             statusBar.styleDefault();
             statusBar.backgroundColorByHexString('#f4f5f8');
-            this.splashScreen.hide();
+
             timer(2000).subscribe(()=>this.showSplash = false);
             this.service.load().then((results) => this.handleService(results));
             this.nativeStorage.getItem('blocks').then(data => { if (data) {
@@ -76,6 +76,7 @@ export class MyApp {
                             this.service.mainCategories.push(this.service.categories[i]);
                         }
                     }
+                    this.splashScreen.hide();
                 }
             }, error => console.error(error));
 
@@ -238,7 +239,7 @@ export class MyApp {
         this.emailComposer.open(email);
     }
     support(){
-        this.nav.setRoot(PagesSupportPage);
+        this.nav.push(PagesSupportPage);
     }
     post(id) {
         this.nav.setRoot(Post, id);

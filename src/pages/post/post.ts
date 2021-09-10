@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { Values } from '../../providers/service/values';
 import { Service } from '../../providers/service/service';
 
@@ -10,7 +10,7 @@ export class Post {
   post: any;
   id: any;
   title: any;
-  constructor (public service: Service, public values: Values, params: NavParams) {
+  constructor (public service: Service, public values: Values, params: NavParams, private navCtrl: NavController) {
     this.id = params.data.data;
     this.title = params.data.title;
     this.service.getPage(this.id)
@@ -19,4 +19,7 @@ export class Post {
        });
 
  }
+ goHome(){
+  this.navCtrl.popToRoot();
+}
 }
