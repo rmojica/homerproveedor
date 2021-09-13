@@ -16,7 +16,7 @@ import {Post} from '../../pages/post/post';
   templateUrl: 'pages-support.html',
 })
 export class PagesSupportPage {
-  
+
   constructor(public navCtrl: NavController, public values: Values, public navParams: NavParams, private emailComposer: EmailComposer) {
   }
 
@@ -35,6 +35,10 @@ export class PagesSupportPage {
         isHtml: true
     };
     this.emailComposer.open(email);
-}
+  }
+  goHome(){
+    this.navCtrl.pop();
+  }
+
 
 }
