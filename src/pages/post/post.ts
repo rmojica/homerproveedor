@@ -20,6 +20,6 @@ export class Post {
 
  }
  goHome(){
-  this.navCtrl.popToRoot();
+  this.navCtrl.pop();
 }
 }
