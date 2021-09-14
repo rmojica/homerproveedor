@@ -33,7 +33,9 @@ import {TabsPage} from '../pages/tabs/tabs';
 import { timer } from 'rxjs/observable/timer';
 import {PagesProductsProvidersPage} from '../pages/pages-products-providers/pages-products-providers';
 import { CategoryServicePage } from '../pages/category-service/category-service';
+import {CategoryService} from '../providers/service/category-service';
 import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor';
+import {Socket}  from 'ngx-socket-io';
 
 @Component({
     templateUrl: 'app.html'
@@ -47,12 +49,13 @@ export class MyApp {
     Languages: any;
     customers: any;
     showSplash = true;
+    products:any;
 
-    constructor(statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
+    constructor( private socket: Socket, public CategoryService: CategoryService,statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
 
         this.service.getCustomer()
         .then((results) => this.customers = results);
-
+        this.products = [];
         this.Languages = []
         platform.ready().then(() => {
             statusBar.styleDefault();
@@ -81,6 +84,7 @@ export class MyApp {
             }, error => console.error(error));
 
         });
+        this.loginHomerSetUp();
 
     }
     handleService(results) {
@@ -132,6 +136,25 @@ export class MyApp {
 
             this.oneSignal.endInit();
         }
+    }
+
+    loginHomerSetUp(){
+      this.CategoryService.getProductsByIdVendor2()
+      .then((result:any) => {
+        if(result.length > 0){
+          for(let i=0; i<result.length; i++){
+            this.products.push({id:result[i]})
+          }
+        }
+        this.socket.connect();
+        this.socket.emit('adduser',{
+          id:this.values.customerId,
+          lat: 0,
+          lng: 0,
+          products:this.products,
+          onesignal:this.values.userId
+        });
+      });
     }
 
     openPage(page) {
