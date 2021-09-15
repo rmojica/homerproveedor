@@ -306,7 +306,9 @@ export class PagesProductsProvidersPage {
   }
 
   goHome(){
-    this.nav.popToRoot();
+    console.log("jaja");
+
+    this.nav.pop();
  }
 
 }

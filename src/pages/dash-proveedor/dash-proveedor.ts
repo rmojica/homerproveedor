@@ -136,15 +136,15 @@ export class DashProveedorPage {
 
 
   end_services() {
-    this.navCtrl.setRoot(EndOrdersPage);
+    this.navCtrl.push(EndOrdersPage);
   }
 
   pastservice(){
-    this.navCtrl.setRoot(Post,{title:'Servicios Pasados',id:93})
+    this.navCtrl.push(Post,{title:'Servicios Pasados',id:93})
   }
 
   services() {
-    this.navCtrl.setRoot(OrdersPage);
+    this.navCtrl.push(OrdersPage);
   }
   // sendMessage() {
   //   // this.socket.emit('send-message', { text: this.message });

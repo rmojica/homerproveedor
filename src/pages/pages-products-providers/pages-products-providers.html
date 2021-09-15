@@ -48,9 +48,16 @@
                     src="{{item.images[0].src}}"
                   /> -->
                   <img
+                    *ngIf="item.images.length > 0"
                     [style.height.rem]="values.dimensions.imageListViewHeight"
                     tappable
                     src="{{item.images[0].src}}"
+                    />
+
+                    <img
+                    *ngIf="item.images.length == 0"
+                    tappable
+                    src="{{values.imageDefault}}"
                     />
 
                 </ion-thumbnail>
@@ -137,9 +144,16 @@
               <ion-col class="col" *ngFor="let item of products">
                 <ion-card class="item-product">
                   <img
+                    *ngIf="item.images.length > 0"
                     [style.height.px]="values.dimensions.imageGridViewHeight"
                     tappable
                     src="{{item.images[0].src}}"
+                    />
+
+                    <img
+                    *ngIf="item.images.length == 0"
+                    tappable
+                    src="{{values.imageDefault}}"
                     />
 
                   <!-- <ion-card-content class="stock">

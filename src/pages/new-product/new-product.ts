@@ -609,7 +609,7 @@ export class NewProductPage {
   }
 
   goHome(){
-    this.nav.popToRoot();
+    this.nav.pop();
   }
   //  handleClick (ev){
   //   ev.preventDefault();

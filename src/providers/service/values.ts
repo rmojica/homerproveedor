@@ -44,6 +44,7 @@ export class Values {
   planchado:any = "assets/image/planchado.png";
   group:any = "assets/image/icono-proximo-servicio.png"
   hourGlass:any = "assets/image/icono-servicios-pasados.png";
+  imageDefault:any = "assets/image/default.jpg";
   currency: any = "USD";
   data: any;
   dir: any = 'left';

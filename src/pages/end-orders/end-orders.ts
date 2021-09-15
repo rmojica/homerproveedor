@@ -40,7 +40,6 @@ export class EndOrdersPage {
   }
 
   goHome(){
-    this.navCtrl.setRoot(DashProveedorPage);
-    this.navCtrl.popToRoot();
+    this.navCtrl.pop();
   }
 }

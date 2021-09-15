@@ -61,8 +61,7 @@ export class OrdersPage {
   }
 
   goHome(){
-     this.navCtrl.setRoot(DashProveedorPage);
-     this.navCtrl.popToRoot();
+     this.navCtrl.pop();
   }
 
   changestate(order, state, onesignal)
