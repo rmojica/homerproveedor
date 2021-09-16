@@ -1094,6 +1094,7 @@ export class Service {
     var params = new URLSearchParams()
     params.append('onesignal_user_id', data.userId)
     params.append('onesignal_push_token', data.pushToken)
+    params.append('userId', this.values.customerId.toString())
     return new Promise(resolve => {
       this.http
         .post(

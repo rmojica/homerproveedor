@@ -85,10 +85,17 @@ export class AccountLogin {
     this.buttonText = 'Login'
     if (!results.errors) {
 
-      if (this.platform.is('cordova'))
+      /*if (this.platform.is('cordova'))
         this.oneSignal.getIds().then((data: any) => {
           this.service.subscribeNotification(data)
-      })
+      })*/
+
+      if(this.platform.is('cordova')){
+        this.oneSignal.getIds().then((data: any) => {
+            this.service.subscribeNotification(data);
+        });
+        this.oneSignal.sendTags({email: this.loginData.username , pincode: this.loginData.username , city: this.loginData.username  });
+    }
 
       // this.categoryService.getProductsByIdVendor2()
       // .then((result:any) => {
