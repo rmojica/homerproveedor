@@ -110,7 +110,8 @@ export class MyApp {
 
 
         if (this.platform.is('cordova')) {
-            this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);
+            //this.oneSignal.startInit(this.values.settings.onesignal_app_id, this.values.settings.google_project_id);
+            this.oneSignal.startInit("644f4795-d5c2-4d00-aead-1682204aacbc", this.values.settings.google_project_id);
             this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
             this.oneSignal.handleNotificationReceived().subscribe(result => {
                 console.log(result);
