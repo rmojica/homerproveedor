@@ -13,6 +13,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { OrdersPage } from '../orders/orders';
 import { EndOrdersPage } from '../end-orders/end-orders';
 import { Post } from '../post/post';
+import { OneSignal } from '@ionic-native/onesignal';
 
 
 /**
@@ -34,7 +35,13 @@ export class DashProveedorPage {
   miLongitude = 0;
   filter: any;
   products:any;
-  constructor(public serv:Service, public service: CategoryService, private nativeGeocoder: NativeGeocoder, private platform: Platform, private backgroundMode: BackgroundMode, private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values, private geolocation: Geolocation) {
+  constructor(public serv:Service, public service: CategoryService, private nativeGeocoder: NativeGeocoder, private platform: Platform, private backgroundMode: BackgroundMode, private socket: Socket, public navCtrl: NavController, public navParams: NavParams, public values: Values, private geolocation: Geolocation,  public oneSignal: OneSignal) {
+    this.oneSignal.getIds().then(identity => {
+      console.log("agarro id",identity.userId, identity.userId);
+
+      this.values.pushToken = identity.pushToken
+      this.values.userId = identity.userId
+    });
     this.filter = {}
     this.lat = '';
     this.lng = '';
