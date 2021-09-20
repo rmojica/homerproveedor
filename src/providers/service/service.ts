@@ -342,7 +342,6 @@ export class Service {
           'purchase_note': data.purchase_note,
           'categories': data.categories,
           'tags': data.tags,
-          'images': data.images,
           'attributes': data.attributes,
           'default_attributes': data.default_attributes,
           'variations': data.variations,

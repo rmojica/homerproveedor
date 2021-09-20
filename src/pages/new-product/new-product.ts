@@ -94,13 +94,6 @@ export class NewProductPage {
     purchase_note:string = "";
     categories:any = [];
     tags:any = [];
-    images:any = [
-      {
-        "src":  "https://demohomer.digitalfactory.tech/wp-content/uploads/2021/09/default.jpg",
-        "nombre":  "predeterminado",
-        "alt":"predeterminado"
-      }
-    ];
     attributes:any = [];
     default_attributes:any = [];
     variations:any = [];
@@ -213,10 +206,10 @@ export class NewProductPage {
       });
 
       navParams.data.categories.map(result => {
-        this.categories.push({
+        this.itemsCategory.push([{
           id:result.id,
           name:result.name
-        })
+        }])
       });
     }
   }
@@ -394,7 +387,6 @@ export class NewProductPage {
       purchase_note:this.purchase_note,
       categories:this.selectedCate,
       tags:this.tags,
-      images:this.images,
       attributes:this.attributes,
       default_attributes:this.default_attributes,
       variations:this.variations,
