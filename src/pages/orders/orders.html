@@ -7,7 +7,7 @@
 <ion-header style="background-color: #72A9AE;">
   <ion-toolbar color="header">
     <ion-buttons slot="start">
-      <button ion-button icon-only  (click)="goHome()">
+      <button ion-button icon-only (click)="goHome()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
@@ -38,7 +38,13 @@
         </h2>
       </div>
       <h2 class="orderDate">
-        <b>{{orders.date | date: 'dd/MM/yy'}}, {{orders.hour}} </b>
+        <h2>
+          <b>Fecha de solicitud: </b> <br>{{orders.date | date: 'dd/MM/yy' }}
+        </h2>
+        <h2>
+          <b>Horario de la reserva: </b> <br>De {{orders.hour}} a
+          {{orders.hour_end}}
+        </h2>
       </h2>
       <div class="rectangle">
         <h2 style="margin:0 auto; width: 80%; font-size: 16px;">

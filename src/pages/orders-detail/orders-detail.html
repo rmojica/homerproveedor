@@ -49,18 +49,19 @@
           <b>Reserva # {{orders.bookingId}}</b>
         </h2>
         <h2 class="status">
-          <b style="text-transform: uppercase; margin-left: 15px;">{{orders.status}}</b>
+          <b style="text-transform: uppercase; margin-left: 15px;">Estado: {{orders.status}}</b>
         </h2>
       </div>
       <h2 class="orderDate">
-       <b> {{orders.date  | date: 'dd/MM/yy' }}, {{orders.hour}} </b>
+       <b>Fecha: {{orders.date  | date: 'dd/MM/yy' }}</b><br>
+       <b>Horario:<br> De {{orders.hour}} a {{orders.hour_end}}</b>
       </h2>
       <div class="rectangle">
         <h2 style="margin:0 auto; width: 80%; font-size: 16px; ">
-          <b>{{orders.productName}}</b>
+          <b>Homer: {{orders.productName}}</b>
         </h2>
         <h5 style="margin:0 auto; width: 80%">
-          <b>{{orders.location}}</b>
+          <b>Dirección: {{orders.location}}</b>
         </h5>
       </div>
       <h2 style="text-align: center;" *ngIf="orders.isCancel != '' ">

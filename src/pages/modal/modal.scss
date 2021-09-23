@@ -1,12 +1,22 @@
+.toolbar-title {
+  width: 100%;
+  font-size: 18px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
 page-modal {
-  button{
-    border-radius: 30px!important;
+  ion-list ion-item ion-label {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+  }
+  button {
+    border-radius: 30px !important;
     font-weight: 600;
   }
-  .black{
-    background: #000!important;
+  .black {
+    background: #000 !important;
   }
-  .card2{
+  .card2 {
     padding: 10px;
     background: white;
     border-radius: 2px;
@@ -17,34 +27,36 @@ page-modal {
   }
   .sub-header {
     // // background-color: #76a7ab;
-    // position:absolute;
-    margin-top: 50px;
+    position: absolute;
+    // margin-top: 50px;
+    left: 0;
+    top: 60px;
     padding: 20px;
     width: 100%;
-        h1 {
-            text-align: center;
-            font-family:  sans-serif;
-            font-weight: 600;
-            color: #000;
-            font-size: 22px;
-        }
+    h1 {
+      text-align: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      color: #000;
+      font-size: 22px;
+    }
   }
   h2 {
-      margin: 20px 0 10px 16px;
-      font-size: 18px;
+    margin: 20px 0 10px 16px;
+    font-size: 18px;
   }
   h3 {
-      font-size: 15px;
-      margin: 5px 16px 8px 16px;
-      color: #222;
-      line-height: 1.6;
+    font-size: 15px;
+    margin: 5px 16px 8px 16px;
+    color: #222;
+    line-height: 1.6;
   }
   p {
-      line-height: 1.6;
-      text-indent: 0px;
-      font-size: 14px;
-      text-align: justify;
-      margin: 14px 16px 16px;
-      font-weight: 500;
+    line-height: 1.6;
+    text-indent: 0px;
+    font-size: 14px;
+    text-align: justify;
+    margin: 14px 16px 16px;
+    font-weight: 500;
   }
 }

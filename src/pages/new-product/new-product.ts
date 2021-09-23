@@ -480,7 +480,7 @@ export class NewProductPage {
 
 
         }else{
-          this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
+          this.showAlert('No se ha seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
         }
       }else{
         for( let i in this.availability ){
@@ -518,7 +518,7 @@ export class NewProductPage {
         this.to = '';
         this.daySelected = '';
       }else{
-        this.showAlert('No sea seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
+        this.showAlert('No se ha seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
       }
     }else{
       for( let i in this.availability ){

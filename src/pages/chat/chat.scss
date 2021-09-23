@@ -13,7 +13,7 @@ page-chat{
   }
 
   .footer-btn{
-    font-size: x-large
+    font-size: 40px;
   }
 
   img.profile-pic{
@@ -50,7 +50,7 @@ page-chat{
   }
 
   .message-wrapper:first-child{
-    margin-top: 80px
+    margin-top: 90px
   }
 
   .message-wrapper{
@@ -128,6 +128,7 @@ page-chat{
   textarea,
   .item-input,
   .item-input-wrapper{
+    height: 50px;
     background-color: #f4f4f4 !important
   }
 

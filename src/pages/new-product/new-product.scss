@@ -24,6 +24,22 @@ page-new-product {
     color: #000 !important;
   }
 
+ 
+
+  ion-select .select-placeholder {
+    text-align: left;
+    margin-left: -16px;
+    color: #767676 !important;
+  }
+
+  .datetime-md .datetime-placeholder {
+    color: #767676;
+  }
+
+  .datetime-ios .datetime-placeholder {
+    color: #767676;
+  }
+
   //textarea
 
   textarea::-webkit-input-placeholder {
@@ -44,11 +60,28 @@ page-new-product {
     color: #000 !important;
   }
 
-  textarea{
+  textarea {
     height: 20px;
   }
 
+  select::-webkit-input-placeholder {
+    color: #000 !important;
+    float: left;
+  }
 
+  select:-moz-placeholder {
+    /* Firefox 18- */
+    color: #000 !important;
+  }
+
+  select::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #000 !important;
+  }
+
+  select:-ms-input-placeholder {
+    color: #000 !important;
+  }
 
   form ion-list ion-item ion-label {
     color: #c8c8c8 !important;
@@ -139,10 +172,10 @@ page-new-product {
     font-family: Arial, Helvetica, sans-serif !important;
   }
 
-  .select-category{
-    color: #000!important;
-    max-width: 100%!important;
-    width:100%;
+  .select-category {
+    color: #000 !important;
+    max-width: 100% !important;
+    width: 100%;
   }
 
   .card .tabs-control {
