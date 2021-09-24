@@ -68,6 +68,8 @@ export class AccountLogin {
       this.service
         .login(this.loginData)
         .then(results => this.handleResults(results))
+    }else{
+      this.showAlert("Por favor rellene todos los campos");
     }
   }
   validateForm() {
@@ -132,7 +134,7 @@ export class AccountLogin {
         // }
     }
     else if (results.errors) {
-   
+
       if(results.errors.invalid_email)
         this.functions.showAlert('Correo', results.errors.invalid_email)
       else if(results.errors.invalid_username)
@@ -144,6 +146,14 @@ export class AccountLogin {
       else
         this.functions.showAlert('error', 'invalid username/password')
     }
+  }
+  showAlert(message:string) {
+    const alert = this.alert.create({
+      title: 'Atención',
+      message: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   forgotten() {
     this.nav.push(AccountForgotten)

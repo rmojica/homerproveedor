@@ -193,7 +193,7 @@ export class Service {
   getCategories(page) {
     this.http
       .get(
-        this.config.setUrl('GET', '/wp-json/wc/v2/products/categories?', {
+        this.config.setUrl('GET', '/wp-json/wc/v2/products/categories?order=asc&orderby=id&', {
           per_page: 100,
           page: page,
         }),

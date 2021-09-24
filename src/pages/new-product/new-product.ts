@@ -180,6 +180,7 @@ export class NewProductPage {
     }
   ];
   selectedCate:any;
+  btnEnabled:Boolean = false;
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
     this.categories = [];
@@ -338,6 +339,7 @@ export class NewProductPage {
   }
 
   async sendProduct(){
+    this.btnEnabled = true;
     this.data = {
       name:this.name,
       slug:this.slug,
@@ -437,13 +439,16 @@ export class NewProductPage {
     ){
       let response:any = await this.service.addProduct(this.data);
       if(response.status === 200){
+        this.btnEnabled = false;
         console.log(response.status);
         this.showAlert('Registrado correctamente', '<strong>Exito:</strong> Has registrado tu servicio correctamente');
         this.nav.pop();
       }else{
+        this.btnEnabled = false;
         this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> contacta al administrador');
       }
     }else{
+      this.btnEnabled = false;
       this.showAlert('Ha ocurrido un error', '<strong>Por favor</strong> llena todos los campos');
     }
   }

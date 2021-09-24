@@ -9,6 +9,7 @@ import { OrdersDetailPage } from '../orders-detail/orders-detail';
 import {ModalPage} from '../modal/modal'
 import { ChatPage } from '../chat/chat';
 import {DashProveedorPage} from '../dash-proveedor/dash-proveedor';
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the OrdersPage page.
  *
@@ -33,7 +34,8 @@ export class OrdersPage {
       public navParams: NavParams,
       public values:Values,
       public productService:ProductService,
-      public modalCtrl:ModalController
+      public modalCtrl:ModalController,
+      public loadingCtrl: LoadingController
   )
   {
     this.Lista = []
@@ -66,6 +68,7 @@ export class OrdersPage {
 
   changestate(order, state, onesignal)
   {
+    this.presentLoading();
     let message = ""
     let title = ""
     this.productService.changestate({
@@ -184,6 +187,14 @@ export class OrdersPage {
       }
       endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
       updateTimer();
+  }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Por favor espere...",
+      duration: 3000
+    });
+    loader.present();
   }
 
 }
