@@ -272,7 +272,7 @@
               monospace;" (click)="updateProduct()">Actualizar Servicio</button>
           </div>
           <div *ngIf="!navParams.data.id" style="margin:0 auto; width: 220px;">
-            <button class="btn-custom" ion-button style="font-family: 'Courier
+            <button [disabled]="btnEnabled" class="btn-custom" ion-button style="font-family: 'Courier
               New', Courier,
               monospace;" (click)="sendProduct()">Guardar Servicio</button>
           </div>

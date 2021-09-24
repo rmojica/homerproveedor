@@ -24,12 +24,17 @@ page-new-product {
     color: #000 !important;
   }
 
- 
+
 
   ion-select .select-placeholder {
     text-align: left;
-    margin-left: -16px;
-    color: #767676 !important;
+    // margin-left: -16px;
+
+  }
+
+  ion-select{
+    margin-left: -12px;
+    color:#000!important;
   }
 
   .datetime-md .datetime-placeholder {
@@ -155,7 +160,7 @@ page-new-product {
 
   .card2 ion-item ion-label,
   ion-datetime {
-    color: #ffff !important;
+    color: #000 !important;
     font-family: Arial, Helvetica, sans-serif !important;
   }
 

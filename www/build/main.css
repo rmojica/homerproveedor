@@ -51881,8 +51881,11 @@ page-new-product input:-ms-input-placeholder {
 
 page-new-product ion-select .select-placeholder {
   text-align: left;
-  margin-left: -16px;
-  color: #767676 !important;
+}
+
+page-new-product ion-select {
+  margin-left: -12px;
+  color: #000 !important;
 }
 
 page-new-product .datetime-md .datetime-placeholder {
@@ -52014,7 +52017,7 @@ page-new-product ion-grid ion-col span {
 
 page-new-product .card2 ion-item ion-label,
 page-new-product ion-datetime {
-  color: #ffff !important;
+  color: #000 !important;
   font-family: Arial, Helvetica, sans-serif !important;
 }
 
@@ -53222,7 +53225,7 @@ page-pages-support {
 
 page-pages-support .item-md,
 page-pages-support .item-ios {
-  width: 80% !important;
+  width: 90% !important;
   margin: 0 auto !important;
   margin-bottom: 20px !important;
   padding: 10px !important;
@@ -53243,7 +53246,7 @@ page-pages-support ion-list ion-item {
   text-align: center !important;
 }
 
-page-pages-support .bg-green:hover {
+page-pages-support .bg-green:active {
   background: #72a9ae !important;
   color: #ffff;
 }
@@ -53256,6 +53259,8 @@ page-pages-support ion-list ion-item ion-icon {
 page-pages-support ion-list ion-item ion-label {
   font-family: Arial, Helvetica, sans-serif !important;
   font-size: 18px !important;
+  text-align: justify !important;
+  padding-left: 10px;
 }
 
 page-pages-support .scroll-content {
@@ -53277,7 +53282,7 @@ page-pages-support .scroll-content {
 page-pages-support .sub-header {
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 80px;
   padding: 20px;
   width: 100%;
 }
