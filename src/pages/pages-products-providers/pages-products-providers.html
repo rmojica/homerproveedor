@@ -48,13 +48,13 @@
                     src="{{item.images[0].src}}"
                   /> -->
                   <img
-                    *ngIf="item.images.length > 0"
-                    [style.height.rem]="values.dimensions.imageListViewHeight"
-                    tappable
-                    src="{{item.images[0].src}}"
-                    />
+                    *ngIf="item.images.length> 0"
+                  [style.height.rem]="values.dimensions.imageListViewHeight"
+                  tappable
+                  src="{{item.images[0].src}}"
+                  />
 
-                    <img
+                  <img
                     *ngIf="item.images.length == 0"
                     tappable
                     src="{{values.imageDefault}}"
@@ -144,13 +144,13 @@
               <ion-col class="col" *ngFor="let item of products">
                 <ion-card class="item-product">
                   <img
-                    *ngIf="item.images.length > 0"
+                    *ngIf="item.images.length> 0"
                     [style.height.px]="values.dimensions.imageGridViewHeight"
                     tappable
                     src="{{item.images[0].src}}"
                     />
 
-                    <img
+                  <img
                     *ngIf="item.images.length == 0"
                     tappable
                     src="{{values.imageDefault}}"
@@ -204,7 +204,7 @@
                     </div>
                   </ion-item>
                   <ion-item no-padding no-lines>
-                    <div class="line-btn">
+                    <!-- <div class="line-btn">
                       <button style="font-weight: bold;" ion-button item-center
                         medium color="button-color" text-uppercase
                         (click)="getProduct(item)">{{"Ver" | translate}}
@@ -215,7 +215,12 @@
                         <ion-icon ios="ios-create" md="md-create"></ion-icon>
                         {{"Editar" | translate}}
                       </button>
-                    </div>
+                    </div> -->
+                    <button ion-button color="#0000" full
+                    (click)="getProductForANewProduct(item)" >
+                      <ion-icon ios="ios-create" md="md-create"></ion-icon>
+                      {{"Editar" | translate}}
+                    </button>
                   </ion-item>
                 </ion-card>
               </ion-col>

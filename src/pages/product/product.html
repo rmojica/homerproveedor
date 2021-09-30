@@ -41,11 +41,20 @@
   <ion-spinner *ngIf="!product?.product" name="crescent"></ion-spinner>
   <div *ngIf="product.product" class="product-details">
     <div *ngIf="product.product.images">
-      <ion-slides autoplay="500" loop="true" speed="6000" pager="true">
-        <ion-slide *ngFor="let item of product.product.images">
+      <ion-slides initialSlide="0" speed="3000" loop="false" pager="true" dir="rtl">
+        <ion-slide >
+          <div *ngFor="let item of product.product.images">
+            <img
+            *ngIf="item.length != 0"
+              [style.height.px]="values.dimensions.imageProductViewHeight - 50"
+              src="{{item.src}}"
+            />
+          </div>
+
           <img
+            *ngIf="product.product.images.length == 0"
             [style.height.px]="values.dimensions.imageProductViewHeight - 50"
-            src="{{item.src}}"
+            src="../../assets/image/default.jpg"
           />
           <!-- <h2 *ngIf="!product.product.in_stock" item-right class="stock" color="danger">{{"OUTOFSTOCK" | translate}}       </h2> -->
         </ion-slide>

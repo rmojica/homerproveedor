@@ -29,7 +29,7 @@ page-pages-support {
 
   ion-list ion-item ion-icon {
     margin-left: 20px !important;
-    margin-right: -10px !important;
+    margin-right: -4px !important;
   }
 
   ion-list ion-item ion-label {
@@ -56,7 +56,7 @@ page-pages-support {
   .sub-header {
     position: absolute;
     left: 0;
-    top: 80px;
+    top: 100px;
     padding: 20px;
     width: 100%;
     h1 {
@@ -86,5 +86,5 @@ page-pages-support {
   }
   .toolbar-ios ion-title img{
     top: 30%;
-  }    
+  }
 }

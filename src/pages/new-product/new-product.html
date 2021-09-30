@@ -161,7 +161,8 @@
           <h2>Agregar días disponibles</h2>
           <ion-item>
             <ion-label>Día de la semana</ion-label>
-            <ion-select [(ngModel)]="dayValue"
+            <ion-select
+              [(ngModel)]="dayValue"
               (ngModelChange)="onChangeday($event)"
               name="name"
               interface="action-sheet"
