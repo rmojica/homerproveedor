@@ -194,7 +194,6 @@ export class NewProductPage {
       this.name = navParams.data.name;
       this.description = navParams.data.description.replace(/<[^>]*>?/gm,' ');
       this.short_description = navParams.data.short_description.replace(/<[^>]*>?/gm,' ');
-      this.cost = navParams.data.cost;
       this.block_cost = navParams.data.block_cost;
       navParams.data.availability.map(result =>{
         this.availability.push({
@@ -317,7 +316,7 @@ export class NewProductPage {
       name : this.name,
       description : this.description,
       short_description: this.short_description,
-      cost : this.block_cost,
+      cost : this.cost,
       block_cost : this.block_cost,
       display_cost : this.block_cost.toString(),
       availability: this.availability,
@@ -402,7 +401,7 @@ export class NewProductPage {
       cancel_limit_unit:this.cancel_limit_unit,
       cancel_limit:this.cancel_limit,
       check_start_block_only:this.check_start_block_only,
-      cost:this.block_cost,
+      cost:this.cost,
       display_cost:this.block_cost,
       duration_type:this.duration_type,
       duration_unit:this.duration_unit,

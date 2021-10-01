@@ -47,17 +47,7 @@ export class OrdersPage {
   }
 
   ionViewWillEnter(){
-    this.getData().subscribe((data:any) => {
-      this.data = data
-      var duplicado = false;
-      duplicado = this.validateUnique(data)
 
-      if (duplicado == false){
-        this.Lista.push(data)
-          // this.Lista[this.count] = data
-          // this.count++;
-      }
-    });
     // this.downCount()
   }
 
@@ -119,16 +109,24 @@ export class OrdersPage {
           "content":`El homer ha cancelado el servicio el motivo ${data.message}`,
           "onesignalid":onesignal
         });
-        this.navCtrl.push(EndOrdersPage)
+        
         this.functions.showAlert("Éxito", `El servicio se ha cancelado correctamente, motivo ${data.message}`);
       }
     })
   }
 
-  ionViewDidLoad() {
-    // this.navBar.backButtonClick = (e:UIEvent) => {      // add this event
-    //      this.navCtrl.pop();
-    // };
+  ionViewDidEnter() {
+    this.getData().subscribe((data:any) => {
+      this.data = data
+      var duplicado = false;
+      duplicado = this.validateUnique(data)
+
+      if (duplicado == false){
+        this.Lista.push(data)
+          // this.Lista[this.count] = data
+          // this.count++;
+      }
+    });
   }
 
   ionViewWillLeave() {
