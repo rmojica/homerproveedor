@@ -6,67 +6,96 @@ page-new-product {
   form {
     margin-top: 50px !important;
   }
-  input::-webkit-input-placeholder {
-    color: #000 !important;
-  }
+  // input::-webkit-input-placeholder {
+  //   color: #767676 !important;
+  // }
 
-  input:-moz-placeholder {
-    /* Firefox 18- */
-    color: #000 !important;
-  }
+  // input:-moz-placeholder {
+  //   /* Firefox 18- */
+  //   color: #767676 !important;
+  // }
 
-  input::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #000 !important;
-  }
+  // input::-moz-placeholder {
+  //   /* Firefox 19+ */
+  //   color: #767676 !important;
+  // }
 
-  input:-ms-input-placeholder {
-    color: #000 !important;
-  }
-
-
+  // input:-ms-input-placeholder {
+  //   color: #767676 !important;
+  // }
 
   ion-select .select-placeholder {
     text-align: left;
+    color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
     // margin-left: -16px;
-
   }
 
-  ion-select{
+
+  ion-select.select-category .select-placeholder{
+    color: #767676!important;
+  }
+
+  ion-select.select-category {
     margin-left: -12px;
-    color:#000!important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: bold;
+    // border:1px solid red;
+    // color: #767676 !important;
   }
 
   .datetime-md .datetime-placeholder {
-    color: #767676;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
   .datetime-ios .datetime-placeholder {
-    color: #767676;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
   //textarea
 
+  input,
   textarea::-webkit-input-placeholder {
     color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
+  input,
   textarea:-moz-placeholder {
     /* Firefox 18- */
     color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
+  input::-moz-placeholder {
+    color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
   textarea::-moz-placeholder {
     /* Firefox 19+ */
-    color: #000 !important;
+    color: black !important;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
+  input,
   textarea:-ms-input-placeholder {
     color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
   textarea {
     height: 20px;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: bold;
+  }
+
+  input {
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: bold;
   }
 
   select::-webkit-input-placeholder {

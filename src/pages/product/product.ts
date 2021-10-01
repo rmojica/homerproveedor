@@ -67,16 +67,16 @@ export class ProductPage {
       this.selectedService = null
       console.log(params)
       this.product.product = params.data
+
+      this.product.product.images.map(res =>  console.log(res))
+
       this.id = params.data.id
 
-      console.log('producto', this.product.product)
-
       this.options.product_id = this.id
-      console.log('Product: ', this.product.product.resources_full)
+
       this.usedVariationAttributes = (this.product.product
         .resources_full as Array<any>).map(item => item)
 
-      console.log('usedVariationAttributes:', this.usedVariationAttributes)
       this.loadDataProduct();
     } else {
       // this.options.product_id = this.id
@@ -86,7 +86,7 @@ export class ProductPage {
     }
 
     this.getReviews()
-    
+
   }
 
   loadDataProduct(){
@@ -137,12 +137,9 @@ export class ProductPage {
     this.selectedService = null
     this.product.product = results
     this.id = results.id
-    console.log('producto', this.product.product)
     this.options.product_id = this.id
-    console.log('Product: ', this.product.product.resources_full)
     this.usedVariationAttributes = (this.product.product
       .resources_full as Array<any>).map(item => item)
-    console.log('usedVariationAttributes:', this.usedVariationAttributes)
 
     this.loadDataProduct();
 
@@ -154,8 +151,7 @@ export class ProductPage {
     // )
   }
   getProduct(id) {
-    this.nav.push(ProductPage, id)
-    console.log(id)
+    this.nav.push(ProductPage, id);
   }
   addToCart() {
     // if (!this.values.isLoggedIn) {
@@ -410,6 +406,6 @@ export class ProductPage {
         this.lan.pleaseSelect = translations['Please select a service'];
     });
 }
-  
-  
+
+
 }
