@@ -37,7 +37,7 @@
       <!-- <button (click)="upload2()" ion-button>Take Pic & Upload </button> -->
       <ion-item>
         <!-- <ion-label>Nombre servicio</ion-label> -->
-        <ion-input placeholder="Nombre servicio" type="text" [(ngModel)]="name"
+        <ion-input placeholder="Ingrese nombre del servicio" type="text" [(ngModel)]="name"
           name="product_name"></ion-input>
       </ion-item>
 
@@ -58,7 +58,7 @@
           name="categories"
           cancelText="Cancelar" okText="Aceptar"
           class="select-category"
-          placeholder="Tipo de servicio">
+          placeholder="Seleccione tipo de servicio">
 
           <ion-option *ngFor="let item of itemsCategory[0]"
             [value]="{id:item.id, slug:item.slug, name:item.name}">{{item.name}}
