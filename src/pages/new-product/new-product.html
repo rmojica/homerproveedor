@@ -1,6 +1,6 @@
 <ion-header style="background-color: #72A9AE;">
-  <ion-toolbar color="header">
-    <ion-buttons slot="start">
+  <ion-toolbar color="header" (click)="goHome()">
+    <ion-buttons slot="start" (click)="goHome()">
       <button ion-button icon-only (click)="goHome()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
@@ -57,11 +57,12 @@
           [(ngModel)]="selectedCate"
           name="categories"
           cancelText="Cancelar" okText="Aceptar"
-          class="select-category"
-          placeholder="Tipo de servicio">
+          class="select-category"          
+          placeholder="Tipo de servicio"
+          [compareWith]="compareFn">
 
           <ion-option *ngFor="let item of itemsCategory[0]"
-            [value]="{id:item.id, slug:item.slug, name:item.name}">{{item.name}}
+            [value]="item">{{item.name}}           
           </ion-option>
         </ion-select>
       </ion-item>

@@ -183,8 +183,7 @@ export class NewProductPage {
   btnEnabled:Boolean = false;
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
-    this.categories = [];
-    this.selectedCate = [];
+    this.categories = [];    
     this.itemsCategory = [];
     this.service.getCategories(1);
     navParams.data.availability
@@ -195,23 +194,29 @@ export class NewProductPage {
       this.description = navParams.data.description.replace(/<[^>]*>?/gm,' ');
       this.short_description = navParams.data.short_description.replace(/<[^>]*>?/gm,' ');
       this.block_cost = navParams.data.block_cost;
-      navParams.data.availability.map(result =>{
-        this.availability.push({
-          type: result.type,
-          bookable: result.bookable,
-          priority:result.priority,
-          from: result.from,
-          to: result.to,
-        });
+      console.log("toda la data",navParams.data)
+      navParams.data.availability.map(result =>{           
+        let day = result.type.split(':');            
+        if(day[0] == "custom" || parseInt(day[1]) > 0){
+          console.log(day)
+          console.log(this.days[day[1]].name);
+          this.availability.push({
+            type: result.type,
+            bookable: result.bookable,
+            priority:result.priority,
+            from: result.from,
+            to: result.to,
+            nameDay:this.days[parseInt(day[1])-1].name
+          });
+        }       
       });
-
-      navParams.data.categories.map(result => {
-        this.itemsCategory.push([{
-          id:result.id,
-          name:result.name
-        }])
-      });
+       this.selectedCate = navParams.data.categories
+      
     }
+  }
+
+  compareFn(e1: any, e2: any): boolean {
+    return e1 && e2 ? e1.id === e2.id : e1 === e2;
   }
 
   ngAfterViewInit() {
@@ -312,6 +317,7 @@ export class NewProductPage {
   }
 
   async updateProduct(){
+    console.log(this.selectedCate)
     this.data={
       name : this.name,
       description : this.description,
@@ -470,7 +476,7 @@ export class NewProductPage {
   }
   addAvailabilityRange(){
       if(this.availability.length == 0 ){
-        if(this.from_date != undefined && this.from_date != ''  && this.to_date != undefined && this.to_date != ''){
+        if(this.from_date != undefined  && this.to_date != undefined){
           this.availability.push({
             type: "custom",
             bookable: "no",
@@ -487,28 +493,33 @@ export class NewProductPage {
           this.showAlert('No se ha seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
         }
       }else{
-        for( let i in this.availability ){
-         if(this.availability[i].from == this.from_date){
-            this.showAlert(`${this.from_date} ya fue agregado`, '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
-            return;
+        if(this.from_date != undefined && this.to_date != undefined && this.from_date != '' && this.to_date != ''){
+          console.log(this.from_date)
+          for( let i in this.availability ){
+           if(this.availability[i].from == this.from_date){
+              this.showAlert(`${this.from_date} ya fue agregado`, '<strong>Error:</strong> Por favor selecciona otra disponibilidad.');
+              return;
+            }
           }
-        }
-        this.availability.push({
-          type: "custom",
-          bookable: "no",
-          priority: 10,
-          from: this.from_date,
-          to:this.to_date
-        });
+          this.availability.push({
+            type: "custom",
+            bookable: "no",
+            priority: 10,
+            from: this.from_date,
+            to:this.to_date
+          });
 
-        this.from_date = '';
-        this.to_date = '';
+          this.from_date = '';
+          this.to_date = '';
+        }else{
+          this.showAlert('No se ha seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
+        }
     }
   }
 
   addAvailabilityDay(){
     if(this.availability.length == 0 ){
-      if(this.daySelected != undefined && this.daySelected != '', this.from != undefined && this.from != ''  && this.to != undefined && this.to != ''){
+      if(this.dayValue != 0 && this.daySelected != undefined &&  this.from != undefined && this.from != undefined  && this.to != undefined && this.to != undefined && this.dayNameSelected != undefined){
         this.availability.push({
           type: `time:${this.daySelected}`,
           bookable: "yes",
@@ -521,28 +532,37 @@ export class NewProductPage {
         this.from = '';
         this.to = '';
         this.daySelected = '';
+        this.dayValue = 0;
+        this.dayNameSelected = '';
+
       }else{
         this.showAlert('No se ha seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
       }
     }else{
-      for( let i in this.availability ){
-       if(this.availability[i].type == `time:${this.daySelected}`){
-          this.showAlert('Atención', '<strong>Error:</strong> Por favor selecciona otro día.');
-          return;
+      if(this.dayValue != 0 && this.daySelected != undefined &&  this.from != undefined && this.from != undefined  && this.to != undefined && this.to != undefined && this.dayNameSelected != undefined){
+        for( let i in this.availability ){
+         if(this.availability[i].type == `time:${this.daySelected}`){
+            this.showAlert('Atención', '<strong>Error:</strong> Por favor selecciona otro día.');
+            return;
+          }
         }
-      }
-      this.availability.push({
-        type: `time:${this.daySelected}`,
-        bookable: "yes",
-        priority: 10,
-        from: this.from,
-        to:this.to,
-        nameDay:this.dayNameSelected
-      });
+        this.availability.push({
+          type: `time:${this.daySelected}`,
+          bookable: "yes",
+          priority: 10,
+          from: this.from,
+          to:this.to,
+          nameDay:this.dayNameSelected
+        });
 
-      this.from = '';
-      this.to = '';
-      this.daySelected = '';
+        this.from = '';
+        this.to = '';
+        this.daySelected = '';
+        this.dayValue = 0;
+      }else{
+        this.showAlert('No se ha seleccionado ninguna opción', '<strong>Error:</strong> Por favor selecciona los campos requeridos');
+      }
+
   }
 }
 
@@ -605,6 +625,7 @@ export class NewProductPage {
   }
 
   goHome(){
+    console.log("jajaja")
     this.nav.pop();
   }
   //  handleClick (ev){
