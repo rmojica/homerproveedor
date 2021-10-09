@@ -956,6 +956,22 @@ var Service = /** @class */ (function () {
             });
         });
     };
+    Service.prototype.saveProvider = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.header.append('Content-Type', 'application/json');
+            _this.http
+                .post(_this.config.urlApi + '/provider/create-new', {
+                'providerId': _this.values.customerId,
+                'product': data
+            }, _this.header)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                console.log(data);
+                resolve(data);
+            });
+        });
+    };
     Service.prototype.updateProductWithVendor = function (post_id) {
         var _this = this;
         return new Promise(function (resolve) {
@@ -7668,7 +7684,7 @@ var NewProductPage = /** @class */ (function () {
     };
     NewProductPage.prototype.sendProduct = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response;
+            var response, productId;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -7771,9 +7787,11 @@ var NewProductPage = /** @class */ (function () {
                         return [4 /*yield*/, this.service.addProduct(this.data)];
                     case 1:
                         response = _a.sent();
+                        console.log("mierda", response);
                         if (response.status === 200) {
                             this.btnEnabled = false;
-                            console.log(response.status);
+                            productId = response.url.split("=")[2];
+                            this.service.saveProvider(productId.split("&")[0]);
                             this.showAlert('Registrado correctamente', '<strong>Exito:</strong> Has registrado tu servicio correctamente');
                             this.nav.pop();
                         }
@@ -7954,6 +7972,8 @@ var NewProductPage = /** @class */ (function () {
     NewProductPage.prototype.goHome = function () {
         console.log("jajaja");
         this.nav.pop();
+    };
+    NewProductPage.prototype.saveProvider = function () {
     };
     NewProductPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({

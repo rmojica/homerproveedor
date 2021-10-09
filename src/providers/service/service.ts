@@ -419,6 +419,27 @@ export class Service {
     })
   }
 
+  saveProvider(data){
+    return new Promise(resolve => {
+      this.header.append('Content-Type', 'application/json');
+      this.http
+      .post(
+        this.config.urlApi + '/provider/create-new',
+        {
+          'providerId': this.values.customerId,
+          'product':data
+        },
+        this.header
+      )
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          console.log(data);
+          resolve(data);
+        });
+    })
+  }
+
   updateProductWithVendor(post_id){
       return new Promise(resolve => {
         this.reqhttp.put(

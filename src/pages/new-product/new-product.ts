@@ -183,7 +183,7 @@ export class NewProductPage {
   btnEnabled:Boolean = false;
   constructor(public nav: NavController, public navParams: NavParams, public values: Values, public alert:AlertController,public service: Service, public config:Config, private transfer: FileTransfer) {
     this.availability = [];
-    this.categories = [];    
+    this.categories = [];
     this.itemsCategory = [];
     this.service.getCategories(1);
     navParams.data.availability
@@ -195,8 +195,8 @@ export class NewProductPage {
       this.short_description = navParams.data.short_description.replace(/<[^>]*>?/gm,' ');
       this.block_cost = navParams.data.block_cost;
       console.log("toda la data",navParams.data)
-      navParams.data.availability.map(result =>{           
-        let day = result.type.split(':');            
+      navParams.data.availability.map(result =>{
+        let day = result.type.split(':');
         if(day[0] == "custom" || parseInt(day[1]) > 0){
           console.log(day)
           console.log(this.days[day[1]].name);
@@ -208,10 +208,10 @@ export class NewProductPage {
             to: result.to,
             nameDay:this.days[parseInt(day[1])-1].name
           });
-        }       
+        }
       });
        this.selectedCate = navParams.data.categories
-      
+
     }
   }
 
@@ -443,9 +443,12 @@ export class NewProductPage {
        this.block_cost != undefined && this.selectedCate.length != 0 && this.availability.length != 0
     ){
       let response:any = await this.service.addProduct(this.data);
+      console.log("mierda",response);
+
       if(response.status === 200){
         this.btnEnabled = false;
-        console.log(response.status);
+        let productId = response.url.split("=")[2];
+        this.service.saveProvider(productId.split("&")[0]);
         this.showAlert('Registrado correctamente', '<strong>Exito:</strong> Has registrado tu servicio correctamente');
         this.nav.pop();
       }else{
@@ -627,6 +630,10 @@ export class NewProductPage {
   goHome(){
     console.log("jajaja")
     this.nav.pop();
+  }
+
+  saveProvider(){
+
   }
   //  handleClick (ev){
   //   ev.preventDefault();
