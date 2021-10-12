@@ -78,6 +78,7 @@
           <span *ngIf="orders.status === 'iniciado'">Finalizar</span>
         </button>
         <button (click)="changestatecancel(orders.bookingId, orders.onesignal)"
+          [attr.disabled]="btnCancel"
           [attr.hidden]="orders.status === 'finalizado' ? true:null" text-center
           ion-button icon-left clear color="button-color" icon-only
           class="has-icon icon-only" small text-uppercase>
