@@ -30,6 +30,7 @@ export class OrdersPage {
   Lista:any
   counts:Observable<number>
   dataCount:any
+  btnEnabled:Boolean = false;
   constructor(
       private socket: Socket,
       public navCtrl: NavController,
@@ -61,12 +62,17 @@ export class OrdersPage {
 
   changestate(order, state, onesignal)
   {
-    this.presentLoading();
+    this.btnEnabled = true;
+    // this.presentLoading();
     let message = ""
     let title = ""
     this.productService.changestate({
       "order":order,
       "state":state
+    }).then((result:any) => {
+      if(result.data[0] == 1){
+        this.btnEnabled = false;
+      }
     })
 
     if(state==="solicitado"){
@@ -109,7 +115,7 @@ export class OrdersPage {
           "content":`El homer ha cancelado el servicio el motivo ${data.message}`,
           "onesignalid":onesignal
         });
-        
+
         this.functions.showAlert("Éxito", `El servicio se ha cancelado correctamente, motivo ${data.message}`);
       }
     })

@@ -173,21 +173,22 @@ export class ProductService {
 
   changestate(data){
     this.header.append('Content-Type', 'application/json');
-    this.http
-    .post(
-      this.config.urlApi + '/orders/changestate',
-      {
-        "order": data.order,
-        "state": data.state,
-        "isCancel":data.isCancel
-      },
-      this.header
-    )
-    .map(res => res.json())
-    .subscribe(
-      data => {
-        return data
-    });
+    return new Promise(resolve => {
+      this.http
+      .post(
+        this.config.urlApi + '/orders/changestate',
+        {
+          "order": data.order,
+          "state": data.state,
+          "isCancel":data.isCancel
+        },
+        this.header
+      )
+      .map(res => res.json())
+      .subscribe(data => {
+        resolve(data);
+      });
+    })
   }
 
   sendNotification(data){

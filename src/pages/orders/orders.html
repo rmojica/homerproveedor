@@ -65,6 +65,7 @@
       <div class="row-button">
         <button (click)="changestate(orders.bookingId,orders.status,
           orders.onesignal)"
+          [attr.disabled]="btnEnabled"
           [attr.disabled]="orders.status === 'solicitado' ? true:null"
           [attr.disabled]="orders.status === 'aceptado' ? true:null"
           [attr.hidden]="orders.status === 'finalizado' ? true:null"
