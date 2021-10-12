@@ -2440,10 +2440,12 @@ var ProductService = /** @class */ (function () {
     };
     ProductService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["LoadingController"]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */],
+            __WEBPACK_IMPORTED_MODULE_3__values__["a" /* Values */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["LoadingController"]])
     ], ProductService);
     return ProductService;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=product-service.js.map
@@ -5608,6 +5610,7 @@ var OrdersPage = /** @class */ (function () {
         this.loadingCtrl = loadingCtrl;
         this.functions = functions;
         this.btnEnabled = false;
+        this.btnCancel = false;
         this.Lista = [];
         this.socket.connect();
         this.dataCount = [];
@@ -5624,7 +5627,7 @@ var OrdersPage = /** @class */ (function () {
     OrdersPage.prototype.changestate = function (order, state, onesignal) {
         var _this = this;
         this.btnEnabled = true;
-        this.presentLoading();
+        // this.presentLoading();
         var message = "";
         var title = "";
         this.productService.changestate({
@@ -5659,6 +5662,7 @@ var OrdersPage = /** @class */ (function () {
     };
     OrdersPage.prototype.changestatecancel = function (order, onesignal) {
         var _this = this;
+        this.btnCancel = true;
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modal_modal__["a" /* ModalPage */]);
         modal.present();
         modal.onDidDismiss(function (data) {
@@ -5667,6 +5671,10 @@ var OrdersPage = /** @class */ (function () {
                     "order": order,
                     "state": "cancelado",
                     "isCancel": data.message
+                }).then(function (result) {
+                    if (result.data[0] == 1) {
+                        _this.btnCancel = false;
+                    }
                 });
                 _this.productService.sendNotification({
                     "title": "Servicio cancelado",
@@ -5679,19 +5687,18 @@ var OrdersPage = /** @class */ (function () {
     };
     OrdersPage.prototype.ionViewDidEnter = function () {
         var _this = this;
+        this.socket.connect();
         this.getData().subscribe(function (data) {
             _this.data = data;
             var duplicado = false;
             duplicado = _this.validateUnique(data);
             if (duplicado == false) {
                 _this.Lista.push(data);
-                // this.Lista[this.count] = data
-                // this.count++;
             }
         });
     };
     OrdersPage.prototype.ionViewWillLeave = function () {
-        this.socket.disconnect();
+        // this.socket.disconnect();
     };
     OrdersPage.prototype.ngOnInit = function () {
     };
@@ -5750,12 +5757,18 @@ var OrdersPage = /** @class */ (function () {
     };
     OrdersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-orders',template:/*ion-inline-start:"D:\desktop\numu\homer\homerproveedor\src\pages\orders\orders.html"*/'<!--\n  Generated template for the OrdersPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header style="background-color: #72A9AE;">\n  <ion-toolbar color="header">\n    <ion-buttons slot="start">\n      <button ion-button icon-only (click)="goHome()">\n        <ion-icon name="arrow-back"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title class="logo-title" (click)="goHome()">\n      <img width="150" src="{{values.homerLogoP}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <div class="sub-header">\n    <h1>Próximos Servicios</h1>\n  </div>\n  <div class="card" *ngFor="let orders of data">\n    <div class="card-body">\n      <div class="countDown">\n        <h4>\n          <b>Termina en: {{orders.countDown}} Minutos</b>\n        </h4>\n      </div>\n      <div class="row-h2">\n        <h2 class="numbook">\n          <b>Reserva # {{orders.bookingId}}</b>\n        </h2>\n        <h2 id="status" style="text-align: center; padding:7px; width: 70%;\n          background-color: #000; color: #ffff; border-radius: 20px; font-size:\n          10px!important;">\n          <b style="text-transform: uppercase; margin-left: 15px;">{{orders.status}}</b>\n        </h2>\n      </div>\n      <h2 class="orderDate">\n        <h2>\n          <b>Fecha de solicitud: </b> <br>{{orders.date | date: \'dd/MM/yy\' }}\n        </h2>\n        <h2>\n          <b>Horario de la reserva: </b> <br>{{orders.hour}} a\n          {{orders.hour_end}}\n        </h2>\n      </h2>\n      <div class="rectangle">\n        <h2 style="margin:0 auto; width: 80%; font-size: 16px;">\n          <b>{{orders.productName}}</b>\n        </h2>\n        <h5 style="margin:0 auto; width: 80%">\n          <b>{{orders.location}}</b>\n        </h5>\n      </div>\n      <h2 style="text-align: center;" *ngIf="orders.isCancel != \'\'">\n        <b>{{orders.isCancel}}</b>\n      </h2>\n\n\n      <!-- <h2 style="text-align: center;" *ngIf="counts.order == orders.id">\n          <b>{{counts.count | async}}</b>\n        </h2> -->\n      <div class="row-button">\n        <button (click)="changestate(orders.bookingId,orders.status,\n          orders.onesignal)"\n          [attr.disabled]="btnEnabled"\n          [attr.disabled]="orders.status === \'solicitado\' ? true:null"\n          [attr.disabled]="orders.status === \'aceptado\' ? true:null"\n          [attr.hidden]="orders.status === \'finalizado\' ? true:null"\n          text-center ion-button icon-left clear icon-only class="has-icon\n          icon-only" small text-uppercase>\n          <span *ngIf="orders.status === \'solicitado\'">Aceptar</span>\n          <span *ngIf="orders.status === \'aceptado\'">Pendiente de pago</span>\n          <span *ngIf="orders.status === \'pagado\'">He llegado</span>\n          <span *ngIf="orders.status === \'he llegado\'">Iniciar</span>\n          <span *ngIf="orders.status === \'iniciado\'">Finalizar</span>\n        </button>\n        <button (click)="changestatecancel(orders.bookingId, orders.onesignal)"\n          [attr.hidden]="orders.status === \'finalizado\' ? true:null" text-center\n          ion-button icon-left clear color="button-color" icon-only\n          class="has-icon icon-only" small text-uppercase>\n          Cancelar\n        </button>\n      </div>\n      <button (click)="openchat(orders.id)" text-center ion-button icon-left\n        clear color="button-color" icon-only class="has-icon icon-only" small\n        text-uppercase>\n        Chat\n      </button>\n      <button (click)="openOrdersDetail()" text-center ion-button icon-left\n        clear color="button-color" icon-only class="has-icon icon-only" small\n        text-uppercase>\n        Ver detalles\n      </button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"D:\desktop\numu\homer\homerproveedor\src\pages\orders\orders.html"*/,
+            selector: 'page-orders',template:/*ion-inline-start:"D:\desktop\numu\homer\homerproveedor\src\pages\orders\orders.html"*/'<!--\n  Generated template for the OrdersPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header style="background-color: #72A9AE;">\n  <ion-toolbar color="header">\n    <ion-buttons slot="start">\n      <button ion-button icon-only (click)="goHome()">\n        <ion-icon name="arrow-back"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title class="logo-title" (click)="goHome()">\n      <img width="150" src="{{values.homerLogoP}}" />\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <div class="sub-header">\n    <h1>Próximos Servicios</h1>\n  </div>\n  <div class="card" *ngFor="let orders of data">\n    <div class="card-body">\n      <div class="countDown">\n        <h4>\n          <b>Termina en: {{orders.countDown}} Minutos</b>\n        </h4>\n      </div>\n      <div class="row-h2">\n        <h2 class="numbook">\n          <b>Reserva # {{orders.bookingId}}</b>\n        </h2>\n        <h2 id="status" style="text-align: center; padding:7px; width: 70%;\n          background-color: #000; color: #ffff; border-radius: 20px; font-size:\n          10px!important;">\n          <b style="text-transform: uppercase; margin-left: 15px;">{{orders.status}}</b>\n        </h2>\n      </div>\n      <h2 class="orderDate">\n        <h2>\n          <b>Fecha de solicitud: </b> <br>{{orders.date | date: \'dd/MM/yy\' }}\n        </h2>\n        <h2>\n          <b>Horario de la reserva: </b> <br>{{orders.hour}} a\n          {{orders.hour_end}}\n        </h2>\n      </h2>\n      <div class="rectangle">\n        <h2 style="margin:0 auto; width: 80%; font-size: 16px;">\n          <b>{{orders.productName}}</b>\n        </h2>\n        <h5 style="margin:0 auto; width: 80%">\n          <b>{{orders.location}}</b>\n        </h5>\n      </div>\n      <h2 style="text-align: center;" *ngIf="orders.isCancel != \'\'">\n        <b>{{orders.isCancel}}</b>\n      </h2>\n\n\n      <!-- <h2 style="text-align: center;" *ngIf="counts.order == orders.id">\n          <b>{{counts.count | async}}</b>\n        </h2> -->\n      <div class="row-button">\n        <button (click)="changestate(orders.bookingId,orders.status,\n          orders.onesignal)"\n          [attr.disabled]="btnEnabled"\n          [attr.disabled]="orders.status === \'solicitado\' ? true:null"\n          [attr.disabled]="orders.status === \'aceptado\' ? true:null"\n          [attr.hidden]="orders.status === \'finalizado\' ? true:null"\n          text-center ion-button icon-left clear icon-only class="has-icon\n          icon-only" small text-uppercase>\n          <span *ngIf="orders.status === \'solicitado\'">Aceptar</span>\n          <span *ngIf="orders.status === \'aceptado\'">Pendiente de pago</span>\n          <span *ngIf="orders.status === \'pagado\'">He llegado</span>\n          <span *ngIf="orders.status === \'he llegado\'">Iniciar</span>\n          <span *ngIf="orders.status === \'iniciado\'">Finalizar</span>\n        </button>\n        <button (click)="changestatecancel(orders.bookingId, orders.onesignal)"\n          [attr.disabled]="btnCancel"\n          [attr.hidden]="orders.status === \'finalizado\' ? true:null" text-center\n          ion-button icon-left clear color="button-color" icon-only\n          class="has-icon icon-only" small text-uppercase>\n          Cancelar\n        </button>\n      </div>\n      <button (click)="openchat(orders.id)" text-center ion-button icon-left\n        clear color="button-color" icon-only class="has-icon icon-only" small\n        text-uppercase>\n        Chat\n      </button>\n      <button (click)="openOrdersDetail()" text-center ion-button icon-left\n        clear color="button-color" icon-only class="has-icon icon-only" small\n        text-uppercase>\n        Ver detalles\n      </button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"D:\desktop\numu\homer\homerproveedor\src\pages\orders\orders.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_service_product_service__["a" /* ProductService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_service_product_service__["a" /* ProductService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__["a" /* Functions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__["a" /* Functions */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ngx_socket_io__["a" /* Socket */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_values__["a" /* Values */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_product_service__["a" /* ProductService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"],
+            __WEBPACK_IMPORTED_MODULE_9__providers_service_functions__["a" /* Functions */]])
     ], OrdersPage);
     return OrdersPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=orders.js.map

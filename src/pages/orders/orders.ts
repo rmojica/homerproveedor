@@ -128,6 +128,7 @@ export class OrdersPage {
   }
 
   ionViewDidEnter() {
+    this.socket.connect();
     this.getData().subscribe((data:any) => {
       this.data = data
       var duplicado = false;
@@ -135,14 +136,12 @@ export class OrdersPage {
 
       if (duplicado == false){
         this.Lista.push(data)
-          // this.Lista[this.count] = data
-          // this.count++;
       }
     });
   }
 
   ionViewWillLeave() {
-      this.socket.disconnect();
+      // this.socket.disconnect();
   }
 
   ngOnInit() {
