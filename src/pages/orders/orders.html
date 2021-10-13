@@ -22,7 +22,8 @@
   </div>
   <div class="card" *ngFor="let orders of data">
     <div class="card-body">
-      <div class="countDown">
+      <div class="countDown"
+      [attr.hidden]="orders.status === 'aceptado' || orders.status === 'pagado' || orders.status === 'he llegado' || orders.status === 'iniciado' ? true:null">
         <h4>
           <b>Termina en: {{orders.countDown}} Minutos</b>
         </h4>
