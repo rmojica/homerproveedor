@@ -67,14 +67,6 @@ export class OrdersPage {
     // this.presentLoading();
     let message = ""
     let title = ""
-    this.productService.changestate({
-      "order":order,
-      "state":state
-    }).then((result:any) => {
-      if(result.data[0] == 1){
-        this.btnEnabled = false;
-      }
-    })
 
     if(state==="solicitado"){
       title = `Solicitud Aceptada`
@@ -89,6 +81,15 @@ export class OrdersPage {
       title = `El servicio ha finalizado`
       message = `Tu proveedor de servicio te informa que tu servicio ha sido finalizado`
     }
+
+    this.productService.changestate({
+      "order":order,
+      "state":state
+    }).then((result:any) => {
+      if(result.data[0] == 1){
+        this.btnEnabled = false;
+      }
+    })
 
 
     this.productService.sendNotification({
@@ -111,7 +112,7 @@ export class OrdersPage {
           "isCancel":data.message
         }).then((result:any) => {
           if(result.data[0] == 1){
-            
+
           }
         })
 
