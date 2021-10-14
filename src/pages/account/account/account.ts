@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { Service } from '../../../providers/service/service';
 import { Values } from '../../../providers/service/values';
 import { AccountLogin } from '../login/login';
 import { EditAddressForm } from '../edit-address-form/edit-address-form';
 import { TabsPage } from '../../tabs/tabs';
+import { DashProveedorPage } from '../../dash-proveedor/dash-proveedor';
 
 @Component({
     templateUrl: 'account.html',
@@ -15,7 +16,7 @@ export class AccountPage {
     address: any;
     status: any;
     form: any;
-    constructor(public nav: NavController, public service: Service, public values: Values) {
+    constructor(public appCtrl: App, public nav: NavController, public service: Service, public values: Values) {
         this.service.getCustomer()
             .then((results) => this.customers = results);
 
@@ -30,6 +31,21 @@ export class AccountPage {
       this.nav.parent.select(0);
   }
 
+  // goHome(){
+  //   this.nav.push(DashProveedorPage);
+  // }
+  goHome(){
+    //this.appCtrl.getRootNav().push(DashProveedorPage);
+    this.nav.push(DashProveedorPage)
+    .then(() => {
+      const startIndex = this.nav.getActive().index - 1;
+      this.nav.remove(startIndex, 1);
+    });
+  }
+
+
+
+  
   getCart() {
     this.nav.parent.select(2);
   }

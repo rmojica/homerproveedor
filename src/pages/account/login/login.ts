@@ -62,15 +62,37 @@ export class AccountLogin {
   }
 
   login() {
-    if (this.validateForm()) {
-      this.disableSubmit = true
-      this.buttonText = 'Logging In...'
-      this.service
-        .login(this.loginData)
-        .then(results => this.handleResults(results))
-    }else{
-      this.showAlert("Por favor rellene todos los campos");
-    }
+
+    this.oneSignal.getPermissionSubscriptionState().then(async status => {
+      //iOS only: Integer: 0 = Not Determined, 1 = Denied, 2 = Authorized
+      //Android only: Integer: 1 = Authorized, 2 = Denied
+      console.log("firstLaunch6: ",  "this.firstLaunch") 
+      if (status.permissionStatus.state == 2 || status.permissionStatus.status == 1) {
+          console.log("firstLaunch5: ",  "this.firstLaunch") 
+          const alert = await this.alert.create({
+              title: 'Permiso de notificación',
+              mode: 'ios',
+              message: 'Es necesario activar los permisos de notificación, diríjase a <strong>Ajustes->Notificación->Homer Proveedor->Permitir Notificación </strong>',
+              buttons: ['Ok']
+          });
+          alert.present();
+      }
+      else{
+        if (this.validateForm()) {
+          this.disableSubmit = true
+          this.buttonText = 'Logging In...'
+          this.service
+            .login(this.loginData)
+            .then(results => this.handleResults(results))
+        }else{
+          this.showAlert("Por favor rellene todos los campos");
+        }
+      }
+  }).catch(respError => {
+  });
+
+
+    
   }
   validateForm() {
     if (this.loginData.username == undefined || this.loginData.username == '') {

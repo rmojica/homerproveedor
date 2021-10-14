@@ -51,6 +51,8 @@ export class MyApp {
     showSplash = true;
     products:any;
 
+    firstLaunch = false;
+
     constructor( private socket: Socket, public CategoryService: CategoryService,statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController, public config: Config, private oneSignal: OneSignal, private emailComposer: EmailComposer, private appRate: AppRate, public platform: Platform, public service: Service, public values: Values, public translateService: TranslateService, private socialSharing: SocialSharing, private nativeStorage: NativeStorage) {
 
         this.service.getCustomer()
@@ -85,6 +87,8 @@ export class MyApp {
 
         });
         this.loginHomerSetUp();
+
+        this.initializeApp();
 
     }
     handleService(results) {
@@ -274,6 +278,68 @@ export class MyApp {
     }
     openchat(){
       this.nav.setRoot(ChatPage)
+    }
+
+    initializeApp() {
+        this.platform.ready().then(() => {
+            this.checkNotificationPermission();
+        });
+
+        this.platform.resume.subscribe((result) => {
+            this.checkNotificationPermissionState();
+        });
+    }
+
+    checkNotificationPermission() {
+        this.nativeStorage.getItem('firstLaunch').then(value => {
+            this.firstLaunch = value;
+
+            if (this.firstLaunch) {
+                console.log("firstLaunch1: ",  this.firstLaunch) 
+                this.checkNotificationPermissionState();
+            } else {
+                console.log("firstLaunch7: ",  "this.firstLaunch") 
+                //First time launch and update the flag
+                this.nativeStorage.setItem('firstLaunch', true).then(() => {
+                    console.log("firstLaunch4: ",  "this.firstLaunch") 
+                    if (this.platform.is('ios')) {
+                        console.log("firstLaunch2: ",  "this.firstLaunch") 
+                        //User accept or decline the permission prompt
+                        this.oneSignal.addPermissionObserver().subscribe(async data => {
+                            if (data.to.status == 1) {
+                                const alert = await this.alertCtrl.create({
+                                    title: 'Test',
+                                    mode: 'ios',
+                                    message: 'You have disallowed',
+                                    buttons: ['Ok']
+                                });
+                                alert.present();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    checkNotificationPermissionState() {
+        this.oneSignal.getPermissionSubscriptionState().then(async status => {
+            //iOS only: Integer: 0 = Not Determined, 1 = Denied, 2 = Authorized
+            //Android only: Integer: 1 = Authorized, 2 = Denied
+            console.log("firstLaunch6: ",  "this.firstLaunch") 
+            // if (status.permissionStatus.state == 2 || status.permissionStatus.status == 1) {
+            //     console.log("firstLaunch5: ",  "this.firstLaunch") 
+            //     const alert = await this.alertCtrl.create({
+            //         title: 'Test',
+            //         mode: 'ios',
+            //         message: 'You have disallowed',
+            //         buttons: ['Ok']
+            //     });
+            //     alert.present();
+            
+            // }
+        }).catch(respError => {
+        });
     }
 
 }
