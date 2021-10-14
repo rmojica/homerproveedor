@@ -70,16 +70,16 @@ export class OrdersPage {
 
     if(state==="solicitado"){
       title = `Solicitud Aceptada`
-      message = `Tu proveedor de servicio te informa que tu servicio ha sido aceptado`
+      message = `Tu HOMER te informa que tu servicio ha sido aceptado`
     }else if(state==="pagado"){
       title = `Tu homer ha llegado`
       message = `Tu proveedor de servicio te informa que ha llegado al destino`
     }else if(state==="he llegado"){
       title = `El servicio ha iniciado`
-      message = `Tu proveedor de servicio te informa que ha iniciado el servicio`
+      message = `Tu HOMER te informa que ha iniciado el servicio`
     }else if(state==="iniciado"){
       title = `El servicio ha finalizado`
-      message = `Tu proveedor de servicio te informa que tu servicio ha sido finalizado`
+      message = `Tu HOMER te informa que ha finalizado el servicio`
     }
 
     this.productService.changestate({
@@ -118,7 +118,7 @@ export class OrdersPage {
 
         this.productService.sendNotification({
           "title":"Servicio cancelado",
-          "content":`El homer ha cancelado el servicio el motivo ${data.message}`,
+          "content":`El homer ha cancelado el servicio por el siguiente motivo ${data.message}`,
           "onesignalid":onesignal
         });
 

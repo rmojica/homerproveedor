@@ -1,17 +1,17 @@
 <!-- Header -->
 <ion-header  style="background-color: #72A9AE;">
-  <ion-navbar color="header">
-    <button ion-button menuToggle >
-      <ion-icon >
-        <img class="logo-login" src="{{values.iconMenu}}">
-      </ion-icon>
-    </button>
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <button ion-button icon-only  (click)="goHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title class="logo-title">
       <div>
         <img width="200" src="{{values.homerLogoP}}" />
       </div>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="true" slot="fixed">
@@ -47,7 +47,7 @@
           {{"Home Address" | translate}}
         </ion-card-header>
         <ion-card-content style="margin-top: 10px">
-          <img width="40" src="../../../assets/image/house.png" alt="">
+          <img width="40" src="../../../assets/image/home-icon.png" alt="">
           <div>
             <h5>{{customers.customer.billing_address.first_name}} {{customers.customer.billing_address.last_name}}<br
               *ngIf="customers.customer.billing_address.first_name"></h5>
@@ -63,13 +63,13 @@
         </ion-card-content>
       </ion-card>
 
-      <div *ngIf="customers.customer.shipping_address">
+      <!-- <div *ngIf="customers.customer.shipping_address">
         <ion-card style="margin-bottom: 20px;">
           <ion-card-header >
             {{"BillingAddress" | translate}}
           </ion-card-header>
           <ion-card-content style="margin-top: 10px">
-            <img src="../../../assets/image/package.png" alt="">
+            <img src="../../../assets/image/home-address.png" alt="">
             <div>
               <h5>{{customers.customer.shipping_address.first_name}} {{customers.customer.shipping_address.last_name}}<br
               *ngIf="customers.customer.shipping_address.first_name"></h5>
@@ -83,7 +83,8 @@
             </div>
           </ion-card-content>
         </ion-card>
-      </div>
+      </div> -->
+
       <div class="button-margin">
         <button ion-button block color="button-color" type="submit" class="button button-block button-default" text-uppercase (click)="editAddress()">{{"EditAddress" | translate}}</button>
      </div>
