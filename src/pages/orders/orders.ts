@@ -30,8 +30,7 @@ export class OrdersPage {
   Lista:any
   counts:Observable<number>
   dataCount:any
-  btnEnabled:Boolean = false;
-  btnCancel:Boolean = false;
+  btnEnabled:Boolean;
   constructor(
       private socket: Socket,
       public navCtrl: NavController,
@@ -43,6 +42,7 @@ export class OrdersPage {
       public functions: Functions
   )
   {
+    this.btnEnabled = false;
     this.Lista = []
     this.socket.connect();
     this.dataCount = [];
@@ -100,7 +100,6 @@ export class OrdersPage {
   }
   changestatecancel(order, onesignal)
   {
-    this.btnCancel = true;
     let modal = this.modalCtrl.create(ModalPage);
     modal.present();
     modal.onDidDismiss((data) => {
@@ -112,7 +111,7 @@ export class OrdersPage {
           "isCancel":data.message
         }).then((result:any) => {
           if(result.data[0] == 1){
-            this.btnCancel = false;
+            
           }
         })
 
