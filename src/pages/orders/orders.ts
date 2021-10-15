@@ -63,6 +63,8 @@ export class OrdersPage {
 
   changestate(order, state, onesignal)
   {
+    console.log(state);
+
     this.btnEnabled = true;
     // this.presentLoading();
     let message = ""
@@ -71,15 +73,15 @@ export class OrdersPage {
     if(state==="solicitado"){
       title = `Solicitud Aceptada`
       message = `Tu HOMER te informa que tu servicio ha sido aceptado`
+
     }else if(state==="pagado"){
-      title = `Tu homer ha llegado`
-      message = `Tu proveedor de servicio te informa que ha llegado al destino`
-    }else if(state==="he llegado"){
       title = `El servicio ha iniciado`
       message = `Tu HOMER te informa que ha iniciado el servicio`
+      state = "iniciado"
     }else if(state==="iniciado"){
       title = `El servicio ha finalizado`
       message = `Tu HOMER te informa que ha finalizado el servicio`
+      state = "finalizado"
     }
 
     this.productService.changestate({
