@@ -201,8 +201,8 @@ export class ProductService {
         "app_id": "8ad1c280-92da-4d39-b49c-cf0a81e0d1fc",
         "include_player_ids": [`${data.onesignalid}`],
         "data": {"foo": "bar"},
-        "headings": {"es": `${data.title}`},
-        "contents": {"es": `${data.content}`}
+        "headings": {"en": `${data.title}`},
+        "contents": {"en": `${data.content}`}
       },
       this.header
     )
