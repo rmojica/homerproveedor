@@ -158,8 +158,6 @@ export class OrdersPage {
     let observable = new Observable(observer => {
         this.socket.emit('getordersbyproviders',{ id:this.values.customerId});
         this.socket.fromEvent('getordersbyproviders').subscribe((data:any) => {
-          console.log("data desde el server", data);
-
           observer.next(data)
         });
     })
