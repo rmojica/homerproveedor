@@ -83,7 +83,7 @@ ion-chip {
       height: auto;
       position: absolute;
       margin: 0 auto;
-      top: calc(+1 * (135px + 4px)); // -42px;
+      top: calc(+1 * (125px + 4px)); // -42px;
       img {
         display: block;
         border-radius: 50%;
@@ -93,7 +93,13 @@ ion-chip {
     }
   }
 }
-
+.country {
+  font-size: 90%;
+  color: #949ea6;
+  text-transform: uppercase;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
 .card-body {
   background-color: #fcfcfc;
   padding: 30px;
@@ -132,4 +138,4 @@ ion-chip {
 }
 .toolbar-ios ion-title img{
   top: 30%;
-}   
+}

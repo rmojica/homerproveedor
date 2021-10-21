@@ -19,22 +19,18 @@
   }
 
   .header-login {
-    // margin-top: -20px;
-    // background: url("../../../assets/image/header-login3.jpg") center;
-    background-repeat: no-repeat;
     background-color: #76a7ac;
-    -webkit-background-size: 100% 35vh;
-    -moz-background-size: 100% 35vh;
-    -o-background-size: 100% 35vh;
-    background-size: 100% 35vh;
     background-position: top;
     width: 100% !important;
     height: 100vh;
-    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
   }
 
   .header-login img {
-    margin: 100px;
+    margin-top: 100px;margin-left: 15px;
+    // border: 1px solid red;
   }
 
   .login {
