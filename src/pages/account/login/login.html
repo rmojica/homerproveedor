@@ -11,16 +11,17 @@
 <ion-content class="account-login">
   <!-- <img class="header-login" src="{{values.headerLogin}}"> -->
   <div class="header-login">
-    <div><img src="{{values.logoLogin2}}"></div>
+    <img src="{{values.logoLogin2}}" width="200" height="60">
     <div class="margin">
       <!-- <div>
       <img class="logo-login" style="width: 70%;" src="{{values.logoLogin}}">
-    </div> -->
+      </div> -->
       <form #f="ngForm" class="login">
         <ion-list>
           <ion-item>
             <ion-label floating>{{"Usuario" | translate}}</ion-label>
-            <ion-input #inputUser required type="email" [(ngModel)]="loginData.username" name="firstname">
+            <ion-input #inputUser required type="email"
+              [(ngModel)]="loginData.username" name="firstname">
             </ion-input>
           </ion-item>
 
@@ -31,23 +32,28 @@
         </ion-item> -->
           <ion-item>
             <ion-label floating>{{"Contraseña" | translate}}</ion-label>
-            <ion-input class="pass" required [type]="passwordType" clearOnEdit="false" [(ngModel)]="loginData.password"
+            <ion-input class="pass" required [type]="passwordType"
+              clearOnEdit="false" [(ngModel)]="loginData.password"
               name="password"></ion-input>
-            <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+            <ion-icon item-end [name]="passwordIcon" class="passwordIcon"
+              (click)='hideShowPassword()'></ion-icon>
           </ion-item>
 
         </ion-list>
 
         <div class="margin">
           <button ion-button clear color="button-color" type="submit"
-            class="forgot-pass button button-block button-clear" text-uppercase (click)="forgotten()">{{"Has olvidado tu contraseña?" |
+            class="forgot-pass button button-block button-clear" text-uppercase
+            (click)="forgotten()">{{"Has olvidado tu contraseña?" |
             translate}}
             ?
           </button>
           <br>
           <div class="button-center">
-            <button ion-button block color="button-color" type="submit" class="button button-block button-default"
-              text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{"Iniciar Sesión" | translate}}
+            <button ion-button block color="button-color" type="submit"
+              class="button button-block button-default"
+              text-uppercase [disabled]="disableSubmit"
+              (click)="login(loginData)">{{"Iniciar Sesión" | translate}}
             </button>
           </div>
         </div>

@@ -42,16 +42,14 @@ export class OrdersPage {
       public functions: Functions
   )
   {
+    this.data = [];
     this.btnEnabled = false;
     this.Lista = []
     this.socket.connect();
     this.dataCount = [];
   }
 
-  ionViewWillEnter(){
-
-    // this.downCount()
-  }
+  
 
   validateUnique(myObject) {
       return !!this.Lista.find(i => i.id === myObject.id)
@@ -130,6 +128,10 @@ export class OrdersPage {
   }
 
   ionViewDidEnter() {
+    const loader = this.loadingCtrl.create({
+      content: "Por favor espere...",
+    });
+    loader.present();
     this.socket.connect();
     this.getData().subscribe((data:any) => {
       this.data = data
@@ -139,6 +141,7 @@ export class OrdersPage {
       if (duplicado == false){
         this.Lista.push(data)
       }
+      loader.dismiss();
     });
   }
 
@@ -150,8 +153,9 @@ export class OrdersPage {
 
   }
 
-  openOrdersDetail(){
-    this.navCtrl.push(OrdersDetailPage,{data:this.data})
+  openOrdersDetail(booking){
+    let book =  this.data.find(data => data.bookingId == booking);
+    this.navCtrl.push(OrdersDetailPage,{data:book});
   }
 
   getData(){
@@ -206,7 +210,6 @@ export class OrdersPage {
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: "Por favor espere...",
-      duration: 3000
     });
     loader.present();
   }
