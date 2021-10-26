@@ -45,11 +45,10 @@ export class OrdersPage {
     this.data = [];
     this.btnEnabled = false;
     this.Lista = []
-    this.socket.connect();
     this.dataCount = [];
   }
 
-  
+
 
   validateUnique(myObject) {
       return !!this.Lista.find(i => i.id === myObject.id)
@@ -132,7 +131,6 @@ export class OrdersPage {
       content: "Por favor espere...",
     });
     loader.present();
-    this.socket.connect();
     this.getData().subscribe((data:any) => {
       this.data = data
       var duplicado = false;
@@ -145,8 +143,9 @@ export class OrdersPage {
     });
   }
 
-  ionViewWillLeave() {
-      // this.socket.disconnect();
+  ionViewWillEnter(){
+    console.log("siempre entro");
+
   }
 
   ngOnInit() {

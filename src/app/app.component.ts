@@ -286,6 +286,7 @@ export class MyApp {
         });
 
         this.platform.resume.subscribe((result) => {
+            this.socket.connect();
             this.checkNotificationPermissionState();
         });
     }
@@ -295,15 +296,15 @@ export class MyApp {
             this.firstLaunch = value;
 
             if (this.firstLaunch) {
-                console.log("firstLaunch1: ",  this.firstLaunch) 
+                console.log("firstLaunch1: ",  this.firstLaunch)
                 this.checkNotificationPermissionState();
             } else {
-                console.log("firstLaunch7: ",  "this.firstLaunch") 
+                console.log("firstLaunch7: ",  "this.firstLaunch")
                 //First time launch and update the flag
                 this.nativeStorage.setItem('firstLaunch', true).then(() => {
-                    console.log("firstLaunch4: ",  "this.firstLaunch") 
+                    console.log("firstLaunch4: ",  "this.firstLaunch")
                     if (this.platform.is('ios')) {
-                        console.log("firstLaunch2: ",  "this.firstLaunch") 
+                        console.log("firstLaunch2: ",  "this.firstLaunch")
                         //User accept or decline the permission prompt
                         this.oneSignal.addPermissionObserver().subscribe(async data => {
                             if (data.to.status == 1) {
@@ -326,9 +327,8 @@ export class MyApp {
         this.oneSignal.getPermissionSubscriptionState().then(async status => {
             //iOS only: Integer: 0 = Not Determined, 1 = Denied, 2 = Authorized
             //Android only: Integer: 1 = Authorized, 2 = Denied
-            console.log("firstLaunch6: ",  "this.firstLaunch") 
             // if (status.permissionStatus.state == 2 || status.permissionStatus.status == 1) {
-            //     console.log("firstLaunch5: ",  "this.firstLaunch") 
+            //     console.log("firstLaunch5: ",  "this.firstLaunch")
             //     const alert = await this.alertCtrl.create({
             //         title: 'Test',
             //         mode: 'ios',
@@ -336,7 +336,7 @@ export class MyApp {
             //         buttons: ['Ok']
             //     });
             //     alert.present();
-            
+
             // }
         }).catch(respError => {
         });
