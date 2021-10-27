@@ -86,7 +86,12 @@ import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 
-const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{}}
+const config:SocketIoConfig = {url:'https://websockethomer.herokuapp.com/', options:{
+  reconnection: true,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax : 5000,
+  reconnectionAttempts: 99999
+}}
 
 
 export function createTranslateLoader(http: HttpClient) {

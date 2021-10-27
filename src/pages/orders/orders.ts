@@ -143,10 +143,6 @@ export class OrdersPage {
     });
   }
 
-  ionViewWillEnter(){
-    console.log("siempre entro");
-
-  }
 
   ngOnInit() {
 
