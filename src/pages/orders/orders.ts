@@ -117,7 +117,7 @@ export class OrdersPage {
 
         this.productService.sendNotification({
           "title":"Servicio cancelado",
-          "content":`El homer ha cancelado el servicio por el siguiente motivo ${data.message}`,
+          "content":`El Homer ha cancelado el servicio por el siguiente motivo ${data.message}`,
           "onesignalid":onesignal
         });
 
@@ -126,21 +126,27 @@ export class OrdersPage {
     })
   }
 
+
   ionViewDidEnter() {
     const loader = this.loadingCtrl.create({
       content: "Por favor espere...",
     });
     loader.present();
-    this.getData().subscribe((data:any) => {
-      this.data = data
-      var duplicado = false;
-      duplicado = this.validateUnique(data)
-
-      if (duplicado == false){
-        this.Lista.push(data)
-      }
+    if(this.values.orders.length > 0){
+      this.data = this.values.orders;
       loader.dismiss();
-    });
+    }else{
+      this.getData().subscribe((data:any) => {
+        this.data = data
+        var duplicado = false;
+        duplicado = this.validateUnique(data)
+
+        if (duplicado == false){
+          this.Lista.push(data)
+        }
+        loader.dismiss();
+      });
+    }
   }
 
 

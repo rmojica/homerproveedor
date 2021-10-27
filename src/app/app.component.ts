@@ -36,6 +36,7 @@ import { CategoryServicePage } from '../pages/category-service/category-service'
 import {CategoryService} from '../providers/service/category-service';
 import {DashProveedorPage} from '../pages/dash-proveedor/dash-proveedor';
 import {Socket}  from 'ngx-socket-io';
+import { Observable } from 'rxjs';
 
 @Component({
     templateUrl: 'app.html'
@@ -287,6 +288,9 @@ export class MyApp {
 
         this.platform.resume.subscribe((result) => {
             this.socket.connect();
+            this.getData().subscribe((data:any) => {
+              this.values.orders = data;
+            });
             this.checkNotificationPermissionState();
         });
     }
@@ -340,6 +344,16 @@ export class MyApp {
             // }
         }).catch(respError => {
         });
+    }
+
+    getData(){
+      let observable = new Observable(observer => {
+          this.socket.emit('getordersbyclients',{ id:this.values.customerId});
+          this.socket.fromEvent('getordersbyclients').subscribe((data:any) => {
+            observer.next(data)
+          });
+      })
+      return observable;
     }
 
 }
