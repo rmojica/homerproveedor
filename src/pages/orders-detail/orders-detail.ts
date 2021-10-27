@@ -160,7 +160,7 @@ export class OrdersDetailPage  implements AfterViewInit{
   }
 
   goHome(){
-    this.navCtrl.popToRoot();
+    this.navCtrl.pop();
   }
 
 }

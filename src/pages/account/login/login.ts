@@ -66,9 +66,8 @@ export class AccountLogin {
     this.oneSignal.getPermissionSubscriptionState().then(async status => {
       //iOS only: Integer: 0 = Not Determined, 1 = Denied, 2 = Authorized
       //Android only: Integer: 1 = Authorized, 2 = Denied
-      console.log("firstLaunch6: ",  "this.firstLaunch") 
       if (status.permissionStatus.state == 2 || status.permissionStatus.status == 1) {
-          console.log("firstLaunch5: ",  "this.firstLaunch") 
+          console.log("firstLaunch5: ",  "this.firstLaunch")
           const alert = await this.alert.create({
               title: 'Permiso de notificación',
               mode: 'ios',
@@ -92,7 +91,7 @@ export class AccountLogin {
   });
 
 
-    
+
   }
   validateForm() {
     if (this.loginData.username == undefined || this.loginData.username == '') {
